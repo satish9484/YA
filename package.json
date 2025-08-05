@@ -12,7 +12,8 @@
         "react-redux": "9.2.0",
         "react-router-dom": "7.7.1",
         "react-toastify": "11.0.5",
-        "swiper": "^11.2.10"
+        "swiper": "^11.2.10",
+        "vercel": "^44.7.3"
     },
     "scripts": {
         "start": "vite",
