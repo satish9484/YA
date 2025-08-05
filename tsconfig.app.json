@@ -1,0 +1,61 @@
+/**
+ * tsconfig.app.json
+ *
+ * This file contains the TypeScript compiler options for your main application code
+ * (everything inside the 'src' folder). It is optimized for a modern React project
+ * using Vite as the bundler.
+ */
+{
+    "compilerOptions": {
+        // --- Core Environment & Strictness ---
+        "target": "ES2020", // Sets the JavaScript version to compile to. 'ES2020' supports modern features like optional chaining.
+        "lib": ["ES2020", "DOM", "DOM.Iterable"], // Specifies the built-in libraries available to your code (e.g., browser DOM APIs).
+        "strict": true, // Enables all strict type-checking options, which is highly recommended for robust code.
+        "jsx": "react-jsx", // Use the modern JSX transform that doesn't require importing React in every file.
+
+        // --- Module Resolution & Bundler Setup ---
+        "module": "ESNext", // Use the latest ECMAScript module syntax (`import`/`export`).
+        "moduleResolution": "bundler", // Use the module resolution strategy expected by modern bundlers like Vite.
+        "resolveJsonModule": true, // Allows you to `import` JSON files directly into your code.
+        "isolatedModules": true, // Ensures every file can be compiled independently, a requirement for some bundlers like Vite/Babel.
+        "moduleDetection": "force", // Ensures files are treated as modules, even without import/export statements.
+        "baseUrl": ".", // Sets the base directory for resolving non-relative module paths.
+        "paths": {
+            // Creates path aliases to avoid long relative imports.
+            "@/*": ["src/*"] // `import '@/components/Button'` resolves to `src/components/Button`.
+        },
+
+        // --- Build & Output ---
+        "noEmit": true, // Critical for Vite. Tells TypeScript to only perform type-checking and not generate any output JS files.
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo", // Speeds up subsequent builds by storing compilation information.
+        "incremental": true, // Enables incremental compilation, which also helps speed up builds.
+
+        // --- Interoperability & Library Support ---
+        "esModuleInterop": true, // Improves compatibility between CommonJS and ES modules.
+        "allowSyntheticDefaultImports": true, // Allows default imports from modules with no default export (e.g., `import React from 'react'`).
+        "forceConsistentCasingInFileNames": true, // Prevents case-sensitive path issues, which can occur on different operating systems.
+        "skipLibCheck": true, // Skips type-checking of all declaration files (`.d.ts`), significantly speeding up compilation.
+        "types": ["vite/client"], // Explicitly includes type definitions for Vite's client-side environment variables and features.
+
+        // --- Advanced Strictness (Enabled by `"strict": true` but good to know) ---
+        // The following are automatically enabled by `"strict": true`.
+        // You don't need to list them, but this shows what you're getting:
+        // "noImplicitAny": true,
+        // "strictNullChecks": true,
+        // "strictFunctionTypes": true,
+        // "strictBindCallApply": true,
+        // "strictPropertyInitialization": true,
+        // "noImplicitThis": true,
+        // "useUnknownInCatchVariables": true,
+        // "alwaysStrict": true,
+
+        // --- Additional Code Quality Rules ---
+        "noUnusedLocals": true, // Reports an error for any declared local variables that are not used.
+        "noUnusedParameters": true, // Reports an error for any declared function parameters that are not used.
+        "noFallthroughCasesInSwitch": true, // Prevents accidental fall-throughs in `switch` statements, which can be a source of bugs.
+        "exactOptionalPropertyTypes": true, // Enforces that optional properties cannot be assigned `undefined`, making them more predictable.
+        "allowImportingTsExtensions": true // Allows importing TypeScript files with `.ts` extensions directly, which can be useful in some setups.
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
+}

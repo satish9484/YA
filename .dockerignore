@@ -1,0 +1,43 @@
+# .dockerignore
+#
+# This file works like .gitignore but for the Docker build context.
+# It prevents large, unnecessary, or sensitive files from being sent
+# to the Docker daemon, which speeds up the build process and keeps
+# the context clean.
+
+# Ignore dependencies, as they will be installed inside the container.
+node_modules
+
+# Ignore build output, as it will be generated inside the container.
+dist
+dist-ssr
+build
+
+# Ignore local environment files.
+.env
+.env.*
+*.local
+
+# Ignore logs and cache files.
+logs
+*.log
+npm-debug.log*
+.npm
+.eslintcache
+.vite
+.cursor
+.github
+
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Ignore Git directory and OS-specific files.
+.git
+.DS_Store
+
+# Ignore Docker-specific files.
+Dockerfile
+.dockerignore

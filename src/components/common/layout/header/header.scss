@@ -1,0 +1,48 @@
+@use '../../../../scss/variable' as *;
+
+.header {
+    width: 100%;
+    height: 75px;
+    max-height: 100%;
+    background: $white;
+    color: $white;
+    top: 0;
+    position: fixed;
+    z-index: 9999;
+
+    .container {
+        .logo {
+            flex-grow: 0;
+            width: 75px;
+            font-size: 24px;
+            font-weight: bold;
+            figure {
+                width: 45px;
+                height: 45px;
+                max-height: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: fill;
+                }
+            }
+        }
+
+        .menu {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            .menu-item {
+                margin: 0 16px;
+                color: #fff;
+
+                &:hover {
+                    color: #1890ff;
+                }
+            }
+        }
+    }
+}

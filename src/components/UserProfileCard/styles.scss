@@ -1,0 +1,244 @@
+/* --- SCSS Variables --- */
+$primary-color: #4a90e2;
+$secondary-color: #f5a623;
+$text-color: #333;
+$light-text-color: #f8f9fa;
+$background-color: #f4f7f6;
+$card-background: #ffffff;
+$border-color: #e0e0e0;
+$danger-color: #d0021b;
+$font-family: 'Helvetica Neue', Arial, sans-serif;
+$desktop-breakpoint: 768px;
+
+/* --- Base & Utility Styles --- */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    &.btn-primary {
+        background-color: $primary-color;
+        color: $light-text-color;
+    }
+
+    &.btn-secondary {
+        background-color: $danger-color;
+        color: $light-text-color;
+    }
+
+    &.btn-primary-outline {
+        background-color: transparent;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+    }
+}
+
+/* --- Main Page Layout --- */
+.user-profile-page {
+    font-family: $font-family;
+    background-color: $background-color;
+    min-height: 100vh;
+
+    // Mobile & Tablet Layout (Default)
+    .profile-sidebar {
+        .sidebar-header,
+        .sidebar-footer {
+            display: none; // Hide sidebar specifics on mobile
+        }
+        .profile-nav {
+            display: flex;
+            border-bottom: 1px solid $border-color;
+            background-color: $card-background;
+            .nav-item {
+                flex: 1;
+                padding: 15px;
+                text-align: center;
+                background: none;
+                border: none;
+                font-size: 1rem;
+                cursor: pointer;
+                position: relative;
+                color: $text-color;
+
+                &.active {
+                    font-weight: bold;
+                    color: $primary-color;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -1px;
+                        left: 0;
+                        width: 100%;
+                        height: 3px;
+                        background-color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    // Desktop Layout
+    @media (min-width: $desktop-breakpoint) {
+        display: flex;
+
+        .profile-sidebar {
+            width: 280px;
+            background-color: $card-background;
+            border-right: 1px solid $border-color;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+
+            .sidebar-header,
+            .sidebar-footer,
+            .profile-nav {
+                display: block;
+            }
+
+            .sidebar-header {
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 1px solid $border-color;
+                .sidebar-avatar {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    margin-bottom: 1rem;
+                }
+                .sidebar-username {
+                    font-size: 1.25rem;
+                    font-weight: bold;
+                }
+            }
+
+            .profile-nav {
+                display: flex;
+                flex-direction: column;
+                padding: 1rem 0;
+                border-bottom: none;
+                .nav-item {
+                    text-align: left;
+                    padding: 1rem 2rem;
+                    border-radius: 0;
+                    position: relative;
+                    width: 100%;
+                    &.active {
+                        background-color: #e9f2ff;
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 4px;
+                            height: 100%;
+                            background-color: $primary-color;
+                        }
+                    }
+                }
+            }
+            .sidebar-footer {
+                margin-top: auto;
+                padding: 2rem;
+                text-align: center;
+            }
+        }
+    }
+}
+
+/* --- Content Area --- */
+.profile-content {
+    flex-grow: 1;
+    padding: 1.5rem;
+
+    .content-view {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+/* --- Profile & Security Cards --- */
+.profile-card,
+.security-card {
+    background: $card-background;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    .profile-card-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        border: 4px solid $border-color;
+    }
+
+    .profile-card-name {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-card-email,
+    .profile-card-address {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 1rem;
+    }
+}
+
+.security-card {
+    text-align: left;
+    h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        color: #6c757d;
+        margin-bottom: 2rem;
+    }
+}
+
+/* --- Change Password Form --- */
+.change-password-form {
+    .form-group {
+        margin-bottom: 1.5rem;
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid $border-color;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+    }
+
+    .forgot-password-link {
+        color: $primary-color;
+        text-decoration: none;
+        font-size: 0.9rem;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
