@@ -3,7 +3,7 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Card from '@/components/common/Card/index.tsx';
@@ -62,8 +62,11 @@ const Index = () => {
             <section className="section-5">
                 <Swiper
                     className="container"
-                    modules={[Pagination]}
+                    modules={[Pagination, Autoplay]}
                     pagination={pagination}
+                    loop={true}
+                    navigation={true}
+                    autoplay={{ delay: 2000, disableOnInteraction: true }}
                     spaceBetween={30}
                     slidesPerView={3}
                     breakpoints={{
