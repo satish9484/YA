@@ -23,7 +23,7 @@ const App: React.FC = () => {
         const timer = setTimeout(() => {
             // 💡 Replace this with real "ready" logic later
             setIsAppReady(true);
-        }, 500); // Simulate delay for now
+        }, 2000); // Simulate delay for now
 
         return () => clearTimeout(timer);
     }, []);

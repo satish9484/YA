@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { useSelector } from 'react-redux';
+import  { useSelector } from 'react-redux';
 
 import './style.scss';
 
