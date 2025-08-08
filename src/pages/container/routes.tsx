@@ -12,12 +12,10 @@ import UserProfileCard from '@/components/UserProfileCard/index.tsx';
 
 const PageLayout = lazy(() => import('@/components/common/layout/index.tsx'));
 const Landing = lazy(() => import('@/pages/Landing/index.tsx'));
+const DesignSystemDemo = lazy(() => import('@/pages/DesignSystemDemo/index.tsx'));
 
 const Routing: React.FC = () => {
     return (
-        // Suspense is required when using React.lazy for dynamic imports.
-        // A fallback UI (e.g., a loading spinner) can be displayed while the component loads.
-
         <Routes>
             {/* Public Route: Login page */}
             {/* <Route path="/login" element={<LogIn />} /> */}
@@ -26,6 +24,9 @@ const Routing: React.FC = () => {
                 {/* Landing Page */}
                 <Route path="/landing" element={<Landing />} />
                 <Route path="/" element={<Landing />} />
+
+                {/* Design System Demo */}
+                <Route path="/design-system" element={<DesignSystemDemo />} />
             </Route>
 
             {/* Protected Routes: All routes nested under AuthGuard require authentication */}

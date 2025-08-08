@@ -1,29 +1,33 @@
+@use 'sass:map';
 @use './variable' as *;
-/*--- Webkit ---*/
-@mixin prefix($property, $parameters) {
-    @each $prefix in -o-, -moz-, -ms-, -webkit-, '' {
-        #{$prefix}#{$property}: $parameters;
+
+// =============================================================================
+// RESPONSIVE MIXINS
+// =============================================================================
+
+// Mobile-first responsive breakpoint mixin
+@mixin breakpoint($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        $value: map.get($breakpoints, $breakpoint);
+        @if $value == 0 {
+            @content;
+        } @else {
+            @media (min-width: $value) {
+                @content;
+            }
+        }
+    } @else {
+        @warn "Unknown breakpoint: #{$breakpoint}";
     }
 }
 
-/*--- Media Query ---*/
+// Legacy responsive mixin (for backward compatibility)
 @mixin responsive($media) {
-    @if $media == lap {
-        @media only screen and (max-width: $lap) {
-            @content;
-        }
-    }
     @if $media == xl {
         @media only screen and (max-width: $xl) {
             @content;
         }
-    }
-    @if $media == xlg {
-        @media only screen and (max-width: $xlg) {
-            @content;
-        }
-    }
-    @if $media == lg {
+    } @else if $media == lg {
         @media only screen and (max-width: $lg) {
             @content;
         }
@@ -42,19 +46,403 @@
     }
 }
 
-@mixin linear-gradient($degrees, $color-one, $color-two, $color-two-percent) {
-    background: $color-one;
-    background: -moz-linear-gradient($degrees, $color-one 0%, $color-two $color-two-percent);
-    background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        color-stop(0%, $color-one),
-        color-stop($color-two-percent, $color-two)
-    );
-    background: -webkit-linear-gradient($degrees, $color-one 0%, $color-two $color-two-percent);
-    background: -o-linear-gradient($degrees, $color-one 0%, $color-two $color-two-percent);
-    background: -ms-linear-gradient($degrees, $color-one 0%, $color-two $color-two-percent);
-    background: linear-gradient($degrees, $color-one 0%, $color-two $color-two-percent);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-one', endColorstr='$color-two',GradientType=1 );
+// =============================================================================
+// UTILITY MIXINS
+// =============================================================================
+
+// Vendor prefix mixin
+@mixin prefix($property, $value) {
+    @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+        #{$prefix}#{$property}: $value;
+    }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-column-center {
+    @include flex-column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-column-between {
+    @include flex-column;
+    justify-content: space-between;
+}
+
+// Position utilities
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin absolute-center-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin absolute-center-y {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+// =============================================================================
+// TYPOGRAPHY MIXINS
+// =============================================================================
+
+@mixin text-style($size, $weight: $font-weight-normal, $line-height: $line-height-normal) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $line-height;
+}
+
+@mixin heading-style($size, $weight: $font-weight-semibold) {
+    @include text-style($size, $weight, $line-height-tight);
+    color: $primary-500;
+}
+
+// =============================================================================
+// SPACING MIXINS
+// =============================================================================
+
+@mixin spacing($property, $size) {
+    #{$property}: $size;
+}
+
+@mixin margin($top: null, $right: null, $bottom: null, $left: null) {
+    @if $top {
+        margin-top: $top;
+    }
+    @if $right {
+        margin-right: $right;
+    }
+    @if $bottom {
+        margin-bottom: $bottom;
+    }
+    @if $left {
+        margin-left: $left;
+    }
+}
+
+@mixin padding($top: null, $right: null, $bottom: null, $left: null) {
+    @if $top {
+        padding-top: $top;
+    }
+    @if $right {
+        padding-right: $right;
+    }
+    @if $bottom {
+        padding-bottom: $bottom;
+    }
+    @if $left {
+        padding-left: $left;
+    }
+}
+
+// =============================================================================
+// COMPONENT MIXINS
+// =============================================================================
+
+// Button mixins
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-3 $spacing-4;
+    border: none;
+    border-radius: $border-radius-lg;
+    font-family: $font-family-sans;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-normal;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-base;
+    user-select: none;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+@mixin button-variant($background, $color, $hover-background: null, $hover-color: null) {
+    background-color: $background;
+    color: $color;
+
+    @if $hover-background {
+        &:hover:not(:disabled) {
+            background-color: $hover-background;
+            @if $hover-color {
+                color: $hover-color;
+            }
+        }
+    }
+}
+
+// Card mixins
+@mixin card-base {
+    background-color: $white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-base;
+    transition: box-shadow $transition-base;
+
+    &:hover {
+        box-shadow: $shadow-md;
+    }
+}
+
+@mixin card-padding($padding: $spacing-6) {
+    padding: $padding;
+}
+
+// Input mixins
+@mixin input-base {
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    border: 1px solid $neutral-300;
+    border-radius: $border-radius-lg;
+    font-family: $font-family-sans;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    background-color: $white;
+    transition:
+        border-color $transition-base,
+        box-shadow $transition-base;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-500;
+        box-shadow: 0 0 0 3px rgba($primary-500, 0.1);
+    }
+
+    &::placeholder {
+        color: $neutral-400;
+    }
+}
+
+// =============================================================================
+// ANIMATION MIXINS
+// =============================================================================
+
+@mixin fade-in($duration: $transition-base) {
+    animation: fadeIn $duration ease-in-out;
+}
+
+@mixin slide-up($duration: $transition-base) {
+    animation: slideUp $duration ease-out;
+}
+
+@mixin scale-hover($scale: 1.05) {
+    transition: transform $transition-base;
+
+    &:hover {
+        transform: scale($scale);
+    }
+}
+
+// =============================================================================
+// GRADIENT MIXINS
+// =============================================================================
+
+@mixin linear-gradient($direction, $color-stops...) {
+    background: linear-gradient($direction, $color-stops...);
+}
+
+@mixin radial-gradient($shape, $color-stops...) {
+    background: radial-gradient($shape, $color-stops...);
+}
+
+// =============================================================================
+// RESPONSIVE UTILITY GENERATORS
+// =============================================================================
+
+// Generate responsive spacing utilities
+@mixin generate-spacing-utilities($breakpoint: '') {
+    $prefix: if($breakpoint != '', '#{$breakpoint}-', '');
+
+    @each $name,
+        $value
+            in (
+                'p': padding,
+                'pt': padding-top,
+                'pr': padding-right,
+                'pb': padding-bottom,
+                'pl': padding-left,
+                'px': (
+                        padding-left,
+                        padding-right,
+                    ),
+                'py': (
+                        padding-top,
+                        padding-bottom,
+                    ),
+                'm': margin,
+                'mt': margin-top,
+                'mr': margin-right,
+                'mb': margin-bottom,
+                'ml': margin-left,
+                'mx': (
+                        margin-left,
+                        margin-right,
+                    ),
+                'my': (
+                        margin-top,
+                        margin-bottom,
+                    )
+            )
+    {
+        @each $size-name,
+            $size-value
+                in (
+                    '0': $spacing-0,
+                    '1': $spacing-1,
+                    '2': $spacing-2,
+                    '3': $spacing-3,
+                    '4': $spacing-4,
+                    '5': $spacing-5,
+                    '6': $spacing-6,
+                    '8': $spacing-8,
+                    '10': $spacing-10,
+                    '12': $spacing-12,
+                    '16': $spacing-16,
+                    '20': $spacing-20,
+                    '24': $spacing-24,
+                    '32': $spacing-32,
+                    '40': $spacing-40,
+                    '48': $spacing-48,
+                    '56': $spacing-56,
+                    '64': $spacing-64
+                )
+        {
+            .#{$prefix}#{$name}-#{$size-name} {
+                @if type-of($value) == 'list' {
+                    @each $prop in $value {
+                        #{$prop}: $size-value;
+                    }
+                } @else {
+                    #{$value}: $size-value;
+                }
+            }
+        }
+    }
+}
+
+// Generate responsive text utilities
+@mixin generate-text-utilities($breakpoint: '') {
+    $prefix: if($breakpoint != '', '#{$breakpoint}-', '');
+
+    @each $size-name,
+        $size-value
+            in (
+                'xs': $font-size-xs,
+                'sm': $font-size-sm,
+                'base': $font-size-base,
+                'lg': $font-size-lg,
+                'xl': $font-size-xl,
+                '2xl': $font-size-2xl,
+                '3xl': $font-size-3xl,
+                '4xl': $font-size-4xl,
+                '5xl': $font-size-5xl,
+                '6xl': $font-size-6xl
+            )
+    {
+        .#{$prefix}text-#{$size-name} {
+            font-size: $size-value;
+        }
+    }
+
+    @each $weight-name,
+        $weight-value
+            in (
+                'light': $font-weight-light,
+                'normal': $font-weight-normal,
+                'medium': $font-weight-medium,
+                'semibold': $font-weight-semibold,
+                'bold': $font-weight-bold,
+                'extrabold': $font-weight-extrabold
+            )
+    {
+        .#{$prefix}font-#{$weight-name} {
+            font-weight: $weight-value;
+        }
+    }
+}
+
+// =============================================================================
+// ANIMATION KEYFRAMES
+// =============================================================================
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

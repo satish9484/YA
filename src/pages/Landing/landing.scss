@@ -1,9 +1,21 @@
-w-100 {
+@use '../../scss/variable' as *;
+@use '../../scss/mixin' as *;
+
+/* ===================================================== 
+  Landing Page - Responsive Design System
+ ================================================================ */
+
+// Utility Classes
+.w-100 {
     width: 100%;
 }
 
 .w-50 {
-    width: 50%;
+    width: 100%;
+
+    @include breakpoint(md) {
+        width: 50%;
+    }
 }
 
 .h-100 {
@@ -38,18 +50,47 @@ w-100 {
     bottom: 0;
 }
 
+// Typography Classes
 .font-heading-common {
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 50px;
-    color: #000000;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-3xl;
+    line-height: $line-height-tight;
+    color: $neutral-900;
+
+    @include breakpoint(sm) {
+        font-size: $font-size-4xl;
+    }
+
+    @include breakpoint(md) {
+        font-size: $font-size-5xl;
+    }
+
+    @include breakpoint(lg) {
+        font-size: $font-size-6xl;
+    }
+
+    @include breakpoint(xl) {
+        font-size: $font-size-6xl;
+    }
 }
 
 .font-p-common {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: #2f2e2e;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    color: $neutral-700;
+
+    @include breakpoint(sm) {
+        font-size: $font-size-base;
+    }
+
+    @include breakpoint(md) {
+        font-size: $font-size-lg;
+    }
+
+    @include breakpoint(lg) {
+        font-size: $font-size-xl;
+    }
 }
 
 .root-section {
@@ -57,247 +98,328 @@ w-100 {
     height: 100%;
 }
 
+// Form Elements
 .form-input-field-common {
-    width: 543px;
+    width: 100%;
     height: 40px;
     align-items: center;
-    background-color: #ffffff;
-    border-radius: 5px;
-    padding: 5px 20px;
-    gap: 5px;
-}
+    background-color: $white;
+    border-radius: $border-radius-sm;
+    padding: $spacing-2 $spacing-4;
+    gap: $spacing-1;
+    border: 1px solid $neutral-300;
 
-.form-input-field-common input {
-    flex-grow: 1;
-    height: 100%;
-}
+    @include breakpoint(sm) {
+        width: 400px;
+        height: 44px;
+        padding: $spacing-3 $spacing-5;
+    }
 
-.form-input-field-common input::placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
-    opacity: 1;
-    color: #000000;
+    @include breakpoint(md) {
+        width: 500px;
+        height: 48px;
+    }
+
+    @include breakpoint(lg) {
+        width: 543px;
+        height: 50px;
+    }
+
+    input {
+        flex-grow: 1;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: $font-size-sm;
+
+        @include breakpoint(sm) {
+            font-size: $font-size-base;
+        }
+
+        &::placeholder {
+            font-weight: $font-weight-normal;
+            font-size: $font-size-xs;
+            line-height: $line-height-normal;
+            opacity: 1;
+            color: $neutral-500;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-sm;
+            }
+        }
+    }
 }
 
 .btn-search-common {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    background-color: #534eba;
-    color: #ffffff;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    background-color: $primary-600;
+    color: $white;
     border: none;
-    border-radius: 4px;
+    border-radius: $border-radius-sm;
     cursor: pointer;
+    padding: $spacing-2 $spacing-4;
+    transition: all $transition-base;
+
+    @include breakpoint(sm) {
+        font-size: $font-size-base;
+        padding: $spacing-3 $spacing-5;
+    }
+
+    &:hover {
+        background-color: $primary-700;
+        transform: translateY(-1px);
+    }
 }
 
+// Color Classes
 .bg-color {
-    background-color: #534eba;
+    background-color: $primary-600;
 }
 
 .text-color {
-    color: #ffffff;
+    color: $white;
 }
 
 .primary-1 {
-    background-color: rgba(223, 96, 37, 0.1);
+    background-color: rgba($orange-500, 0.1);
 }
 
 .primary-2 {
-    background-color: white;
+    background-color: $white;
 }
-/* Margin bottom */
 
+// Margin Classes
 .mr-l-40 {
-    margin-left: 40px;
+    margin-left: $spacing-8;
+
+    @include breakpoint(sm) {
+        margin-left: $spacing-10;
+    }
 }
 
 .mr-r-33 {
-    margin-right: 33px;
+    margin-right: $spacing-6;
 }
 
 .mr-r-35 {
-    margin-right: 35px;
+    margin-right: $spacing-7;
 }
 
 .mr-r-40 {
-    margin-right: 40px;
+    margin-right: $spacing-8;
 }
 
 .mr-r-45 {
-    margin-right: 45px;
+    margin-right: $spacing-9;
 }
 
 .mr-r-53 {
-    margin-right: 53px;
+    margin-right: $spacing-10;
 }
 
 .mr-b-18 {
-    margin-bottom: 18px;
+    margin-bottom: $spacing-4;
 }
 
 .mr-b-20 {
-    margin-bottom: 20px;
+    margin-bottom: $spacing-5;
 }
 
 .mr-b-22 {
-    margin-bottom: 22px;
+    margin-bottom: $spacing-5;
 }
 
 .mr-b-30 {
-    margin-bottom: 30px;
+    margin-bottom: $spacing-6;
 }
 
 .mr-b-35 {
-    margin-bottom: 35px;
+    margin-bottom: $spacing-7;
 }
 
 .mr-b-45 {
-    margin-bottom: 45px;
+    margin-bottom: $spacing-9;
 }
 
 .mr-b-60 {
-    margin-bottom: 60px;
+    margin-bottom: $spacing-12;
 }
 
 .mr-t-10 {
-    margin-top: 10px;
+    margin-top: $spacing-2;
 }
 
 .mr-t-20 {
-    margin-top: 20px;
+    margin-top: $spacing-4;
 }
+
 .mr-t-25 {
-    margin-top: 25px;
+    margin-top: $spacing-5;
 }
 
 .mr-t-50 {
-    margin-top: 50px;
+    margin-top: $spacing-10;
 }
 
 .mr-t-90 {
-    margin-top: 90px;
+    margin-top: $spacing-18;
 }
 
 .p-15 {
-    padding: 15px;
+    padding: $spacing-3;
 }
-/* Padding bottom */
+
 .pd-b-30 {
-    padding-bottom: 30px;
+    padding-bottom: $spacing-6;
 }
 
-/* gap */
-
+// Gap Classes
 .gap-5 {
-    gap: 5px;
+    gap: $spacing-1;
 }
+
 .gap-10 {
-    gap: 10px;
+    gap: $spacing-2;
 }
 
 .gap-12 {
-    gap: 12px;
+    gap: $spacing-3;
 }
+
 .gap-15 {
-    gap: 15px;
+    gap: $spacing-3;
 }
 
 .gap-18 {
-    gap: 18px;
+    gap: $spacing-4;
 }
+
 .gap-20 {
-    gap: 20px;
+    gap: $spacing-4;
 }
+
 .gap-25 {
-    gap: 25px;
+    gap: $spacing-5;
 }
 
 .gap-30 {
-    gap: 30px;
+    gap: $spacing-6;
 }
 
 .gap-35 {
-    gap: 35px;
+    gap: $spacing-7;
 }
 
 .gap-40 {
-    gap: 40px;
+    gap: $spacing-8;
 }
 
 .gap-60 {
-    gap: 60px;
+    gap: $spacing-12;
 }
 
 .gap-80 {
-    gap: 80px;
+    gap: $spacing-16;
 }
 
 .gap-100 {
-    gap: 100px;
+    gap: $spacing-20;
 }
 
 .bg-color-1 {
-    background-color: #fcefe9;
+    background-color: $orange-50;
 }
+
 .btn-lets-go {
-    width: 143px;
-    height: 55px;
-
-    background-color: #f28221;
-    border-radius: 10px;
+    width: 120px;
+    height: 44px;
+    background-color: $orange-500;
+    border-radius: $border-radius-md;
     border: none;
-
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 27px;
-    color: #000000;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    color: $neutral-900;
     cursor: pointer;
+    transition: all $transition-base;
+
+    @include breakpoint(sm) {
+        width: 130px;
+        height: 48px;
+        font-size: $font-size-base;
+    }
+
+    @include breakpoint(md) {
+        width: 143px;
+        height: 55px;
+        font-size: $font-size-lg;
+    }
+
+    &:hover {
+        background-color: $orange-600;
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+
+    figure {
+        width: 18px;
+        height: 18px;
+        padding-top: 2px;
+
+        @include breakpoint(sm) {
+            width: 20px;
+            height: 20px;
+        }
+
+        @include breakpoint(md) {
+            width: 22px;
+            height: 22px;
+        }
+    }
 }
 
-.btn-lets-go figure {
-    width: 22px;
-    height: 22px;
-    padding-top: 2px;
-}
-
+// Z-index Classes
 .z-index-1 {
-    z-index: 1;
+    z-index: $z-index-base;
 }
 
 .z-index-2 {
-    z-index: 2;
+    z-index: $z-index-dropdown;
 }
 
 .z-index-3 {
-    z-index: 3;
+    z-index: $z-index-sticky;
 }
 
 .btn-register-common {
-    background-color: #6daf5f;
-    font-weight: 400;
-    line-height: 20px;
+    background-color: $success-500;
+    font-weight: $font-weight-normal;
+    line-height: $line-height-normal;
     letter-spacing: 0.04em;
     text-transform: capitalize;
-    color: #ffffff;
+    color: $white;
 }
 
-/* ===================  header ====================================== */
-
+/* ===================  Header Styles ====================================== */
 header {
     width: 100%;
-    padding: 15px 0;
-
-    background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-
+    padding: $spacing-3 0;
+    background-color: $white;
+    box-shadow: $shadow-md;
     position: fixed;
     top: 0;
-    z-index: 9999;
-}
+    z-index: $z-index-sticky;
 
-header figure {
-    cursor: pointer;
+    @include breakpoint(sm) {
+        padding: $spacing-4 0;
+    }
+
+    figure {
+        cursor: pointer;
+    }
 }
 
 .nav-toggle-btn {
@@ -311,41 +433,66 @@ header figure {
     width: 100%;
     position: absolute;
     top: 70px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: $white;
+    box-shadow: $shadow-lg;
 }
 
 .navToggle-header-links-display li {
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid $neutral-200;
 }
+
 .navToggle-header-links-display li a {
-    padding: 10px 0;
+    padding: $spacing-2 0;
 }
 
 .navToggle-header-links-display a:hover {
-    color: #22841a;
-    background-color: #f0f7ef;
+    color: $success-600;
+    background-color: $success-50;
 }
 
 .header-logo {
-    max-width: 131px;
-    max-height: 75px;
+    max-width: 100px;
+    max-height: 50px;
+
+    @include breakpoint(sm) {
+        max-width: 120px;
+        max-height: 60px;
+    }
+
+    @include breakpoint(md) {
+        max-width: 131px;
+        max-height: 75px;
+    }
 }
 
 .header-links {
-    padding-left: 150px;
-    padding-right: 60px;
+    padding-left: $spacing-8;
+    padding-right: $spacing-6;
     flex-grow: 1;
     justify-content: space-between;
+
+    @include breakpoint(sm) {
+        padding-left: $spacing-12;
+        padding-right: $spacing-8;
+    }
+
+    @include breakpoint(md) {
+        padding-left: $spacing-16;
+        padding-right: $spacing-12;
+    }
 }
 
 .header-font {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-xs;
+    line-height: $line-height-tight;
     letter-spacing: 0.04em;
     text-transform: capitalize;
-    color: #1e1e1e;
+    color: $neutral-900;
+
+    @include breakpoint(sm) {
+        font-size: $font-size-sm;
+    }
 }
 
 .header-dropdown {
@@ -353,150 +500,355 @@ header figure {
 }
 
 .btn-register {
-    min-width: 116px;
-    height: 35px;
-    border-radius: 20px;
-    font-size: 14px;
-    margin-right: 40px;
+    min-width: 100px;
+    height: 32px;
+    border-radius: $border-radius-full;
+    font-size: $font-size-xs;
+    margin-right: $spacing-6;
+
+    @include breakpoint(sm) {
+        min-width: 110px;
+        height: 35px;
+        font-size: $font-size-sm;
+        margin-right: $spacing-8;
+    }
+
+    @include breakpoint(md) {
+        min-width: 116px;
+        height: 35px;
+        font-size: $font-size-sm;
+        margin-right: $spacing-10;
+    }
 }
 
+/* ============================== Section 1 =============================== */
 .section-1 {
-    height: 375px;
+    height: 300px;
     background-image:
         linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
         url('../../../public/bg/bg-2.jpg');
     background-repeat: round;
     background-size: cover;
+    background-position: center;
+
+    @include breakpoint(sm) {
+        height: 350px;
+    }
+
+    @include breakpoint(md) {
+        height: 375px;
+    }
+
+    @include breakpoint(lg) {
+        height: 400px;
+    }
+
+    @include breakpoint(xl) {
+        height: 450px;
+    }
 
     .section-1__title {
-        font-weight: 700;
-        font-size: 60px;
-        line-height: 70px;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-2xl;
+        line-height: $line-height-tight;
         text-align: center;
         letter-spacing: 0.04em;
         text-transform: capitalize;
-        color: #ffffff;
+        color: $white;
+        margin-bottom: $spacing-4;
+
+        @include breakpoint(sm) {
+            font-size: $font-size-3xl;
+            margin-bottom: $spacing-5;
+        }
+
+        @include breakpoint(md) {
+            font-size: $font-size-4xl;
+            margin-bottom: $spacing-6;
+        }
+
+        @include breakpoint(lg) {
+            font-size: $font-size-5xl;
+            margin-bottom: $spacing-8;
+        }
+
+        @include breakpoint(xl) {
+            font-size: $font-size-6xl;
+            margin-bottom: $spacing-10;
+        }
     }
 
     .section-1__description {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 30px;
+        font-weight: $font-weight-normal;
+        font-size: $font-size-sm;
+        line-height: $line-height-relaxed;
         text-align: center;
         letter-spacing: 0.04em;
         text-transform: capitalize;
-        color: #ffffff;
+        color: $white;
+        max-width: 600px;
+        margin: 0 auto;
+
+        @include breakpoint(sm) {
+            font-size: $font-size-base;
+        }
+
+        @include breakpoint(md) {
+            font-size: $font-size-lg;
+        }
+
+        @include breakpoint(lg) {
+            font-size: $font-size-xl;
+        }
     }
 }
 
-/* ============================== section_2 =============================== */
-
+/* ============================== Section 2 =============================== */
 .section-2 {
-    height: 470px;
-    background-color: #ffffff;
+    height: auto;
+    min-height: 400px;
+    background-color: $white;
+    padding: $spacing-8 0;
+
+    @include breakpoint(sm) {
+        min-height: 450px;
+        padding: $spacing-10 0;
+    }
+
+    @include breakpoint(md) {
+        height: 470px;
+        padding: $spacing-12 0;
+    }
+
+    @include breakpoint(lg) {
+        padding: $spacing-16 0;
+    }
+
+    .container-section-2 {
+        @include breakpoint(md) {
+            display: flex;
+            align-items: center;
+        }
+    }
 
     .sectin-2-left {
+        margin-bottom: $spacing-6;
+
+        @include breakpoint(md) {
+            margin-bottom: 0;
+        }
+
         p {
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 16px;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-sm;
+            line-height: $line-height-tight;
             text-align: start;
             letter-spacing: 0.15em;
             text-transform: capitalize;
-            color: #6daf5f;
+            color: $success-500;
+            margin-bottom: $spacing-3;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-base;
+                margin-bottom: $spacing-4;
+            }
+
+            @include breakpoint(md) {
+                font-size: $font-size-lg;
+                margin-bottom: $spacing-5;
+            }
         }
 
         h2 {
-            font-weight: 700;
-            font-size: 45px;
-            line-height: 65px;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-2xl;
+            line-height: $line-height-tight;
             text-transform: capitalize;
-            color: #1e1e1e;
+            color: $neutral-900;
+            margin-bottom: $spacing-4;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-3xl;
+                margin-bottom: $spacing-5;
+            }
+
+            @include breakpoint(md) {
+                font-size: $font-size-4xl;
+                margin-bottom: $spacing-6;
+            }
+
+            @include breakpoint(lg) {
+                font-size: $font-size-5xl;
+            }
+
+            @include breakpoint(xl) {
+                font-size: $font-size-6xl;
+            }
         }
     }
 
     .sectin-2-right {
         h5 {
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 30px;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-base;
+            line-height: $line-height-relaxed;
             letter-spacing: 0.04em;
             text-transform: capitalize;
-            color: #1e1e1e;
+            color: $neutral-900;
+            margin-bottom: $spacing-4;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-lg;
+                margin-bottom: $spacing-5;
+            }
+
+            @include breakpoint(md) {
+                font-size: $font-size-xl;
+                margin-bottom: $spacing-6;
+            }
+
+            @include breakpoint(lg) {
+                font-size: $font-size-2xl;
+            }
         }
 
         p {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 30px;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-sm;
+            line-height: $line-height-relaxed;
             letter-spacing: 0.04em;
-            color: #4f4f4f;
+            color: $neutral-600;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-base;
+            }
+
+            @include breakpoint(md) {
+                font-size: $font-size-lg;
+            }
+
+            @include breakpoint(lg) {
+                font-size: $font-size-xl;
+            }
         }
     }
 }
 
-/* ============================== section_5 =============================== */
-
-/* Styles for Section 5 and the Product Showcase Cards */
+/* ============================== Section 5 =============================== */
 .section-5 {
-    padding: 80px 0;
-    background-color: #f8f9fa; // Light grey background for contrast
+    padding: $spacing-8 0;
+    background-color: $neutral-50;
 
-    .swiper {
-        padding-bottom: 70px; // Extra space for pagination
+    @include breakpoint(sm) {
+        padding: $spacing-10 0;
     }
 
-    // --- Swiper Pagination ---
+    @include breakpoint(md) {
+        padding: $spacing-12 0;
+    }
+
+    @include breakpoint(lg) {
+        padding: $spacing-16 0;
+    }
+
+    @include breakpoint(xl) {
+        padding: $spacing-20 0;
+    }
+
+    .swiper {
+        padding-bottom: 70px;
+    }
+
+    // Swiper Pagination
     .swiper-pagination-bullet {
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #343a40;
-        background: #e9ecef;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        color: $neutral-700;
+        background: $neutral-200;
         opacity: 1;
         border-radius: 50%;
-        transition: all 0.3s ease;
+        transition: all $transition-base;
+
+        @include breakpoint(sm) {
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            font-size: $font-size-sm;
+        }
+
+        @include breakpoint(md) {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            font-size: $font-size-base;
+        }
     }
 
     .swiper-pagination-bullet-active {
-        color: #fff;
-        background: #007bff;
+        color: $white;
+        background: $primary-500;
         transform: scale(1.1);
     }
 
-    // --- IMPROVED PRODUCT CARD DESIGN ---
+    // Product Card Design
     .product-card {
-        background: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-top: 4px solid #007bff; // Accent color border on top
-        border-radius: 0 0 12px 12px; // Rounded corners only at the bottom
+        background: $white;
+        border: 1px solid $neutral-200;
+        border-top: 4px solid $primary-500;
+        border-radius: 0 0 $border-radius-lg $border-radius-lg;
         display: flex;
         flex-direction: column;
+        min-height: 450px;
+        max-width: 320px;
+        margin: 0 auto;
+        box-shadow: $shadow-sm;
+        transition: all $transition-base;
 
-        // Set card dimensions for consistency
-        min-height: 500px;
-        max-width: 360px;
-        margin: 0 auto; // Center card within the Swiper slide
+        @include breakpoint(sm) {
+            min-height: 480px;
+            max-width: 340px;
+        }
 
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+        @include breakpoint(md) {
+            min-height: 500px;
+            max-width: 360px;
+        }
+
+        @include breakpoint(lg) {
+            min-height: 520px;
+            max-width: 380px;
+        }
 
         &:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: $shadow-lg;
         }
 
         &__image-container {
-            height: 220px;
-            padding: 20px;
+            height: 180px;
+            padding: $spacing-4;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid #f1f1f1;
+            border-bottom: 1px solid $neutral-100;
+
+            @include breakpoint(sm) {
+                height: 200px;
+                padding: $spacing-5;
+            }
+
+            @include breakpoint(md) {
+                height: 220px;
+                padding: $spacing-5;
+            }
+
+            @include breakpoint(lg) {
+                height: 240px;
+                padding: $spacing-6;
+            }
         }
 
         &__image {
@@ -506,41 +858,78 @@ header figure {
         }
 
         &__content {
-            padding: 25px;
+            padding: $spacing-4;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; // Allows this area to fill remaining space
+            flex-grow: 1;
             text-align: left;
+
+            @include breakpoint(sm) {
+                padding: $spacing-5;
+            }
+
+            @include breakpoint(md) {
+                padding: $spacing-6;
+            }
         }
 
         &__title {
-            color: #212529;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin: 0 0 15px 0;
+            color: $neutral-900;
+            font-size: $font-size-lg;
+            font-weight: $font-weight-bold;
+            margin: 0 0 $spacing-3 0;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-xl;
+                margin-bottom: $spacing-4;
+            }
+
+            @include breakpoint(md) {
+                font-size: $font-size-2xl;
+                margin-bottom: $spacing-5;
+            }
         }
 
         &__features {
             list-style-type: none;
             padding-left: 0;
             margin: 0;
-            color: #495057;
-            font-size: 0.95rem;
-            flex-grow: 1; // Pushes the button to the bottom
+            color: $neutral-600;
+            font-size: $font-size-sm;
+            flex-grow: 1;
+
+            @include breakpoint(sm) {
+                font-size: $font-size-base;
+            }
+
+            @include breakpoint(md) {
+                font-size: $font-size-lg;
+            }
 
             li {
                 position: relative;
-                padding-left: 22px;
-                margin-bottom: 12px;
-                line-height: 1.5;
+                padding-left: $spacing-5;
+                margin-bottom: $spacing-2;
+                line-height: $line-height-relaxed;
+
+                @include breakpoint(sm) {
+                    padding-left: $spacing-6;
+                    margin-bottom: $spacing-3;
+                }
 
                 &::before {
-                    content: '✔'; // Using a checkmark for a modern feel
+                    content: '✔';
                     position: absolute;
                     left: 0;
-                    top: 3px;
-                    color: #28a745; // Green for success/feature
-                    font-weight: 700;
+                    top: 2px;
+                    color: $success-500;
+                    font-weight: $font-weight-bold;
+                    font-size: $font-size-sm;
+
+                    @include breakpoint(sm) {
+                        top: 3px;
+                        font-size: $font-size-base;
+                    }
                 }
             }
         }
@@ -549,20 +938,92 @@ header figure {
             display: block;
             text-align: center;
             text-decoration: none;
-            background-color: #007bff;
-            color: #ffffff;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-top: 20px; // Space above the button
-            transition:
-                background-color 0.3s ease,
-                transform 0.2s ease;
+            background-color: $primary-500;
+            color: $white;
+            padding: $spacing-3 $spacing-4;
+            border-radius: $border-radius-md;
+            font-weight: $font-weight-semibold;
+            margin-top: $spacing-4;
+            transition: all $transition-base;
+
+            @include breakpoint(sm) {
+                padding: $spacing-4 $spacing-5;
+                margin-top: $spacing-5;
+            }
 
             &:hover {
-                background-color: #0056b3;
-                transform: scale(1.03);
+                background-color: $primary-600;
+                transform: scale(1.02);
             }
+        }
+    }
+}
+
+// Responsive Container
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+
+    @include breakpoint(sm) {
+        padding: 0 $spacing-6;
+    }
+
+    @include breakpoint(md) {
+        padding: 0 $spacing-8;
+    }
+
+    @include breakpoint(lg) {
+        padding: 0 $spacing-10;
+    }
+
+    @include breakpoint(xl) {
+        padding: 0 $spacing-12;
+    }
+}
+
+// Accessibility Enhancements
+.section-1,
+.section-2,
+.section-5 {
+    &:focus-within {
+        outline: 2px solid $primary-500;
+        outline-offset: 2px;
+    }
+}
+
+// Print Styles
+@media print {
+    .section-1 {
+        background-image: none;
+        background-color: $neutral-100;
+    }
+
+    .product-card {
+        box-shadow: none;
+        border: 1px solid $neutral-300;
+    }
+}
+
+// High Contrast Support
+@media (prefers-contrast: high) {
+    .section-1 {
+        border-bottom: 2px solid $neutral-900;
+    }
+
+    .product-card {
+        border: 2px solid $neutral-900;
+    }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+    .product-card,
+    .btn-lets-go {
+        transition: none;
+
+        &:hover {
+            transform: none;
         }
     }
 }

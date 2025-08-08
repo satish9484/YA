@@ -1,0 +1,42 @@
+/* Brand Colors */
+/* Neutrals & Backgrounds */
+/* Text & UI */
+.breadcrumbsList {
+  margin-bottom: 20px;
+}
+.breadcrumbsList li {
+  display: inline-block;
+  position: relative;
+}
+.breadcrumbsList li a {
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-block;
+}
+.breadcrumbsList li a h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.breadcrumbsList li h4 {
+  display: inline-block;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+}
+.breadcrumbsList li.active {
+  color: white;
+}
+.breadcrumbsList li:after {
+  content: "/";
+  margin: 0 10px;
+  color: #000000;
+}
+.breadcrumbsList li:last-child:after {
+  display: none;
+}
+.breadcrumbsList li .mainPage {
+  color: #42a44c;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}/*# sourceMappingURL=style.css.map */

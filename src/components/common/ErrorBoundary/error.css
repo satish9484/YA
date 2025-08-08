@@ -1,0 +1,236 @@
+.heading {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+  background: #45484d;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #45484d 0%, #000000 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#45484d", endColorstr="#000000", GradientType=0);
+  /* IE6-9 */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100vh;
+  width: 100%;
+}
+.heading .card {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  padding: 1rem;
+  border: 1px solid rgb(219, 234, 254);
+  border-radius: 1rem;
+  background-color: rgb(255, 255, 255);
+}
+.heading .card .header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.heading .card .header .icon {
+  display: inline-flex;
+  color: #d92d27;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 9999px;
+}
+.heading .card .header .alert {
+  font-weight: 600;
+  color: rgb(107, 114, 128);
+}
+.heading .card .message {
+  margin-top: 1rem;
+  color: rgb(107, 114, 128);
+}
+.heading .card .actions {
+  margin-top: 1.5rem;
+}
+.heading .card .actions a {
+  text-decoration: none;
+}
+.heading .card .actions .read,
+.heading .card .actions .mark-as-read {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+.heading .card .actions .read {
+  background-color: rgb(59, 130, 246);
+  color: rgb(255, 255, 255);
+}
+.heading .card .actions .mark-as-read {
+  margin-top: 0.5rem;
+  background-color: rgb(249, 250, 251);
+  color: rgb(107, 114, 128);
+  transition: all 0.15s ease;
+}
+.heading .card .actions .mark-as-read:hover {
+  background-color: rgb(230, 231, 233);
+}
+.heading .content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.heading .content .glow-on-hover {
+  margin-top: 20px;
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: rgb(147, 141, 141);
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.scrollable-pre {
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  overflow: auto;
+  word-break: break-all;
+  max-width: 100%;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  line-height: 1.5;
+  max-height: 300px;
+  margin-top: 0.25rem;
+}
+.scrollable-pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollable-pre::-webkit-scrollbar-track {
+  background: hsl(210, 16.6666666667%, 102.6470588235%);
+  border-radius: 0.25rem;
+}
+.scrollable-pre::-webkit-scrollbar-thumb {
+  background: rgb(192.9827586207, 200.5, 208.0172413793);
+  border-radius: 0.25rem;
+}
+.scrollable-pre::-webkit-scrollbar-thumb:hover {
+  background: rgb(163.9655172414, 175, 186.0344827586);
+}
+
+.scrollable-pre-blue {
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  overflow: auto;
+  word-break: break-all;
+  max-width: 100%;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  line-height: 1.5;
+  max-height: 200px;
+  background-color: #e7f3ff;
+  border-color: #90cdf4;
+  padding: 0.75rem;
+}
+.scrollable-pre-blue::-webkit-scrollbar-track {
+  background: rgb(241.2, 248.1, 255);
+}
+.scrollable-pre-blue::-webkit-scrollbar-thumb {
+  background: rgb(97.5983606557, 184.0983606557, 239.4016393443);
+}
+.scrollable-pre-blue::-webkit-scrollbar-thumb:hover {
+  background: rgb(51.1967213115, 163.1967213115, 234.8032786885);
+}
+
+.error-message-container {
+  padding: 1rem;
+  background-color: #fee2e2;
+  border: 1px solid #f87171;
+  color: #b91c1c;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+.error-message-container .error-message-title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  display: block;
+}
+.error-message-container .error-message-text {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+.error-message-container .stack-trace-title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  display: block;
+  margin-top: 0.75rem;
+}/*# sourceMappingURL=error.css.map */

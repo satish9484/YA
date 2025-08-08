@@ -1,0 +1,118 @@
+/* ===================================================== 
+  footer
+ ================================================================ */
+:where(.css-dev-only-do-not-override-1vjf2v5).ant-layout-footer {
+  padding: 0%;
+}
+
+.footer-part-1 {
+  background-color: #ffffff;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.2);
+  height: 400px;
+}
+.footer-part-1 .footer-img {
+  width: 80px;
+  height: 80px;
+}
+.footer-part-1 .footer-img img {
+  width: 100%;
+  height: 100%;
+}
+.footer-part-1 h3 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  text-transform: capitalize;
+  color: rgb(30, 30, 30);
+}
+.footer-part-1 h3 span {
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 30px;
+  text-transform: lowercase;
+  color: rgb(109, 175, 95);
+}
+
+.footer-links {
+  margin-left: 50px;
+}
+.footer-links h3 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  text-transform: capitalize;
+  color: #1e1e1e;
+}
+.footer-links h3 span {
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 30px;
+  text-transform: lowercase;
+  color: #6daf5f;
+}
+.footer-links .menu-links {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: #1e1e1e;
+}
+.footer-links .footer-heading-font {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: #1e1e1e;
+}
+
+.footer-menu {
+  flex-grow: 1;
+}
+.footer-menu-right {
+  margin-right: 50px;
+}
+
+.footer-social-img-1 {
+  width: 24px;
+  height: 23px;
+}
+.footer-social-img-2 {
+  width: 27px;
+  height: 22px;
+}
+.footer-social-img-3 {
+  width: 27px;
+  height: 27px;
+}
+
+.footer-part-2 {
+  height: 38px;
+  max-height: 100%;
+  background-color: #1e1e1e;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.md-container {
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+.md-container .md-fig-1 {
+  width: 40px;
+  height: 40px;
+}
+.md-container .md-fig-p {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 36px;
+  text-transform: capitalize;
+  color: #000000;
+}/*# sourceMappingURL=footer.css.map */

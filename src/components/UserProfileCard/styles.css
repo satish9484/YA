@@ -1,0 +1,216 @@
+/* --- SCSS Variables --- */
+/* --- Base & Utility Styles --- */
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.btn.btn-primary {
+  background-color: #4a90e2;
+  color: #f8f9fa;
+}
+.btn.btn-secondary {
+  background-color: #d0021b;
+  color: #f8f9fa;
+}
+.btn.btn-primary-outline {
+  background-color: transparent;
+  color: #4a90e2;
+  border: 1px solid #4a90e2;
+}
+
+/* --- Main Page Layout --- */
+.user-profile-page {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+.user-profile-page .profile-sidebar .sidebar-header,
+.user-profile-page .profile-sidebar .sidebar-footer {
+  display: none;
+}
+.user-profile-page .profile-sidebar .profile-nav {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+.user-profile-page .profile-sidebar .profile-nav .nav-item {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  color: #333;
+}
+.user-profile-page .profile-sidebar .profile-nav .nav-item.active {
+  font-weight: bold;
+  color: #4a90e2;
+}
+.user-profile-page .profile-sidebar .profile-nav .nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #4a90e2;
+}
+@media (min-width: 768px) {
+  .user-profile-page {
+    display: flex;
+  }
+  .user-profile-page .profile-sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .user-profile-page .profile-sidebar .sidebar-header,
+  .user-profile-page .profile-sidebar .sidebar-footer,
+  .user-profile-page .profile-sidebar .profile-nav {
+    display: block;
+  }
+  .user-profile-page .profile-sidebar .sidebar-header {
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .user-profile-page .profile-sidebar .sidebar-header .sidebar-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  .user-profile-page .profile-sidebar .sidebar-header .sidebar-username {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .user-profile-page .profile-sidebar .profile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    border-bottom: none;
+  }
+  .user-profile-page .profile-sidebar .profile-nav .nav-item {
+    text-align: left;
+    padding: 1rem 2rem;
+    border-radius: 0;
+    position: relative;
+    width: 100%;
+  }
+  .user-profile-page .profile-sidebar .profile-nav .nav-item.active {
+    background-color: #e9f2ff;
+  }
+  .user-profile-page .profile-sidebar .profile-nav .nav-item.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #4a90e2;
+  }
+  .user-profile-page .profile-sidebar .sidebar-footer {
+    margin-top: auto;
+    padding: 2rem;
+    text-align: center;
+  }
+}
+
+/* --- Content Area --- */
+.profile-content {
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+.profile-content .content-view {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* --- Profile & Security Cards --- */
+.profile-card,
+.security-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+.profile-card .profile-card-avatar,
+.security-card .profile-card-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  border: 4px solid #e0e0e0;
+}
+.profile-card .profile-card-name,
+.security-card .profile-card-name {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.profile-card .profile-card-email,
+.profile-card .profile-card-address,
+.security-card .profile-card-email,
+.security-card .profile-card-address {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.security-card {
+  text-align: left;
+}
+.security-card h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.security-card p {
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+/* --- Change Password Form --- */
+.change-password-form .form-group {
+  margin-bottom: 1.5rem;
+}
+.change-password-form .form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.change-password-form .form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.change-password-form .form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+.change-password-form .forgot-password-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.change-password-form .forgot-password-link:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=styles.css.map */
