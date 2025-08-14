@@ -19,10 +19,10 @@
         "resolveJsonModule": true, // Allows you to `import` JSON files directly into your code.
         "isolatedModules": true, // Ensures every file can be compiled independently, a requirement for some bundlers like Vite/Babel.
         "moduleDetection": "force", // Ensures files are treated as modules, even without import/export statements.
-        "baseUrl": ".", // Sets the base directory for resolving non-relative module paths.
+        "baseUrl": "..", // Sets the base directory for resolving non-relative module paths.
         "paths": {
             // Creates path aliases to avoid long relative imports.
-            "@/*": ["src/*"] // `import '@/components/Button'` resolves to `src/components/Button`.
+            "@/*": ["./src/*"] // `import '@/components/Button'` resolves to `src/components/Button`.
         },
 
         // --- Build & Output ---

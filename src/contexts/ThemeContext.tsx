@@ -1,4 +1,5 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useState } from 'react';
+
 import { type Theme, ThemeContext } from './theme.ts';
 
 interface ThemeProviderProps {
@@ -6,31 +7,47 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-    const [theme, setTheme] = useState<Theme>(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light' || savedTheme === 'dark') {
-            return savedTheme;
-        }
-
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-
-        return 'light';
+    const [theme, setThemeState] = useState<Theme>(() => {
+        const savedTheme = localStorage.getItem('theme') as Theme | null;
+        return savedTheme ?? 'system';
     });
 
+    const applyTheme = useCallback((selectedTheme: Theme) => {
+        let effectiveTheme: 'light' | 'dark';
+
+        if (selectedTheme === 'system') {
+            effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+        } else {
+            effectiveTheme = selectedTheme;
+        }
+
+        document.documentElement.setAttribute('data-theme', effectiveTheme);
+        document.body.setAttribute('data-theme', effectiveTheme);
+    }, []);
+
     useEffect(() => {
-        // Save theme to localStorage
-        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+    }, [theme, applyTheme]);
 
-        // Apply theme to document
-        document.documentElement.setAttribute('data-theme', theme);
-        document.body.setAttribute('data-theme', theme);
-    }, [theme]);
+    // Listen for system theme changes when 'system' theme is active
+    useEffect(() => {
+        if (theme !== 'system') return;
 
-    const toggleTheme = () => {
-        setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleSystemChange = (_e: MediaQueryListEvent) => {
+            applyTheme('system');
+        };
+
+        mediaQuery.addEventListener('change', handleSystemChange);
+        return () => mediaQuery.removeEventListener('change', handleSystemChange);
+    }, [theme, applyTheme]);
+
+    const setTheme = (newTheme: Theme) => {
+        setThemeState(newTheme);
+        localStorage.setItem('theme', newTheme);
     };
 
-    return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+    return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };

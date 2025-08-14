@@ -29,7 +29,7 @@ module.exports = {
     parserOptions: {
         // This tells ESLint to use type information from TypeScript, enabling more powerful rules.
         // It uses a dedicated tsconfig file for linting purposes.
-        project: './tsconfig.eslint.json',
+        project: './config/tsconfig.eslint.json',
         // Specifies the root directory for resolving the tsconfig file path.
         tsconfigRootDir: __dirname,
         // Specifies the version of ECMAScript syntax you are using.
@@ -87,7 +87,7 @@ module.exports = {
         'import/resolver': {
             typescript: {
                 alwaysTryTypes: true, // Searches for `@types` packages.
-                project: './tsconfig.eslint.json',
+                project: './config/tsconfig.eslint.json',
             },
             node: true,
         },

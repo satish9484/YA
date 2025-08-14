@@ -7,7 +7,23 @@
     background-color: color(surface);
 
     .content {
-        // margin-top: 75px;
         flex: 1;
+        // margin-top: $header-height-xs;
+
+        // @include respond-to('sm') {
+        //     margin-top: $header-height-sm;
+        // }
+
+        // @include respond-to('md') {
+        //     margin-top: $header-height-md;
+        // }
+
+        // @include respond-to('lg') {
+        //     margin-top: $header-height-lg;
+        // }
+
+        // @include respond-to('xl') {
+        //     margin-top: $header-height-xl;
+        // }
     }
 }

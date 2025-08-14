@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Adjust path to your slice
+import BreadCrumbs from '@/components/common/Breadcrumbs/index.tsx';
 import { changePassword, doLogout, forgotPassword } from '@/redux/actions/auth.ts';
 import type { AppDispatch, RootState } from '@/redux/store';
 
 import './styles.scss';
 
-// --- Change Password Form Sub-Component ---
-// This component now receives a dispatch function to call the async thunk
+// --- (Existing ChangePasswordForm component remains the same) ---
 const ChangePasswordForm = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [oldPassword, setOldPassword] = useState('');
@@ -23,55 +23,62 @@ const ChangePasswordForm = () => {
             alert("New passwords don't match!");
             return;
         }
-        // Dispatch the changePassword async thunk with the form data
         // @ts-expect-error: Suppress type error for dispatching thunk action
         void dispatch(changePassword({ oldPassword, newPassword }));
     };
 
     const handleForgotPassword = () => {
-        // Dispatch the forgotPassword async thunk
         // @ts-expect-error: Suppress type error for dispatching thunk action
         void dispatch(forgotPassword({ email: 'user@example.com' }));
     };
 
     return (
-        <form className="change-password-form" onSubmit={handleSubmit}>
-            {error && <div className="form-error">{error.message}</div>}
+        <form onSubmit={handleSubmit}>
+            {error && <div className="text-danger mb-4">{error.message}</div>}
             <div className="form-group">
-                <label htmlFor="oldPassword">Old Password</label>
+                <label className="form-label" htmlFor="oldPassword">
+                    Old Password
+                </label>
                 <input
                     type="password"
                     id="oldPassword"
+                    className="form-input"
                     value={oldPassword}
                     onChange={e => setOldPassword(e.target.value)}
                     required
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="newPassword">New Password</label>
+                <label className="form-label" htmlFor="newPassword">
+                    New Password
+                </label>
                 <input
                     type="password"
                     id="newPassword"
+                    className="form-input"
                     value={newPassword}
                     onChange={e => setNewPassword(e.target.value)}
                     required
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm New Password</label>
+                <label className="form-label" htmlFor="confirmPassword">
+                    Confirm New Password
+                </label>
                 <input
                     type="password"
                     id="confirmPassword"
+                    className="form-input"
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}
                     required
                 />
             </div>
-            <div className="form-actions">
+            <div className="d-flex justify-between items-center mt-6">
                 <button type="submit" className="btn btn-primary" disabled={isLoading}>
                     {isLoading ? 'Updating...' : 'Change Password'}
                 </button>
-                <a href="#" onClick={handleForgotPassword} className="forgot-password-link">
+                <a href="#" onClick={handleForgotPassword} className="text-sm link">
                     Forgot Password?
                 </a>
             </div>
@@ -79,77 +86,174 @@ const ChangePasswordForm = () => {
     );
 };
 
-// --- Main User Profile Page Component ---
 const UserProfilePage = () => {
-    // Get user data directly from the Redux store
-    const user = useSelector((state: RootState) => state.auth.userData);
+    const userFromStore = useSelector((state: RootState) => state.auth.userData);
     const dispatch = useDispatch<AppDispatch>();
     const [activeView, setActiveView] = useState<'profile' | 'security'>('profile');
 
-    // If user data isn't loaded yet, show a loading state or return null
-    if (!user) {
-        return <div className="loading-container">Loading Profile...</div>;
-    }
+    const user = {
+        id: 'sample-user-id',
+        name: 'Yashvi Audio',
+        email: 'Yashvi.Audio@example.com',
+        avatarUrl: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200',
+        address: {
+            street: '123 Music Lane',
+            city: 'Soundville',
+            country: 'Audioland',
+        },
+    };
+
+    console.log(userFromStore);
 
     const handleLogout = () => {
         // @ts-expect-error: Suppress type error for dispatching thunk action
         void dispatch(doLogout({ userId: user.id, refreshToken: user.email }));
     };
 
+    const NavLink = ({
+        view,
+        label,
+        icon,
+    }: {
+        view: 'profile' | 'security';
+        label: string;
+        icon: React.ReactNode;
+    }) => (
+        <button
+            className={`sidebar-nav-link ${activeView === view ? 'active' : ''}`}
+            onClick={() => setActiveView(view)}
+        >
+            <span className="nav-icon">{icon}</span>
+            <span>{label}</span>
+        </button>
+    );
+
+    const breadcrumbs = [
+        { name: 'Home', link: '/', isActive: true },
+        { name: 'Dashboard', link: '/dashboard', isActive: false },
+    ];
+
     return (
-        <div className="user-profile-page">
-            <aside className="profile-sidebar">
-                <div className="sidebar-header">
+        <div className="d-flex flex-column md:flex-row min-h-screen bg-background text-text-primary header-mr">
+            <aside className="profile-sidebar w-full md:w-80 bg-surface border-r border-border flex-shrink-0 d-flex flex-column">
+                <div className="p-6 text-center border-b border-border">
                     <img
                         src={user.avatarUrl}
                         alt={`${user.name}'s avatar`}
-                        className="sidebar-avatar"
+                        className="w-24 h-24 rounded-full mx-auto mb-4 shadow-lg"
                     />
-                    <h2 className="sidebar-username">{user.name}</h2>
+                    <h2 className="h5 font-semibold">{user.name}</h2>
+                    <p className="text-sm text-secondary">{user.email}</p>
                 </div>
-                <nav className="profile-nav">
-                    <button
-                        className={`nav-item ${activeView === 'profile' ? 'active' : ''}`}
-                        onClick={() => setActiveView('profile')}
-                    >
-                        Profile
-                    </button>
-                    <button
-                        className={`nav-item ${activeView === 'security' ? 'active' : ''}`}
-                        onClick={() => setActiveView('security')}
-                    >
-                        Security
-                    </button>
+                <nav className="d-flex flex-column gap-2 p-4 space-y-2">
+                    <NavLink
+                        view="profile"
+                        label="Profile"
+                        icon={
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                />
+                            </svg>
+                        }
+                    />
+                    <NavLink
+                        view="security"
+                        label="Security"
+                        icon={
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                />
+                            </svg>
+                        }
+                    />
                 </nav>
-                <div className="sidebar-footer">
-                    <button className="btn btn-secondary" onClick={handleLogout}>
+                <div className="p-4 mt-auto">
+                    <button
+                        className="btn btn-secondary w-full d-flex items-center justify-center logout-btn"
+                        onClick={handleLogout}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            />
+                        </svg>
                         Logout
                     </button>
                 </div>
             </aside>
 
-            <main className="profile-content">
-                <div className="content-view" id="profile-view" hidden={activeView !== 'profile'}>
-                    <div className="profile-card">
-                        <img
-                            src={user.avatarUrl}
-                            alt={`${user.name}'s avatar`}
-                            className="profile-card-avatar"
-                        />
-                        <h1 className="profile-card-name">{user.name}</h1>
-                        <p className="profile-card-email">{user.email}</p>
-                        <p className="profile-card-address">
-                            {user.address.street}, {user.address.city}, {user.address.country}
-                        </p>
-                        <button className="btn btn-primary-outline">Edit Profile</button>
+            <main className="flex-1 p-6 md:p-10">
+                <BreadCrumbs list={breadcrumbs} />
+                <div className="max-w-3xl mx-auto">
+                    <div hidden={activeView !== 'profile'}>
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="h3 font-bold">Public Profile</h2>
+                            </div>
+                            <div className="card-body">
+                                <div className="d-flex flex-column items-center md:flex-row md:items-start text-center md:text-left">
+                                    <img
+                                        src={user.avatarUrl}
+                                        alt={`${user.name}'s avatar`}
+                                        className="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-8 border-4 border-border shadow-md"
+                                    />
+                                    <div className="flex-1">
+                                        <h1 className="h2 font-bold">{user.name}</h1>
+                                        <p className="text-secondary mt-1">{user.email}</p>
+                                        <p className="text-secondary mt-4">
+                                            {user.address.street}, {user.address.city},{' '}
+                                            {user.address.country}
+                                        </p>
+                                        <button className="btn btn-primary mt-6">
+                                            Edit Profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div className="content-view" id="security-view" hidden={activeView !== 'security'}>
-                    <div className="security-card">
-                        <h2>Security Settings</h2>
-                        <p>Update your password and secure your account.</p>
-                        <ChangePasswordForm />
+                    <div hidden={activeView !== 'security'}>
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="h3 font-bold">Security Settings</h2>
+                            </div>
+                            <div className="card-body">
+                                <p className="text-secondary mt-2 mb-6">
+                                    Update your password and secure your account.
+                                </p>
+                                <ChangePasswordForm />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Dropdown, Menu, Table } from 'antd';
 
-import { DotIcon } from '../../../../../../React-Project-Template/src/svg';
+import { DotIcon } from '../../../../../../React-Project-Template/src/svg/index.jsx';
 
 const option = (
     <Menu

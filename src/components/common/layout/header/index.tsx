@@ -48,10 +48,14 @@ const productSubcategories: MenuProps['items'] = [
         key: 'monitors',
         icon: <SoundOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Stage Monitors</div>
-                <div className="dropdown-item-desc">Stage monitoring solutions for performers</div>
-            </div>
+            <a href="/dashboard" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Stage Monitors</div>
+                    <div className="dropdown-item-desc">
+                        Stage monitoring solutions for performers
+                    </div>
+                </div>
+            </a>
         ),
     },
     {
@@ -142,7 +146,7 @@ const applicationsSubcategories: MenuProps['items'] = [
 
 const PageHeader: React.FC = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { theme, toggleTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
     // Handle mobile menu toggle
     const toggleMobileMenu = () => {
@@ -162,6 +166,31 @@ const PageHeader: React.FC = () => {
             setMobileMenuOpen(false);
         }, 100);
     };
+
+    // Theme selection dropdown menu
+    const themeMenu = (
+        <Menu
+            onClick={({ key }) => setTheme(key as 'light' | 'dark' | 'system')}
+            selectedKeys={[theme]}
+            items={[
+                {
+                    key: 'light',
+                    label: 'Light',
+                    icon: <SunOutlined />,
+                },
+                {
+                    key: 'dark',
+                    label: 'Dark',
+                    icon: <MoonOutlined />,
+                },
+                {
+                    key: 'system',
+                    label: 'System',
+                    icon: <SettingOutlined />,
+                },
+            ]}
+        />
+    );
 
     // Desktop menu items with dropdowns
     const desktopMenuItems = [
@@ -336,15 +365,17 @@ const PageHeader: React.FC = () => {
                         ))}
                     </nav>
 
-                    {/* Theme Toggle Button */}
-                    <Button
-                        type="text"
-                        icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
-                        className="theme-toggle-btn"
-                        onClick={toggleTheme}
-                        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                    />
+                    {/* Theme Dropdown */}
+                    <Dropdown overlay={themeMenu} trigger={['click']}>
+                        <Button type="text" className="theme-toggle-btn">
+                            {theme === 'light' && <SunOutlined />}
+                            {theme === 'dark' && <MoonOutlined />}
+                            {theme === 'system' && <SettingOutlined />}
+                            <span style={{ marginLeft: 8 }}>
+                                {theme.charAt(0).toUpperCase() + theme.slice(1)}
+                            </span>
+                        </Button>
+                    </Dropdown>
 
                     {/* Mobile Menu Button */}
                     <Button
@@ -362,12 +393,13 @@ const PageHeader: React.FC = () => {
                 title={
                     <div className="mobile-drawer-header">
                         <Text strong>Menu</Text>
-                        <Button
-                            type="text"
-                            icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
-                            onClick={toggleTheme}
-                            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                        />
+                        <Dropdown overlay={themeMenu} trigger={['click']}>
+                            <Button type="text" className="theme-toggle-btn mobile">
+                                {theme === 'light' && <SunOutlined />}
+                                {theme === 'dark' && <MoonOutlined />}
+                                {theme === 'system' && <SettingOutlined />}
+                            </Button>
+                        </Dropdown>
                     </div>
                 }
                 placement="right"

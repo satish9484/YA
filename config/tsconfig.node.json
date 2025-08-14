@@ -36,5 +36,5 @@
      * "include": This specifies which files this configuration applies to.
      * It should include all your Node.js-based tooling and configuration files.
      */
-    "include": ["vite.config.ts", "vitest.config.ts"]
+    "include": ["config/vite.config.ts", "vitest.config.ts"]
 }

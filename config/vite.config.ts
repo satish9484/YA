@@ -1,34 +1,27 @@
 import autoprefixer from 'autoprefixer';
-import { readdirSync, statSync } from 'fs';
 import { join, resolve } from 'path';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import react from '@vitejs/plugin-react';
 
-const srcPath = resolve(__dirname, './src');
-
-// Discover top-level folders inside /src to generate convenient path aliases
-const getSrcSubfolders = (basePath: string) =>
-    readdirSync(basePath).filter(name => statSync(join(basePath, name)).isDirectory());
-
-const subfolders = getSrcSubfolders(srcPath);
-const folderAliases = Object.fromEntries(
-    subfolders.map(folder => [`@${folder}`, join(srcPath, folder)]),
-);
+const srcPath = resolve(__dirname, '../src');
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
     const isProd = mode === 'production';
+    console.log(isProd);
 
     return {
         plugins: [
             react(),
-            tsconfigPaths(),
             VitePWA({
                 registerType: 'autoUpdate',
-                devOptions: { enabled: !isProd },
+                // devOptions: { enabled: !isProd },
+                workbox: {
+                    // Bump up the maximum file size to cache to 5MB
+                    maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+                },
                 manifest: {
                     name: 'Yashvi Audio',
                     short_name: 'YA',
@@ -69,7 +62,6 @@ export default defineConfig(({ mode }) => {
             alias: {
                 '@': srcPath,
                 '@scss': join(srcPath, 'scss'),
-                ...folderAliases,
             },
         },
 
@@ -77,11 +69,11 @@ export default defineConfig(({ mode }) => {
             postcss: {
                 plugins: [autoprefixer],
             },
-            devSourcemap: !isProd,
+            devSourcemap: false,
             preprocessorOptions: {
                 scss: {
                     // Make the design system available everywhere without manual imports
-                    additionalData: `@use "@scss/index" as *;`,
+                    additionalData: `@use "@/scss/_index.scss" as *;`,
                 },
             },
             modules: {
@@ -103,12 +95,11 @@ export default defineConfig(({ mode }) => {
             minify: isProd ? 'esbuild' : false,
             sourcemap: !isProd,
             outDir: 'dist',
-            cssCodeSplit: false,
+            cssCodeSplit: true, // Enable CSS code splitting
             rollupOptions: {
                 output: {
                     manualChunks: {
                         vendor: ['react', 'react-dom'],
-                        styles: ['./src/scss/main.scss'],
                     },
                 },
             },

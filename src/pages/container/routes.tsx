@@ -31,6 +31,7 @@ const Routing: React.FC = () => {
 
                 {/* Design System Demo */}
                 <Route path="/design-system" element={<DesignSystemDemo />} />
+                <Route path="/dashboard" element={<UserProfileCard />} />
             </Route>
 
             {/* Protected Routes: All routes nested under AuthGuard require authentication */}
