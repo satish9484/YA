@@ -1,0 +1,22 @@
+// =============================================================================
+// Layout Tokens — header heights and container settings (all !default)
+// =============================================================================
+
+// Header heights
+$header-height-xs: 50px !default;
+$header-height-sm: 55px !default;
+$header-height-md: 65px !default;
+$header-height-lg: 70px !default;
+$header-height-xl: 75px !default;
+
+// Container settings
+// Note: keep literal values to avoid cross-module dependency on spacing
+$container-padding: 1rem !default; // equals $spacing-4
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+) !default;

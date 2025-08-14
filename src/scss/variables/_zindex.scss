@@ -1,0 +1,12 @@
+// =============================================================================
+// Z-Index Scale — all tokens use !default
+// =============================================================================
+
+$z-index-base: 1 !default;
+$z-index-dropdown: 1000 !default;
+$z-index-sticky: 1020 !default;
+$z-index-fixed: 1030 !default;
+$z-index-modal-backdrop: 1040 !default;
+$z-index-modal: 1050 !default;
+$z-index-popover: 1060 !default;
+$z-index-tooltip: 1070 !default;

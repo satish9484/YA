@@ -1,5 +1,4 @@
-@use '../../../../scss/variable' as *;
-@use '../../../../scss/mixin' as *;
+// Variables and mixins are globally injected via Vite additionalData (@/scss/scss/_index.scss)
 
 /* ===================================================== 
   Header - Professional & User-Friendly Design
@@ -9,8 +8,8 @@
 .header {
     width: 100%;
     height: $header-height-xs;
-    background: $white;
-    border-bottom: 1px solid $neutral-200;
+    background: color(surface);
+    border-bottom: 1px solid color(border);
     position: fixed;
     top: 0;
     left: 0;
@@ -19,19 +18,19 @@
     box-shadow: $shadow-sm;
     transition: all $transition-base;
 
-    @include breakpoint(sm) {
+    @include respond-to('sm') {
         height: $header-height-sm;
     }
 
-    @include breakpoint(md) {
+    @include respond-to('md') {
         height: $header-height-md;
     }
 
-    @include breakpoint(lg) {
+    @include respond-to('lg') {
         height: $header-height-lg;
     }
 
-    @include breakpoint(xl) {
+    @include respond-to('xl') {
         height: $header-height-xl;
     }
 
@@ -44,19 +43,19 @@
         justify-content: space-between;
         padding: 0 $spacing-4;
 
-        @include breakpoint(sm) {
+        @include respond-to('sm') {
             padding: 0 $spacing-6;
         }
 
-        @include breakpoint(md) {
+        @include respond-to('md') {
             padding: 0 $spacing-8;
         }
 
-        @include breakpoint(lg) {
+        @include respond-to('lg') {
             padding: 0 $spacing-10;
         }
 
-        @include breakpoint(xl) {
+        @include respond-to('xl') {
             padding: 0 $spacing-12;
         }
     }
@@ -86,19 +85,19 @@
             width: auto;
             object-fit: contain;
 
-            @include breakpoint(sm) {
+            @include respond-to('sm') {
                 max-height: 45px;
             }
 
-            @include breakpoint(md) {
+            @include respond-to('md') {
                 max-height: 50px;
             }
 
-            @include breakpoint(lg) {
+            @include respond-to('lg') {
                 max-height: 55px;
             }
 
-            @include breakpoint(xl) {
+            @include respond-to('xl') {
                 max-height: 60px;
             }
         }
@@ -110,16 +109,16 @@
         align-items: center;
         gap: $spacing-2;
 
-        @include breakpoint(md) {
+        @include respond-to('md') {
             display: flex;
             gap: $spacing-3;
         }
 
-        @include breakpoint(lg) {
+        @include respond-to('lg') {
             gap: $spacing-4;
         }
 
-        @include breakpoint(xl) {
+        @include respond-to('xl') {
             gap: $spacing-6;
         }
 
@@ -130,8 +129,8 @@
                 display: flex;
                 align-items: center;
                 gap: $spacing-1;
-                padding: $spacing-2 $spacing-3;
-                color: $neutral-700;
+                padding: 0 $spacing-2;
+                color: color(text-secondary);
                 text-decoration: none;
                 font-size: $font-size-sm;
                 font-weight: $font-weight-medium;
@@ -139,19 +138,19 @@
                 transition: all $transition-base;
                 white-space: nowrap;
 
-                @include breakpoint(lg) {
+                @include respond-to('lg') {
                     font-size: $font-size-base;
-                    padding: $spacing-3 $spacing-4;
+                    padding: 0 $spacing-4;
                 }
 
-                @include breakpoint(xl) {
+                @include respond-to('xl') {
                     font-size: $font-size-lg;
-                    padding: $spacing-3 $spacing-5;
+                    padding: 0 $spacing-5;
                 }
 
                 &:hover {
-                    color: $primary-600;
-                    background: $primary-50;
+                    color: color(primary);
+                    background: color(surface-2);
                 }
 
                 &.dropdown-link {
@@ -182,17 +181,17 @@
         height: 40px;
         border: none;
         background: transparent;
-        color: $neutral-700;
+        color: color(text-secondary);
         border-radius: $border-radius-md;
         transition: all $transition-base;
 
-        @include breakpoint(md) {
+        @include respond-to('md') {
             display: none;
         }
 
         &:hover {
-            color: $primary-600;
-            background: $primary-50;
+            color: color(primary);
+            background: color(surface-2);
         }
 
         .anticon {
@@ -207,10 +206,10 @@
         padding: $spacing-2;
         border-radius: $border-radius-lg;
         box-shadow: $shadow-lg;
-        border: 1px solid $neutral-200;
+        border: 1px solid color(border);
         min-width: 280px;
 
-        @include breakpoint(lg) {
+        @include respond-to('lg') {
             min-width: 320px;
             padding: $spacing-3;
         }
@@ -221,8 +220,8 @@
             transition: all $transition-base;
 
             &:hover {
-                background: $primary-50;
-                color: $primary-600;
+                background: color(surface-2);
+                color: color(primary);
             }
 
             .dropdown-item-content {
@@ -232,7 +231,7 @@
 
                 .anticon {
                     font-size: $font-size-lg;
-                    color: $neutral-500;
+                    color: color(muted);
                     margin-top: 2px;
                     flex-shrink: 0;
                 }
@@ -240,21 +239,20 @@
                 .dropdown-item-title {
                     font-weight: $font-weight-semibold;
                     font-size: $font-size-sm;
-                    color: $neutral-900;
                     line-height: $line-height-tight;
                     margin-bottom: $spacing-1;
 
-                    @include breakpoint(lg) {
+                    @include respond-to('lg') {
                         font-size: $font-size-base;
                     }
                 }
 
                 .dropdown-item-desc {
                     font-size: $font-size-xs;
-                    color: $neutral-600;
+                    color: color(text-secondary);
                     line-height: $line-height-normal;
 
-                    @include breakpoint(lg) {
+                    @include respond-to('lg') {
                         font-size: $font-size-sm;
                     }
                 }
@@ -279,7 +277,7 @@
         width: 320px;
         max-width: 90vw;
         height: 100vh;
-        background: $white;
+        background: color(surface);
         box-shadow: $shadow-xl;
         display: flex;
         flex-direction: column;
@@ -291,18 +289,18 @@
             align-items: center;
             justify-content: space-between;
             padding: $spacing-4;
-            border-bottom: 1px solid $neutral-200;
-            background: $neutral-50;
+            border-bottom: 1px solid color(border);
+            background: color(surface-2);
             flex-shrink: 0;
 
             .mobile-menu-title {
                 font-size: $font-size-lg;
                 font-weight: $font-weight-semibold;
-                color: $neutral-900;
+                color: color(text-primary);
             }
 
             .mobile-menu-close {
-                color: $neutral-600;
+                color: color(text-secondary);
                 width: 40px;
                 height: 40px;
                 display: flex;
@@ -311,8 +309,8 @@
                 border-radius: $border-radius-md;
 
                 &:hover {
-                    color: $neutral-900;
-                    background: $neutral-200;
+                    color: color(text-primary);
+                    background: color(border);
                 }
             }
         }
@@ -333,7 +331,7 @@
             }
 
             &::-webkit-scrollbar-thumb {
-                background: $neutral-300;
+                background: color(ring);
                 border-radius: 2px;
             }
 
@@ -348,8 +346,8 @@
                 align-items: center;
 
                 &:hover {
-                    background: $primary-50;
-                    color: $primary-600;
+                    background: color(surface-2);
+                    color: color(primary);
                 }
 
                 a {
@@ -379,8 +377,8 @@
                     align-items: center;
 
                     &:hover {
-                        background: $primary-50;
-                        color: $primary-600;
+                        background: color(surface-2);
+                        color: color(primary);
                     }
 
                     .anticon {
@@ -395,7 +393,7 @@
                 }
 
                 .ant-menu-sub {
-                    background: $neutral-50;
+                    background: color(surface-2);
                     margin: $spacing-1 0;
                     border-radius: $border-radius-md;
                     padding: $spacing-1;
@@ -425,7 +423,7 @@
                 -webkit-tap-highlight-color: transparent;
 
                 &:active {
-                    background: $primary-100;
+                    background: color(primary, dark);
                     transform: scale(0.98);
                 }
             }
@@ -466,7 +464,7 @@
 // Accessibility enhancements
 .header {
     &:focus-within {
-        outline: 2px solid $primary-500;
+        outline: 2px solid color(primary);
         outline-offset: 2px;
     }
 }
@@ -476,7 +474,7 @@
     .header {
         position: static;
         box-shadow: none;
-        border-bottom: 1px solid $neutral-300;
+        border-bottom: 1px solid color(border);
     }
 
     .mobile-menu-overlay {
@@ -487,7 +485,7 @@
 // High contrast support
 @media (prefers-contrast: high) {
     .header {
-        border-bottom: 2px solid $neutral-900;
+        border-bottom: 2px solid color(text-primary);
     }
 
     .nav-link {
@@ -495,7 +493,7 @@
     }
 
     .mobile-menu-btn {
-        border: 2px solid $neutral-900;
+        border: 2px solid color(text-primary);
     }
 }
 
@@ -513,5 +511,166 @@
 
     .mobile-menu-backdrop {
         animation: none;
+    }
+}
+
+// Theme toggle button styles
+.theme-toggle-btn {
+    margin-left: 16px;
+    color: color(text-primary);
+    border: none;
+    background: transparent;
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: color(primary);
+        transform: scale(1.1);
+    }
+
+    .anticon {
+        font-size: 18px;
+    }
+}
+
+// Dark theme overrides
+
+// Mobile theme toggle button
+.theme-toggle-btn.mobile {
+    margin-right: 8px;
+}
+
+// Mobile menu actions container
+.mobile-menu-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =============================================================================
+Mobile Menu
+========================================================================== */
+
+.mobile-menu-btn {
+    display: block;
+    color: color(text-primary);
+    font-size: 1.25rem; // Larger icon for better touch target
+
+    @include respond-to('md') {
+        display: none;
+    }
+}
+
+.mobile-drawer {
+    .ant-drawer-header {
+        background-color: color(surface);
+        border-bottom: 1px solid color(border);
+    }
+
+    .ant-drawer-title {
+        color: color(text-primary);
+    }
+
+    .ant-drawer-body {
+        background-color: color(background);
+        padding: 0;
+    }
+
+    .mobile-drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .mobile-menu {
+        background: transparent;
+        border: none;
+
+        .ant-menu-submenu-title,
+        .ant-menu-item {
+            color: color(text-secondary);
+            font-weight: $font-weight-medium;
+            font-size: $font-size-base;
+
+            &:hover {
+                color: color(text-primary);
+                background-color: color(surface-2);
+            }
+        }
+
+        .ant-menu-item-selected {
+            background-color: color(primary, 'light');
+            color: color(primary-contrast, 'light');
+        }
+
+        .ant-menu-submenu-expand-icon,
+        .ant-menu-submenu-arrow {
+            color: color(text-secondary);
+        }
+    }
+}
+
+// Dark theme overrides
+.dark {
+    .mobile-drawer {
+        .ant-drawer-header {
+            background-color: color(surface, 'dark');
+            border-bottom: 1px solid color(border, 'dark');
+        }
+
+        .ant-drawer-title {
+            color: color(text-primary, 'dark');
+        }
+
+        .ant-drawer-body {
+            background-color: color(background, 'dark');
+        }
+
+        .mobile-menu {
+            .ant-menu-submenu-title,
+            .ant-menu-item {
+                color: color(text-secondary, 'dark');
+
+                &:hover {
+                    color: color(text-primary, 'dark');
+                    background-color: color(surface-2, 'dark');
+                }
+            }
+
+            .ant-menu-item-selected {
+                background-color: color(primary, 'dark');
+                color: color(primary-contrast, 'dark');
+            }
+
+            .ant-menu-submenu-expand-icon,
+            .ant-menu-submenu-arrow {
+                color: color(text-secondary, 'dark');
+            }
+        }
+    }
+}
+
+// =============================================================================
+// Theme CSS Variables Emission
+// =============================================================================
+
+// Emit light theme variables by default
+@include emit-theme-css-variables(':root', light);
+
+// Dark theme support (when .dark class is applied)
+.dark {
+    @include emit-theme-css-variables(':root', dark);
+}
+
+// High contrast theme support
+@media (prefers-contrast: high) {
+    :root {
+        --color-primary: #000000;
+        --color-primary-contrast: #ffffff;
+        --color-background: #ffffff;
+        --color-surface: #ffffff;
+        --color-text-primary: #000000;
+        --color-text-secondary: #000000;
+        --color-border: #000000;
     }
 }

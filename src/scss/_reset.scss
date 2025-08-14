@@ -1,29 +1,27 @@
-@use './mixin' as *;
+// =============================================================================
+// CSS RESET & BASE NORMALIZATION
+// =============================================================================
+
 @use './variable' as *;
-* {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    outline: none;
-    @include prefix(box-sizing, border-box);
-    -webkit-tap-highlight-color: transparent;
+@use './mixin' as *;
+@use './mixin' as *;
+
+// Modern CSS Reset
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-    @include prefix(text-size-adjust, none);
-    font-family: 'Fira Sans', sans-serif;
-    font-weight: 400;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
-body {
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: $theme-black;
-    font-family: $font-fira;
-    font-weight: 400;
-    background-color: #b3b3b3;
-}
+// Body typography and color are handled in `_base.scss`
 
 img {
     max-width: 100%;
@@ -60,25 +58,22 @@ b {
     margin: 0;
     line-height: normal;
     letter-spacing: 0;
-    font-family: $font-fira;
-    font-weight: 400;
-    color: $theme-color;
 }
 
 .text-white {
+    color: $white !important;
+
     h1,
     h2,
     h3,
     h4,
     h5,
     h6,
-    strong,
-    b,
     p,
-    ul,
-    ol,
-    li {
-        color: $white;
+    span,
+    strong,
+    b {
+        color: inherit;
     }
 }
 
@@ -96,7 +91,7 @@ b {
     ol,
     li,
     .timer {
-        color: $black;
+        color: color(text-primary);
     }
 }
 
@@ -127,32 +122,32 @@ label {
 }
 
 %transition {
-    @include prefix(transition, all 0.3s ease-in-out);
+    transition: all $transition-base;
 }
 
 input,
 textarea,
 select,
 header {
-    @include prefix(appearance, none);
+    appearance: none;
 }
 
 ::-webkit-input-placeholder {
-    color: $placeholder-color;
+    color: color(text-secondary);
     opacity: 1;
 }
 
 :-moz-placeholder {
-    color: $placeholder-color;
+    color: color(text-secondary);
     opacity: 1;
 }
 
 ::-moz-placeholder {
-    color: $placeholder-color;
+    color: color(text-secondary);
     opacity: 1;
 }
 
 :-ms-input-placeholder {
-    color: $placeholder-color;
+    color: color(text-secondary);
     opacity: 1;
 }

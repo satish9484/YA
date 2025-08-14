@@ -1,0 +1,313 @@
+@use 'sass:map';
+@use '../variable' as *;
+
+// =============================================================================
+// FLEXBOX UTILITIES WITH CROSS-BROWSER SUPPORT (MODULE)
+// =============================================================================
+
+// Display
+.d-flex {
+    display: flex;
+}
+.d-inline-flex {
+    display: inline-flex;
+}
+
+// Direction
+.flex-row {
+    flex-direction: row;
+}
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-column-reverse {
+    flex-direction: column-reverse;
+}
+
+// Wrap
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+// Justify
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.justify-around {
+    justify-content: space-around;
+}
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+// Align items
+.items-start {
+    align-items: flex-start;
+}
+.items-end {
+    align-items: flex-end;
+}
+.items-center {
+    align-items: center;
+}
+.items-baseline {
+    align-items: baseline;
+}
+.items-stretch {
+    align-items: stretch;
+}
+
+// Align self
+.self-start {
+    align-self: flex-start;
+}
+.self-end {
+    align-self: flex-end;
+}
+.self-center {
+    align-self: center;
+}
+.self-baseline {
+    align-self: baseline;
+}
+.self-stretch {
+    align-self: stretch;
+}
+
+// Flex properties
+.flex-1 {
+    flex: 1 1 0%;
+}
+.flex-auto {
+    flex: 1 1 auto;
+}
+.flex-initial {
+    flex: 0 1 auto;
+}
+.flex-none {
+    flex: none;
+}
+
+// Grow/Shrink
+.flex-grow-0 {
+    flex-grow: 0;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+.flex-shrink-1 {
+    flex-shrink: 1;
+}
+
+// Basis
+.flex-basis-auto {
+    flex-basis: auto;
+}
+.flex-basis-0 {
+    flex-basis: 0;
+}
+.flex-basis-full {
+    flex-basis: 100%;
+}
+
+// Order
+.order-first {
+    order: -1;
+}
+.order-last {
+    order: 999;
+}
+.order-none {
+    order: 0;
+}
+
+// Helpers
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+// =============================================================================
+// RESPONSIVE VARIANTS
+// =============================================================================
+@each $breakpoint, $value in $breakpoints {
+    @if $value > 0 {
+        @media (min-width: #{$value}) {
+            .#{$breakpoint}\:d-flex {
+                display: flex;
+            }
+            .#{$breakpoint}\:d-inline-flex {
+                display: inline-flex;
+            }
+            .#{$breakpoint}\:flex-row {
+                flex-direction: row;
+            }
+            .#{$breakpoint}\:flex-row-reverse {
+                flex-direction: row-reverse;
+            }
+            .#{$breakpoint}\:flex-column {
+                flex-direction: column;
+            }
+            .#{$breakpoint}\:flex-column-reverse {
+                flex-direction: column-reverse;
+            }
+            .#{$breakpoint}\:flex-wrap {
+                flex-wrap: wrap;
+            }
+            .#{$breakpoint}\:flex-nowrap {
+                flex-wrap: nowrap;
+            }
+            .#{$breakpoint}\:justify-start {
+                justify-content: flex-start;
+            }
+            .#{$breakpoint}\:justify-end {
+                justify-content: flex-end;
+            }
+            .#{$breakpoint}\:justify-center {
+                justify-content: center;
+            }
+            .#{$breakpoint}\:justify-between {
+                justify-content: space-between;
+            }
+            .#{$breakpoint}\:justify-around {
+                justify-content: space-around;
+            }
+            .#{$breakpoint}\:justify-evenly {
+                justify-content: space-evenly;
+            }
+            .#{$breakpoint}\:items-start {
+                align-items: flex-start;
+            }
+            .#{$breakpoint}\:items-end {
+                align-items: flex-end;
+            }
+            .#{$breakpoint}\:items-center {
+                align-items: center;
+            }
+            .#{$breakpoint}\:items-baseline {
+                align-items: baseline;
+            }
+            .#{$breakpoint}\:items-stretch {
+                align-items: stretch;
+            }
+            .#{$breakpoint}\:self-start {
+                align-self: flex-start;
+            }
+            .#{$breakpoint}\:self-end {
+                align-self: flex-end;
+            }
+            .#{$breakpoint}\:self-center {
+                align-self: center;
+            }
+            .#{$breakpoint}\:self-baseline {
+                align-self: baseline;
+            }
+            .#{$breakpoint}\:self-stretch {
+                align-self: stretch;
+            }
+            .#{$breakpoint}\:flex-1 {
+                flex: 1 1 0%;
+            }
+            .#{$breakpoint}\:flex-auto {
+                flex: 1 1 auto;
+            }
+            .#{$breakpoint}\:flex-initial {
+                flex: 0 1 auto;
+            }
+            .#{$breakpoint}\:flex-none {
+                flex: none;
+            }
+            .#{$breakpoint}\:flex-grow-0 {
+                flex-grow: 0;
+            }
+            .#{$breakpoint}\:flex-grow-1 {
+                flex-grow: 1;
+            }
+            .#{$breakpoint}\:flex-shrink-0 {
+                flex-shrink: 0;
+            }
+            .#{$breakpoint}\:flex-shrink-1 {
+                flex-shrink: 1;
+            }
+            .#{$breakpoint}\:flex-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .#{$breakpoint}\:flex-between {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .#{$breakpoint}\:flex-start {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            .#{$breakpoint}\:flex-end {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            .#{$breakpoint}\:flex-column-center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .#{$breakpoint}\:flex-column-between {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+    }
+}

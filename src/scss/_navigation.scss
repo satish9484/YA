@@ -1,0 +1,51 @@
+@use './variable' as *;
+@use './mixin' as *;
+@use 'variables/colors' as *;
+// =============================================================================
+// NAVIGATION SYSTEM - NAVBAR, NAVIGATION
+// =============================================================================
+
+.main-nav {
+    .nav-wrapper {
+        .menu-items {
+            .dektop-menu {
+                height: 75px;
+            }
+        }
+    }
+}
+// mobile-part
+.mobile-nav-wrapper {
+    .mobile-nav-header {
+        height: 75px;
+        border-bottom: 1px solid color('border');
+    }
+    .mobile-menu-items {
+        padding-left: 0;
+        .menu-item {
+            list-style: none;
+            padding: 10px 20px;
+            border-bottom: 1px solid color('border');
+            &:last-child {
+                border-bottom: none;
+            }
+            .sub-menu {
+                padding-left: 20px;
+                .sub-menu-item {
+                    list-style: none;
+                    .sub-menu-header {
+                        .sub-menu-title {
+                        }
+                        .sub-menu-arrow {
+                        }
+                    }
+                    .sub-menu-list {
+                        .sub-menu-list-item {
+                            list-style: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

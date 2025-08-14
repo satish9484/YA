@@ -1,0 +1,28 @@
+@use "./config" as *;
+
+// =============================================================================
+// Font faces
+// - Reference files from public/fonts via $font-path
+// - Add weights/styles per family as needed
+// =============================================================================
+
+// Poppins
+@font-face {
+  font-family: "Poppins";
+  src: url(#{$font-path}/poppins/poppins-v23-latin-regular.woff2)
+      format("woff2"),
+    url(#{$font-path}/poppins/poppins-v23-latin-regular.woff) format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Lora
+@font-face {
+  font-family: "Lora";
+  src: url(#{$font-path}/lora-v26-latin-regular.woff2) format("woff2"),
+    url(#{$font-path}/lora-v26-latin-regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

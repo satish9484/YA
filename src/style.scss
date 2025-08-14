@@ -1,1 +1,5 @@
-@use './scss/style.scss';
+@use '@/scss/main.scss';
+
+#root {
+    height: 100%;
+}

@@ -1,0 +1,10 @@
+// =============================================================================
+// Compatibility Tokens — vendor prefixes and layout feature flags (all !default)
+// =============================================================================
+
+// Vendor prefixes for better browser compatibility
+$vendor-prefixes-list: ('-webkit-', '-moz-', '-o-') !default;
+
+// Layout feature flags
+$css-grid-support: true !default;
+$flexbox-support: true !default;

@@ -1,6 +1,23 @@
 @use './mixin' as *;
 @use './variable' as *;
 
+// Apply Poppins font to all Ant Design components
+[class*='ant-'] {
+    font-family: 'Poppins';
+    font-size: $font-size-sm;
+    // color: color('text-primary');
+
+    @include respond-to('md') {
+        font-size: $font-size-base;
+    }
+}
+
+
+span{}
+span.ant-typography {
+    color: color(text-secondary);
+}
+
 .form-group {
     // Controls Input Field For Text
 
@@ -56,7 +73,7 @@
     }
     .ant-select-multiple {
         .ant-select-selection-item {
-            background-color: #e9effd;
+            background-color: color('primary', 'light');
             border-radius: 8px;
             color: $theme-color;
             padding: 1px 10px;
@@ -71,7 +88,7 @@
             }
         }
         .ant-select-arrow {
-            border-left: 1px solid #9b9b9b;
+            border-left: 1px solid color('border');
             padding-left: 14px;
             height: 15px;
         }

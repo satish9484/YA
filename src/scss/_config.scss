@@ -1,0 +1,63 @@
+@use 'sass:map';
+
+// =============================================================================
+// SCSS CONFIGURATION FILE - COMPILATION SETTINGS & OPTIONS
+// =============================================================================
+
+// This file contains configuration options and settings for SCSS compilation
+// It ensures consistent behavior across different build environments
+
+// =============================================================================
+// COMPILATION OPTIONS
+// =============================================================================
+
+// Enable source maps for better debugging
+$source-map: true;
+
+// Enable CSS compression in production
+$compress: false; // Set to true in production builds
+
+// Enable CSS comments in output
+$comments: true;
+
+// =============================================================================
+// PERFORMANCE OPTIONS
+// =============================================================================
+
+// Enable SCSS caching for faster compilation
+$cache: true;
+
+// Enable SCSS optimization
+$optimize: true;
+
+// =============================================================================
+// BROWSER SUPPORT
+// =============================================================================
+
+// Define minimum browser versions for vendor prefixes
+// Note: Legacy MS flexbox support is handled in mixins
+$browser-minimum-versions: (
+    chrome: 60,
+    firefox: 60,
+    safari: 12,
+    edge: 79,
+);
+
+// =============================================================================
+// DEVELOPMENT TOOLS
+// =============================================================================
+
+// Enable debug information
+$debug: false; // Set to true in development
+
+// Enable performance profiling
+$profile: false; // Set to true when debugging performance
+
+// =============================================================================
+// NOTE: EXPORT SETTINGS REMOVED
+// =============================================================================
+
+// The export section was removed because it referenced variables
+// that weren't available at compile time. If you need to export
+// variables to JavaScript, consider using CSS custom properties
+// or creating a separate export file that imports variables first.

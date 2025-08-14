@@ -1,0 +1,28 @@
+@use "sass:map";
+
+// =============================================================================
+// Breakpoints — mobile-first map and legacy aliases, all with !default
+// =============================================================================
+
+$breakpoints: (
+  xs: 0,
+  // Extra small devices (portrait phones)
+  sm: 576px,
+  // Small devices (landscape phones)
+  md: 768px,
+  // Medium devices (tablets)
+  lg: 992px,
+  // Large devices (desktops)
+  xl: 1200px,
+  // Extra large devices (large desktops)
+  xxl: 1400px,
+  // Extra extra large devices
+) !default;
+
+// Legacy aliases (kept for compatibility)
+$xs: map.get($breakpoints, xs) !default;
+$sm: map.get($breakpoints, sm) !default;
+$md: map.get($breakpoints, md) !default;
+$lg: map.get($breakpoints, lg) !default;
+$xl: map.get($breakpoints, xl) !default;
+$xxl: map.get($breakpoints, xxl) !default;

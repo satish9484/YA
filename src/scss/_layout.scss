@@ -1,0 +1,151 @@
+// =============================================================================
+// LAYOUT SYSTEM - CONTAINERS, GRID, SPACING
+// =============================================================================
+
+@use 'sass:math';
+@use './variable' as *;
+@use './mixin' as *;
+
+// Container system
+.container {
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
+    @include container();
+
+    @include respond-to('sm') {
+        padding-left: $spacing-6;
+        padding-right: $spacing-6;
+    }
+
+    @include respond-to('lg') {
+        padding-left: $spacing-8;
+        padding-right: $spacing-8;
+    }
+}
+
+.container-fluid {
+    @include container(100%);
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
+
+    @include respond-to('sm') {
+        padding-left: $spacing-6;
+        padding-right: $spacing-6;
+    }
+
+    @include respond-to('lg') {
+        padding-left: $spacing-8;
+        padding-right: $spacing-8;
+    }
+}
+
+// Use flex utilities (flex/*) and grid utilities (grid/*) for layout.
+
+// =============================================================================
+// RESPONSIVE SPACING SYSTEM
+// =============================================================================
+
+// Generate responsive spacing utilities
+@each $size, $value in $spacing {
+    .m-#{$size} {
+        margin: $value !important;
+    }
+    .mt-#{$size} {
+        margin-top: $value !important;
+    }
+    .mr-#{$size} {
+        margin-right: $value !important;
+    }
+    .mb-#{$size} {
+        margin-bottom: $value !important;
+    }
+    .ml-#{$size} {
+        margin-left: $value !important;
+    }
+    .mx-#{$size} {
+        margin-left: $value !important;
+        margin-right: $value !important;
+    }
+    .my-#{$size} {
+        margin-top: $value !important;
+        margin-bottom: $value !important;
+    }
+
+    .p-#{$size} {
+        padding: $value !important;
+    }
+    .pt-#{$size} {
+        padding-top: $value !important;
+    }
+    .pr-#{$size} {
+        padding-right: $value !important;
+    }
+    .pb-#{$size} {
+        padding-bottom: $value !important;
+    }
+    .pl-#{$size} {
+        padding-left: $value !important;
+    }
+    .px-#{$size} {
+        padding-left: $value !important;
+        padding-right: $value !important;
+    }
+    .py-#{$size} {
+        padding-top: $value !important;
+        padding-bottom: $value !important;
+    }
+
+    @each $breakpoint, $bp-value in $breakpoints {
+        @if $bp-value > 0 {
+            @include respond-to($breakpoint) {
+                .#{$breakpoint}\:m-#{$size} {
+                    margin: $value !important;
+                }
+                .#{$breakpoint}\:mt-#{$size} {
+                    margin-top: $value !important;
+                }
+                .#{$breakpoint}\:mr-#{$size} {
+                    margin-right: $value !important;
+                }
+                .#{$breakpoint}\:mb-#{$size} {
+                    margin-bottom: $value !important;
+                }
+                .#{$breakpoint}\:ml-#{$size} {
+                    margin-left: $value !important;
+                }
+                .#{$breakpoint}\:mx-#{$size} {
+                    margin-left: $value !important;
+                    margin-right: $value !important;
+                }
+                .#{$breakpoint}\:my-#{$size} {
+                    margin-top: $value !important;
+                    margin-bottom: $value !important;
+                }
+
+                .#{$breakpoint}\:p-#{$size} {
+                    padding: $value !important;
+                }
+                .#{$breakpoint}\:pt-#{$size} {
+                    padding-top: $value !important;
+                }
+                .#{$breakpoint}\:pr-#{$size} {
+                    padding-right: $value !important;
+                }
+                .#{$breakpoint}\:pb-#{$size} {
+                    padding-bottom: $value !important;
+                }
+                .#{$breakpoint}\:pl-#{$size} {
+                    padding-left: $value !important;
+                }
+                .#{$breakpoint}\:px-#{$size} {
+                    padding-left: $value !important;
+                    padding-right: $value !important;
+                }
+                .#{$breakpoint}\:py-#{$size} {
+                    padding-top: $value !important;
+                    padding-bottom: $value !important;
+                }
+            }
+        }
+    }
+}

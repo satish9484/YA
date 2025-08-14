@@ -1,9 +1,6 @@
-@use '../../../scss/variable' as *;
-@use '../../../scss/mixin' as *;
-
 .card {
     padding: 30px;
     border-radius: 10px;
-    background: $btnsecondary-bg;
-    @include prefix(box-shadow, 0px 4px 8px rgba(223, 223, 223, 0.4));
+    background: color(surface-2);
+    box-shadow: 0 4px 8px rgba(223, 223, 223, 0.4);
 }

@@ -1,0 +1,205 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '../variable' as *;
+
+// =============================================================================
+// GRID UTILITIES WITH RESPONSIVE VARIANTS AND BASIC FALLBACKS
+// =============================================================================
+
+// Display
+.d-grid {
+    display: grid;
+}
+
+// Template columns: 1..12
+@for $i from 1 through 12 {
+    .grid-cols-#{$i} {
+        grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+    }
+}
+
+// Template rows: 1..12
+@for $i from 1 through 12 {
+    .grid-rows-#{$i} {
+        grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
+    }
+}
+
+// Auto-fit/auto-fill helpers
+.grid-cols-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+.grid-cols-auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+}
+
+// Column/row span helpers (1..12)
+@for $i from 1 through 12 {
+    .col-span-#{$i} {
+        grid-column: span #{$i} / span #{$i};
+    }
+    .row-span-#{$i} {
+        grid-row: span #{$i} / span #{$i};
+    }
+}
+.col-span-full {
+    grid-column: 1 / -1;
+}
+.row-span-full {
+    grid-row: 1 / -1;
+}
+
+// Auto flow
+.grid-flow-row {
+    grid-auto-flow: row;
+}
+.grid-flow-col {
+    grid-auto-flow: column;
+}
+.grid-flow-dense {
+    grid-auto-flow: dense;
+}
+.grid-flow-row-dense {
+    grid-auto-flow: row dense;
+}
+.grid-flow-col-dense {
+    grid-auto-flow: column dense;
+}
+
+// Gaps from spacing scale
+@each $size, $value in $spacing {
+    .gap-#{$size} {
+        gap: $value;
+    }
+    .gap-x-#{$size} {
+        column-gap: $value;
+    }
+    .gap-y-#{$size} {
+        row-gap: $value;
+    }
+}
+
+// Alignment
+.place-content-center {
+    place-content: center;
+}
+.place-content-start {
+    place-content: start;
+}
+.place-content-end {
+    place-content: end;
+}
+.place-content-between {
+    place-content: space-between;
+}
+.place-content-around {
+    place-content: space-around;
+}
+.place-items-center {
+    place-items: center;
+}
+.place-items-start {
+    place-items: start;
+}
+.place-items-end {
+    place-items: end;
+}
+.justify-items-start {
+    justify-items: start;
+}
+.justify-items-center {
+    justify-items: center;
+}
+.justify-items-end {
+    justify-items: end;
+}
+.align-items-start {
+    align-items: start;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-end {
+    align-items: end;
+}
+
+// =============================================================================
+// RESPONSIVE VARIANTS
+// =============================================================================
+@each $breakpoint, $value in $breakpoints {
+    @if $value > 0 {
+        @media (min-width: #{$value}) {
+            .#{$breakpoint}\:d-grid {
+                display: grid;
+            }
+
+            @for $i from 1 through 12 {
+                .#{$breakpoint}\:grid-cols-#{$i} {
+                    grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+                }
+                .#{$breakpoint}\:grid-rows-#{$i} {
+                    grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
+                }
+                .#{$breakpoint}\:col-span-#{$i} {
+                    grid-column: span #{$i} / span #{$i};
+                }
+                .#{$breakpoint}\:row-span-#{$i} {
+                    grid-row: span #{$i} / span #{$i};
+                }
+            }
+
+            .#{$breakpoint}\:col-span-full {
+                grid-column: 1 / -1;
+            }
+            .#{$breakpoint}\:row-span-full {
+                grid-row: 1 / -1;
+            }
+            .#{$breakpoint}\:grid-cols-auto-fit {
+                grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            }
+            .#{$breakpoint}\:grid-cols-auto-fill {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+            }
+            .#{$breakpoint}\:grid-flow-row {
+                grid-auto-flow: row;
+            }
+            .#{$breakpoint}\:grid-flow-col {
+                grid-auto-flow: column;
+            }
+            .#{$breakpoint}\:grid-flow-dense {
+                grid-auto-flow: dense;
+            }
+            .#{$breakpoint}\:grid-flow-row-dense {
+                grid-auto-flow: row dense;
+            }
+            .#{$breakpoint}\:grid-flow-col-dense {
+                grid-auto-flow: column dense;
+            }
+
+            @each $size, $value in $spacing {
+                .#{$breakpoint}\:gap-#{$size} {
+                    gap: $value;
+                }
+                .#{$breakpoint}\:gap-x-#{$size} {
+                    column-gap: $value;
+                }
+                .#{$breakpoint}\:gap-y-#{$size} {
+                    row-gap: $value;
+                }
+            }
+
+            .#{$breakpoint}\:place-content-center {
+                place-content: center;
+            }
+            .#{$breakpoint}\:place-items-center {
+                place-items: center;
+            }
+            .#{$breakpoint}\:justify-items-center {
+                justify-items: center;
+            }
+            .#{$breakpoint}\:align-items-center {
+                align-items: center;
+            }
+        }
+    }
+}

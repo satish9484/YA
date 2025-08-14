@@ -1,0 +1,12 @@
+// =============================================================================
+// Motion Tokens — transitions and feature flags (all !default)
+// =============================================================================
+
+// Transitions
+$transition-fast: 150ms ease-in-out !default;
+$transition-base: 250ms ease-in-out !default;
+$transition-slow: 350ms ease-in-out !default;
+
+// Feature flags related to motion capabilities
+$animation-support: true !default;
+$transform-support: true !default;

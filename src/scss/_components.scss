@@ -1,0 +1,286 @@
+@use './variable' as *;
+@use './mixin' as *;
+@use './flex' as *;
+
+// =============================================================================
+// COMPONENT STYLES - BUTTONS, CARDS, FORMS, TABLES, MODALS
+// =============================================================================
+
+// =============================================================================
+// BUTTON SYSTEM
+// =============================================================================
+
+button.btn {
+    @include inline-flex(center, center);
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-tight;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    @include transition(all);
+    white-space: nowrap;
+
+    @include respond-to('md') {
+        padding: $spacing-3 $spacing-6;
+        font-size: $font-size-base;
+    }
+
+    &:hover {
+        @include hover {
+            @include transform(translateY(-1px));
+            @include box-shadow($shadow-lg);
+        }
+    }
+
+    &:active {
+        @include transform(translateY(0));
+    }
+
+    &:focus {
+        @include focus-visible {
+            outline: 2px solid color(primary);
+            outline-offset: 2px;
+        }
+    }
+}
+
+button.btn-primary {
+    background-color: color(primary);
+    border-color: color(primary);
+    color: color(primary-contrast);
+
+    &:hover {
+        @include hover {
+            background-color: color(primary-hover-bg);
+            border-color: color(primary-hover-bg);
+        }
+    }
+}
+
+button.btn-secondary {
+    background-color: color(surface-2);
+    border-color: color(border);
+    color: color(text-primary);
+
+    &:hover {
+        @include hover {
+            background-color: color(secondary-hover-bg);
+            border-color: color(secondary-hover-border);
+        }
+    }
+}
+
+// =============================================================================
+// CARD SYSTEM
+// =============================================================================
+
+.card {
+    background-color: color(surface);
+    border: 1px solid color(border);
+    border-radius: $border-radius-lg;
+    @include box-shadow($shadow-sm);
+    overflow: hidden;
+    @include transition(all);
+
+    &:hover {
+        @include hover {
+            @include box-shadow($shadow-md);
+            @include transform(translateY(-2px));
+        }
+    }
+}
+
+.card-header {
+    padding: $spacing-4;
+    border-bottom: 1px solid color(border);
+    background-color: color(surface-2);
+
+    @include respond-to('md') {
+        padding: $spacing-6;
+    }
+}
+
+.card-body {
+    padding: $spacing-4;
+
+    @include respond-to('md') {
+        padding: $spacing-6;
+    }
+}
+
+.card-footer {
+    padding: $spacing-4;
+    border-top: 1px solid color(border);
+    background-color: color(surface-2);
+
+    @include respond-to('md') {
+        padding: $spacing-6;
+    }
+}
+
+// =============================================================================
+// FORM SYSTEM
+// =============================================================================
+
+.form-group {
+    margin-bottom: $spacing-4;
+
+    @include respond-to('md') {
+        margin-bottom: $spacing-6;
+    }
+}
+
+.form-label {
+    display: block;
+    margin-bottom: $spacing-2;
+    font-weight: $font-weight-medium;
+    color: color(text-primary);
+
+    @include respond-to('md') {
+        margin-bottom: $spacing-3;
+        font-size: $font-size-base;
+    }
+}
+
+.form-input {
+    width: 100%;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-size-base;
+    line-height: $line-height-tight;
+    color: color(text-primary);
+    background-color: color(surface);
+    border: 1px solid color(border);
+    border-radius: $border-radius-md;
+    @include transition(all);
+
+    @include respond-to('md') {
+        padding: $spacing-3 $spacing-4;
+        font-size: $font-size-lg;
+    }
+
+    &:focus {
+        @include focus-visible {
+            outline: none;
+            border-color: color(primary);
+            box-shadow: 0 0 0 3px rgba(color(primary), 0.1);
+        }
+    }
+
+    &:hover {
+        @include hover {
+            border-color: color(secondary-hover-border);
+        }
+    }
+}
+
+// =============================================================================
+// TABLE SYSTEM
+// =============================================================================
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @include respond-to('lg') {
+        overflow-x: visible;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-sm;
+
+    @include respond-to('md') {
+        font-size: $font-size-base;
+    }
+}
+
+.table th,
+.table td {
+    padding: $spacing-2 $spacing-3;
+    text-align: left;
+    border-bottom: 1px solid color(border);
+
+    @include respond-to('md') {
+        padding: $spacing-3 $spacing-4;
+    }
+}
+
+.table th {
+    background-color: color(surface-2);
+    font-weight: $font-weight-semibold;
+    color: color(text-primary);
+}
+
+// =============================================================================
+// MODAL SYSTEM
+// =============================================================================
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(color(text-primary, 'dark'), 0.5);
+    display: none;
+    z-index: 1050;
+
+    &.show {
+        @include flex(center, center);
+    }
+}
+
+.modal-dialog {
+    background-color: color(surface);
+    border-radius: $border-radius-lg;
+    @include box-shadow($shadow-2xl);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+
+    @include respond-to('sm') {
+        max-width: 500px;
+    }
+
+    @include respond-to('md') {
+        max-width: 600px;
+    }
+
+    @include respond-to('lg') {
+        max-width: 800px;
+    }
+}
+
+.modal-header {
+    padding: $spacing-4;
+    border-bottom: 1px solid color(border);
+
+    @include respond-to('md') {
+        padding: $spacing-6;
+    }
+}
+
+.modal-body {
+    padding: $spacing-4;
+
+    @include respond-to('md') {
+        padding: $spacing-6;
+    }
+}
+
+.modal-footer {
+    @include flex(flex-end);
+    padding: $spacing-4;
+    border-top: 1px solid color(border);
+    gap: $spacing-3;
+
+    @include respond-to('md') {
+        padding: $spacing-6;
+        gap: $spacing-4;
+    }
+}

@@ -13,6 +13,7 @@ import UserProfileCard from '@/components/UserProfileCard/index.tsx';
 const PageLayout = lazy(() => import('@/components/common/layout/index.tsx'));
 const Landing = lazy(() => import('@/pages/Landing/index.tsx'));
 const DesignSystemDemo = lazy(() => import('@/pages/DesignSystemDemo/index.tsx'));
+const ProductsPage = lazy(() => import('@/pages/Products/index.tsx'));
 
 const Routing: React.FC = () => {
     return (
@@ -24,6 +25,9 @@ const Routing: React.FC = () => {
                 {/* Landing Page */}
                 <Route path="/landing" element={<Landing />} />
                 <Route path="/" element={<Landing />} />
+
+                {/* Products Page */}
+                <Route path="/products" element={<ProductsPage />} />
 
                 {/* Design System Demo */}
                 <Route path="/design-system" element={<DesignSystemDemo />} />

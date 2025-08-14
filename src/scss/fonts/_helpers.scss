@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "./config" as *;
+
+// =============================================================================
+// Helpers to apply logical font roles
+// =============================================================================
+
+@mixin font-family-role($role, $weight: normal, $style: normal) {
+  $entry: map.get($fonts, $role);
+  @if $entry == null {
+    @warn "Unknown font role: #{$role}";
+  }
+  font-family: map.get($entry, family), map.get($entry, fallback);
+  font-weight: $weight;
+  font-style: $style;
+}

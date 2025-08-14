@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Button, Col, Row, Space, Typography } from 'antd';
+import { Button, Col, Row, Typography } from 'antd';
 
 import Card from '@/components/common/Card/index.tsx';
 import {
@@ -15,6 +15,7 @@ import {
     PlayCircleOutlined,
     SettingOutlined,
     StarOutlined,
+    TeamOutlined,
     TrophyOutlined,
 } from '@ant-design/icons';
 
@@ -82,73 +83,71 @@ const Index = () => {
     ];
 
     return (
-        <Card>
+        <>
             {/* Hero Section */}
             <section className="section-1">
-                <div className="container h-100 flex-column gap-20 d-flex-center-center">
-                    <Title level={1} className="section-1__title">
-                        Professional Speaker Manufacturer <br />
-                        and Distributor in India
-                    </Title>
-                    <Paragraph className="section-1__description">
-                        Best Line Array for Your Best Business & Events
-                    </Paragraph>
-                    <Space size="large">
-                        <Button
-                            type="primary"
-                            size="large"
-                            icon={<PlayCircleOutlined />}
-                            className="btn-lets-go"
-                        >
-                            Get Started
-                        </Button>
-                        <Button
-                            size="large"
-                            icon={<StarOutlined />}
-                            style={{
-                                borderColor: '#fff',
-                                color: '#fff',
-                                background: 'rgba(255, 255, 255, 0.1)',
-                            }}
-                        >
-                            Learn More
-                        </Button>
-                    </Space>
+                <div className="container h-100">
+                    <Row
+                        className="h-100"
+                        justify="center"
+                        align="middle"
+                        style={{ textAlign: 'center' }}
+                    >
+                        <Col span={24}>
+                            <Title level={1} className="section-1__title text-white">
+                                Professional Speaker Manufacturer <br />
+                                and Distributor in India
+                            </Title>
+                            <Paragraph className="section-1__description text-white">
+                                Best Line Array for Your Best Business & Events
+                            </Paragraph>
+                            <div
+                                className="d-flex items-center justify-center gap-4"
+                                style={{ marginTop: '2rem' }}
+                            >
+                                <Button className='section-1__get-started' type="primary" size="large" icon={<PlayCircleOutlined />}>
+                                    Get Started
+                                </Button>
+                                <Button className='section-1__learn-more' size="large" icon={<StarOutlined />}>
+                                    Learn More
+                                </Button>
+                            </div>
+                        </Col>
+                    </Row>
                 </div>
             </section>
 
             {/* About Section */}
-            <section className="section-2">
-                <div className="container container-section-2 h-100 d-flex align-items-center">
-                    <Row gutter={[48, 32]} align="middle">
-                        <Col xs={24} md={12}>
-                            <div className="sectin-2-left w-100 d-flex flex-column">
+            <section className="section-2 about-section">
+                <div className="container">
+                    <Row gutter={[48, 48]} align="middle">
+                        <Col xs={24} md={10}>
+                            <div className="about-section__intro">
                                 <Text
                                     strong
                                     className="text-success"
-                                    style={{ fontSize: '16px', letterSpacing: '0.15em' }}
+                                    style={{
+                                        fontSize: '16px',
+                                        letterSpacing: '0.15em',
+                                        textTransform: 'uppercase',
+                                    }}
                                 >
-                                    WHO WE ARE
+                                    Who We Are
                                 </Text>
-                                <Title level={2} className="sectin-2-left-h2">
-                                    Our Highest Ambition
-                                    <br />
-                                    is to Help People
+                                <Title level={2} className="mt-3 text-primary">
+                                    Our Highest Ambition is to Help People
                                 </Title>
                             </div>
                         </Col>
-                        <Col xs={24} md={12}>
-                            <div className="sectin-2-right w-100 flex-column justify-content-center gap-35">
-                                <Title level={4}>
+                        <Col xs={24} md={14}>
+                            <div className="about-section__content">
+                                <Title level={4} className="text-primary mb-4">
                                     Model Box Speaker Line Array - Factory, Suppliers, Manufacturers
                                     from India
                                 </Title>
                                 <Paragraph
-                                    style={{
-                                        fontSize: '16px',
-                                        lineHeight: '30px',
-                                        color: '#4f4f4f',
-                                    }}
+                                    className="text-secondary"
+                                    style={{ fontSize: '16px', lineHeight: '1.8' }}
                                 >
                                     The client satisfaction is our primary concentrate on. We uphold
                                     a consistent level of professionalism, top quality, credibility
@@ -161,16 +160,72 @@ const Index = () => {
                                     after-sales service ensures strong competitiveness in an
                                     increasingly globalized market.
                                 </Paragraph>
-                                <Space size="middle">
-                                    <Button
-                                        type="primary"
-                                        size="large"
-                                        icon={<CheckCircleOutlined />}
-                                    >
+                                <div className="d-flex items-center gap-3 mt-6">
+                                    <Button type="primary" icon={<CheckCircleOutlined />}>
                                         View Products
                                     </Button>
-                                    <Button size="large">Contact Us</Button>
-                                </Space>
+                                    <Button className='about-section__content__contact_us'>Contact Us</Button>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+            </section>
+
+            {/* Why Choose Us Section */}
+            <section className="why-choose-us-section">
+                <div className="container">
+                    <Row gutter={[48, 48]}>
+                        <Col xs={24} lg={12}>
+                            <Title level={2} className="mb-8 text-primary">
+                                Why Choose Yashvi Audio?
+                            </Title>
+                            <div className="features-list">
+                                <div className="feature-item">
+                                    <div className="feature-item__icon">
+                                        <TrophyOutlined />
+                                    </div>
+                                    <div className="feature-item__content">
+                                        <Title level={4} className="m-0 mb-1 text-primary">
+                                            Professional Quality
+                                        </Title>
+                                        <Paragraph className="m-0 text-secondary">
+                                            Industry-leading audio equipment designed for
+                                            professional applications.
+                                        </Paragraph>
+                                    </div>
+                                </div>
+                                <div className="feature-item">
+                                    <div className="feature-item__icon">
+                                        <TeamOutlined />
+                                    </div>
+                                    <div className="feature-item__content">
+                                        <Title level={4} className="m-0 mb-1 text-primary">
+                                            Expert Support
+                                        </Title>
+                                        <Paragraph className="m-0 text-secondary">
+                                            Dedicated technical support and installation services.
+                                        </Paragraph>
+                                    </div>
+                                </div>
+                                <div className="feature-item">
+                                    <div className="feature-item__icon">
+                                        <SettingOutlined />
+                                    </div>
+                                    <div className="feature-item__content">
+                                        <Title level={4} className="m-0 mb-1 text-primary">
+                                            Custom Solutions
+                                        </Title>
+                                        <Paragraph className="m-0 text-secondary">
+                                            Tailored audio solutions for your specific requirements.
+                                        </Paragraph>
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <div className="why-choose-us-section__image-container">
+                                <img src="/images/section_1_bg.png" alt="Audio Equipment" />
                             </div>
                         </Col>
                     </Row>
@@ -180,175 +235,80 @@ const Index = () => {
             {/* Products Section */}
             <section className="section-5">
                 <div className="container">
-                    <Row justify="center" style={{ marginBottom: '48px' }}>
-                        <Col xs={24} md={16} lg={12}>
-                            <Title level={2} style={{ textAlign: 'center', marginBottom: '16px' }}>
-                                Our Premium Products
-                            </Title>
-                            <Paragraph
-                                style={{ textAlign: 'center', fontSize: '18px', color: '#666' }}
-                            >
-                                Discover our range of professional audio equipment designed for
-                                exceptional performance
-                            </Paragraph>
-                        </Col>
-                    </Row>
+                    <Card>
+                        <Row justify="center" className="mb-12">
+                            <Col xs={24} md={16} lg={12}>
+                                <Title level={2} className="text-center mb-4">
+                                    Our Premium Products
+                                </Title>
+                                <Paragraph
+                                    className="text-center text-secondary"
+                                    style={{ fontSize: '18px' }}
+                                >
+                                    Discover our range of professional audio equipment designed for
+                                    exceptional performance
+                                </Paragraph>
+                            </Col>
+                        </Row>
 
-                    <Swiper
-                        modules={[Pagination, Autoplay]}
-                        pagination={pagination}
-                        loop={true}
-                        navigation={true}
-                        autoplay={{ delay: 3000, disableOnInteraction: false }}
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        breakpoints={{
-                            576: { slidesPerView: 1, spaceBetween: 20 },
-                            768: { slidesPerView: 2, spaceBetween: 30 },
-                            1024: { slidesPerView: 3, spaceBetween: 30 },
-                            1200: { slidesPerView: 4, spaceBetween: 30 },
-                        }}
-                    >
-                        {products.map(product => (
-                            <SwiperSlide key={product.id}>
-                                <div className="product-card">
-                                    <div className="product-card__image-container">
-                                        <img
-                                            src={product.image}
-                                            alt={product.title}
-                                            className="product-card__image"
-                                        />
-                                    </div>
-                                    <div className="product-card__content">
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                marginBottom: '12px',
-                                            }}
-                                        >
-                                            <span
-                                                style={{
-                                                    marginRight: '8px',
-                                                    color: '#1890ff',
-                                                    fontSize: '18px',
-                                                }}
-                                            >
-                                                {product.icon}
-                                            </span>
-                                            <Title
-                                                level={4}
-                                                className="product-card__title"
-                                                style={{ margin: 0 }}
-                                            >
-                                                {product.title}
-                                            </Title>
+                        <Swiper
+                            modules={[Pagination, Autoplay]}
+                            pagination={pagination}
+                            loop={true}
+                            navigation={true}
+                            autoplay={{ delay: 3000, disableOnInteraction: false }}
+                            spaceBetween={30}
+                            slidesPerView={1}
+                            breakpoints={{
+                                576: { slidesPerView: 1, spaceBetween: 20 },
+                                768: { slidesPerView: 2, spaceBetween: 30 },
+                                1024: { slidesPerView: 3, spaceBetween: 30 },
+                                1200: { slidesPerView: 4, spaceBetween: 30 },
+                            }}
+                        >
+                            {products.map(product => (
+                                <SwiperSlide key={product.id}>
+                                    <div className="product-card">
+                                        <div className="product-card__image-container">
+                                            <img
+                                                src={product.image}
+                                                alt={product.title}
+                                                className="product-card__image"
+                                            />
                                         </div>
-                                        <ul className="product-card__features">
-                                            {product.features.map((feature, index) => (
-                                                <li key={index}>{feature}</li>
-                                            ))}
-                                        </ul>
-                                        <Button
-                                            type="primary"
-                                            block
-                                            className="product-card__cta"
-                                            size="large"
-                                        >
-                                            View Details
-                                        </Button>
+                                        <div className="product-card__content">
+                                            <div className="d-flex items-center mb-3">
+                                                <span
+                                                    className="text-primary mr-2"
+                                                    style={{ fontSize: '18px' }}
+                                                >
+                                                    {product.icon}
+                                                </span>
+                                                <Title
+                                                    level={4}
+                                                    className="product-card__title"
+                                                    style={{ margin: 0 }}
+                                                >
+                                                    {product.title}
+                                                </Title>
+                                            </div>
+                                            <ul className="product-card__features">
+                                                {product.features.map((feature, index) => (
+                                                    <li key={index}>{feature}</li>
+                                                ))}
+                                            </ul>
+                                            <Button type="primary" block className="mt-auto">
+                                                View Details
+                                            </Button>
+                                        </div>
                                     </div>
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </Card>
                 </div>
             </section>
-
-            {/* Features Section */}
-            <section style={{ padding: '80px 0', backgroundColor: '#fff' }}>
-                <div className="container">
-                    <Row gutter={[48, 32]} align="middle">
-                        <Col xs={24} lg={12}>
-                            <Title level={2} style={{ marginBottom: '24px' }}>
-                                Why Choose Yashvi Audio?
-                            </Title>
-                            <Space direction="vertical" size="large" style={{ width: '100%' }}>
-                                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                                    <CheckCircleOutlined
-                                        style={{
-                                            fontSize: '24px',
-                                            color: '#52c41a',
-                                            marginRight: '16px',
-                                            marginTop: '4px',
-                                        }}
-                                    />
-                                    <div>
-                                        <Title level={5} style={{ margin: 0, marginBottom: '8px' }}>
-                                            Professional Quality
-                                        </Title>
-                                        <Paragraph style={{ margin: 0, color: '#666' }}>
-                                            Industry-leading audio equipment designed for
-                                            professional applications
-                                        </Paragraph>
-                                    </div>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                                    <CheckCircleOutlined
-                                        style={{
-                                            fontSize: '24px',
-                                            color: '#52c41a',
-                                            marginRight: '16px',
-                                            marginTop: '4px',
-                                        }}
-                                    />
-                                    <div>
-                                        <Title level={5} style={{ margin: 0, marginBottom: '8px' }}>
-                                            Expert Support
-                                        </Title>
-                                        <Paragraph style={{ margin: 0, color: '#666' }}>
-                                            Dedicated technical support and installation services
-                                        </Paragraph>
-                                    </div>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                                    <CheckCircleOutlined
-                                        style={{
-                                            fontSize: '24px',
-                                            color: '#52c41a',
-                                            marginRight: '16px',
-                                            marginTop: '4px',
-                                        }}
-                                    />
-                                    <div>
-                                        <Title level={5} style={{ margin: 0, marginBottom: '8px' }}>
-                                            Custom Solutions
-                                        </Title>
-                                        <Paragraph style={{ margin: 0, color: '#666' }}>
-                                            Tailored audio solutions for your specific requirements
-                                        </Paragraph>
-                                    </div>
-                                </div>
-                            </Space>
-                        </Col>
-                        <Col xs={24} lg={12}>
-                            <div style={{ textAlign: 'center' }}>
-                                <img
-                                    src="/images/section_1_bg.png"
-                                    alt="Audio Equipment"
-                                    style={{
-                                        maxWidth: '100%',
-                                        height: 'auto',
-                                        borderRadius: '12px',
-                                        boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-                                    }}
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </section>
-        </Card>
+        </>
     );
 };
 

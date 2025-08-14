@@ -9,6 +9,7 @@ import axios from 'axios';
 
 import { ErrorBoundary } from '@/components/common/ErrorBoundary/index.tsx';
 import Loader from '@/components/common/loader/index.tsx';
+import { ThemeProvider } from '@/contexts/ThemeContext.tsx';
 import store from '@/redux/store.tsx';
 import { setupAxios } from '@/utills/index.tsx';
 
@@ -34,11 +35,13 @@ const App: React.FC = () => {
                 <Loader />
             ) : (
                 <Provider store={store}>
-                    <BrowserRouter>
-                        <Suspense fallback={<Loader isSuspense={true} />}>
-                            <Routes />
-                        </Suspense>
-                    </BrowserRouter>
+                    <ThemeProvider>
+                        <BrowserRouter>
+                            <Suspense fallback={<Loader isSuspense={true} />}>
+                                <Routes />
+                            </Suspense>
+                        </BrowserRouter>
+                    </ThemeProvider>
                 </Provider>
             )}
         </ErrorBoundary>

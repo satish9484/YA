@@ -1,0 +1,241 @@
+@use 'sass:map';
+
+// =============================================================================
+// Color Tokens and Theming (Palette + Semantic Roles)
+// - All tokens use !default for theme overrides via `@use ... with (...)`
+// - Role-based API: use color("role") for future-proof theming
+// =============================================================================
+
+// Palette: Primary (YouTube Red)
+$primary-50: #ffe5e5 !default;
+$primary-100: #ffcccc !default;
+$primary-200: #ff9999 !default;
+$primary-300: #ff6666 !default;
+$primary-400: #ff3333 !default;
+$primary-500: #ff0000 !default;
+$primary-600: #cc0000 !default;
+$primary-700: #a50000 !default;
+$primary-800: #7f0000 !default;
+$primary-900: #590000 !default;
+
+// Palette: Neutral (grays) - YouTube Inspired
+$neutral-50: #ffffff !default;
+$neutral-100: #f5f5f5 !default;
+$neutral-200: #e5e5e5 !default;
+$neutral-300: #aaaaaa !default;
+$neutral-400: #888888 !default;
+$neutral-500: #6e6e6e !default;
+$neutral-600: #555555 !default;
+$neutral-700: #3b3b3b !default;
+$neutral-800: #282828 !default;
+$neutral-900: #212121 !default;
+
+// Palette: Semantic scales
+$success-50: #f6ffed !default;
+$success-100: #d9f7be !default;
+$success-200: #b7eb8f !default;
+$success-300: #95de64 !default;
+$success-400: #73d13d !default;
+$success-500: #52c41a !default;
+$success-600: #389e0d !default;
+$success-700: #237804 !default;
+$success-800: #135200 !default;
+$success-900: #092b00 !default;
+
+$warning-50: #fffbe6 !default;
+$warning-100: #fff1b8 !default;
+$warning-200: #ffe58f !default;
+$warning-300: #ffd666 !default;
+$warning-400: #ffc53d !default;
+$warning-500: #faad14 !default;
+$warning-600: #d48806 !default;
+$warning-700: #ad4e00 !default;
+$warning-800: #873800 !default;
+$warning-900: #612500 !default;
+
+$error-50: #fff2f0 !default;
+$error-100: #ffccc7 !default;
+$error-200: #ffa39e !default;
+$error-300: #ff7875 !default;
+$error-400: #ff4d4f !default;
+$error-500: #f5222d !default;
+$error-600: #cf1322 !default;
+$error-700: #a8071a !default;
+$error-800: #820014 !default;
+$error-900: #5c0011 !default;
+
+$info-50: #e6f7ff !default;
+$info-100: #bae7ff !default;
+$info-200: #91d5ff !default;
+$info-300: #69c0ff !default;
+$info-400: #40a9ff !default;
+$info-500: #1890ff !default;
+$info-600: #096dd9 !default;
+$info-700: #0050b3 !default;
+$info-800: #003a8c !default;
+$info-900: #002766 !default;
+
+// Palette: Accent (YouTube Red)
+$accent-50: #ffe5e5 !default;
+$accent-100: #ffcccc !default;
+$accent-200: #ff9999 !default;
+$accent-300: #ff6666 !default;
+$accent-400: #ff3333 !default;
+$accent-500: #ff0000 !default;
+$accent-600: #cc0000 !default;
+$accent-700: #a50000 !default;
+$accent-800: #7f0000 !default;
+$accent-900: #590000 !default;
+
+// Palette: Orange (legacy/back-compat and specific use cases)
+$orange-50: #fff7ed !default;
+$orange-100: #ffedd5 !default;
+$orange-200: #fed7aa !default;
+$orange-300: #fdba74 !default;
+$orange-400: #fb923c !default;
+$orange-500: #f97316 !default;
+$orange-600: #ea580c !default;
+$orange-700: #c2410c !default;
+$orange-800: #9a3412 !default;
+$orange-900: #7c2d12 !default;
+
+$grey-50: #f9fafb !default;
+$grey-100: #f3f4f6 !default;
+$grey-200: #e5e5e5 !default;
+$grey-300: #aaaaaa !default;
+$grey-400: #888888 !default;
+$grey-500: #6e6e6e !default;
+$grey-600: #555555 !default;
+$grey-700: #3b3b3b !default;
+$grey-800: #282828 !default;
+$grey-900: #212121 !default;
+
+// Backward-compat palette aliases
+$white: $neutral-50 !default;
+$black: $neutral-900 !default;
+$grey: $neutral-500 !default;
+
+// =============================================================================
+// Semantic Roles
+// Use these in components instead of raw palette tokens
+// =============================================================================
+
+// Role keys set (documented for reference)
+// primary, primary-contrast, background, surface, surface-2,
+// text-primary, text-secondary, text-inverse, border, ring,
+// link, link-hover, success, success-contrast, warning, error, info,
+// muted, accent, accent-contrast,
+// footer-bg, footer-text, footer-accent, footer-accent-contrast, footer-bar-bg, footer-bar-text
+
+// Light theme role map
+$theme-light: (
+    primary: $primary-600,
+    primary-contrast: $neutral-50,
+    btn-bg: $grey-100,
+    background: $neutral-50,
+    surface: $neutral-100,
+    surface-2: $neutral-200,
+    text-primary: $neutral-900,
+    text-secondary: $neutral-500,
+    text-inverse: $neutral-50,
+    border: $neutral-200,
+    ring: $neutral-400,
+    link: $primary-600,
+    link-hover: $primary-700,
+    success: $success-600,
+    success-contrast: $white,
+    warning: $warning-600,
+    error: $error-600,
+    info: $info-600,
+    muted: $neutral-500,
+    accent: $accent-500,
+    accent-contrast: $white,
+    // Footer-specific roles
+    footer-bg: $white,
+    footer-text: $neutral-900,
+    footer-accent: $success-600,
+    footer-accent-contrast: $white,
+    footer-bar-bg: $neutral-900,
+    footer-bar-text: $white,
+    // Button-specific roles for hover states
+    primary-hover-bg: $primary-700,
+    secondary-hover-bg: $neutral-200,
+    secondary-hover-border: $neutral-400,
+) !default;
+
+// Dark theme role map
+$theme-dark: (
+    primary: $primary-400,
+    primary-contrast: $white,
+    btn-bg: $grey-900,
+    background: $neutral-900,
+    surface: $neutral-800,
+    surface-2: $neutral-700,
+    text-primary: $neutral-50,
+    text-secondary: $neutral-300,
+    text-inverse: $black,
+    border: $neutral-700,
+    ring: $neutral-600,
+    link: $primary-400,
+    link-hover: $primary-300,
+    success: $success-400,
+    success-contrast: $black,
+    warning: $warning-400,
+    error: $error-400,
+    info: $info-400,
+    muted: $neutral-500,
+    accent: $accent-400,
+    accent-contrast: $black,
+    // Footer-specific roles
+    footer-bg: $neutral-800,
+    footer-text: $neutral-100,
+    footer-accent: $success-400,
+    footer-accent-contrast: $black,
+    footer-bar-bg: $black,
+    footer-bar-text: $neutral-100,
+    // Button-specific roles for hover states
+    primary-hover-bg: $primary-300,
+    secondary-hover-bg: $neutral-600,
+    secondary-hover-border: $neutral-500,
+) !default;
+
+// Backward-compat role aliases
+$theme-color: map.get($theme-light, primary) !default;
+$theme-light-alias: $primary-50 !default; // legacy
+$theme-dark-alias: $neutral-900 !default; // legacy
+$placeholder-color: $neutral-400 !default;
+$btnsecondary-bg: $neutral-200 !default;
+$success: $success-500 !default;
+$danger: $error-500 !default;
+$warning: $warning-500 !default;
+$info: $info-500 !default;
+
+// Legacy text tokens (kept for compatibility; prefer role keys)
+$color-text-primary: map.get($theme-light, text-primary) !default;
+$color-text-secondary: map.get($theme-light, text-secondary) !default;
+$color-background: map.get($theme-light, background) !default;
+
+// =============================================================================
+// Helpers: role lookup and CSS variable emission
+// =============================================================================
+
+@function theme-role($role, $mode: light) {
+    $map: if($mode == dark, $theme-dark, $theme-light);
+    @return map.get($map, $role);
+}
+
+// color("primary") -> var(--color-primary, <light-fallback>)
+@function color($role, $mode: light) {
+    $fallback: theme-role($role, $mode);
+    @return var(--color-#{$role}, #{$fallback});
+}
+
+// Emit CSS variables for a theme map under a selector
+@mixin emit-theme-css-variables($selector: ':root', $mode: light) {
+    $map: if($mode == dark, $theme-dark, $theme-light);
+    #{$selector} {
+        @each $key, $value in $map {
+            --color-#{$key}: #{$value};
+        }
+    }
+}

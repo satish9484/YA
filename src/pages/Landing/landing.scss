@@ -1,1029 +1,370 @@
-@use '../../scss/variable' as *;
-@use '../../scss/mixin' as *;
-
-/* ===================================================== 
+/* =====================================================
   Landing Page - Responsive Design System
  ================================================================ */
 
-// Utility Classes
-.w-100 {
-    width: 100%;
-}
-
-.w-50 {
-    width: 100%;
-
-    @include breakpoint(md) {
-        width: 50%;
-    }
-}
-
-.h-100 {
-    height: 100%;
-}
-
-.h-50 {
-    height: 50%;
-}
-
-.d-inline-block {
-    display: inline-block;
-}
-
-.d-none {
-    display: none;
-}
-
-.relative {
-    position: relative;
-}
-
-.absolute {
-    position: absolute;
-}
-
-.top {
-    top: 0;
-}
-
-.bottom {
-    bottom: 0;
-}
-
-// Typography Classes
-.font-heading-common {
-    font-weight: $font-weight-medium;
-    font-size: $font-size-3xl;
-    line-height: $line-height-tight;
-    color: $neutral-900;
-
-    @include breakpoint(sm) {
-        font-size: $font-size-4xl;
-    }
-
-    @include breakpoint(md) {
-        font-size: $font-size-5xl;
-    }
-
-    @include breakpoint(lg) {
-        font-size: $font-size-6xl;
-    }
-
-    @include breakpoint(xl) {
-        font-size: $font-size-6xl;
-    }
-}
-
-.font-p-common {
-    font-weight: $font-weight-normal;
-    font-size: $font-size-sm;
-    line-height: $line-height-relaxed;
-    color: $neutral-700;
-
-    @include breakpoint(sm) {
-        font-size: $font-size-base;
-    }
-
-    @include breakpoint(md) {
-        font-size: $font-size-lg;
-    }
-
-    @include breakpoint(lg) {
-        font-size: $font-size-xl;
-    }
-}
-
-.root-section {
-    width: 100%;
-    height: 100%;
-}
-
-// Form Elements
-.form-input-field-common {
-    width: 100%;
-    height: 40px;
-    align-items: center;
-    background-color: $white;
-    border-radius: $border-radius-sm;
-    padding: $spacing-2 $spacing-4;
-    gap: $spacing-1;
-    border: 1px solid $neutral-300;
-
-    @include breakpoint(sm) {
-        width: 400px;
-        height: 44px;
-        padding: $spacing-3 $spacing-5;
-    }
-
-    @include breakpoint(md) {
-        width: 500px;
-        height: 48px;
-    }
-
-    @include breakpoint(lg) {
-        width: 543px;
-        height: 50px;
-    }
-
-    input {
-        flex-grow: 1;
-        height: 100%;
-        border: none;
-        outline: none;
-        background: transparent;
-        font-size: $font-size-sm;
-
-        @include breakpoint(sm) {
-            font-size: $font-size-base;
-        }
-
-        &::placeholder {
-            font-weight: $font-weight-normal;
-            font-size: $font-size-xs;
-            line-height: $line-height-normal;
-            opacity: 1;
-            color: $neutral-500;
-
-            @include breakpoint(sm) {
-                font-size: $font-size-sm;
-            }
-        }
-    }
-}
-
-.btn-search-common {
-    font-weight: $font-weight-normal;
-    font-size: $font-size-sm;
-    line-height: $line-height-normal;
-    background-color: $primary-600;
-    color: $white;
-    border: none;
-    border-radius: $border-radius-sm;
-    cursor: pointer;
-    padding: $spacing-2 $spacing-4;
-    transition: all $transition-base;
-
-    @include breakpoint(sm) {
-        font-size: $font-size-base;
-        padding: $spacing-3 $spacing-5;
-    }
-
-    &:hover {
-        background-color: $primary-700;
-        transform: translateY(-1px);
-    }
-}
-
-// Color Classes
-.bg-color {
-    background-color: $primary-600;
-}
-
-.text-color {
-    color: $white;
-}
-
-.primary-1 {
-    background-color: rgba($orange-500, 0.1);
-}
-
-.primary-2 {
-    background-color: $white;
-}
-
-// Margin Classes
-.mr-l-40 {
-    margin-left: $spacing-8;
-
-    @include breakpoint(sm) {
-        margin-left: $spacing-10;
-    }
-}
-
-.mr-r-33 {
-    margin-right: $spacing-6;
-}
-
-.mr-r-35 {
-    margin-right: $spacing-7;
-}
-
-.mr-r-40 {
-    margin-right: $spacing-8;
-}
-
-.mr-r-45 {
-    margin-right: $spacing-9;
-}
-
-.mr-r-53 {
-    margin-right: $spacing-10;
-}
-
-.mr-b-18 {
-    margin-bottom: $spacing-4;
-}
-
-.mr-b-20 {
-    margin-bottom: $spacing-5;
-}
-
-.mr-b-22 {
-    margin-bottom: $spacing-5;
-}
-
-.mr-b-30 {
-    margin-bottom: $spacing-6;
-}
-
-.mr-b-35 {
-    margin-bottom: $spacing-7;
-}
-
-.mr-b-45 {
-    margin-bottom: $spacing-9;
-}
-
-.mr-b-60 {
-    margin-bottom: $spacing-12;
-}
-
-.mr-t-10 {
-    margin-top: $spacing-2;
-}
-
-.mr-t-20 {
-    margin-top: $spacing-4;
-}
-
-.mr-t-25 {
-    margin-top: $spacing-5;
-}
-
-.mr-t-50 {
-    margin-top: $spacing-10;
-}
-
-.mr-t-90 {
-    margin-top: $spacing-18;
-}
-
-.p-15 {
-    padding: $spacing-3;
-}
-
-.pd-b-30 {
-    padding-bottom: $spacing-6;
-}
-
-// Gap Classes
-.gap-5 {
-    gap: $spacing-1;
-}
-
-.gap-10 {
-    gap: $spacing-2;
-}
-
-.gap-12 {
-    gap: $spacing-3;
-}
-
-.gap-15 {
-    gap: $spacing-3;
-}
-
-.gap-18 {
-    gap: $spacing-4;
-}
-
-.gap-20 {
-    gap: $spacing-4;
-}
-
-.gap-25 {
-    gap: $spacing-5;
-}
-
-.gap-30 {
-    gap: $spacing-6;
-}
-
-.gap-35 {
-    gap: $spacing-7;
-}
-
-.gap-40 {
-    gap: $spacing-8;
-}
-
-.gap-60 {
-    gap: $spacing-12;
-}
-
-.gap-80 {
-    gap: $spacing-16;
-}
-
-.gap-100 {
-    gap: $spacing-20;
-}
-
-.bg-color-1 {
-    background-color: $orange-50;
-}
-
-.btn-lets-go {
-    width: 120px;
-    height: 44px;
-    background-color: $orange-500;
-    border-radius: $border-radius-md;
-    border: none;
-    font-weight: $font-weight-medium;
-    font-size: $font-size-sm;
-    line-height: $line-height-normal;
-    color: $neutral-900;
-    cursor: pointer;
-    transition: all $transition-base;
-
-    @include breakpoint(sm) {
-        width: 130px;
-        height: 48px;
-        font-size: $font-size-base;
-    }
-
-    @include breakpoint(md) {
-        width: 143px;
-        height: 55px;
-        font-size: $font-size-lg;
-    }
-
-    &:hover {
-        background-color: $orange-600;
-        transform: translateY(-2px);
-        box-shadow: $shadow-md;
-    }
-
-    figure {
-        width: 18px;
-        height: 18px;
-        padding-top: 2px;
-
-        @include breakpoint(sm) {
-            width: 20px;
-            height: 20px;
-        }
-
-        @include breakpoint(md) {
-            width: 22px;
-            height: 22px;
-        }
-    }
-}
-
-// Z-index Classes
-.z-index-1 {
-    z-index: $z-index-base;
-}
-
-.z-index-2 {
-    z-index: $z-index-dropdown;
-}
-
-.z-index-3 {
-    z-index: $z-index-sticky;
-}
-
-.btn-register-common {
-    background-color: $success-500;
-    font-weight: $font-weight-normal;
-    line-height: $line-height-normal;
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-    color: $white;
-}
-
-/* ===================  Header Styles ====================================== */
-header {
-    width: 100%;
-    padding: $spacing-3 0;
-    background-color: $white;
-    box-shadow: $shadow-md;
-    position: fixed;
-    top: 0;
-    z-index: $z-index-sticky;
-
-    @include breakpoint(sm) {
-        padding: $spacing-4 0;
-    }
-
-    figure {
-        cursor: pointer;
-    }
-}
-
-.nav-toggle-btn {
-    display: none;
-}
-
-.navToggle-header-links-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    position: absolute;
-    top: 70px;
-    background-color: $white;
-    box-shadow: $shadow-lg;
-}
-
-.navToggle-header-links-display li {
-    border-bottom: 1px solid $neutral-200;
-}
-
-.navToggle-header-links-display li a {
-    padding: $spacing-2 0;
-}
-
-.navToggle-header-links-display a:hover {
-    color: $success-600;
-    background-color: $success-50;
-}
-
-.header-logo {
-    max-width: 100px;
-    max-height: 50px;
-
-    @include breakpoint(sm) {
-        max-width: 120px;
-        max-height: 60px;
-    }
-
-    @include breakpoint(md) {
-        max-width: 131px;
-        max-height: 75px;
-    }
-}
-
-.header-links {
-    padding-left: $spacing-8;
-    padding-right: $spacing-6;
-    flex-grow: 1;
-    justify-content: space-between;
-
-    @include breakpoint(sm) {
-        padding-left: $spacing-12;
-        padding-right: $spacing-8;
-    }
-
-    @include breakpoint(md) {
-        padding-left: $spacing-16;
-        padding-right: $spacing-12;
-    }
-}
-
-.header-font {
-    font-weight: $font-weight-normal;
-    font-size: $font-size-xs;
-    line-height: $line-height-tight;
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-    color: $neutral-900;
-
-    @include breakpoint(sm) {
-        font-size: $font-size-sm;
-    }
-}
-
-.header-dropdown {
-    margin-top: 2px;
-}
-
-.btn-register {
-    min-width: 100px;
-    height: 32px;
-    border-radius: $border-radius-full;
-    font-size: $font-size-xs;
-    margin-right: $spacing-6;
-
-    @include breakpoint(sm) {
-        min-width: 110px;
-        height: 35px;
-        font-size: $font-size-sm;
-        margin-right: $spacing-8;
-    }
-
-    @include breakpoint(md) {
-        min-width: 116px;
-        height: 35px;
-        font-size: $font-size-sm;
-        margin-right: $spacing-10;
-    }
-}
-
-/* ============================== Section 1 =============================== */
 .section-1 {
-    height: 300px;
+    margin-top: $header-height-xs;
+    height: 480px;
     background-image:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-        url('../../../public/bg/bg-2.jpg');
-    background-repeat: round;
+        linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('/images/section_1_bg.png');
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
-    @include breakpoint(sm) {
-        height: 350px;
+    @include respond-to('sm') {
+        margin-top: $header-height-sm;
+        height: 520px;
     }
 
-    @include breakpoint(md) {
-        height: 375px;
+    @include respond-to('md') {
+        height: 550px;
+        margin-top: $header-height-md;
     }
 
-    @include breakpoint(lg) {
-        height: 400px;
+    @include respond-to('lg') {
+        height: 600px;
+        margin-top: $header-height-lg;
     }
 
-    @include breakpoint(xl) {
-        height: 450px;
+    @include respond-to('xl') {
+        height: 650px;
+        margin-top: $header-height-xl;
     }
 
-    .section-1__title {
-        font-weight: $font-weight-bold;
-        font-size: $font-size-2xl;
-        line-height: $line-height-tight;
-        text-align: center;
-        letter-spacing: 0.04em;
-        text-transform: capitalize;
+    &__title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: $white !important;
+        @include respond-to('md') {
+            font-size: 3rem;
+        }
+        @include respond-to('lg') {
+            font-size: 3.5rem;
+        }
+    }
+
+    &__description {
         color: $white;
-        margin-bottom: $spacing-4;
-
-        @include breakpoint(sm) {
-            font-size: $font-size-3xl;
-            margin-bottom: $spacing-5;
-        }
-
-        @include breakpoint(md) {
-            font-size: $font-size-4xl;
-            margin-bottom: $spacing-6;
-        }
-
-        @include breakpoint(lg) {
-            font-size: $font-size-5xl;
-            margin-bottom: $spacing-8;
-        }
-
-        @include breakpoint(xl) {
-            font-size: $font-size-6xl;
-            margin-bottom: $spacing-10;
+        font-size: 1.1rem;
+        @include respond-to('md') {
+            font-size: 1.25rem;
         }
     }
 
-    .section-1__description {
-        font-weight: $font-weight-normal;
-        font-size: $font-size-sm;
-        line-height: $line-height-relaxed;
-        text-align: center;
-        letter-spacing: 0.04em;
-        text-transform: capitalize;
-        color: $white;
-        max-width: 600px;
-        margin: 0 auto;
-
-        @include breakpoint(sm) {
-            font-size: $font-size-base;
-        }
-
-        @include breakpoint(md) {
-            font-size: $font-size-lg;
-        }
-
-        @include breakpoint(lg) {
-            font-size: $font-size-xl;
-        }
+    &__get-started {
+        background: color(primary);
     }
+
+    // &__learn-more {
+    //     // background: color(btn-bg);
+    // }
 }
 
-/* ============================== Section 2 =============================== */
 .section-2 {
-    height: auto;
-    min-height: 400px;
-    background-color: $white;
-    padding: $spacing-8 0;
+    padding: $spacing-16 0;
 
-    @include breakpoint(sm) {
-        min-height: 450px;
-        padding: $spacing-10 0;
-    }
-
-    @include breakpoint(md) {
-        height: 470px;
+    @include respond-to('lg') {
         padding: $spacing-12 0;
     }
 
-    @include breakpoint(lg) {
+    @include respond-to('md') {
+        padding: $spacing-10 0;
+    }
+
+    @include respond-to('sm') {
+        padding: $spacing-8 0;
+    }
+}
+
+.section-5 {
+    padding: $spacing-20 0;
+    background-color: color(surface-2);
+
+    @include respond-to('xl') {
         padding: $spacing-16 0;
     }
 
-    .container-section-2 {
-        @include breakpoint(md) {
-            display: flex;
-            align-items: center;
-        }
+    @include respond-to('lg') {
+        padding: $spacing-12 0;
     }
 
-    .sectin-2-left {
-        margin-bottom: $spacing-6;
+    @include respond-to('md') {
+        padding: $spacing-10 0;
+    }
 
-        @include breakpoint(md) {
-            margin-bottom: 0;
-        }
+    @include respond-to('sm') {
+        padding: $spacing-8 0;
+    }
+}
 
-        p {
-            font-weight: $font-weight-bold;
-            font-size: $font-size-sm;
-            line-height: $line-height-tight;
-            text-align: start;
-            letter-spacing: 0.15em;
-            text-transform: capitalize;
-            color: $success-500;
-            margin-bottom: $spacing-3;
+.about-section {
+    padding: $spacing-20 0;
+    background-color: color(surface);
 
-            @include breakpoint(sm) {
-                font-size: $font-size-base;
-                margin-bottom: $spacing-4;
-            }
+    @include respond-to('lg') {
+        padding: $spacing-16 0;
+    }
 
-            @include breakpoint(md) {
-                font-size: $font-size-lg;
-                margin-bottom: $spacing-5;
-            }
+    @include respond-to('md') {
+        padding: $spacing-12 0;
+    }
+
+    &__intro {
+        position: relative;
+        padding-right: $spacing-8;
+
+        @include respond-to('md') {
+            padding-right: 0;
+            text-align: center;
         }
 
         h2 {
-            font-weight: $font-weight-bold;
-            font-size: $font-size-2xl;
-            line-height: $line-height-tight;
-            text-transform: capitalize;
-            color: $neutral-900;
-            margin-bottom: $spacing-4;
+            color: color(text-primary);
+        }
 
-            @include breakpoint(sm) {
-                font-size: $font-size-3xl;
-                margin-bottom: $spacing-5;
-            }
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: color(border);
 
-            @include breakpoint(md) {
-                font-size: $font-size-4xl;
-                margin-bottom: $spacing-6;
-            }
-
-            @include breakpoint(lg) {
-                font-size: $font-size-5xl;
-            }
-
-            @include breakpoint(xl) {
-                font-size: $font-size-6xl;
+            @include respond-to('md') {
+                display: none;
             }
         }
     }
 
-    .sectin-2-right {
-        h5 {
-            font-weight: $font-weight-bold;
-            font-size: $font-size-base;
-            line-height: $line-height-relaxed;
-            letter-spacing: 0.04em;
-            text-transform: capitalize;
-            color: $neutral-900;
-            margin-bottom: $spacing-4;
+    &__content {
+        h4 {
+            color: color(text-primary);
+        }
+        &__contact_us {
+            background: color(primary);
+        }
+    }
+}
 
-            @include breakpoint(sm) {
-                font-size: $font-size-lg;
-                margin-bottom: $spacing-5;
-            }
+.why-choose-us-section {
+    padding: $spacing-20 0;
+    background-color: color(surface-2);
 
-            @include breakpoint(md) {
-                font-size: $font-size-xl;
-                margin-bottom: $spacing-6;
-            }
+    @include respond-to('lg') {
+        padding: $spacing-16 0;
+    }
 
-            @include breakpoint(lg) {
-                font-size: $font-size-2xl;
-            }
+    @include respond-to('md') {
+        padding: $spacing-12 0;
+    }
+}
+
+.why-choose-us-section__image-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: $border-radius-xl;
+        box-shadow: $shadow-lg;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: 15px;
+        bottom: 15px;
+        background: color(primary);
+        opacity: 0.15;
+        border-radius: $border-radius-xl;
+        z-index: 0;
+        transition: all 0.4s ease;
+    }
+
+    &:hover::before {
+        transform: translate(8px, 8px) scale(0.98);
+        opacity: 0.1;
+    }
+}
+
+.features-list {
+    display: grid;
+    gap: $spacing-6;
+
+    @include respond-to('md') {
+        gap: $spacing-5;
+    }
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-5;
+    padding: $spacing-6;
+    border-radius: $border-radius-lg;
+    background-color: color(surface-2);
+    transition: all $transition-base;
+    border: 1px solid transparent;
+
+    @include respond-to('md') {
+        padding: $spacing-5;
+        gap: $spacing-4;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-md;
+        border-color: color(primary);
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        font-size: 2.5rem;
+        color: color(primary);
+
+        @include respond-to('md') {
+            font-size: 2.25rem;
+        }
+    }
+
+    &__content {
+        h4 {
+            font-weight: $font-weight-semibold;
+        }
+    }
+}
+
+.product-card {
+    background: color(surface);
+    border: 1px solid color(border);
+    border-radius: $border-radius-lg;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    box-shadow: $shadow-sm;
+    transition: all $transition-base;
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: $shadow-lg;
+        border-color: color(primary);
+    }
+
+    &__image-container {
+        height: 200px;
+        padding: $spacing-4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: color(surface-2);
+
+        @include respond-to('md') {
+            height: 180px;
+        }
+    }
+
+    &__image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+    }
+
+    &__content {
+        padding: $spacing-6;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        text-align: left;
+
+        @include respond-to('md') {
+            padding: $spacing-5;
+        }
+    }
+
+    &__title {
+        color: color(text-primary);
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        margin: 0;
+        line-height: $line-height-tight;
+    }
+
+    &__features {
+        list-style-type: none;
+        padding-left: 0;
+        margin: $spacing-4 0;
+        color: color(text-secondary);
+        font-size: $font-size-base;
+        flex-grow: 1;
+
+        @include respond-to('md') {
+            font-size: $font-size-sm;
+            margin: $spacing-3 0;
         }
 
-        p {
-            font-weight: $font-weight-normal;
-            font-size: $font-size-sm;
-            line-height: $line-height-relaxed;
-            letter-spacing: 0.04em;
-            color: $neutral-600;
+        li {
+            position: relative;
+            padding-left: $spacing-5;
+            margin-bottom: $spacing-2;
+            line-height: $line-height-normal;
 
-            @include breakpoint(sm) {
+            &::before {
+                content: '•';
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: color(primary);
+                font-weight: $font-weight-bold;
                 font-size: $font-size-base;
-            }
-
-            @include breakpoint(md) {
-                font-size: $font-size-lg;
-            }
-
-            @include breakpoint(lg) {
-                font-size: $font-size-xl;
             }
         }
     }
 }
 
-/* ============================== Section 5 =============================== */
-.section-5 {
-    padding: $spacing-8 0;
-    background-color: $neutral-50;
+.swiper {
+    padding-bottom: 60px;
+}
 
-    @include breakpoint(sm) {
-        padding: $spacing-10 0;
-    }
+.swiper-slide {
+    height: auto;
+}
 
-    @include breakpoint(md) {
-        padding: $spacing-12 0;
-    }
+// Swiper Pagination
+.swiper-pagination-bullet {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: color(text-secondary);
+    background: color(surface);
+    border: 1px solid color(border);
+    opacity: 1;
+    border-radius: 50%;
+    transition: all $transition-base;
 
-    @include breakpoint(lg) {
-        padding: $spacing-16 0;
-    }
-
-    @include breakpoint(xl) {
-        padding: $spacing-20 0;
-    }
-
-    .swiper {
-        padding-bottom: 70px;
-    }
-
-    // Swiper Pagination
-    .swiper-pagination-bullet {
+    @include respond-to('sm') {
         width: 24px;
         height: 24px;
         line-height: 24px;
         font-size: $font-size-xs;
-        font-weight: $font-weight-semibold;
-        color: $neutral-700;
-        background: $neutral-200;
-        opacity: 1;
-        border-radius: 50%;
-        transition: all $transition-base;
-
-        @include breakpoint(sm) {
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
-            font-size: $font-size-sm;
-        }
-
-        @include breakpoint(md) {
-            width: 32px;
-            height: 32px;
-            line-height: 32px;
-            font-size: $font-size-base;
-        }
-    }
-
-    .swiper-pagination-bullet-active {
-        color: $white;
-        background: $primary-500;
-        transform: scale(1.1);
-    }
-
-    // Product Card Design
-    .product-card {
-        background: $white;
-        border: 1px solid $neutral-200;
-        border-top: 4px solid $primary-500;
-        border-radius: 0 0 $border-radius-lg $border-radius-lg;
-        display: flex;
-        flex-direction: column;
-        min-height: 450px;
-        max-width: 320px;
-        margin: 0 auto;
-        box-shadow: $shadow-sm;
-        transition: all $transition-base;
-
-        @include breakpoint(sm) {
-            min-height: 480px;
-            max-width: 340px;
-        }
-
-        @include breakpoint(md) {
-            min-height: 500px;
-            max-width: 360px;
-        }
-
-        @include breakpoint(lg) {
-            min-height: 520px;
-            max-width: 380px;
-        }
-
-        &:hover {
-            transform: translateY(-8px);
-            box-shadow: $shadow-lg;
-        }
-
-        &__image-container {
-            height: 180px;
-            padding: $spacing-4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid $neutral-100;
-
-            @include breakpoint(sm) {
-                height: 200px;
-                padding: $spacing-5;
-            }
-
-            @include breakpoint(md) {
-                height: 220px;
-                padding: $spacing-5;
-            }
-
-            @include breakpoint(lg) {
-                height: 240px;
-                padding: $spacing-6;
-            }
-        }
-
-        &__image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        &__content {
-            padding: $spacing-4;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            text-align: left;
-
-            @include breakpoint(sm) {
-                padding: $spacing-5;
-            }
-
-            @include breakpoint(md) {
-                padding: $spacing-6;
-            }
-        }
-
-        &__title {
-            color: $neutral-900;
-            font-size: $font-size-lg;
-            font-weight: $font-weight-bold;
-            margin: 0 0 $spacing-3 0;
-
-            @include breakpoint(sm) {
-                font-size: $font-size-xl;
-                margin-bottom: $spacing-4;
-            }
-
-            @include breakpoint(md) {
-                font-size: $font-size-2xl;
-                margin-bottom: $spacing-5;
-            }
-        }
-
-        &__features {
-            list-style-type: none;
-            padding-left: 0;
-            margin: 0;
-            color: $neutral-600;
-            font-size: $font-size-sm;
-            flex-grow: 1;
-
-            @include breakpoint(sm) {
-                font-size: $font-size-base;
-            }
-
-            @include breakpoint(md) {
-                font-size: $font-size-lg;
-            }
-
-            li {
-                position: relative;
-                padding-left: $spacing-5;
-                margin-bottom: $spacing-2;
-                line-height: $line-height-relaxed;
-
-                @include breakpoint(sm) {
-                    padding-left: $spacing-6;
-                    margin-bottom: $spacing-3;
-                }
-
-                &::before {
-                    content: '✔';
-                    position: absolute;
-                    left: 0;
-                    top: 2px;
-                    color: $success-500;
-                    font-weight: $font-weight-bold;
-                    font-size: $font-size-sm;
-
-                    @include breakpoint(sm) {
-                        top: 3px;
-                        font-size: $font-size-base;
-                    }
-                }
-            }
-        }
-
-        &__cta {
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            background-color: $primary-500;
-            color: $white;
-            padding: $spacing-3 $spacing-4;
-            border-radius: $border-radius-md;
-            font-weight: $font-weight-semibold;
-            margin-top: $spacing-4;
-            transition: all $transition-base;
-
-            @include breakpoint(sm) {
-                padding: $spacing-4 $spacing-5;
-                margin-top: $spacing-5;
-            }
-
-            &:hover {
-                background-color: $primary-600;
-                transform: scale(1.02);
-            }
-        }
     }
 }
 
-// Responsive Container
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 $spacing-4;
-
-    @include breakpoint(sm) {
-        padding: 0 $spacing-6;
-    }
-
-    @include breakpoint(md) {
-        padding: 0 $spacing-8;
-    }
-
-    @include breakpoint(lg) {
-        padding: 0 $spacing-10;
-    }
-
-    @include breakpoint(xl) {
-        padding: 0 $spacing-12;
-    }
-}
-
-// Accessibility Enhancements
-.section-1,
-.section-2,
-.section-5 {
-    &:focus-within {
-        outline: 2px solid $primary-500;
-        outline-offset: 2px;
-    }
-}
-
-// Print Styles
-@media print {
-    .section-1 {
-        background-image: none;
-        background-color: $neutral-100;
-    }
-
-    .product-card {
-        box-shadow: none;
-        border: 1px solid $neutral-300;
-    }
-}
-
-// High Contrast Support
-@media (prefers-contrast: high) {
-    .section-1 {
-        border-bottom: 2px solid $neutral-900;
-    }
-
-    .product-card {
-        border: 2px solid $neutral-900;
-    }
-}
-
-// Reduced Motion Support
-@media (prefers-reduced-motion: reduce) {
-    .product-card,
-    .btn-lets-go {
-        transition: none;
-
-        &:hover {
-            transform: none;
-        }
-    }
+.swiper-pagination-bullet-active {
+    color: color(primary-contrast);
+    background: color(primary);
+    border-color: color(primary);
+    transform: scale(1.1);
 }

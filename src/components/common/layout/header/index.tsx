@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 import type { MenuProps } from 'antd';
-import { Button, Dropdown, Layout, Menu, Typography } from 'antd';
+import { Button, Drawer, Dropdown, Layout, Menu, Typography } from 'antd';
 
+import { useTheme } from '@/hooks/useTheme.ts';
 import {
     AppstoreOutlined,
     AudioOutlined,
@@ -11,9 +12,11 @@ import {
     GlobalOutlined,
     HomeOutlined,
     MenuOutlined,
+    MoonOutlined,
     PhoneOutlined,
     SettingOutlined,
     SoundOutlined,
+    SunOutlined,
     TeamOutlined,
     TrophyOutlined,
     UserOutlined,
@@ -31,12 +34,14 @@ const productSubcategories: MenuProps['items'] = [
         key: 'line-array',
         icon: <AudioOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Line Array Systems</div>
-                <div className="dropdown-item-desc">
-                    Professional line array speakers for large venues
+            <a href="/products" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Line Array Systems</div>
+                    <div className="dropdown-item-desc">
+                        Professional line array speakers for large venues
+                    </div>
                 </div>
-            </div>
+            </a>
         ),
     },
     {
@@ -137,13 +142,14 @@ const applicationsSubcategories: MenuProps['items'] = [
 
 const PageHeader: React.FC = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { theme, toggleTheme } = useTheme();
 
     // Handle mobile menu toggle
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
-    // Close mobile menu when clicking outside
+    // Close mobile menu
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
     };
@@ -235,9 +241,14 @@ const PageHeader: React.FC = () => {
             label: 'Products',
             children: [
                 {
+                    key: 'all-products',
+                    icon: <AudioOutlined />,
+                    label: <a href="/products">All Products</a>,
+                },
+                {
                     key: 'line-array',
                     icon: <AudioOutlined />,
-                    label: <a href="/products/line-array">Line Array Systems</a>,
+                    label: <a href="/products/line-array">Line Array Speakers</a>,
                 },
                 {
                     key: 'monitors',
@@ -325,6 +336,16 @@ const PageHeader: React.FC = () => {
                         ))}
                     </nav>
 
+                    {/* Theme Toggle Button */}
+                    <Button
+                        type="text"
+                        icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
+                        className="theme-toggle-btn"
+                        onClick={toggleTheme}
+                        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                    />
+
                     {/* Mobile Menu Button */}
                     <Button
                         type="text"
@@ -336,33 +357,33 @@ const PageHeader: React.FC = () => {
                 </div>
             </Header>
 
-            {/* Mobile Menu Overlay */}
-            {mobileMenuOpen && (
-                <div className="mobile-menu-overlay">
-                    <div className="mobile-menu-content">
-                        <div className="mobile-menu-header">
-                            <Text strong className="mobile-menu-title">
-                                Menu
-                            </Text>
-                            <Button
-                                type="text"
-                                icon={<MenuOutlined />}
-                                onClick={closeMobileMenu}
-                                className="mobile-menu-close"
-                            />
-                        </div>
-                        <Menu
-                            mode="inline"
-                            items={mobileMenuItems}
-                            className="mobile-menu"
-                            onClick={handleMenuClick}
-                            expandIcon={<DownOutlined />}
+            {/* Mobile Menu Drawer */}
+            <Drawer
+                title={
+                    <div className="mobile-drawer-header">
+                        <Text strong>Menu</Text>
+                        <Button
+                            type="text"
+                            icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
+                            onClick={toggleTheme}
+                            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
                         />
                     </div>
-                    {/* Backdrop */}
-                    <div className="mobile-menu-backdrop" onClick={closeMobileMenu} />
-                </div>
-            )}
+                }
+                placement="right"
+                onClose={closeMobileMenu}
+                open={mobileMenuOpen}
+                className="mobile-drawer"
+                closable={true}
+            >
+                <Menu
+                    mode="inline"
+                    items={mobileMenuItems}
+                    className="mobile-menu"
+                    onClick={handleMenuClick}
+                    expandIcon={<DownOutlined />}
+                />
+            </Drawer>
         </>
     );
 };
