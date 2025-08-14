@@ -8,9 +8,9 @@
 // =============================================================================
 
 // Media query mixin
-@mixin respond-to($breakpoint) {
-    @if map.has-key($breakpoints, $breakpoint) {
-        $value: map.get($breakpoints, $breakpoint);
+@mixin respond-to($respond-to) {
+    @if map.has-key($respond-tos, $respond-to) {
+        $value: map.get($respond-tos, $respond-to);
 
         @if $value == 0 {
             @content;
@@ -20,21 +20,21 @@
             }
         }
     } @else {
-        @warn "Unknown breakpoint: #{$breakpoint}";
+        @warn "Unknown respond-to: #{$respond-to}";
     }
 }
 
 // Responsive mixin (alias for respond-to)
-@mixin responsive($breakpoint) {
-    @include respond-to($breakpoint) {
+@mixin responsive($respond-to) {
+    @include respond-to($respond-to) {
         @content;
     }
 }
 
 // Max-width media query
-@mixin respond-to-max($breakpoint) {
-    @if map.has-key($breakpoints, $breakpoint) {
-        $value: map.get($breakpoints, $breakpoint);
+@mixin respond-to-max($respond-to) {
+    @if map.has-key($respond-tos, $respond-to) {
+        $value: map.get($respond-tos, $respond-to);
 
         @if $value > 0 {
             @media (max-width: #{$value - 1}px) {
@@ -42,7 +42,7 @@
             }
         }
     } @else {
-        @warn "Unknown breakpoint: #{$breakpoint}";
+        @warn "Unknown respond-to: #{$respond-to}";
     }
 }
 
@@ -57,8 +57,8 @@
     @if $max-width {
         max-width: $max-width;
     } @else {
-        @each $breakpoint, $container-max-width in $container-max-widths {
-            @include respond-to($breakpoint) {
+        @each $respond-to, $container-max-width in $container-max-widths {
+            @include respond-to($respond-to) {
                 max-width: $container-max-width;
             }
         }
@@ -70,11 +70,11 @@
     @if map.has-key($responsive-font-sizes, $element) {
         $sizes: map.get($responsive-font-sizes, $element);
 
-        @each $breakpoint, $size in $sizes {
-            @if $breakpoint == xs {
+        @each $respond-to, $size in $sizes {
+            @if $respond-to == xs {
                 font-size: $size;
             } @else {
-                @include respond-to($breakpoint) {
+                @include respond-to($respond-to) {
                     font-size: $size;
                 }
             }
@@ -223,11 +223,11 @@
     @if map.has-key($responsive-font-sizes, $element) {
         $sizes: map.get($responsive-font-sizes, $element);
 
-        @each $breakpoint, $size in $sizes {
-            @if $breakpoint == xs {
+        @each $respond-to, $size in $sizes {
+            @if $respond-to == xs {
                 font-size: $size;
             } @else {
-                @include respond-to($breakpoint) {
+                @include respond-to($respond-to) {
                     font-size: $size;
                 }
             }

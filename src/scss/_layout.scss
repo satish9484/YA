@@ -95,53 +95,53 @@
         padding-bottom: $value !important;
     }
 
-    @each $breakpoint, $bp-value in $breakpoints {
+    @each $respond-to, $bp-value in $respond-tos {
         @if $bp-value > 0 {
-            @include respond-to($breakpoint) {
-                .#{$breakpoint}\:m-#{$size} {
+            @include respond-to($respond-to) {
+                .#{$respond-to}\:m-#{$size} {
                     margin: $value !important;
                 }
-                .#{$breakpoint}\:mt-#{$size} {
+                .#{$respond-to}\:mt-#{$size} {
                     margin-top: $value !important;
                 }
-                .#{$breakpoint}\:mr-#{$size} {
+                .#{$respond-to}\:mr-#{$size} {
                     margin-right: $value !important;
                 }
-                .#{$breakpoint}\:mb-#{$size} {
+                .#{$respond-to}\:mb-#{$size} {
                     margin-bottom: $value !important;
                 }
-                .#{$breakpoint}\:ml-#{$size} {
+                .#{$respond-to}\:ml-#{$size} {
                     margin-left: $value !important;
                 }
-                .#{$breakpoint}\:mx-#{$size} {
+                .#{$respond-to}\:mx-#{$size} {
                     margin-left: $value !important;
                     margin-right: $value !important;
                 }
-                .#{$breakpoint}\:my-#{$size} {
+                .#{$respond-to}\:my-#{$size} {
                     margin-top: $value !important;
                     margin-bottom: $value !important;
                 }
 
-                .#{$breakpoint}\:p-#{$size} {
+                .#{$respond-to}\:p-#{$size} {
                     padding: $value !important;
                 }
-                .#{$breakpoint}\:pt-#{$size} {
+                .#{$respond-to}\:pt-#{$size} {
                     padding-top: $value !important;
                 }
-                .#{$breakpoint}\:pr-#{$size} {
+                .#{$respond-to}\:pr-#{$size} {
                     padding-right: $value !important;
                 }
-                .#{$breakpoint}\:pb-#{$size} {
+                .#{$respond-to}\:pb-#{$size} {
                     padding-bottom: $value !important;
                 }
-                .#{$breakpoint}\:pl-#{$size} {
+                .#{$respond-to}\:pl-#{$size} {
                     padding-left: $value !important;
                 }
-                .#{$breakpoint}\:px-#{$size} {
+                .#{$respond-to}\:px-#{$size} {
                     padding-left: $value !important;
                     padding-right: $value !important;
                 }
-                .#{$breakpoint}\:py-#{$size} {
+                .#{$respond-to}\:py-#{$size} {
                     padding-top: $value !important;
                     padding-bottom: $value !important;
                 }

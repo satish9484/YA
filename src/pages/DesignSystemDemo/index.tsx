@@ -569,7 +569,7 @@ const DesignSystemDemo: React.FC = () => {
                                 </p>
                                 <ul className="mt-4 text-sm">
                                     <li>• Start with mobile styles</li>
-                                    <li>• Use @include breakpoint() for enhancements</li>
+                                    <li>• Use @include respond-to() for enhancements</li>
                                     <li>• Test on real devices</li>
                                 </ul>
                             </div>

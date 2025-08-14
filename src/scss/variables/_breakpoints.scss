@@ -1,28 +1,29 @@
-@use "sass:map";
+// breakpoints.scss
+
+@use 'sass:map';
 
 // =============================================================================
-// Breakpoints — mobile-first map and legacy aliases, all with !default
+// respond-tos — mobile-first map and legacy aliases, all with !default
 // =============================================================================
 
-$breakpoints: (
-  xs: 0,
-  // Extra small devices (portrait phones)
-  sm: 576px,
-  // Small devices (landscape phones)
-  md: 768px,
-  // Medium devices (tablets)
-  lg: 992px,
-  // Large devices (desktops)
-  xl: 1200px,
-  // Extra large devices (large desktops)
-  xxl: 1400px,
-  // Extra extra large devices
+$respond-tos: (
+    xs: 0,
+    // Extra small devices (portrait phones)
+    sm: 576px,
+    // Small devices (landscape phones)
+    md: 768px,
+    // Medium devices (tablets)
+    lg: 992px,
+    // Large devices (desktops)
+    xl: 1200px,
+    // Extra large devices (large desktops)
+    xxl: 1400px, // Extra extra large devices
 ) !default;
 
 // Legacy aliases (kept for compatibility)
-$xs: map.get($breakpoints, xs) !default;
-$sm: map.get($breakpoints, sm) !default;
-$md: map.get($breakpoints, md) !default;
-$lg: map.get($breakpoints, lg) !default;
-$xl: map.get($breakpoints, xl) !default;
-$xxl: map.get($breakpoints, xxl) !default;
+$xs: map.get($respond-tos, xs) !default;
+$sm: map.get($respond-tos, sm) !default;
+$md: map.get($respond-tos, md) !default;
+$lg: map.get($respond-tos, lg) !default;
+$xl: map.get($respond-tos, xl) !default;
+$xxl: map.get($respond-tos, xxl) !default;

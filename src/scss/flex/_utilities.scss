@@ -178,132 +178,132 @@
 // =============================================================================
 // RESPONSIVE VARIANTS
 // =============================================================================
-@each $breakpoint, $value in $breakpoints {
+@each $respond-to, $value in $respond-tos {
     @if $value > 0 {
         @media (min-width: #{$value}) {
-            .#{$breakpoint}\:d-flex {
+            .#{$respond-to}\:d-flex {
                 display: flex;
             }
-            .#{$breakpoint}\:d-inline-flex {
+            .#{$respond-to}\:d-inline-flex {
                 display: inline-flex;
             }
-            .#{$breakpoint}\:flex-row {
+            .#{$respond-to}\:flex-row {
                 flex-direction: row;
             }
-            .#{$breakpoint}\:flex-row-reverse {
+            .#{$respond-to}\:flex-row-reverse {
                 flex-direction: row-reverse;
             }
-            .#{$breakpoint}\:flex-column {
+            .#{$respond-to}\:flex-column {
                 flex-direction: column;
             }
-            .#{$breakpoint}\:flex-column-reverse {
+            .#{$respond-to}\:flex-column-reverse {
                 flex-direction: column-reverse;
             }
-            .#{$breakpoint}\:flex-wrap {
+            .#{$respond-to}\:flex-wrap {
                 flex-wrap: wrap;
             }
-            .#{$breakpoint}\:flex-nowrap {
+            .#{$respond-to}\:flex-nowrap {
                 flex-wrap: nowrap;
             }
-            .#{$breakpoint}\:justify-start {
+            .#{$respond-to}\:justify-start {
                 justify-content: flex-start;
             }
-            .#{$breakpoint}\:justify-end {
+            .#{$respond-to}\:justify-end {
                 justify-content: flex-end;
             }
-            .#{$breakpoint}\:justify-center {
+            .#{$respond-to}\:justify-center {
                 justify-content: center;
             }
-            .#{$breakpoint}\:justify-between {
+            .#{$respond-to}\:justify-between {
                 justify-content: space-between;
             }
-            .#{$breakpoint}\:justify-around {
+            .#{$respond-to}\:justify-around {
                 justify-content: space-around;
             }
-            .#{$breakpoint}\:justify-evenly {
+            .#{$respond-to}\:justify-evenly {
                 justify-content: space-evenly;
             }
-            .#{$breakpoint}\:items-start {
+            .#{$respond-to}\:items-start {
                 align-items: flex-start;
             }
-            .#{$breakpoint}\:items-end {
+            .#{$respond-to}\:items-end {
                 align-items: flex-end;
             }
-            .#{$breakpoint}\:items-center {
+            .#{$respond-to}\:items-center {
                 align-items: center;
             }
-            .#{$breakpoint}\:items-baseline {
+            .#{$respond-to}\:items-baseline {
                 align-items: baseline;
             }
-            .#{$breakpoint}\:items-stretch {
+            .#{$respond-to}\:items-stretch {
                 align-items: stretch;
             }
-            .#{$breakpoint}\:self-start {
+            .#{$respond-to}\:self-start {
                 align-self: flex-start;
             }
-            .#{$breakpoint}\:self-end {
+            .#{$respond-to}\:self-end {
                 align-self: flex-end;
             }
-            .#{$breakpoint}\:self-center {
+            .#{$respond-to}\:self-center {
                 align-self: center;
             }
-            .#{$breakpoint}\:self-baseline {
+            .#{$respond-to}\:self-baseline {
                 align-self: baseline;
             }
-            .#{$breakpoint}\:self-stretch {
+            .#{$respond-to}\:self-stretch {
                 align-self: stretch;
             }
-            .#{$breakpoint}\:flex-1 {
+            .#{$respond-to}\:flex-1 {
                 flex: 1 1 0%;
             }
-            .#{$breakpoint}\:flex-auto {
+            .#{$respond-to}\:flex-auto {
                 flex: 1 1 auto;
             }
-            .#{$breakpoint}\:flex-initial {
+            .#{$respond-to}\:flex-initial {
                 flex: 0 1 auto;
             }
-            .#{$breakpoint}\:flex-none {
+            .#{$respond-to}\:flex-none {
                 flex: none;
             }
-            .#{$breakpoint}\:flex-grow-0 {
+            .#{$respond-to}\:flex-grow-0 {
                 flex-grow: 0;
             }
-            .#{$breakpoint}\:flex-grow-1 {
+            .#{$respond-to}\:flex-grow-1 {
                 flex-grow: 1;
             }
-            .#{$breakpoint}\:flex-shrink-0 {
+            .#{$respond-to}\:flex-shrink-0 {
                 flex-shrink: 0;
             }
-            .#{$breakpoint}\:flex-shrink-1 {
+            .#{$respond-to}\:flex-shrink-1 {
                 flex-shrink: 1;
             }
-            .#{$breakpoint}\:flex-center {
+            .#{$respond-to}\:flex-center {
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
-            .#{$breakpoint}\:flex-between {
+            .#{$respond-to}\:flex-between {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
             }
-            .#{$breakpoint}\:flex-start {
+            .#{$respond-to}\:flex-start {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
             }
-            .#{$breakpoint}\:flex-end {
+            .#{$respond-to}\:flex-end {
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
             }
-            .#{$breakpoint}\:flex-column-center {
+            .#{$respond-to}\:flex-column-center {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
             }
-            .#{$breakpoint}\:flex-column-between {
+            .#{$respond-to}\:flex-column-between {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;

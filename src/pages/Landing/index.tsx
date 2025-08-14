@@ -105,10 +105,19 @@ const Index = () => {
                                 className="d-flex items-center justify-center gap-4"
                                 style={{ marginTop: '2rem' }}
                             >
-                                <Button className='section-1__get-started' type="primary" size="large" icon={<PlayCircleOutlined />}>
+                                <Button
+                                    className="section-1__get-started"
+                                    type="primary"
+                                    size="large"
+                                    icon={<PlayCircleOutlined />}
+                                >
                                     Get Started
                                 </Button>
-                                <Button className='section-1__learn-more' size="large" icon={<StarOutlined />}>
+                                <Button
+                                    className="section-1__learn-more"
+                                    size="large"
+                                    icon={<StarOutlined />}
+                                >
                                     Learn More
                                 </Button>
                             </div>
@@ -164,7 +173,9 @@ const Index = () => {
                                     <Button type="primary" icon={<CheckCircleOutlined />}>
                                         View Products
                                     </Button>
-                                    <Button className='about-section__content__contact_us'>Contact Us</Button>
+                                    <Button className="about-section__content__contact_us">
+                                        Contact Us
+                                    </Button>
                                 </div>
                             </div>
                         </Col>
@@ -259,7 +270,7 @@ const Index = () => {
                             autoplay={{ delay: 3000, disableOnInteraction: false }}
                             spaceBetween={30}
                             slidesPerView={1}
-                            breakpoints={{
+                            respond-tos={{
                                 576: { slidesPerView: 1, spaceBetween: 20 },
                                 768: { slidesPerView: 2, spaceBetween: 30 },
                                 1024: { slidesPerView: 3, spaceBetween: 30 },

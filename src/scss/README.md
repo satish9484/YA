@@ -8,10 +8,10 @@ Modern, modular Sass setup for a themeable, utility-augmented design system. Use
 
 ```scss
 // scss/main.scss
-@use "./index" as *;
+@use './index' as *;
 
 // Emit theme CSS variables once at startup
-@include emit-theme-css-variables(":root", light);
+@include emit-theme-css-variables(':root', light);
 @include emit-theme-css-variables('[data-theme="dark"]', dark);
 ```
 
@@ -25,7 +25,7 @@ Modern, modular Sass setup for a themeable, utility-augmented design system. Use
 
 ```js
 // Toggles dark mode on <html>
-document.documentElement.toggleAttribute("data-theme", "dark");
+document.documentElement.toggleAttribute('data-theme', 'dark');
 ```
 
 ## Module structure
@@ -57,7 +57,7 @@ scss/
     _spacing.scss
     _borders.scss
     _shadows.scss
-    _breakpoints.scss
+    _respond-tos.scss
     _layout.scss
     _zindex.scss
     _motion.scss
@@ -68,7 +68,7 @@ scss/
 Always import the system via:
 
 ```scss
-@use "./index" as *;
+@use './index' as *;
 ```
 
 ## Theming and color API
@@ -80,20 +80,20 @@ Examples
 
 ```scss
 .btn-primary {
-  background: color(primary);
-  color: color(primary-contrast);
+    background: color(primary);
+    color: color(primary-contrast);
 }
 
 body {
-  color: color(text-primary);
-  background: color(background);
+    color: color(text-primary);
+    background: color(background);
 }
 ```
 
 Emit CSS variables once per theme scope
 
 ```scss
-@include emit-theme-css-variables(":root", light);
+@include emit-theme-css-variables(':root', light);
 @include emit-theme-css-variables('[data-theme="dark"]', dark);
 ```
 
@@ -101,9 +101,9 @@ Override theme tokens (per brand)
 
 ```scss
 // In a brand entry file
-@use "./variables/colors" with (
-  $primary-500: #6e56cf,
-  $primary-600: #5746a6
+@use './variables/colors' with (
+    $primary-500: #6e56cf,
+    $primary-600: #5746a6
 );
 ```
 
@@ -114,35 +114,35 @@ Override theme tokens (per brand)
 - Spacing: consistent scale, e.g., `$spacing-0 .. $spacing-64`.
 - Borders: radii and widths.
 - Shadows: shadow scale (`$shadow-sm .. $shadow-2xl`).
-- Breakpoints: mobile-first map used by mixins/utilities.
+- respond-tos: mobile-first map used by mixins/utilities.
 - Layout: container padding and max-widths.
 - Z-index: layered scale.
 - Motion: transition durations/easings.
 - Compat: feature flags/vendor compatibility tokens.
 
-## Breakpoints
+## respond-tos
 
-Defined in `variables/_breakpoints.scss`:
+Defined in `variables/_respond-tos.scss`:
 
 ```scss
-$breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px,
+$respond-tos: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
 ) !default;
 ```
 
 Usage
 
 ```scss
-@include respond-to("md") {
-  /* min-width: 768px */
+@include respond-to('md') {
+    /* min-width: 768px */
 }
-@include respond-to-max("lg") {
-  /* max-width: 991px */
+@include respond-to-max('lg') {
+    /* max-width: 991px */
 }
 ```
 
@@ -152,7 +152,7 @@ Responsive utility variants are generated for `sm`, `md`, `lg`, `xl`, `xxl` usin
 
 Responsive
 
-- `respond-to($breakpoint)` / `respond-to-max($breakpoint)`
+- `respond-to($respond-to)` / `respond-to-max($respond-to)`
 - `responsive-font-size($element)`
 - `container($max-width: null)`
 
@@ -228,10 +228,10 @@ Common utilities (`_common.scss`)
 Example
 
 ```scss
-@use "./fonts" as *;
+@use './fonts' as *;
 
 body {
-  @include font-family-role("primary", 300, normal);
+    @include font-family-role('primary', 300, normal);
 }
 ```
 
@@ -249,7 +249,7 @@ body {
 Mobile-first
 
 - Default styles target mobile (`xs`).
-- Add breakpoint-specific overrides with `@include respond-to(...)` or utility variants like `md:flex-row`.
+- Add respond-to-specific overrides with `@include respond-to(...)` or utility variants like `md:flex-row`.
 
 Theme-first
 
@@ -272,21 +272,21 @@ Layout with grid and flex
 
 ```html
 <div class="d-grid grid-cols-1 md:grid-cols-3 gap-6">
-  <div class="card">
-    <div class="card-header">Header</div>
-    <div class="card-body d-flex flex-column gap-4">
-      <button class="btn btn-primary">Primary</button>
-      <button class="btn btn-secondary">Secondary</button>
+    <div class="card">
+        <div class="card-header">Header</div>
+        <div class="card-body d-flex flex-column gap-4">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+        </div>
     </div>
-  </div>
-  <div class="card">...</div>
-  <div class="card">...</div>
-  <div class="md:col-span-full card">Full width on md+</div>
-  <div class="md:d-flex md:justify-between md:items-center">
-    <span>Left</span>
-    <span>Right</span>
-  </div>
-  }
+    <div class="card">...</div>
+    <div class="card">...</div>
+    <div class="md:col-span-full card">Full width on md+</div>
+    <div class="md:d-flex md:justify-between md:items-center">
+        <span>Left</span>
+        <span>Right</span>
+    </div>
+    }
 </div>
 ```
 
@@ -294,13 +294,13 @@ Responsive in SCSS
 
 ```scss
 .hero {
-  padding: $spacing-6;
-  @include respond-to("md") {
-    padding: $spacing-8;
-  }
-  @include respond-to("lg") {
-    padding: $spacing-12;
-  }
+    padding: $spacing-6;
+    @include respond-to('md') {
+        padding: $spacing-8;
+    }
+    @include respond-to('lg') {
+        padding: $spacing-12;
+    }
 }
 ```
 
