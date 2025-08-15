@@ -3,17 +3,17 @@ import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 // Import  AuthGuard component
-import AuthGuard from '@/components/auth/index.tsx';
+import AuthGuard from '@/components/auth';
 // Import  UserProfileCard component
-import UserProfileCard from '@/components/UserProfileCard/index.tsx';
+import UserProfileCard from '@/components/UserProfileCard';
 
 // Lazily load the LogIn component for better bundle splitting
 // const LogIn = lazy(() => import('@/pages/LogIn/index.tsx'));
 
-const PageLayout = lazy(() => import('@/components/common/layout/index.tsx'));
-const Landing = lazy(() => import('@/pages/Landing/index.tsx'));
-const DesignSystemDemo = lazy(() => import('@/pages/DesignSystemDemo/index.tsx'));
-const ProductsPage = lazy(() => import('@/pages/Products/index.tsx'));
+const PageLayout = lazy(() => import('@/components/common/layout'));
+const Landing = lazy(() => import('@/pages/Landing'));
+const DesignSystemDemo = lazy(() => import('@/pages/DesignSystemDemo'));
+const ProductsPage = lazy(() => import('@/pages/Products'));
 
 const Routing: React.FC = () => {
     return (

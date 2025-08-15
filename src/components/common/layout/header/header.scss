@@ -1,4 +1,5 @@
 // Variables and mixins are globally injected via Vite additionalData (@/scss/scss/_index.scss)
+@use 'sass:map';
 
 /* ===================================================== 
   Header - Professional & User-Friendly Design
@@ -35,7 +36,7 @@
     }
 
     .header-container {
-        max-width: 1200px;
+        max-width: map.get($container-max-widths, xl);
         margin: 0 auto;
         height: 100%;
         display: flex;
@@ -81,24 +82,24 @@
 
         img {
             height: 60%;
-            max-height: 40px;
+            max-height: $spacing-10;
             width: auto;
             object-fit: contain;
 
             @include respond-to('sm') {
-                max-height: 45px;
+                max-height: calc($spacing-10 + $spacing-1);
             }
 
             @include respond-to('md') {
-                max-height: 50px;
+                max-height: calc($spacing-10 + $spacing-2);
             }
 
             @include respond-to('lg') {
-                max-height: 55px;
+                max-height: calc($spacing-10 + $spacing-3);
             }
 
             @include respond-to('xl') {
-                max-height: 60px;
+                max-height: calc($spacing-10 + $spacing-5);
             }
         }
     }
@@ -174,28 +175,38 @@
 
     // Mobile menu button
     .mobile-menu-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
+        @include flex(center, center);
+        width: calc($spacing-10 + $spacing-1);
+        height: calc($spacing-10 + $spacing-1);
         border: none;
         background: transparent;
         color: color(text-secondary);
         border-radius: $border-radius-md;
-        transition: all $transition-base;
+        @include transition(all $transition-base);
+        min-height: calc($spacing-10 + $spacing-1); // Better touch target
+        min-width: calc($spacing-10 + $spacing-1);
+        padding: $spacing-2;
 
         @include respond-to('md') {
             display: none;
         }
 
         &:hover {
-            color: color(primary);
-            background: color(surface-2);
+            @include hover {
+                color: color(primary);
+                background: color(surface-2);
+            }
+        }
+
+        &:focus {
+            @include focus-visible {
+                outline: 2px solid color(primary);
+                outline-offset: 2px;
+            }
         }
 
         .anticon {
-            font-size: $font-size-lg;
+            font-size: $font-size-xl;
         }
     }
 }
@@ -207,10 +218,10 @@
         border-radius: $border-radius-lg;
         box-shadow: $shadow-lg;
         border: 1px solid color(border);
-        min-width: 280px;
+        min-width: calc($spacing-64 + $spacing-8);
 
         @include respond-to('lg') {
-            min-width: 320px;
+            min-width: calc($spacing-64 + $spacing-16);
             padding: $spacing-3;
         }
 
@@ -232,7 +243,7 @@
                 .anticon {
                     font-size: $font-size-lg;
                     color: color(muted);
-                    margin-top: 2px;
+                    margin-top: $spacing-1;
                     flex-shrink: 0;
                 }
 
@@ -274,7 +285,7 @@
     justify-content: flex-end;
 
     .mobile-menu-content {
-        width: 320px;
+        width: calc($spacing-64 + $spacing-16);
         max-width: 90vw;
         height: 100vh;
         background: color(surface);
@@ -301,8 +312,8 @@
 
             .mobile-menu-close {
                 color: color(text-secondary);
-                width: 40px;
-                height: 40px;
+                width: $spacing-10;
+                height: $spacing-10;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -323,7 +334,7 @@
 
             // Custom scrollbar for mobile
             &::-webkit-scrollbar {
-                width: 4px;
+                width: $spacing-1;
             }
 
             &::-webkit-scrollbar-track {
@@ -332,7 +343,7 @@
 
             &::-webkit-scrollbar-thumb {
                 background: color(ring);
-                border-radius: 2px;
+                border-radius: $border-radius-sm;
             }
 
             .ant-menu-item {
@@ -341,7 +352,7 @@
                 height: auto;
                 line-height: $line-height-normal;
                 padding: $spacing-3;
-                min-height: 48px;
+                min-height: $spacing-12;
                 display: flex;
                 align-items: center;
 
@@ -372,7 +383,7 @@
                     height: auto;
                     line-height: $line-height-normal;
                     padding: $spacing-3;
-                    min-height: 48px;
+                    min-height: $spacing-12;
                     display: flex;
                     align-items: center;
 
@@ -402,7 +413,7 @@
                         margin: $spacing-1;
                         padding-left: $spacing-6;
                         font-size: $font-size-sm;
-                        min-height: 40px;
+                        min-height: $spacing-10;
 
                         a {
                             font-size: $font-size-sm;
@@ -418,7 +429,7 @@
             // Ensure proper touch targets
             .ant-menu-item,
             .ant-menu-submenu-title {
-                min-height: 44px;
+                min-height: calc($spacing-10 + $spacing-1);
                 touch-action: manipulation;
                 -webkit-tap-highlight-color: transparent;
 
@@ -482,53 +493,53 @@
     }
 }
 
-// High contrast support
-@media (prefers-contrast: high) {
-    .header {
-        border-bottom: 2px solid color(text-primary);
-    }
-
-    .nav-link {
-        text-decoration: underline;
-    }
-
-    .mobile-menu-btn {
-        border: 2px solid color(text-primary);
-    }
-}
-
-// Reduced motion support
-@media (prefers-reduced-motion: reduce) {
-    .header,
-    .mobile-menu-overlay,
-    .dropdown-arrow {
-        transition: none;
-    }
-
-    .mobile-menu-content {
-        animation: none;
-    }
-
-    .mobile-menu-backdrop {
-        animation: none;
-    }
-}
-
 // Theme toggle button styles
 .theme-toggle-btn {
-    margin-left: 16px;
-    color: color(text-primary);
+    margin-left: $spacing-4;
+    color: color(text-primary) !important;
     border: none;
     background: transparent;
-    transition: all 0.3s ease;
+    padding: $spacing-2;
+    border-radius: $border-radius-md;
+    @include transition(all $transition-base);
+    @include flex(center, center);
+    gap: $spacing-2;
+
+    @include respond-to('lg') {
+        margin-left: $spacing-6;
+        padding: $spacing-3;
+    }
 
     &:hover {
-        color: color(primary);
-        transform: scale(1.1);
+        @include hover {
+            color: color(primary) !important;
+            background: color(surface-2);
+            @include transform(scale(1.05));
+        }
+    }
+
+    &:focus {
+        @include focus-visible {
+            outline: 2px solid color(primary);
+            outline-offset: 2px;
+        }
     }
 
     .anticon {
-        font-size: 18px;
+        font-size: $font-size-lg;
+
+        @include respond-to('lg') {
+            font-size: $font-size-xl;
+        }
+    }
+
+    span {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+
+        @include respond-to('lg') {
+            font-size: $font-size-base;
+        }
     }
 }
 
@@ -536,29 +547,25 @@
 
 // Mobile theme toggle button
 .theme-toggle-btn.mobile {
-    margin-right: 8px;
+    margin-right: $spacing-2;
+    margin-left: 0;
+
+    span {
+        display: none; // Hide text on mobile
+    }
 }
 
 // Mobile menu actions container
 .mobile-menu-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    @include flex(center, center);
+    gap: $spacing-2;
 }
 
 /* =============================================================================
 Mobile Menu
 ========================================================================== */
 
-.mobile-menu-btn {
-    display: block;
-    color: color(text-primary);
-    font-size: 1.25rem; // Larger icon for better touch target
-
-    @include respond-to('md') {
-        display: none;
-    }
-}
+// Mobile menu button styles already defined above in main header section
 
 .mobile-drawer {
     .ant-drawer-header {
@@ -576,9 +583,7 @@ Mobile Menu
     }
 
     .mobile-drawer-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(space-between, center);
         width: 100%;
     }
 
@@ -647,30 +652,5 @@ Mobile Menu
                 color: color(text-secondary, 'dark');
             }
         }
-    }
-}
-
-// =============================================================================
-// Theme CSS Variables Emission
-// =============================================================================
-
-// Emit light theme variables by default
-@include emit-theme-css-variables(':root', light);
-
-// Dark theme support (when .dark class is applied)
-.dark {
-    @include emit-theme-css-variables(':root', dark);
-}
-
-// High contrast theme support
-@media (prefers-contrast: high) {
-    :root {
-        --color-primary: #000000;
-        --color-primary-contrast: #ffffff;
-        --color-background: #ffffff;
-        --color-surface: #ffffff;
-        --color-text-primary: #000000;
-        --color-text-secondary: #000000;
-        --color-border: #000000;
     }
 }

@@ -1,3 +1,4 @@
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import './style.scss';
@@ -12,7 +13,7 @@ interface BreadCrumbsProps {
     list: BreadcrumbItem[];
 }
 
-const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ list }) => {
+const BreadCrumbs: FC<BreadCrumbsProps> = ({ list }) => {
     return (
         <div className="breadcrumbs-grp">
             <ul className="breadcrumbsList">

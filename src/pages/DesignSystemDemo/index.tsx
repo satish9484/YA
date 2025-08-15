@@ -1,8 +1,8 @@
-import React from 'react';
+import { type FC } from 'react';
 
 import './DesignSystemDemo.scss';
 
-const DesignSystemDemo: React.FC = () => {
+const DesignSystemDemo: FC = () => {
     return (
         <div className="design-system-demo">
             {/* Skip Link for Accessibility */}

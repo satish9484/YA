@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { MenuProps } from 'antd';
 import { Button, Drawer, Dropdown, Layout, Menu, Typography } from 'antd';
 
-import { useTheme } from '@/hooks/useTheme.ts';
+import { useTheme } from '@/hooks/useTheme';
 import {
     AppstoreOutlined,
     AudioOutlined,
@@ -371,9 +371,7 @@ const PageHeader: React.FC = () => {
                             {theme === 'light' && <SunOutlined />}
                             {theme === 'dark' && <MoonOutlined />}
                             {theme === 'system' && <SettingOutlined />}
-                            <span style={{ marginLeft: 8 }}>
-                                {theme.charAt(0).toUpperCase() + theme.slice(1)}
-                            </span>
+                            <span>{theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
                         </Button>
                     </Dropdown>
 

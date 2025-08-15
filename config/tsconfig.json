@@ -1,22 +1,4 @@
-// tsconfig.json
 {
-    /**
-     * "files": An empty files array indicates that this root tsconfig file
-     * is not responsible for compiling any files directly. Its sole purpose
-     * is to reference other "project" tsconfig files.
-     */
     "files": [],
-
-    /**
-     * "references": This is the key feature of a solution-style tsconfig.
-     * It tells TypeScript that your project is composed of multiple sub-projects.
-     * This improves performance and logical separation.
-     */
-    "references": [
-        // A reference to the tsconfig for your main React application code.
-        { "path": "./tsconfig.app.json" },
-
-        // A reference to the tsconfig for your Node.js-based tooling (e.g., Vite config).
-        { "path": "./tsconfig.node.json" }
-    ]
+    "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

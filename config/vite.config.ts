@@ -1,23 +1,28 @@
 import autoprefixer from 'autoprefixer';
-import { join, resolve } from 'path';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 import react from '@vitejs/plugin-react';
 
-const srcPath = resolve(__dirname, '../src');
+import { pathAliases } from './paths';
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     const isProd = mode === 'production';
-    console.log(isProd);
 
     return {
+        resolve: {
+            alias: pathAliases,
+        },
         plugins: [
-            react(),
+            react({
+                jsxRuntime: 'automatic', // Use the new JSX transform
+            }),
+            tsconfigPaths(),
             VitePWA({
                 registerType: 'autoUpdate',
-                // devOptions: { enabled: !isProd },
+                devOptions: { enabled: !isProd },
                 workbox: {
                     // Bump up the maximum file size to cache to 5MB
                     maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
@@ -58,16 +63,9 @@ export default defineConfig(({ mode }) => {
             }),
         ],
 
-        resolve: {
-            alias: {
-                '@': srcPath,
-                '@scss': join(srcPath, 'scss'),
-            },
-        },
-
         css: {
             postcss: {
-                plugins: [autoprefixer],
+                plugins: [autoprefixer()],
             },
             devSourcemap: false,
             preprocessorOptions: {

@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // import { thunk } from "redux-thunk";
-import reduxApiMiddleware from './Middleware/index.tsx';
-import AuthSlice from './reducers/AuthSlice.tsx';
-import UserSlice from './reducers/UserSlice.tsx';
+import reduxApiMiddleware from './Middleware';
+import AuthSlice from './reducers/AuthSlice';
+import UserSlice from './reducers/UserSlice';
 
 const store = configureStore({
     reducer: {

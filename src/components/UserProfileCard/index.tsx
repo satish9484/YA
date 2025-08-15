@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import { type FormEvent, type ReactNode, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Adjust path to your slice
-import BreadCrumbs from '@/components/common/Breadcrumbs/index.tsx';
-import { changePassword, doLogout, forgotPassword } from '@/redux/actions/auth.ts';
-import type { AppDispatch, RootState } from '@/redux/store';
-
+import { changePassword, doLogout, forgotPassword } from '../../redux/actions/auth';
+import type { AppDispatch, RootState } from '../../redux/store';
+import Breadcrumbs from '../common/Breadcrumbs';
 import './styles.scss';
 
 // --- (Existing ChangePasswordForm component remains the same) ---
@@ -17,18 +15,17 @@ const ChangePasswordForm = () => {
 
     const { isLoading, error } = useSelector((state: RootState) => state.auth);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (newPassword !== confirmPassword) {
             alert("New passwords don't match!");
             return;
         }
-        // @ts-expect-error: Suppress type error for dispatching thunk action
+
         void dispatch(changePassword({ oldPassword, newPassword }));
     };
 
     const handleForgotPassword = () => {
-        // @ts-expect-error: Suppress type error for dispatching thunk action
         void dispatch(forgotPassword({ email: 'user@example.com' }));
     };
 
@@ -106,7 +103,6 @@ const UserProfilePage = () => {
     console.log(userFromStore);
 
     const handleLogout = () => {
-        // @ts-expect-error: Suppress type error for dispatching thunk action
         void dispatch(doLogout({ userId: user.id, refreshToken: user.email }));
     };
 
@@ -117,7 +113,7 @@ const UserProfilePage = () => {
     }: {
         view: 'profile' | 'security';
         label: string;
-        icon: React.ReactNode;
+        icon: ReactNode;
     }) => (
         <button
             className={`sidebar-nav-link ${activeView === view ? 'active' : ''}`}
@@ -212,7 +208,7 @@ const UserProfilePage = () => {
             </aside>
 
             <main className="flex-1 p-6 md:p-10">
-                <BreadCrumbs list={breadcrumbs} />
+                <Breadcrumbs list={breadcrumbs} />
                 <div className="max-w-3xl mx-auto">
                     <div hidden={activeView !== 'profile'}>
                         <div className="card">

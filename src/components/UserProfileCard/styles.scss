@@ -1,27 +1,25 @@
 /* --- SCSS Variables --- */
 /* --- Base & Utility Styles --- */
 
+// .header-mr {
+// margin-top: $header-height-xs;
 
+// @include respond-to('sm') {
+//     margin-top: $header-height-sm;
+// }
 
-.header-mr{
-     margin-top: $header-height-xs;
+// @include respond-to('md') {
+//     margin-top: $header-height-md;
+// }
 
-        @include respond-to('sm') {
-            margin-top: $header-height-sm;
-        }
+// @include respond-to('lg') {
+//     margin-top: $header-height-lg;
+// }
 
-        @include respond-to('md') {
-            margin-top: $header-height-md;
-        }
-
-        @include respond-to('lg') {
-            margin-top: $header-height-lg;
-        }
-
-        @include respond-to('xl') {
-            margin-top: $header-height-xl;
-        }
-}
+// @include respond-to('xl') {
+//     margin-top: $header-height-xl;
+// }
+// }
 .btn {
     padding: 10px 20px;
     border-radius: 8px;
@@ -293,4 +291,4 @@
             color: color(primary-contrast);
         }
     }
-} /*# sourceMappingURL=styles.css.map */
+}

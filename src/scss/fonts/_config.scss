@@ -1,24 +1,24 @@
-@use "sass:map";
+@use 'sass:map';
 
 // =============================================================================
 // Font configuration
 // - All paths are root-relative to the built CSS. Place files in public/fonts
 // =============================================================================
 
-$font-path: "/fonts" !default;
+$font-path: '/fonts' !default;
 
 // Logical font roles → family + fallback. Extend as needed.
 $fonts: (
-  "primary": (
-    family: "Poppins",
-    fallback: sans-serif,
-  ),
-  "secondary": (
-    family: "Lora",
-    fallback: serif,
-  ),
-  "heading": (
-    family: "Lora",
-    fallback: sans-serif,
-  ),
+    'primary': (
+        family: 'Poppins',
+        fallback: sans-serif,
+    ),
+    'secondary': (
+        family: 'Lora',
+        fallback: serif,
+    ),
+    'Zoha': (
+        family: 'Zoha',
+        fallback: sans-serif,
+    ),
 ) !default;

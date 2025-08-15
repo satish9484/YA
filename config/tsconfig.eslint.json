@@ -1,67 +1,18 @@
-/**
- * This is a TypeScript configuration file specifically for ESLint.
- * Its main purpose is to define the "project" scope for typescript-eslint.
- * It tells TypeScript which files to include when ESLint runs its type-aware rules.
- */
 {
-    /**
-     * "extends": This line inherits all the settings from your main application's
-     * tsconfig file (`tsconfig.app.json`). This is a best practice to avoid
-     * duplicating compiler options and ensures consistency between your build and linting setups.
-     */
     "extends": "./tsconfig.app.json",
-
-    /**
-     * "compilerOptions": This section allows you to override or add specific
-     * compiler options just for the ESLint process. These settings are merged
-     * with the ones inherited from `tsconfig.app.json`.
-     */
     "compilerOptions": {
-        /**
-         * "allowJs": This is a crucial setting if your project contains both
-         * JavaScript (.js, .jsx) and TypeScript (.ts, .tsx) files. It tells the
-         * TypeScript compiler to process JS files, allowing ESLint to analyze them.
-         * Without this, TypeScript would ignore the JS files in your 'include' list.
-         */
-        "allowJs": true
+        "allowJs": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx"
     },
-
-    /**
-     * "include": This is the "whitelist". It's an explicit list of files and folders
-     * that should be included in this TypeScript project for linting.
-     * ESLint will only run its powerful, type-aware rules on the files that match these patterns.
-     */
     "include": [
-        "src/**/*", // Include all files and folders within the 'src' directory.
-        "scripts/**/*", // Include all files and folders within the 'scripts' directory.
-        "*.ts", // Include any TypeScript files in the root directory (e.g., vite.config.ts).
-        "*.tsx", // Include any React TypeScript files in the root directory.
-        "*.js", // Include any JavaScript files in the root directory.
-        "*.jsx" // Include any React JavaScript files in the root directory.
+        "../src/**/*",
+        "../scripts/**/*",
+        "../*.ts",
+        "../*.tsx",
+        "../*.js",
+        "../*.jsx",
+        "./*.ts"
     ],
-
-    /**
-     * "exclude": This is the "blacklist". It explicitly tells the TypeScript compiler
-     * to ignore certain files or folders, even if they match a pattern in the "include" array.
-     * This is critical for performance and to avoid errors.
-     */
-    "exclude": [
-        // Standard and essential
-        "node_modules",
-        "dist",
-
-        // Other common build output folders
-        "build",
-        ".next", // For Next.js projects
-
-        // Tool-specific cache folders
-        ".turbo", // For Turborepo cache
-        ".vite", // For Vite's cache
-        ".eslintcache", // ESLint's own cache file
-
-        // Test report and output folders
-        "coverage", // Test coverage reports from Vitest/Jest
-        "test-results", // Another common name for test reports
-        "playwright-report" // For Playwright E2E tests
-    ]
+    "exclude": ["../node_modules", "../dist", "../build", "../coverage"]
 }

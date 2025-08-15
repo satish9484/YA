@@ -1,0 +1,19 @@
+{
+    "extends": "./config/tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@config/*": ["config/*"],
+            "@assets/*": ["src/assets/*"],
+            "@components/*": ["src/components/*"],
+            "@contexts/*": ["src/contexts/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@pages/*": ["src/pages/*"],
+            "@redux/*": ["src/redux/*"],
+            "@scss/*": ["src/scss/*"],
+            "@types/*": ["src/types/*"],
+            "@utills/*": ["src/utills/*"]
+        }
+    }
+}
