@@ -1,19 +1,19 @@
 import { type FormEvent, type ReactNode, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { changePassword, doLogout, forgotPassword } from '../../redux/actions/auth';
-import type { AppDispatch, RootState } from '../../redux/store';
+import { useAppSelector } from '@/redux/hooks';
+
+import type { RootState } from '../../redux/store';
 import Breadcrumbs from '../common/Breadcrumbs';
 import './styles.scss';
 
 // --- (Existing ChangePasswordForm component remains the same) ---
 const ChangePasswordForm = () => {
-    const dispatch = useDispatch<AppDispatch>();
+    // const dispatch = useAppDispatch();
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const { isLoading, error } = useSelector((state: RootState) => state.auth);
+    const { isLoading, error } = useAppSelector((state: RootState) => state.auth);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -22,11 +22,11 @@ const ChangePasswordForm = () => {
             return;
         }
 
-        void dispatch(changePassword({ oldPassword, newPassword }));
+        // void dispatch(changePassword({ oldPassword, newPassword }));
     };
 
     const handleForgotPassword = () => {
-        void dispatch(forgotPassword({ email: 'user@example.com' }));
+        // void dispatch(forgotPassword({ email: 'user@example.com' }));
     };
 
     return (
@@ -84,8 +84,7 @@ const ChangePasswordForm = () => {
 };
 
 const UserProfilePage = () => {
-    const userFromStore = useSelector((state: RootState) => state.auth.userData);
-    const dispatch = useDispatch<AppDispatch>();
+    const userFromStore = useAppSelector((state: RootState) => state.auth.userData);
     const [activeView, setActiveView] = useState<'profile' | 'security'>('profile');
 
     const user = {
@@ -103,7 +102,7 @@ const UserProfilePage = () => {
     console.log(userFromStore);
 
     const handleLogout = () => {
-        void dispatch(doLogout({ userId: user.id, refreshToken: user.email }));
+        // void dispatch(doLogout({ userId: user.id, refreshToken: user.email }));
     };
 
     const NavLink = ({
