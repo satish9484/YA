@@ -7,6 +7,18 @@
         "moduleDetection": "auto",
         "strict": true,
         "jsx": "react-jsx",
+        "baseUrl": "../src",
+        "paths": {
+            "@/assets/*": ["assets/*"],
+            "@/components/*": ["components/*"],
+            "@/contexts/*": ["contexts/*"],
+            "@/hooks/*": ["hooks/*"],
+            "@/pages/*": ["pages/*"],
+            "@/redux/*": ["redux/*"],
+            "@/types/*": ["types/*"],
+            "@/utills/*": ["utills/*"],
+            "@/scss/*": ["scss/*"]
+        },
 
         "resolveJsonModule": true,
         "isolatedModules": true,
@@ -27,6 +39,12 @@
 
         "types": ["vite/client"]
     },
-    "include": ["../src"],
+    "include": [
+        "../src/**/*",
+        "../src/**/*.ts",
+        "../src/**/*.tsx",
+        "../src/**/*.js",
+        "../src/**/*.jsx"
+    ],
     "exclude": ["../node_modules", "../dist"]
 }
