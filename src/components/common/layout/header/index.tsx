@@ -353,13 +353,7 @@ const PageHeader: React.FC = () => {
                     {/* Logo */}
                     <div className="header-logo">
                         <a href="/">
-                            <Logo
-                                width={120}
-                                height={40}
-                                variant="image"
-                                showBackground={true}
-                                backgroundVariant="surface"
-                            />
+                            <Logo width={120} height={40} variant="image" showBackground={true} />
                         </a>
                     </div>
 

@@ -61,7 +61,6 @@ const PageFooter = () => {
                             width={150}
                             height={60}
                             showBackground={true}
-                            backgroundVariant="accent"
                         />
                         <Text>{APP_DESCRIPTION}</Text>
                         <div className="d-flex flex-column gap-2 mar-top-4">
