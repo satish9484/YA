@@ -4,10 +4,11 @@
 
 .section-1 {
     // margin-top: $header-height-xs;
-    height: 480px;
+    height: 650px;
+    max-height: 100%;
     background-image:
         linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url('/images/section_1_bg.png');
+        url('/images/hero_section.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -243,7 +244,7 @@
 
 .product-card {
     background: color(surface);
-    border: 1px solid color(border);
+    border: 2px solid color(border);
     border-radius: $border-radius-lg;
     display: flex;
     flex-direction: column;
@@ -251,12 +252,15 @@
     max-width: 360px;
     margin: 0 auto;
     box-shadow: $shadow-sm;
-    transition: all $transition-base;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    position: relative;
 
     &:hover {
-        transform: translateY(-8px);
-        box-shadow: $shadow-lg;
+        transform: translateY(-6px);
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.12),
+            0 8px 16px rgba(0, 0, 0, 0.08);
         border-color: color(primary);
     }
 
@@ -266,7 +270,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: color(surface-2);
+        background-color: $white;
+        transition: all 0.3s ease;
 
         @include respond-to('md') {
             height: 180px;
@@ -278,6 +283,11 @@
         max-height: 100%;
         object-fit: contain;
         mix-blend-mode: multiply;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover &__image {
+        transform: scale(1.05);
     }
 
     &__content {
@@ -286,6 +296,7 @@
         flex-direction: column;
         flex-grow: 1;
         text-align: left;
+        transition: all 0.3s ease;
 
         @include respond-to('md') {
             padding: $spacing-5;

@@ -4,6 +4,7 @@ import type { MenuProps } from 'antd';
 import { Button, Drawer, Dropdown, Layout, Menu, Typography } from 'antd';
 
 import { useTheme } from '@/hooks/useTheme';
+import { Logo } from '@/utills/icon';
 import {
     AppstoreOutlined,
     AudioOutlined,
@@ -352,7 +353,13 @@ const PageHeader: React.FC = () => {
                     {/* Logo */}
                     <div className="header-logo">
                         <a href="/">
-                            <img src="/logo/YA-logo.PNG" alt="Yashvi Audio Logo" />
+                            <Logo
+                                width={120}
+                                height={40}
+                                variant="image"
+                                showBackground={true}
+                                backgroundVariant="surface"
+                            />
                         </a>
                     </div>
 

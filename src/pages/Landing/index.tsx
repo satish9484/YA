@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button, Col, Row, Typography } from 'antd';
 
 import Card from '@/components/common/Card/index.tsx';
+import { APP_NAME } from '@/utills/constants';
 import {
     AudioOutlined,
     CheckCircleOutlined,
@@ -189,7 +190,7 @@ const Index = () => {
                     <Row gutter={[48, 48]}>
                         <Col xs={24} lg={12}>
                             <Title level={2} className="mb-8 text-primary">
-                                Why Choose Yashvi Audio?
+                                Why Choose {APP_NAME}?
                             </Title>
                             <div className="features-list">
                                 <div className="feature-item">
@@ -270,7 +271,7 @@ const Index = () => {
                             autoplay={{ delay: 3000, disableOnInteraction: false }}
                             spaceBetween={30}
                             slidesPerView={1}
-                            respond-tos={{
+                            breakpoints={{
                                 576: { slidesPerView: 1, spaceBetween: 20 },
                                 768: { slidesPerView: 2, spaceBetween: 30 },
                                 1024: { slidesPerView: 3, spaceBetween: 30 },

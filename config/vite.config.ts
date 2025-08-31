@@ -20,9 +20,9 @@ export default defineConfig(({ mode }) => {
             maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         },
         manifest: {
-            name: 'Yashvi Audio',
+            name: process.env.VITE_REACT_APP_NAME ?? 'Yashvi Audio',
             short_name: 'YA',
-            description: 'Yashvi Audio.',
+            description: process.env.VITE_REACT_APP_DESCRIPTION ?? 'Yashvi Audio.',
             theme_color: '#862626',
             background_color: '#523b3b',
             display: 'standalone',
@@ -79,7 +79,7 @@ export default defineConfig(({ mode }) => {
     };
 
     const server: UserConfig['server'] = {
-        port: Number(process.env.PORT) || 3000,
+        port: Number(process.env.PORT) ?? 3000,
         open: true,
         proxy: {
             '/api': 'http://localhost:5000',

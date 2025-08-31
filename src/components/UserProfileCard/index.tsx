@@ -1,6 +1,7 @@
 import { type FormEvent, type ReactNode, useState } from 'react';
 
 import { useAppSelector } from '@/redux/hooks';
+import { APP_NAME } from '@/utills/constants';
 
 import type { RootState } from '../../redux/store';
 import Breadcrumbs from '../common/Breadcrumbs';
@@ -89,8 +90,8 @@ const UserProfilePage = () => {
 
     const user = {
         id: 'sample-user-id',
-        name: 'Yashvi Audio',
-        email: 'Yashvi.Audio@example.com',
+        name: APP_NAME,
+        email: `${APP_NAME.replace(/\s+/g, '.')}@example.com`,
         avatarUrl: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200',
         address: {
             street: '123 Music Lane',
