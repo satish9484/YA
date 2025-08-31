@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import type { MenuProps } from 'antd';
 import { Button, Drawer, Dropdown, Layout, Menu, Typography } from 'antd';
@@ -35,58 +36,64 @@ const productSubcategories: MenuProps['items'] = [
         key: 'line-array',
         icon: <AudioOutlined />,
         label: (
-            <a href="/products" className="dropdown-item-content">
+            <Link to="/products/line-array" className="dropdown-item-content">
                 <div className="dropdown-item-content">
                     <div className="dropdown-item-title">Line Array Systems</div>
                     <div className="dropdown-item-desc">
                         Professional line array speakers for large venues
                     </div>
                 </div>
-            </a>
+            </Link>
         ),
     },
     {
         key: 'monitors',
         icon: <SoundOutlined />,
         label: (
-            <a href="/dashboard" className="dropdown-item-content">
+            <Link to="/products/monitors" className="dropdown-item-content">
                 <div className="dropdown-item-content">
                     <div className="dropdown-item-title">Stage Monitors</div>
                     <div className="dropdown-item-desc">
                         Stage monitoring solutions for performers
                     </div>
                 </div>
-            </a>
+            </Link>
         ),
     },
     {
         key: 'subwoofers',
         icon: <AudioOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Subwoofers</div>
-                <div className="dropdown-item-desc">Low-frequency reinforcement systems</div>
-            </div>
+            <Link to="/products/subwoofers" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Subwoofers</div>
+                    <div className="dropdown-item-desc">Low-frequency reinforcement systems</div>
+                </div>
+            </Link>
         ),
     },
     {
         key: 'amplifiers',
         icon: <SettingOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Power Amplifiers</div>
-                <div className="dropdown-item-desc">High-power amplification solutions</div>
-            </div>
+            <Link to="/products/amplifiers" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Power Amplifiers</div>
+                    <div className="dropdown-item-desc">High-power amplification solutions</div>
+                </div>
+            </Link>
         ),
     },
     {
         key: 'processors',
         icon: <SettingOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Signal Processors</div>
-                <div className="dropdown-item-desc">Digital signal processing equipment</div>
-            </div>
+            <Link to="/products/processors" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Signal Processors</div>
+                    <div className="dropdown-item-desc">Digital signal processing equipment</div>
+                </div>
+            </Link>
         ),
     },
 ];
@@ -97,50 +104,68 @@ const applicationsSubcategories: MenuProps['items'] = [
         key: 'live-sound',
         icon: <VideoCameraOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Live Sound</div>
-                <div className="dropdown-item-desc">Concert halls, theaters, and live events</div>
-            </div>
+            <Link to="/applications/live-sound" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Live Sound</div>
+                    <div className="dropdown-item-desc">
+                        Concert halls, theaters, and live events
+                    </div>
+                </div>
+            </Link>
         ),
     },
     {
         key: 'corporate',
         icon: <TeamOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Corporate Events</div>
-                <div className="dropdown-item-desc">Conferences, meetings, and presentations</div>
-            </div>
+            <Link to="/applications/corporate" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Corporate Events</div>
+                    <div className="dropdown-item-desc">
+                        Conferences, meetings, and presentations
+                    </div>
+                </div>
+            </Link>
         ),
     },
     {
         key: 'worship',
         icon: <GlobalOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Worship Spaces</div>
-                <div className="dropdown-item-desc">Churches, temples, and religious venues</div>
-            </div>
+            <Link to="/applications/worship" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Worship Spaces</div>
+                    <div className="dropdown-item-desc">
+                        Churches, temples, and religious venues
+                    </div>
+                </div>
+            </Link>
         ),
     },
     {
         key: 'entertainment',
         icon: <TrophyOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Entertainment</div>
-                <div className="dropdown-item-desc">Clubs, bars, and entertainment venues</div>
-            </div>
+            <Link to="/applications/entertainment" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Entertainment</div>
+                    <div className="dropdown-item-desc">Clubs, bars, and entertainment venues</div>
+                </div>
+            </Link>
         ),
     },
     {
         key: 'outdoor',
         icon: <EnvironmentOutlined />,
         label: (
-            <div className="dropdown-item-content">
-                <div className="dropdown-item-title">Outdoor Events</div>
-                <div className="dropdown-item-desc">Festivals, outdoor concerts, and events</div>
-            </div>
+            <Link to="/applications/outdoor" className="dropdown-item-content">
+                <div className="dropdown-item-content">
+                    <div className="dropdown-item-title">Outdoor Events</div>
+                    <div className="dropdown-item-desc">
+                        Festivals, outdoor concerts, and events
+                    </div>
+                </div>
+            </Link>
         ),
     },
 ];
@@ -168,40 +193,34 @@ const PageHeader: React.FC = () => {
         }, 100);
     };
 
-    // Theme selection dropdown menu
-    const themeMenu = (
-        <Menu
-            onClick={({ key }) => setTheme(key as 'light' | 'dark' | 'system')}
-            selectedKeys={[theme]}
-            items={[
-                {
-                    key: 'light',
-                    label: 'Light',
-                    icon: <SunOutlined />,
-                },
-                {
-                    key: 'dark',
-                    label: 'Dark',
-                    icon: <MoonOutlined />,
-                },
-                {
-                    key: 'system',
-                    label: 'System',
-                    icon: <SettingOutlined />,
-                },
-            ]}
-        />
-    );
+    // Theme selection dropdown menu items
+    const themeMenuItems = [
+        {
+            key: 'light',
+            label: 'Light',
+            icon: <SunOutlined />,
+        },
+        {
+            key: 'dark',
+            label: 'Dark',
+            icon: <MoonOutlined />,
+        },
+        {
+            key: 'system',
+            label: 'System',
+            icon: <SettingOutlined />,
+        },
+    ];
 
     // Desktop menu items with dropdowns
     const desktopMenuItems = [
         {
             key: 'home',
             label: (
-                <a href="/" className="nav-link">
+                <Link to="/" className="nav-link">
                     <HomeOutlined />
                     <span>Home</span>
-                </a>
+                </Link>
             ),
         },
         {
@@ -241,19 +260,19 @@ const PageHeader: React.FC = () => {
         {
             key: 'about',
             label: (
-                <a href="/about" className="nav-link">
+                <Link to="/about" className="nav-link">
                     <UserOutlined />
                     <span>About Us</span>
-                </a>
+                </Link>
             ),
         },
         {
             key: 'contact',
             label: (
-                <a href="/contact" className="nav-link">
+                <Link to="/contact" className="nav-link">
                     <PhoneOutlined />
                     <span>Contact</span>
-                </a>
+                </Link>
             ),
         },
     ];
@@ -263,7 +282,7 @@ const PageHeader: React.FC = () => {
         {
             key: 'home',
             icon: <HomeOutlined />,
-            label: <a href="/">Home</a>,
+            label: <Link to="/">Home</Link>,
         },
         {
             key: 'products',
@@ -271,34 +290,29 @@ const PageHeader: React.FC = () => {
             label: 'Products',
             children: [
                 {
-                    key: 'all-products',
-                    icon: <AudioOutlined />,
-                    label: <a href="/products">All Products</a>,
-                },
-                {
                     key: 'line-array',
                     icon: <AudioOutlined />,
-                    label: <a href="/products/line-array">Line Array Speakers</a>,
+                    label: <Link to="/products/line-array">Line Array Speakers</Link>,
                 },
                 {
                     key: 'monitors',
                     icon: <SoundOutlined />,
-                    label: <a href="/products/monitors">Stage Monitors</a>,
+                    label: <Link to="/products/monitors">Stage Monitors</Link>,
                 },
                 {
                     key: 'subwoofers',
                     icon: <AudioOutlined />,
-                    label: <a href="/products/subwoofers">Subwoofers</a>,
+                    label: <Link to="/products/subwoofers">Subwoofers</Link>,
                 },
                 {
                     key: 'amplifiers',
                     icon: <SettingOutlined />,
-                    label: <a href="/products/amplifiers">Power Amplifiers</a>,
+                    label: <Link to="/products/amplifiers">Power Amplifiers</Link>,
                 },
                 {
                     key: 'processors',
                     icon: <SettingOutlined />,
-                    label: <a href="/products/processors">Signal Processors</a>,
+                    label: <Link to="/products/processors">Signal Processors</Link>,
                 },
             ],
         },
@@ -310,39 +324,39 @@ const PageHeader: React.FC = () => {
                 {
                     key: 'live-sound',
                     icon: <VideoCameraOutlined />,
-                    label: <a href="/applications/live-sound">Live Sound</a>,
+                    label: <Link to="/applications/live-sound">Live Sound</Link>,
                 },
                 {
                     key: 'corporate',
                     icon: <TeamOutlined />,
-                    label: <a href="/applications/corporate">Corporate Events</a>,
+                    label: <Link to="/applications/corporate">Corporate Events</Link>,
                 },
                 {
                     key: 'worship',
                     icon: <GlobalOutlined />,
-                    label: <a href="/applications/worship">Worship Spaces</a>,
+                    label: <Link to="/applications/worship">Worship Spaces</Link>,
                 },
                 {
                     key: 'entertainment',
                     icon: <TrophyOutlined />,
-                    label: <a href="/applications/entertainment">Entertainment</a>,
+                    label: <Link to="/applications/entertainment">Entertainment</Link>,
                 },
                 {
                     key: 'outdoor',
                     icon: <EnvironmentOutlined />,
-                    label: <a href="/applications/outdoor">Outdoor Events</a>,
+                    label: <Link to="/applications/outdoor">Outdoor Events</Link>,
                 },
             ],
         },
         {
             key: 'about',
             icon: <UserOutlined />,
-            label: <a href="/about">About Us</a>,
+            label: <Link to="/about">About Us</Link>,
         },
         {
             key: 'contact',
             icon: <PhoneOutlined />,
-            label: <a href="/contact">Contact</a>,
+            label: <Link to="/contact">Contact</Link>,
         },
     ];
 
@@ -352,9 +366,9 @@ const PageHeader: React.FC = () => {
                 <div className="header-container">
                     {/* Logo */}
                     <div className="header-logo">
-                        <a href="/">
+                        <Link to="/">
                             <Logo width={120} height={40} variant="image" showBackground={true} />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}
@@ -367,7 +381,14 @@ const PageHeader: React.FC = () => {
                     </nav>
 
                     {/* Theme Dropdown */}
-                    <Dropdown overlay={themeMenu} trigger={['click']}>
+                    <Dropdown
+                        menu={{
+                            items: themeMenuItems,
+                            onClick: ({ key }) => setTheme(key as 'light' | 'dark' | 'system'),
+                            selectedKeys: [theme],
+                        }}
+                        trigger={['click']}
+                    >
                         <Button type="text" className="theme-toggle-btn">
                             {theme === 'light' && <SunOutlined />}
                             {theme === 'dark' && <MoonOutlined />}
@@ -392,7 +413,14 @@ const PageHeader: React.FC = () => {
                 title={
                     <div className="mobile-drawer-header">
                         <Text strong>Menu</Text>
-                        <Dropdown overlay={themeMenu} trigger={['click']}>
+                        <Dropdown
+                            menu={{
+                                items: themeMenuItems,
+                                onClick: ({ key }) => setTheme(key as 'light' | 'dark' | 'system'),
+                                selectedKeys: [theme],
+                            }}
+                            trigger={['click']}
+                        >
                             <Button type="text" className="theme-toggle-btn mobile">
                                 {theme === 'light' && <SunOutlined />}
                                 {theme === 'dark' && <MoonOutlined />}

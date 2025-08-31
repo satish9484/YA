@@ -110,6 +110,10 @@ $grey-700: #3b3b3b !default;
 $grey-800: #282828 !default;
 $grey-900: #212121 !default;
 
+$surface-1: #1c1c1c !default;
+$surface-2: #2a2a2a !default;
+$surface-3: #383838 !default;
+
 // Backward-compat palette aliases
 $white: $neutral-50 !default;
 $black: $neutral-900 !default;
@@ -169,8 +173,8 @@ $theme-dark: (
     primary-contrast: $white,
     btn-bg: $grey-900,
     background: $neutral-900,
-    surface: $neutral-800,
-    surface-2: $neutral-700,
+    surface: $surface-1,
+    surface-2: $surface-1,
     text-primary: $neutral-50,
     text-secondary: $neutral-300,
     text-inverse: $black,

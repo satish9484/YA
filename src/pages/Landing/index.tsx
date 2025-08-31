@@ -266,7 +266,7 @@ const Index = () => {
                         <Swiper
                             modules={[Pagination, Autoplay]}
                             pagination={pagination}
-                            loop={true}
+                            loop={false}
                             navigation={true}
                             autoplay={{ delay: 3000, disableOnInteraction: false }}
                             spaceBetween={30}

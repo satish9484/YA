@@ -211,24 +211,71 @@
     padding: $spacing-6;
     border-radius: $border-radius-lg;
     background-color: color(surface-2);
-    transition: all $transition-base;
-    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
 
     @include respond-to('md') {
         padding: $spacing-5;
         gap: $spacing-4;
     }
 
+    // Animated border effect
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid color(primary);
+        border-radius: $border-radius-lg;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+    }
+
+    // Subtle background glow on hover
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(color(primary), 0.05) 0%,
+            rgba(color(primary), 0.02) 100%
+        );
+        border-radius: $border-radius-lg;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+    }
+
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: $shadow-md;
-        border-color: color(primary);
+        transform: translateY(-6px);
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.12),
+            0 8px 16px rgba(0, 0, 0, 0.08);
+
+        &::before {
+            opacity: 1;
+        }
+
+        &::after {
+            opacity: 1;
+        }
     }
 
     &__icon {
         flex-shrink: 0;
         font-size: 2.5rem;
         color: color(primary);
+        position: relative;
+        z-index: 2;
 
         @include respond-to('md') {
             font-size: 2.25rem;
@@ -236,6 +283,9 @@
     }
 
     &__content {
+        position: relative;
+        z-index: 2;
+
         h4 {
             font-weight: $font-weight-semibold;
         }

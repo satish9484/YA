@@ -15,6 +15,24 @@ const Landing = lazy(() => import('@/pages/Landing'));
 const DesignSystemDemo = lazy(() => import('@/pages/DesignSystemDemo'));
 const ProductsPage = lazy(() => import('@/pages/Products'));
 
+// Product subcategory pages
+const LineArrayPage = lazy(() => import('@/pages/Products/LineArray'));
+const StageMonitorsPage = lazy(() => import('@/pages/Products/Monitors'));
+const SubwoofersPage = lazy(() => import('@/pages/Products/Subwoofers'));
+const PowerAmplifiersPage = lazy(() => import('@/pages/Products/Amplifiers'));
+const SignalProcessorsPage = lazy(() => import('@/pages/Products/Processors'));
+
+// Application pages
+const LiveSoundPage = lazy(() => import('@/pages/Applications/LiveSound'));
+const CorporateEventsPage = lazy(() => import('@/pages/Applications/Corporate'));
+const WorshipSpacesPage = lazy(() => import('@/pages/Applications/Worship'));
+const EntertainmentPage = lazy(() => import('@/pages/Applications/Entertainment'));
+const OutdoorEventsPage = lazy(() => import('@/pages/Applications/Outdoor'));
+
+// Other pages
+const AboutPage = lazy(() => import('@/pages/About'));
+const ContactPage = lazy(() => import('@/pages/Contact'));
+
 const Routing: React.FC = () => {
     return (
         <Routes>
@@ -28,6 +46,24 @@ const Routing: React.FC = () => {
 
                 {/* Products Page */}
                 <Route path="/products" element={<ProductsPage />} />
+
+                {/* Product subcategory routes */}
+                <Route path="/products/line-array" element={<LineArrayPage />} />
+                <Route path="/products/monitors" element={<StageMonitorsPage />} />
+                <Route path="/products/subwoofers" element={<SubwoofersPage />} />
+                <Route path="/products/amplifiers" element={<PowerAmplifiersPage />} />
+                <Route path="/products/processors" element={<SignalProcessorsPage />} />
+
+                {/* Application routes */}
+                <Route path="/applications/live-sound" element={<LiveSoundPage />} />
+                <Route path="/applications/corporate" element={<CorporateEventsPage />} />
+                <Route path="/applications/worship" element={<WorshipSpacesPage />} />
+                <Route path="/applications/entertainment" element={<EntertainmentPage />} />
+                <Route path="/applications/outdoor" element={<OutdoorEventsPage />} />
+
+                {/* Other pages */}
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
 
                 {/* Design System Demo */}
                 <Route path="/design-system" element={<DesignSystemDemo />} />
