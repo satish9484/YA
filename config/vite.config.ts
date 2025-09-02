@@ -30,23 +30,31 @@ export default defineConfig(({ mode }) => {
             scope: '/',
             icons: [
                 {
-                    src: '/favicon_io/android-chrome-192x192.png',
+                    src: '/logo/favicon/web-app-manifest-192x192.png',
                     sizes: '192x192',
                     type: 'image/png',
+                    purpose: 'any',
                 },
                 {
-                    src: '/favicon_io/android-chrome-512x512.png',
+                    src: '/logo/favicon/web-app-manifest-192x192.png',
+                    sizes: '192x192',
+                    type: 'image/png',
+                    purpose: 'maskable',
+                },
+                {
+                    src: '/logo/favicon/web-app-manifest-512x512.png',
                     sizes: '512x512',
                     type: 'image/png',
+                    purpose: 'any',
                 },
                 {
-                    src: '/favicon_io/android-chrome-512x512.png',
+                    src: '/logo/favicon/web-app-manifest-512x512.png',
                     sizes: '512x512',
                     type: 'image/png',
-                    purpose: 'any maskable',
+                    purpose: 'maskable',
                 },
                 {
-                    src: '/favicon_io/apple-touch-icon.png',
+                    src: '/logo/favicon/apple-touch-icon.png',
                     sizes: '180x180',
                     type: 'image/png',
                 },
