@@ -4,7 +4,7 @@ const ContactPage: React.FC = () => {
     return (
         <div style={{ padding: '2rem', textAlign: 'center' }}>
             <h1>Contact Us</h1>
-            <p>Get in touch with Yashvi Audio</p>
+            <p>Get in touch with Outbrust Acoustic</p>
         </div>
     );
 };

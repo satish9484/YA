@@ -1,0 +1,230 @@
+// Device-specific responsive logo container styles
+.responsive-logo-container {
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    // Ensure logo is always visible and crisp
+    img {
+        transition: all 0.3s ease;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+
+        // Optimize for different device types
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+
+    // Hover effects
+    &:hover img {
+        transform: scale(1.02);
+        filter: brightness(1.05);
+    }
+
+    // Active state
+    &:active img {
+        transform: scale(0.98);
+    }
+
+    // Android-specific optimizations
+    .android & img {
+        image-rendering: auto;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    // iOS-specific optimizations
+    .ios & img {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+// Theme-adaptive logo styles (for SVG variant)
+.theme-adaptive-logo {
+    transition: all 0.3s ease;
+
+    // Smooth color transitions for theme changes
+    * {
+        transition:
+            fill 0.3s ease,
+            stroke 0.3s ease,
+            stop-color 0.3s ease;
+    }
+
+    // Hover effects
+    &:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+    }
+
+    // Active state
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+// Logo container with background
+.logo-container {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 12px;
+    background: var(--logo-bg, rgba(134, 38, 38, 0.1));
+    transition: background 0.3s ease;
+
+    // Dark theme background
+    [data-theme='dark'] & {
+        background: var(--logo-bg, rgba(255, 255, 255, 0.1));
+    }
+}
+
+// Header logo specific styles
+.header-logo {
+    .responsive-logo-container {
+        // Ensure logo is visible in header
+        img {
+            filter: none;
+            max-height: 50px;
+        }
+
+        &:hover img {
+            transform: scale(1.02);
+        }
+    }
+
+    .theme-adaptive-logo {
+        // Ensure logo is visible in header
+        filter: none;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+}
+
+// Footer logo specific styles
+.footer-logo {
+    .responsive-logo-container {
+        img {
+            opacity: 0.9;
+            max-height: 80px;
+        }
+
+        &:hover img {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+    }
+
+    .theme-adaptive-logo {
+        opacity: 0.9;
+
+        &:hover {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+    }
+}
+
+// Responsive breakpoints for different devices
+@media (max-width: 768px) {
+    .responsive-logo-container {
+        img {
+            max-width: 100px;
+            max-height: 40px;
+        }
+    }
+
+    .header-logo .responsive-logo-container img {
+        max-height: 35px;
+    }
+
+    .footer-logo .responsive-logo-container img {
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-logo-container {
+        img {
+            max-width: 80px;
+            max-height: 30px;
+        }
+    }
+
+    .header-logo .responsive-logo-container img {
+        max-height: 30px;
+    }
+
+    .footer-logo .responsive-logo-container img {
+        max-height: 50px;
+    }
+}
+
+// High DPI displays
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .responsive-logo-container img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+// Android-specific optimizations
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .responsive-logo-container img {
+        image-rendering: auto;
+    }
+}
+
+// iOS-specific optimizations
+@supports (-webkit-touch-callout: none) {
+    .responsive-logo-container img {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+// Device-specific size optimizations
+@media screen and (max-width: 480px) and (max-height: 800px) {
+    .responsive-logo-container img {
+        max-width: 60px;
+        max-height: 25px;
+    }
+
+    .header-logo .responsive-logo-container img {
+        max-height: 25px;
+    }
+}
+
+// Tablet optimizations
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .responsive-logo-container img {
+        max-width: 120px;
+        max-height: 50px;
+    }
+
+    .header-logo .responsive-logo-container img {
+        max-height: 45px;
+    }
+
+    .footer-logo .responsive-logo-container img {
+        max-height: 70px;
+    }
+}
+
+// Large desktop optimizations
+@media screen and (min-width: 1440px) {
+    .responsive-logo-container img {
+        max-width: 200px;
+        max-height: 80px;
+    }
+
+    .header-logo .responsive-logo-container img {
+        max-height: 60px;
+    }
+
+    .footer-logo .responsive-logo-container img {
+        max-height: 100px;
+    }
+}

@@ -1,7 +1,7 @@
 {
-    "name": "Yashvi Audio",
-    "short_name": "YA",
-    "description": "Yashvi Audio - Premium Audio Experience",
+    "name": "Outbrust Acoustic",
+    "short_name": "OA",
+    "description": "Outbrust Acoustic - Premium Audio Experience",
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
