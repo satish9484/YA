@@ -1,7 +1,7 @@
-import ProductCategoryList from '@/components/ProductCategoryList';
+import ProductCatalog from './ProductCatalog';
 
 const ProductsPage = () => {
-    return <ProductCategoryList />;
+    return <ProductCatalog />;
 };
 
 export default ProductsPage;

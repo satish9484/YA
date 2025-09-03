@@ -6,6 +6,8 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Col, Row, Typography } from 'antd';
 
 import Card from '@/components/common/Card/index.tsx';
@@ -25,6 +27,16 @@ import './landing.scss';
 const { Title, Paragraph, Text } = Typography;
 
 const Index = () => {
+    const navigate = useNavigate();
+
+    const handleGetStarted = () => {
+        navigate('/products');
+    };
+
+    const handleLearnMore = () => {
+        navigate('/about');
+    };
+
     const pagination = {
         clickable: true,
         renderBullet: function (index: number, className: string) {
@@ -111,6 +123,7 @@ const Index = () => {
                                     type="primary"
                                     size="large"
                                     icon={<PlayCircleOutlined />}
+                                    onClick={handleGetStarted}
                                 >
                                     Get Started
                                 </Button>
@@ -118,6 +131,7 @@ const Index = () => {
                                     className="section-1__learn-more"
                                     size="large"
                                     icon={<StarOutlined />}
+                                    onClick={handleLearnMore}
                                 >
                                     Learn More
                                 </Button>
