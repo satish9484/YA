@@ -37,6 +37,16 @@ const Index = () => {
         navigate('/about');
     };
 
+    const handleViewDetails = (_productId: number) => {
+        // For now, we'll navigate to the TOA HX-5B product detail page
+        // In a real application, you'd map productId to specific product routes
+        navigate('/products/toa-hx5b');
+    };
+
+    const handleContactUs = () => {
+        navigate('/contact');
+    };
+
     const pagination = {
         clickable: true,
         renderBullet: function (index: number, className: string) {
@@ -119,7 +129,7 @@ const Index = () => {
                                 style={{ marginTop: '2rem' }}
                             >
                                 <Button
-                                    className="section-1__get-started"
+                                    className="section-1__get-started ant-btn ant-btn-primary ant-btn-xl"
                                     type="primary"
                                     size="large"
                                     icon={<PlayCircleOutlined />}
@@ -128,7 +138,7 @@ const Index = () => {
                                     Get Started
                                 </Button>
                                 <Button
-                                    className="section-1__learn-more"
+                                    className="section-1__learn-more ant-btn ant-btn-ghost ant-btn-xl"
                                     size="large"
                                     icon={<StarOutlined />}
                                     onClick={handleLearnMore}
@@ -185,10 +195,18 @@ const Index = () => {
                                     increasingly globalized market.
                                 </Paragraph>
                                 <div className="d-flex items-center gap-3 mt-6">
-                                    <Button type="primary" icon={<CheckCircleOutlined />}>
+                                    <Button
+                                        className="ant-btn ant-btn-primary ant-btn-lg"
+                                        type="primary"
+                                        icon={<CheckCircleOutlined />}
+                                        onClick={handleGetStarted}
+                                    >
                                         View Products
                                     </Button>
-                                    <Button className="about-section__content__contact_us">
+                                    <Button
+                                        className="about-section__content__contact_us ant-btn ant-btn-primary ant-btn-lg"
+                                        onClick={handleContactUs}
+                                    >
                                         Contact Us
                                     </Button>
                                 </div>
@@ -323,7 +341,12 @@ const Index = () => {
                                                     <li key={index}>{feature}</li>
                                                 ))}
                                             </ul>
-                                            <Button type="primary" block className="mt-auto">
+                                            <Button
+                                                className="ant-btn ant-btn-primary ant-btn-lg mt-auto"
+                                                type="primary"
+                                                block
+                                                onClick={() => handleViewDetails(product.id)}
+                                            >
                                                 View Details
                                             </Button>
                                         </div>

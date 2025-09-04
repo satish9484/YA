@@ -1,0 +1,487 @@
+// =============================================================================
+// Professional Button System
+// Based on modern design system standards and best practices
+// =============================================================================
+@use '../variable' as *;
+@use '../mixin' as *;
+@use '../fonts' as *;
+
+// Button Base Styles
+.ant-btn {
+    font-family:
+        'Poppins',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    outline: none;
+    user-select: none;
+    white-space: nowrap;
+
+    // Focus ring for accessibility
+    &:focus-visible {
+        outline: 2px solid color(accent-focus-ring);
+        outline-offset: 2px;
+    }
+
+    // Disabled state
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // Icon spacing
+    .anticon {
+        margin-right: 8px;
+
+        &:only-child {
+            margin-right: 0;
+        }
+    }
+}
+
+// =============================================================================
+// Button Sizes
+// =============================================================================
+
+.ant-btn {
+    // Small size
+    &.ant-btn-sm {
+        height: 32px;
+        padding: 4px 12px;
+        font-size: 12px;
+        border-radius: 6px;
+
+        .anticon {
+            margin-right: 4px;
+            font-size: 12px;
+        }
+    }
+
+    // Default size
+    &.ant-btn-default {
+        height: 40px;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    // Large size
+    &.ant-btn-lg {
+        height: 48px;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 10px;
+
+        .anticon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+    }
+
+    // Extra large size
+    &.ant-btn-xl {
+        height: 56px;
+        padding: 16px 32px;
+        font-size: 18px;
+        border-radius: 12px;
+        font-weight: 600;
+
+        .anticon {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+    }
+}
+
+// =============================================================================
+// Button Variants
+// =============================================================================
+
+// Primary Button - Main action (Modern Design System Colors)
+.ant-btn-primary {
+    background: var(--btn-primary-bg);
+    border-color: var(--btn-primary-border);
+    color: var(--btn-primary-text);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+
+    &:hover {
+        background: var(--btn-primary-hover-bg);
+        border-color: var(--btn-primary-hover-bg);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: var(--btn-primary-active-bg);
+        border-color: var(--btn-primary-active-bg);
+        box-shadow: 0 1px 4px rgba(59, 130, 246, 0.2);
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--btn-primary-focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+// Secondary Button - Secondary action (Modern Design System Colors)
+.ant-btn-default {
+    background: var(--btn-secondary-bg);
+    border-color: var(--btn-secondary-border);
+    color: var(--btn-secondary-text);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        background: var(--btn-secondary-hover-bg);
+        border-color: var(--btn-secondary-hover-bg);
+        color: var(--btn-secondary-text);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: var(--btn-secondary-active-bg);
+        border-color: var(--btn-secondary-active-bg);
+        color: var(--btn-secondary-text);
+        box-shadow: 0 1px 4px rgba(59, 130, 246, 0.1);
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--btn-secondary-focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+// Ghost Button - Subtle action (Modern Design System Colors)
+.ant-btn-ghost {
+    background: transparent;
+    border-color: #e5e7eb;
+    color: #374151;
+
+    &:hover {
+        background: #f9fafb;
+        border-color: #3b82f6;
+        color: #3b82f6;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: #f3f4f6;
+        border-color: #1d4ed8;
+        color: #1d4ed8;
+        transform: translateY(0);
+    }
+}
+
+// Text Button - Minimal action (Modern Design System Colors)
+.ant-btn-text {
+    background: transparent;
+    border-color: transparent;
+    color: #3b82f6;
+    box-shadow: none;
+
+    &:hover {
+        background: #f9fafb;
+        color: #1d4ed8;
+        box-shadow: 0 1px 4px rgba(59, 130, 246, 0.1);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: #f3f4f6;
+        color: #1e40af;
+        transform: translateY(0);
+    }
+}
+
+// Link Button - Navigation action (Modern Design System Colors)
+.ant-btn-link {
+    background: transparent;
+    border-color: transparent;
+    color: #3b82f6;
+    text-decoration: underline;
+    box-shadow: none;
+
+    &:hover {
+        color: #1d4ed8;
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        color: #1e40af;
+        transform: translateY(0);
+    }
+}
+
+// =============================================================================
+// Button States
+// =============================================================================
+
+// Success Button (Modern Design System Colors)
+.ant-btn-success {
+    background: var(--btn-success-bg);
+    border-color: var(--btn-success-border);
+    color: var(--btn-success-text);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+
+    &:hover {
+        background: var(--btn-success-hover-bg);
+        border-color: var(--btn-success-hover-bg);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: var(--btn-success-active-bg);
+        border-color: var(--btn-success-active-bg);
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--btn-success-focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+// Warning Button (Modern Design System Colors)
+.ant-btn-warning {
+    background: var(--btn-warning-bg);
+    border-color: var(--btn-warning-border);
+    color: var(--btn-warning-text);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+
+    &:hover {
+        background: var(--btn-warning-hover-bg);
+        border-color: var(--btn-warning-hover-bg);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: var(--btn-warning-active-bg);
+        border-color: var(--btn-warning-active-bg);
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--btn-warning-focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+// Danger Button (Modern Design System Colors)
+.ant-btn-danger {
+    background: var(--btn-danger-bg);
+    border-color: var(--btn-danger-border);
+    color: var(--btn-danger-text);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+
+    &:hover {
+        background: var(--btn-danger-hover-bg);
+        border-color: var(--btn-danger-hover-bg);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background: var(--btn-danger-active-bg);
+        border-color: var(--btn-danger-active-bg);
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--btn-danger-focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+// =============================================================================
+// Special Button Styles
+// =============================================================================
+
+// Floating Action Button
+.ant-btn-fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    .anticon {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    &:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+}
+
+// Icon Only Button
+.ant-btn-icon-only {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 8px;
+
+    .anticon {
+        margin: 0;
+    }
+
+    &.ant-btn-sm {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+    }
+
+    &.ant-btn-lg {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+    }
+}
+
+// =============================================================================
+// Button Groups
+// =============================================================================
+
+.ant-btn-group {
+    display: inline-flex;
+
+    .ant-btn {
+        border-radius: 0;
+        border-right-width: 0;
+
+        &:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        &:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-right-width: 1px;
+        }
+
+        &:only-child {
+            border-radius: 8px;
+            border-right-width: 1px;
+        }
+
+        &:hover {
+            z-index: 1;
+        }
+    }
+}
+
+// =============================================================================
+// Loading State
+// =============================================================================
+
+.ant-btn-loading {
+    pointer-events: none;
+    cursor: not-allowed;
+
+    .anticon {
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// =============================================================================
+// Responsive Adjustments
+// =============================================================================
+
+@include respond-to('sm') {
+    .ant-btn {
+        &.ant-btn-xl {
+            height: 48px;
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+
+        &.ant-btn-lg {
+            height: 44px;
+            padding: 10px 20px;
+            font-size: 15px;
+        }
+    }
+}
+
+// =============================================================================
+// Dark Theme Adjustments (Modern Design System Colors)
+// =============================================================================
+
+[data-theme='dark'] {
+    .ant-btn-default {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f9fafb;
+
+        &:hover {
+            background: #374151;
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+    }
+
+    .ant-btn-ghost {
+        color: #f9fafb;
+        border-color: #374151;
+
+        &:hover {
+            background: #374151;
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+    }
+
+    .ant-btn-text {
+        color: #3b82f6;
+
+        &:hover {
+            background: #374151;
+            color: #60a5fa;
+        }
+    }
+
+    .ant-btn-link {
+        color: #60a5fa;
+
+        &:hover {
+            color: #93c5fd;
+        }
+    }
+}

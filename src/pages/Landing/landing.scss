@@ -34,32 +34,114 @@
     // }
 
     &__title {
-        font-size: 2.5rem;
+        font-size: 3.75rem; // 2.5rem * 1.5
         font-weight: 700;
-        color: $white !important;
+        color: #ffffff !important;
         @include respond-to('md') {
-            font-size: 3rem;
+            font-size: 4.5rem; // 3rem * 1.5
         }
         @include respond-to('lg') {
-            font-size: 3.5rem;
+            font-size: 5.25rem; // 3.5rem * 1.5
         }
     }
 
     &__description {
-        color: $white;
-        font-size: 1.1rem;
+        color: #ffffff;
+        font-size: 1.65rem; // 1.1rem * 1.5
         @include respond-to('md') {
-            font-size: 1.25rem;
+            font-size: 1.875rem; // 1.25rem * 1.5
         }
     }
 
     &__get-started {
-        background: color(primary);
+        @extend .ant-btn;
+        @extend .ant-btn-primary;
+        @extend .ant-btn-xl;
+
+        // Custom hero button styling with modern colors
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        border: 2px solid #3b82f6;
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        &:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            border-color: #1d4ed8;
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+
+            &::before {
+                left: 100%;
+            }
+        }
+
+        &:active {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            border-color: #1e40af;
+            transform: translateY(0);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+        }
     }
 
-    // &__learn-more {
-    //     // background: color(btn-bg);
-    // }
+    &__learn-more {
+        @extend .ant-btn;
+        @extend .ant-btn-ghost;
+        @extend .ant-btn-xl;
+
+        // Custom hero secondary button styling
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        color: #ffffff;
+        backdrop-filter: blur(15px);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.6);
+            color: #ffffff;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+
+            &::before {
+                opacity: 1;
+            }
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+    }
 }
 
 .section-2 {
@@ -80,7 +162,18 @@
 
 .section-5 {
     padding: $spacing-20 0;
-    background-color: color(surface-2);
+    background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, color(accent-primary), transparent);
+    }
 
     @include respond-to('xl') {
         padding: $spacing-16 0;
@@ -97,11 +190,22 @@
     @include respond-to('sm') {
         padding: $spacing-8 0;
     }
+
+    // Dark theme enhancements
+    [data-theme='dark'] & {
+        background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
+
+        .ant-card {
+            background: color(bg-primary);
+            border: 1px solid color(border-primary);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+    }
 }
 
 .about-section {
     padding: $spacing-20 0;
-    background-color: color(surface);
+    background-color: color(bg-tertiary);
 
     @include respond-to('lg') {
         padding: $spacing-16 0;
@@ -144,14 +248,175 @@
             color: color(text-primary);
         }
         &__contact_us {
-            background: color(primary);
+            @extend .ant-btn;
+            @extend .ant-btn-primary;
+            @extend .ant-btn-lg;
+
+            // Custom contact button styling with modern colors
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: 2px solid #3b82f6;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: left 0.5s;
+            }
+
+            &:hover {
+                background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+                border-color: #1d4ed8;
+                box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+                transform: translateY(-1px);
+
+                &::before {
+                    left: 100%;
+                }
+            }
+
+            &:active {
+                background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+                border-color: #1e40af;
+                transform: translateY(0);
+                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+            }
         }
+    }
+}
+
+// Enhanced Button Styles for Product Cards
+.product-card {
+    .ant-btn {
+        @extend .ant-btn;
+        @extend .ant-btn-primary;
+        @extend .ant-btn-lg;
+
+        // Custom product card button styling with modern colors
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        border: 2px solid #3b82f6;
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+        margin-top: auto;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        &:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            border-color: #1d4ed8;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+            transform: translateY(-2px);
+
+            &::before {
+                left: 100%;
+            }
+        }
+
+        &:active {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            border-color: #1e40af;
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+        }
+    }
+}
+
+// General Button Enhancements
+.ant-btn {
+    &.ant-btn-primary {
+        background: linear-gradient(
+            135deg,
+            rgba(color(accent-primary), 0.9) 0%,
+            rgba(color(primary-600), 0.9) 100%
+        );
+        border: 2px solid rgba(color(accent-primary), 0.5);
+        box-shadow: 0 4px 16px rgba(color(accent-primary), 0.25);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(color(accent-primary), 0.35);
+            background: linear-gradient(135deg, color(primary-600) 0%, color(accent-primary) 100%);
+            border-color: color(accent-primary);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(color(accent-primary), 0.2);
+        }
+    }
+
+    &.ant-btn-default {
+        background: rgba(color(bg-primary), 0.9);
+        border: 2px solid rgba(color(border-primary), 0.7);
+        color: color(text-primary);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            transform: translateY(-1px);
+            border-color: color(accent-primary);
+            color: color(accent-primary);
+            background: color(bg-primary);
+            box-shadow: 0 4px 16px rgba(color(accent-primary), 0.15);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
+
+// Responsive Button Adjustments
+@include respond-to('sm') {
+    .section-1 {
+        &__get-started,
+        &__learn-more {
+            padding: 14px 24px;
+            font-size: 14px;
+            min-height: 48px;
+        }
+    }
+
+    .about-section__content__contact_us {
+        padding: 10px 20px;
+        font-size: 13px;
+        min-height: 40px;
+    }
+
+    .product-card .ant-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        min-height: 40px;
     }
 }
 
 .why-choose-us-section {
     padding: $spacing-20 0;
-    background-color: color(surface-2);
+    background-color: color(bg-secondary);
 
     @include respond-to('lg') {
         padding: $spacing-16 0;
@@ -210,7 +475,7 @@
     gap: $spacing-5;
     padding: $spacing-6;
     border-radius: $border-radius-lg;
-    background-color: color(surface-2);
+    background-color: color(bg-secondary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
     position: relative;
@@ -273,7 +538,7 @@
     &__icon {
         flex-shrink: 0;
         font-size: 2.5rem;
-        color: color(primary);
+        color: color(accent-primary);
         position: relative;
         z-index: 2;
 
@@ -293,8 +558,8 @@
 }
 
 .product-card {
-    background: color(surface);
-    border: 2px solid color(border);
+    background: color(bg-primary);
+    border: 2px solid color(border-primary);
     border-radius: $border-radius-lg;
     display: flex;
     flex-direction: column;
@@ -311,7 +576,7 @@
         box-shadow:
             0 20px 40px rgba(0, 0, 0, 0.12),
             0 8px 16px rgba(0, 0, 0, 0.08);
-        border-color: color(primary);
+        border-color: color(accent-primary);
     }
 
     &__image-container {
@@ -320,24 +585,49 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: $white;
+        background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
         transition: all 0.3s ease;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                rgba(59, 130, 246, 0.05) 0%,
+                rgba(16, 185, 129, 0.05) 50%,
+                rgba(245, 158, 11, 0.05) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
         @include respond-to('md') {
             height: 180px;
         }
     }
 
+    &:hover &__image-container::before {
+        opacity: 1;
+    }
+
     &__image {
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
-        mix-blend-mode: multiply;
         transition: transform 0.3s ease;
+        filter: brightness(1.1) contrast(1.1);
+        position: relative;
+        z-index: 1;
     }
 
     &:hover &__image {
         transform: scale(1.05);
+        filter: brightness(1.2) contrast(1.2);
     }
 
     &__content {
@@ -385,10 +675,45 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                color: color(primary);
+                color: color(accent-primary);
                 font-weight: $font-weight-bold;
                 font-size: $font-size-base;
             }
+        }
+    }
+
+    // Dark theme specific enhancements
+    [data-theme='dark'] & {
+        background: color(bg-primary);
+        border-color: color(border-primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+        &:hover {
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 8px 16px rgba(0, 0, 0, 0.3);
+            border-color: color(accent-primary);
+        }
+
+        &__image-container {
+            background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+
+            &::before {
+                background: linear-gradient(
+                    45deg,
+                    rgba(59, 130, 246, 0.1) 0%,
+                    rgba(16, 185, 129, 0.1) 50%,
+                    rgba(245, 158, 11, 0.1) 100%
+                );
+            }
+        }
+
+        &__image {
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        &:hover &__image {
+            filter: brightness(1.3) contrast(1.2);
         }
     }
 }
@@ -424,8 +749,8 @@
 }
 
 .swiper-pagination-bullet-active {
-    color: color(primary-contrast);
-    background: color(primary);
-    border-color: color(primary);
+    color: color(accent-contrast);
+    background: color(accent-primary);
+    border-color: color(accent-primary);
     transform: scale(1.1);
 }

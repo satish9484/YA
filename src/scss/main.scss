@@ -1,4 +1,0 @@
-@use './index' as *;
-
-@include emit-theme-css-variables(':root', light);
-@include emit-theme-css-variables('[data-theme="dark"]', dark);

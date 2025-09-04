@@ -24,7 +24,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         }
 
         document.documentElement.setAttribute('data-theme', effectiveTheme);
-        document.body.setAttribute('data-theme', effectiveTheme);
     }, []);
 
     useEffect(() => {

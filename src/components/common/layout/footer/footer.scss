@@ -2,10 +2,10 @@
     Footer Component Styling
 ========================================================================== */
 
-@use '../../../../scss/index' as *;
+// Styles for footer component
 
 .page-footer {
-    background-color: color(surface);
+    background-color: color(bg-primary);
     color: color(text-secondary);
     padding: $spacing-12 0;
     border-top: 1px solid color(border);

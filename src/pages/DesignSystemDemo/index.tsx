@@ -21,6 +21,9 @@ const DesignSystemDemo: FC = () => {
                             <a href="#typography" className="text-neutral-600 hover:text-primary">
                                 Typography
                             </a>
+                            <a href="#colors" className="text-neutral-600 hover:text-primary">
+                                Colors
+                            </a>
                             <a href="#components" className="text-neutral-600 hover:text-primary">
                                 Components
                             </a>
@@ -128,6 +131,123 @@ const DesignSystemDemo: FC = () => {
                                 <p className="font-bold">Bold Weight</p>
                                 <p className="font-extrabold">Extrabold Weight</p>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Color System Section */}
+                <section id="colors" className="section">
+                    <div className="container">
+                        <h2 className="text-center mb-12">Color System</h2>
+
+                        {/* Text Colors */}
+                        <div className="mb-12">
+                            <h3 className="mb-6">Text Colors</h3>
+                            <div className="d-grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                                <div className="card">
+                                    <h4 className="mb-3">Primary Text</h4>
+                                    <p className="text-primary text-lg font-semibold">
+                                        Primary Text Color
+                                    </p>
+                                    <p className="text-sm text-secondary">
+                                        Adaptive for light/dark themes
+                                    </p>
+                                </div>
+                                <div className="card">
+                                    <h4 className="mb-3">Secondary Text</h4>
+                                    <p className="text-secondary text-lg font-semibold">
+                                        Secondary Text Color
+                                    </p>
+                                    <p className="text-sm text-tertiary">Improved contrast</p>
+                                </div>
+                                <div className="card">
+                                    <h4 className="mb-3">Tertiary Text</h4>
+                                    <p className="text-tertiary text-lg font-semibold">
+                                        Tertiary Text Color
+                                    </p>
+                                    <p className="text-sm text-tertiary">Subtle content</p>
+                                </div>
+                                <div className="card">
+                                    <h4 className="mb-3">Inverse Text</h4>
+                                    <div className="bg-primary p-3 rounded">
+                                        <p className="text-inverse text-lg font-semibold">
+                                            Inverse Text
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Surface Colors */}
+                        <div className="mb-12">
+                            <h3 className="mb-6">Background Colors</h3>
+                            <div className="d-grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                                <div className="card bg-primary">
+                                    <h4 className="mb-3">Primary Background</h4>
+                                    <p className="text-primary">Main background color</p>
+                                </div>
+                                <div className="card bg-secondary">
+                                    <h4 className="mb-3">Secondary Background</h4>
+                                    <p className="text-primary">Secondary background</p>
+                                </div>
+                                <div className="card bg-tertiary">
+                                    <h4 className="mb-3">Tertiary Background</h4>
+                                    <p className="text-primary">Elevated background</p>
+                                </div>
+                                <div className="card bg-interactive">
+                                    <h4 className="mb-3">Interactive Background</h4>
+                                    <p className="text-primary">Interactive elements</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Semantic Colors */}
+                        <div className="mb-12">
+                            <h3 className="mb-6">Semantic Colors</h3>
+                            <div className="d-grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                                <div className="card">
+                                    <h4 className="mb-3 text-success">Success</h4>
+                                    <p className="text-success">Success message</p>
+                                    <div className="bg-success text-success-contrast p-2 rounded mt-2">
+                                        Success background
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <h4 className="mb-3 text-warning">Warning</h4>
+                                    <p className="text-warning">Warning message</p>
+                                    <div className="bg-warning text-warning-contrast p-2 rounded mt-2">
+                                        Warning background
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <h4 className="mb-3 text-error">Error</h4>
+                                    <p className="text-error">Error message</p>
+                                    <div className="bg-error text-error-contrast p-2 rounded mt-2">
+                                        Error background
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <h4 className="mb-3 text-info">Info</h4>
+                                    <p className="text-info">Info message</p>
+                                    <div className="bg-info text-info-contrast p-2 rounded mt-2">
+                                        Info background
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Theme Toggle Instructions */}
+                        <div className="card bg-primary text-primary-contrast">
+                            <h4 className="mb-3">Theme Switching</h4>
+                            <p className="mb-3">
+                                Use the theme toggle in the header to switch between light, dark,
+                                and system themes. Notice how the text-primary color adapts
+                                automatically for better readability.
+                            </p>
+                            <p className="text-sm opacity-90">
+                                The improved color system provides better contrast ratios and
+                                professional appearance across all themes.
+                            </p>
                         </div>
                     </div>
                 </section>

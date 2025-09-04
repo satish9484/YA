@@ -41,34 +41,34 @@ button.btn {
 
     &:focus {
         @include focus-visible {
-            outline: 2px solid color(primary);
+            outline: 2px solid color(accent-primary);
             outline-offset: 2px;
         }
     }
 }
 
 button.btn-primary {
-    background-color: color(primary);
-    border-color: color(primary);
-    color: color(primary-contrast);
+    background-color: color(accent-primary);
+    border-color: color(accent-primary);
+    color: color(accent-contrast);
 
     &:hover {
         @include hover {
-            background-color: color(primary-hover-bg);
-            border-color: color(primary-hover-bg);
+            background-color: color(accent-focus-ring);
+            border-color: color(accent-focus-ring);
         }
     }
 }
 
 button.btn-secondary {
-    background-color: color(surface-2);
-    border-color: color(border);
+    background-color: color(bg-secondary);
+    border-color: color(border-primary);
     color: color(text-primary);
 
     &:hover {
         @include hover {
-            background-color: color(secondary-hover-bg);
-            border-color: color(secondary-hover-border);
+            background-color: color(bg-tertiary);
+            border-color: color(accent-primary);
         }
     }
 }
@@ -78,8 +78,8 @@ button.btn-secondary {
 // =============================================================================
 
 .card {
-    background-color: color(surface);
-    border: 1px solid color(border);
+    background-color: color(bg-primary);
+    border: 1px solid color(border-primary);
     border-radius: $border-radius-lg;
     @include box-shadow($shadow-sm);
     overflow: hidden;
@@ -95,8 +95,8 @@ button.btn-secondary {
 
 .card-header {
     padding: $spacing-4;
-    border-bottom: 1px solid color(border);
-    background-color: color(surface-2);
+    border-bottom: 1px solid color(border-primary);
+    background-color: color(bg-secondary);
 
     @include respond-to('md') {
         padding: $spacing-6;
@@ -113,8 +113,8 @@ button.btn-secondary {
 
 .card-footer {
     padding: $spacing-4;
-    border-top: 1px solid color(border);
-    background-color: color(surface-2);
+    border-top: 1px solid color(border-primary);
+    background-color: color(bg-secondary);
 
     @include respond-to('md') {
         padding: $spacing-6;
@@ -151,8 +151,8 @@ button.btn-secondary {
     font-size: $font-size-base;
     line-height: $line-height-tight;
     color: color(text-primary);
-    background-color: color(surface);
-    border: 1px solid color(border);
+    background-color: color(bg-primary);
+    border: 1px solid color(border-primary);
     border-radius: $border-radius-md;
     @include transition(all);
 
@@ -164,14 +164,14 @@ button.btn-secondary {
     &:focus {
         @include focus-visible {
             outline: none;
-            border-color: color(primary);
-            box-shadow: 0 0 0 3px rgba(color(primary), 0.1);
+            border-color: color(accent-primary);
+            box-shadow: 0 0 0 3px rgba(color(accent-focus-ring), 0.2);
         }
     }
 
     &:hover {
         @include hover {
-            border-color: color(secondary-hover-border);
+            border-color: color(accent-focus-ring);
         }
     }
 }
@@ -203,7 +203,7 @@ button.btn-secondary {
 .table td {
     padding: $spacing-2 $spacing-3;
     text-align: left;
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid color(border-primary);
 
     @include respond-to('md') {
         padding: $spacing-3 $spacing-4;
@@ -211,7 +211,7 @@ button.btn-secondary {
 }
 
 .table th {
-    background-color: color(surface-2);
+    background-color: color(bg-secondary);
     font-weight: $font-weight-semibold;
     color: color(text-primary);
 }
@@ -226,7 +226,7 @@ button.btn-secondary {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(color(text-primary, 'dark'), 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 1050;
 
@@ -236,7 +236,7 @@ button.btn-secondary {
 }
 
 .modal-dialog {
-    background-color: color(surface);
+    background-color: color(bg-primary);
     border-radius: $border-radius-lg;
     @include box-shadow($shadow-2xl);
     max-width: 90vw;
@@ -258,7 +258,7 @@ button.btn-secondary {
 
 .modal-header {
     padding: $spacing-4;
-    border-bottom: 1px solid color(border);
+    border-bottom: 1px solid color(border-primary);
 
     @include respond-to('md') {
         padding: $spacing-6;
@@ -276,11 +276,159 @@ button.btn-secondary {
 .modal-footer {
     @include flex(flex-end);
     padding: $spacing-4;
-    border-top: 1px solid color(border);
+    border-top: 1px solid color(border-primary);
     gap: $spacing-3;
 
     @include respond-to('md') {
         padding: $spacing-6;
         gap: $spacing-4;
+    }
+}
+
+// =============================================================================
+// ADDITIONAL COMPONENT STYLES FOR NEW COLOR PALETTE
+// =============================================================================
+
+// Alert components
+.alert {
+    padding: $spacing-3 $spacing-4;
+    border-radius: $border-radius-md;
+    border: 1px solid transparent;
+    margin-bottom: $spacing-4;
+
+    &.alert-success {
+        background-color: color(success);
+        border-color: color(success);
+        color: color(success-contrast);
+    }
+
+    &.alert-warning {
+        background-color: color(warning);
+        border-color: color(warning);
+        color: color(warning-contrast);
+    }
+
+    &.alert-error {
+        background-color: color(error-bg);
+        border-color: color(error-border);
+        color: color(error-text);
+    }
+
+    &.alert-info {
+        background-color: color(info);
+        border-color: color(info);
+        color: color(info-contrast);
+    }
+}
+
+// Badge components
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-1 $spacing-2;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    border-radius: $border-radius-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+
+    &.badge-primary {
+        background-color: color(accent-primary);
+        color: color(accent-contrast);
+    }
+
+    &.badge-secondary {
+        background-color: color(bg-secondary);
+        color: color(text-primary);
+        border: 1px solid color(border-primary);
+    }
+
+    &.badge-success {
+        background-color: color(success);
+        color: color(success-contrast);
+    }
+
+    &.badge-warning {
+        background-color: color(warning);
+        color: color(warning-contrast);
+    }
+
+    &.badge-error {
+        background-color: color(error-text);
+        color: color(accent-contrast);
+    }
+}
+
+// Progress components
+.progress {
+    width: 100%;
+    height: 8px;
+    background-color: color(bg-secondary);
+    border-radius: $border-radius-sm;
+    overflow: hidden;
+
+    .progress-bar {
+        height: 100%;
+        background-color: color(accent-primary);
+        border-radius: $border-radius-sm;
+        @include transition(width 0.3s ease);
+    }
+}
+
+// Loading spinner
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid color(border-primary);
+    border-top: 2px solid color(accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Tooltip components
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltip-content {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: $spacing-2 $spacing-3;
+        background-color: color(bg-interactive);
+        color: color(text-primary);
+        border-radius: $border-radius-sm;
+        font-size: $font-size-sm;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        @include transition(all 0.3s ease);
+        z-index: 1000;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: color(bg-interactive);
+        }
+    }
+
+    &:hover .tooltip-content {
+        opacity: 1;
+        visibility: visible;
     }
 }

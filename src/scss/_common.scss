@@ -17,7 +17,7 @@
     color: color(success);
 }
 .text-danger {
-    color: color(error);
+    color: color(error-text);
 }
 .text-warning {
     color: color(warning);
@@ -27,11 +27,69 @@
 }
 
 .text-primary {
-    color: color(primary);
+    color: color(text-primary);
 }
 
 .text-secondary {
     color: color(text-secondary);
+}
+
+// New semantic text colors
+.text-interactive {
+    color: color(text-interactive);
+}
+
+.text-tertiary {
+    color: color(text-tertiary);
+}
+
+.text-accent {
+    color: color(accent-primary);
+}
+
+.text-error {
+    color: color(error-text);
+}
+
+// Background utility classes
+.bg-primary {
+    background-color: color(bg-primary);
+}
+
+.bg-secondary {
+    background-color: color(bg-secondary);
+}
+
+.bg-tertiary {
+    background-color: color(bg-tertiary);
+}
+
+.bg-interactive {
+    background-color: color(bg-interactive);
+}
+
+.bg-accent {
+    background-color: color(accent-primary);
+    color: color(accent-contrast);
+}
+
+.bg-error {
+    background-color: color(error-bg);
+    border: 1px solid color(error-border);
+    color: color(error-text);
+}
+
+// Border utility classes
+.border-primary {
+    border-color: color(border-primary);
+}
+
+.border-accent {
+    border-color: color(accent-primary);
+}
+
+.border-error {
+    border-color: color(error-border);
 }
 
 // Positioning and cursor
@@ -219,4 +277,107 @@
 }
 .flex-50 {
     flex: 0 0 50%;
+}
+
+// Additional color utility classes for new palette
+.text-muted {
+    color: color(text-tertiary);
+}
+
+.text-inverse {
+    color: color(text-inverse);
+}
+
+// Focus and interaction utilities
+.focus-accent {
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px color(accent-focus-ring);
+    }
+}
+
+.hover-accent {
+    &:hover {
+        color: color(accent-primary);
+    }
+}
+
+.hover-bg-secondary {
+    &:hover {
+        background-color: color(bg-secondary);
+    }
+}
+
+// Theme-aware visibility utilities
+.theme-text {
+    color: color(text-primary);
+}
+
+.theme-bg {
+    background-color: color(bg-primary);
+}
+
+.theme-border {
+    border-color: color(border-primary);
+}
+
+// Status background utilities
+.bg-success {
+    background-color: color(success);
+    color: color(success-contrast);
+}
+
+.bg-warning {
+    background-color: color(warning);
+    color: color(warning-contrast);
+}
+
+.bg-info {
+    background-color: color(info);
+    color: color(info-contrast);
+}
+
+// Interactive state utilities
+.interactive {
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+}
+
+.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+// Shadow utilities with theme awareness
+.shadow-sm {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+// Border radius utilities
+.rounded-sm {
+    border-radius: 4px;
+}
+
+.rounded-md {
+    border-radius: 8px;
+}
+
+.rounded-lg {
+    border-radius: 12px;
+}
+
+.rounded-full {
+    border-radius: 50%;
 }

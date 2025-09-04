@@ -748,12 +748,8 @@
 }
 
 :root {
-    --zwc-link-clr: #0047ff;
-    /* --zwc-link-clr-dark:#6691ff; */
-    --primary-focus-color: #0047ff;
-    --primary-btn-color: #e42527;
-    --zsh-place-fontcolor: #878787;
-    --primary-anchor-clr: #03a9f5;
+    // CSS custom properties moved to _colors.scss for proper organization
+    // This file should only contain font-related styles
     --primaryfont-bold: 'Zoho_Puvi_Bold';
     --primaryfont-semibold: 'Zoho_Puvi_SemiBold';
     --primaryfont-regular: 'Zoho_Puvi_Regular';
@@ -1115,16 +1111,8 @@ select {
     font-variant-ligatures: none;
 }
 
-body {
-    font:
-        17px/1.5 var(--primaryfont-regular),
-        sans-serif;
-    color: #000;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-}
+// Body styles moved to _base.scss for proper organization
+// This file should only contain font-related styles
 
 embed,
 img,

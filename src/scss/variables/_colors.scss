@@ -110,9 +110,8 @@ $grey-700: #3b3b3b !default;
 $grey-800: #282828 !default;
 $grey-900: #212121 !default;
 
-$surface-1: #1c1c1c !default;
-$surface-2: #2a2a2a !default;
-$surface-3: #383838 !default;
+// Legacy surface colors removed - use semantic bg-* colors instead
+// $surface-1, $surface-2, $surface-3, $surface-4 are deprecated
 
 // Backward-compat palette aliases
 $white: $neutral-50 !default;
@@ -125,82 +124,130 @@ $grey: $neutral-500 !default;
 // =============================================================================
 
 // Role keys set (documented for reference)
-// primary, primary-contrast, background, surface, surface-2,
-// text-primary, text-secondary, text-inverse, border, ring,
-// link, link-hover, success, success-contrast, warning, error, info,
-// muted, accent, accent-contrast,
-// footer-bg, footer-text, footer-accent, footer-accent-contrast, footer-bar-bg, footer-bar-text
+// Background: bg-primary, bg-secondary, bg-tertiary, bg-interactive, background
+// Text: text-primary, text-secondary, text-interactive, text-tertiary, text-inverse
+// Border: border-primary, border, ring
+// Accent: accent-primary, accent-focus-ring, accent, accent-contrast
+// Error: error-bg, error-text, error-border, error
+// Legacy: primary, primary-contrast, btn-bg, link, link-hover, success, success-contrast, warning, info, muted
+// Footer: footer-bg, footer-text, footer-accent, footer-accent-contrast, footer-bar-bg, footer-bar-text
+// Button states: primary-hover-bg, secondary-hover-bg, secondary-hover-border
 
 // Light theme role map
 $theme-light: (
-    primary: $primary-600,
-    primary-contrast: $neutral-50,
-    btn-bg: $grey-100,
-    background: $neutral-50,
-    surface: $neutral-100,
-    surface-2: $neutral-200,
-    text-primary: $neutral-900,
-    text-secondary: $neutral-500,
-    text-inverse: $neutral-50,
-    border: $neutral-200,
-    ring: $neutral-400,
-    link: $primary-600,
-    link-hover: $primary-700,
+    // Background colors
+    bg-primary: #ffffff,
+    bg-secondary: #f3f4f6,
+    bg-tertiary: #f9fafb,
+    bg-interactive: #ffffff,
+    background: #ffffff,
+
+    // Text colors
+    text-primary: #11182c,
+    text-secondary: #6b7280,
+    text-interactive: #374151,
+    text-tertiary: #9ca3af,
+    text-inverse: #ffffff,
+
+    // Border colors
+    border-primary: #d1d5db,
+    border: #d1d5db,
+    ring: #d1d5db,
+
+    // Accent colors
+    accent-primary: #2563eb,
+    accent-focus-ring: #93c5fd,
+    accent: #2563eb,
+    accent-contrast: #ffffff,
+
+    // Error colors
+    error-bg: #fee2e2,
+    error-text: #b91c1c,
+    error-border: #f87171,
+    error: #b91c1c,
+
+    // Legacy colors for backward compatibility
+    primary: #2563eb,
+    primary-contrast: #ffffff,
+    btn-bg: #f3f4f6,
+    link: #2563eb,
+    link-hover: #1d4ed8,
     success: $success-600,
     success-contrast: $white,
     warning: $warning-600,
-    error: $error-600,
     info: $info-600,
-    muted: $neutral-500,
-    accent: $accent-500,
-    accent-contrast: $white,
+    muted: #6b7280,
+
     // Footer-specific roles
-    footer-bg: $white,
-    footer-text: $neutral-900,
+    footer-bg: #ffffff,
+    footer-text: #11182c,
     footer-accent: $success-600,
     footer-accent-contrast: $white,
-    footer-bar-bg: $neutral-900,
-    footer-bar-text: $white,
+    footer-bar-bg: #11182c,
+    footer-bar-text: #ffffff,
+
     // Button-specific roles for hover states
-    primary-hover-bg: $primary-700,
-    secondary-hover-bg: $neutral-200,
-    secondary-hover-border: $neutral-400,
+    primary-hover-bg: #1d4ed8,
+    secondary-hover-bg: #e5e7eb,
+    secondary-hover-border: #9ca3af
 ) !default;
 
-// Dark theme role map
+// Dark theme role map - Color Hunt Palette (#37353E, #44444E, #715A5A, #D3DAD9)
 $theme-dark: (
-    primary: $primary-400,
-    primary-contrast: $white,
-    btn-bg: $grey-900,
-    background: $neutral-900,
-    surface: $surface-1,
-    surface-2: $surface-1,
-    text-primary: $neutral-50,
-    text-secondary: $neutral-300,
-    text-inverse: $black,
-    border: $neutral-700,
-    ring: $neutral-600,
-    link: $primary-400,
-    link-hover: $primary-300,
+    // Background colors
+    bg-primary: #1f1f1f,
+    bg-secondary: #13131b,
+    bg-tertiary: #0f0f1b,
+    bg-interactive: #37353e,
+    background: #1f1f1f,
+
+    // Text colors
+    text-primary: #d3dad9,
+    text-secondary: rgba(211, 218, 217, 0.8),
+    text-interactive: #d3dad9,
+    text-tertiary: rgba(211, 218, 217, 0.6),
+    text-inverse: #37353e,
+
+    // Border colors
+    border-primary: #44444e,
+    border: #44444e,
+    ring: #715a5a,
+
+    // Accent colors
+    accent-primary: #715a5a,
+    accent-focus-ring: #8a6b6b,
+    accent: #715a5a,
+    accent-contrast: #d3dad9,
+
+    // Error colors
+    error-bg: rgba(220, 38, 38, 0.2),
+    error-text: #fca5a5,
+    error-border: #dc2626,
+    error: #fca5a5,
+
+    // Legacy colors for backward compatibility
+    primary: #715a5a,
+    primary-contrast: #d3dad9,
+    btn-bg: #44444e,
+    link: #715a5a,
+    link-hover: #8a6b6b,
     success: $success-400,
     success-contrast: $black,
     warning: $warning-400,
-    error: $error-400,
     info: $info-400,
-    muted: $neutral-500,
-    accent: $accent-400,
-    accent-contrast: $black,
+    muted: rgba(211, 218, 217, 0.6),
     // Footer-specific roles
-    footer-bg: $neutral-800,
-    footer-text: $neutral-100,
+    footer-bg: #37353e,
+    footer-text: #d3dad9,
     footer-accent: $success-400,
     footer-accent-contrast: $black,
-    footer-bar-bg: $black,
-    footer-bar-text: $neutral-100,
+    footer-bar-bg: #37353e,
+    footer-bar-text: #d3dad9,
+
     // Button-specific roles for hover states
-    primary-hover-bg: $primary-300,
-    secondary-hover-bg: $neutral-600,
-    secondary-hover-border: $neutral-500,
+    primary-hover-bg: #8a6b6b,
+    secondary-hover-bg: #4a4a54,
+    secondary-hover-border: #5a5a64
 ) !default;
 
 // Backward-compat role aliases
@@ -217,7 +264,18 @@ $info: $info-500 !default;
 // Legacy text tokens (kept for compatibility; prefer role keys)
 $color-text-primary: map.get($theme-light, text-primary) !default;
 $color-text-secondary: map.get($theme-light, text-secondary) !default;
+$color-text-interactive: map.get($theme-light, text-interactive) !default;
 $color-background: map.get($theme-light, background) !default;
+$color-bg-primary: map.get($theme-light, bg-primary) !default;
+$color-bg-secondary: map.get($theme-light, bg-secondary) !default;
+$color-bg-tertiary: map.get($theme-light, bg-tertiary) !default;
+$color-bg-interactive: map.get($theme-light, bg-interactive) !default;
+$color-border-primary: map.get($theme-light, border-primary) !default;
+$color-accent-primary: map.get($theme-light, accent-primary) !default;
+$color-accent-focus-ring: map.get($theme-light, accent-focus-ring) !default;
+$color-error-bg: map.get($theme-light, error-bg) !default;
+$color-error-text: map.get($theme-light, error-text) !default;
+$color-error-border: map.get($theme-light, error-border) !default;
 
 // =============================================================================
 // Helpers: role lookup and CSS variable emission
@@ -242,4 +300,300 @@ $color-background: map.get($theme-light, background) !default;
             --color-#{$key}: #{$value};
         }
     }
+}
+
+// =============================================================================
+// CSS CUSTOM PROPERTIES - ROOT LEVEL
+// =============================================================================
+
+// Light theme as default - using existing SCSS color palettes
+:root {
+    // Background colors - using existing SCSS variables
+    --color-bg-primary: #{$neutral-50};
+    --color-bg-secondary: #{$neutral-100};
+    --color-bg-tertiary: #{$neutral-200};
+    --color-bg-interactive: #{$neutral-50};
+    --color-background: #{$neutral-50};
+
+    // Text colors - using existing SCSS variables
+    --color-text-primary: #{$neutral-900};
+    --color-text-secondary: #{$neutral-500};
+    --color-text-interactive: #{$neutral-700};
+    --color-text-tertiary: #{$neutral-400};
+    --color-text-inverse: #{$neutral-50};
+
+    // Border colors - using existing SCSS variables
+    --color-border-primary: #{$neutral-200};
+    --color-border: #{$neutral-200};
+    --color-ring: #{$neutral-200};
+
+    // Accent colors - using existing primary palette
+    --color-accent-primary: #{$primary-500};
+    --color-accent-focus-ring: #{$primary-300};
+    --color-accent: #{$primary-500};
+    --color-accent-contrast: #{$neutral-50};
+
+    // Error colors - using existing error palette
+    --color-error-bg: #{$error-50};
+    --color-error-text: #{$error-600};
+    --color-error-border: #{$error-400};
+    --color-error: #{$error-600};
+
+    // Success colors - using existing success palette
+    --color-success-bg: #{$success-50};
+    --color-success-text: #{$success-600};
+    --color-success-border: #{$success-400};
+    --color-success: #{$success-600};
+
+    // Warning colors - using existing warning palette
+    --color-warning-bg: #{$warning-50};
+    --color-warning-text: #{$warning-600};
+    --color-warning-border: #{$warning-400};
+    --color-warning: #{$warning-600};
+
+    // Info colors - using existing info palette
+    --color-info-bg: #{$info-50};
+    --color-info-text: #{$info-600};
+    --color-info-border: #{$info-400};
+    --color-info: #{$info-600};
+
+    // Legacy colors for backward compatibility
+    --color-primary: #{$primary-500};
+    --color-primary-contrast: #{$neutral-50};
+    --color-btn-bg: #{$neutral-100};
+    --color-link: #{$primary-500};
+    --color-link-hover: #{$primary-600};
+    --color-success: #{$success-600};
+    --color-success-contrast: #{$neutral-50};
+    --color-warning: #{$warning-600};
+    --color-info: #{$info-600};
+    --color-muted: #{$neutral-500};
+
+    // Footer-specific roles
+    --color-footer-bg: #{$neutral-50};
+    --color-footer-text: #{$neutral-900};
+    --color-footer-accent: #{$success-600};
+    --color-footer-accent-contrast: #{$neutral-50};
+    --color-footer-bar-bg: #{$neutral-900};
+    --color-footer-bar-text: #{$neutral-50};
+
+    // Button states
+    --color-primary-hover-bg: #{$primary-600};
+    --color-secondary-hover-bg: #{$neutral-200};
+    --color-secondary-hover-border: #{$neutral-400};
+
+    // Additional custom properties for legacy compatibility
+    --zwc-link-clr: var(--color-accent-primary);
+    --primary-focus-color: var(--color-accent-primary);
+    --primary-btn-color: var(--color-accent-primary);
+    --zsh-place-fontcolor: var(--color-text-tertiary);
+    --primary-anchor-clr: var(--color-accent-primary);
+
+    // Ant Design CSS Variables Integration
+    --ant-primary-color: var(--color-accent-primary);
+    --ant-primary-color-hover: var(--color-primary-hover-bg);
+    --ant-primary-color-active: #{$primary-700};
+    --ant-primary-color-outline: var(--color-accent-focus-ring);
+    --ant-success-color: var(--color-success);
+    --ant-warning-color: var(--color-warning);
+    --ant-error-color: var(--color-error);
+    --ant-info-color: var(--color-info);
+    --ant-text-color: var(--color-text-primary);
+    --ant-text-color-secondary: var(--color-text-secondary);
+    --ant-text-color-tertiary: var(--color-text-tertiary);
+    --ant-text-color-quaternary: var(--color-text-tertiary);
+    --ant-background-color: var(--color-bg-primary);
+    --ant-background-color-light: var(--color-bg-secondary);
+    --ant-background-color-base: var(--color-bg-tertiary);
+    --ant-border-color-base: var(--color-border-primary);
+    --ant-border-color-split: var(--color-border);
+    --ant-border-radius-base: 6px;
+    --ant-border-radius-sm: 4px;
+    --ant-border-radius-lg: 8px;
+    --ant-box-shadow-base:
+        0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+        0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    --ant-box-shadow-card:
+        0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+        0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    --ant-font-size-base: 14px;
+    --ant-font-size-lg: 16px;
+    --ant-font-size-sm: 12px;
+    --ant-line-height-base: 1.5715;
+    --ant-line-height-lg: 1.5;
+    --ant-line-height-sm: 1.66;
+
+    // Button Color Variables - Light Theme
+    --btn-primary-bg: #3b82f6;
+    --btn-primary-hover-bg: #1d4ed8;
+    --btn-primary-active-bg: #1e40af;
+    --btn-primary-text: #ffffff;
+    --btn-primary-border: #3b82f6;
+    --btn-primary-focus-ring: #93c5fd;
+
+    --btn-secondary-bg: #6b7280;
+    --btn-secondary-hover-bg: #4b5563;
+    --btn-secondary-active-bg: #374151;
+    --btn-secondary-text: #ffffff;
+    --btn-secondary-border: #6b7280;
+    --btn-secondary-focus-ring: #9ca3af;
+
+    --btn-success-bg: #10b981;
+    --btn-success-hover-bg: #059669;
+    --btn-success-active-bg: #047857;
+    --btn-success-text: #ffffff;
+    --btn-success-border: #10b981;
+    --btn-success-focus-ring: #6ee7b7;
+
+    --btn-warning-bg: #f59e0b;
+    --btn-warning-hover-bg: #d97706;
+    --btn-warning-active-bg: #b45309;
+    --btn-warning-text: #ffffff;
+    --btn-warning-border: #f59e0b;
+    --btn-warning-focus-ring: #fcd34d;
+
+    --btn-danger-bg: #ef4444;
+    --btn-danger-hover-bg: #dc2626;
+    --btn-danger-active-bg: #b91c1c;
+    --btn-danger-text: #ffffff;
+    --btn-danger-border: #ef4444;
+    --btn-danger-focus-ring: #fca5a5;
+}
+
+// Dark theme override - using existing SCSS color palettes
+[data-theme='dark'] {
+    // Background colors - using existing SCSS variables
+    --color-bg-primary: #{$neutral-900};
+    --color-bg-secondary: #{$neutral-800};
+    --color-bg-tertiary: #{$neutral-700};
+    --color-bg-interactive: #{$neutral-50};
+    --color-background: #{$neutral-900};
+
+    // Text colors - using existing SCSS variables
+    --color-text-primary: #{$neutral-50};
+    --color-text-secondary: #{$neutral-300};
+    --color-text-interactive: #{$neutral-200};
+    --color-text-tertiary: #{$neutral-400};
+    --color-text-inverse: #{$neutral-900};
+
+    // Border colors - using existing SCSS variables
+    --color-border-primary: #{$neutral-600};
+    --color-border: #{$neutral-600};
+    --color-ring: #{$neutral-600};
+
+    // Accent colors - using existing primary palette
+    --color-accent-primary: #{$primary-400};
+    --color-accent-focus-ring: #{$primary-200};
+    --color-accent: #{$primary-400};
+    --color-accent-contrast: #{$neutral-50};
+
+    // Error colors - using existing error palette
+    --color-error-bg: rgba(153, 27, 27, 0.3);
+    --color-error-text: #{$error-300};
+    --color-error-border: #{$error-500};
+    --color-error: #{$error-300};
+
+    // Success colors - using existing success palette
+    --color-success-bg: rgba(82, 196, 26, 0.2);
+    --color-success-text: #{$success-300};
+    --color-success-border: #{$success-500};
+    --color-success: #{$success-300};
+
+    // Warning colors - using existing warning palette
+    --color-warning-bg: rgba(250, 173, 20, 0.2);
+    --color-warning-text: #{$warning-300};
+    --color-warning-border: #{$warning-500};
+    --color-warning: #{$warning-300};
+
+    // Info colors - using existing info palette
+    --color-info-bg: rgba(24, 144, 255, 0.2);
+    --color-info-text: #{$info-300};
+    --color-info-border: #{$info-500};
+    --color-info: #{$info-300};
+
+    // Legacy colors for backward compatibility
+    --color-primary: #{$primary-400};
+    --color-primary-contrast: #{$neutral-50};
+    --color-btn-bg: #{$neutral-800};
+    --color-link: #{$primary-400};
+    --color-link-hover: #{$primary-300};
+    --color-success: #{$success-300};
+    --color-success-contrast: #{$neutral-50};
+    --color-warning: #{$warning-300};
+    --color-info: #{$info-300};
+    --color-muted: #{$neutral-400};
+
+    // Footer-specific roles
+    --color-footer-bg: #{$neutral-800};
+    --color-footer-text: #{$neutral-50};
+    --color-footer-accent: #{$success-300};
+    --color-footer-accent-contrast: #{$neutral-50};
+    --color-footer-bar-bg: #{$neutral-800};
+    --color-footer-bar-text: #{$neutral-50};
+
+    // Button states
+    --color-primary-hover-bg: #{$primary-300};
+    --color-secondary-hover-bg: #{$neutral-700};
+    --color-secondary-hover-border: #{$neutral-500};
+
+    // Ant Design CSS Variables Integration for Dark Theme
+    --ant-primary-color: var(--color-accent-primary);
+    --ant-primary-color-hover: var(--color-primary-hover-bg);
+    --ant-primary-color-active: #{$primary-500};
+    --ant-primary-color-outline: var(--color-accent-focus-ring);
+    --ant-success-color: var(--color-success);
+    --ant-warning-color: var(--color-warning);
+    --ant-error-color: var(--color-error);
+    --ant-info-color: var(--color-info);
+    --ant-text-color: var(--color-text-primary);
+    --ant-text-color-secondary: var(--color-text-secondary);
+    --ant-text-color-tertiary: var(--color-text-tertiary);
+    --ant-text-color-quaternary: var(--color-text-tertiary);
+    --ant-background-color: var(--color-bg-primary);
+    --ant-background-color-light: var(--color-bg-secondary);
+    --ant-background-color-base: var(--color-bg-tertiary);
+    --ant-border-color-base: var(--color-border-primary);
+    --ant-border-color-split: var(--color-border);
+    --ant-box-shadow-base:
+        0 3px 6px -4px rgba(0, 0, 0, 0.3), 0 6px 16px 0 rgba(0, 0, 0, 0.2),
+        0 9px 28px 8px rgba(0, 0, 0, 0.15);
+    --ant-box-shadow-card:
+        0 1px 2px -2px rgba(0, 0, 0, 0.3), 0 3px 6px 0 rgba(0, 0, 0, 0.2),
+        0 5px 12px 4px rgba(0, 0, 0, 0.15);
+
+    // Button Color Variables - Dark Theme
+    --btn-primary-bg: #60a5fa;
+    --btn-primary-hover-bg: #3b82f6;
+    --btn-primary-active-bg: #1d4ed8;
+    --btn-primary-text: #1f2937;
+    --btn-primary-border: #60a5fa;
+    --btn-primary-focus-ring: #1e40af;
+
+    --btn-secondary-bg: #9ca3af;
+    --btn-secondary-hover-bg: #6b7280;
+    --btn-secondary-active-bg: #4b5563;
+    --btn-secondary-text: #1f2937;
+    --btn-secondary-border: #9ca3af;
+    --btn-secondary-focus-ring: #6b7280;
+
+    --btn-success-bg: #34d399;
+    --btn-success-hover-bg: #10b981;
+    --btn-success-active-bg: #059669;
+    --btn-success-text: #1f2937;
+    --btn-success-border: #34d399;
+    --btn-success-focus-ring: #10b981;
+
+    --btn-warning-bg: #fbbf24;
+    --btn-warning-hover-bg: #f59e0b;
+    --btn-warning-active-bg: #d97706;
+    --btn-warning-text: #1f2937;
+    --btn-warning-border: #fbbf24;
+    --btn-warning-focus-ring: #f59e0b;
+
+    --btn-danger-bg: #f87171;
+    --btn-danger-hover-bg: #ef4444;
+    --btn-danger-active-bg: #dc2626;
+    --btn-danger-text: #1f2937;
+    --btn-danger-border: #f87171;
+    --btn-danger-focus-ring: #ef4444;
 }

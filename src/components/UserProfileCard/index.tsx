@@ -131,7 +131,7 @@ const UserProfilePage = () => {
 
     return (
         <div className="d-flex flex-column md:flex-row min-h-screen bg-background text-text-primary header-mr">
-            <aside className="profile-sidebar w-full md:w-80 bg-surface border-r border-border flex-shrink-0 d-flex flex-column">
+            <aside className="profile-sidebar w-full md:w-80 bg-secondary border-r border-border flex-shrink-0 d-flex flex-column">
                 <div className="p-6 text-center border-b border-border">
                     <img
                         src={user.avatarUrl}

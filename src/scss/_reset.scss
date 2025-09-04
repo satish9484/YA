@@ -61,7 +61,7 @@ b {
 }
 
 .text-white {
-    color: $white !important;
+    color: color(text-inverse) !important;
 
     h1,
     h2,
@@ -93,6 +93,35 @@ b {
     .timer {
         color: color(text-primary);
     }
+}
+
+// Additional text color utilities for new palette
+.text-primary {
+    color: color(text-primary) !important;
+}
+
+.text-secondary {
+    color: color(text-secondary) !important;
+}
+
+.text-interactive {
+    color: color(text-interactive) !important;
+}
+
+.text-tertiary {
+    color: color(text-tertiary) !important;
+}
+
+.text-accent {
+    color: color(accent-primary) !important;
+}
+
+.text-error {
+    color: color(error-text) !important;
+}
+
+.text-inverse {
+    color: color(text-inverse) !important;
 }
 
 p {
@@ -133,21 +162,181 @@ header {
 }
 
 ::-webkit-input-placeholder {
-    color: color(text-secondary);
+    color: color(text-tertiary);
     opacity: 1;
 }
 
 :-moz-placeholder {
-    color: color(text-secondary);
+    color: color(text-tertiary);
     opacity: 1;
 }
 
 ::-moz-placeholder {
-    color: color(text-secondary);
+    color: color(text-tertiary);
     opacity: 1;
 }
 
 :-ms-input-placeholder {
-    color: color(text-secondary);
+    color: color(text-tertiary);
     opacity: 1;
+}
+
+// Additional reset utilities for new color palette
+::placeholder {
+    color: color(text-tertiary);
+    opacity: 1;
+}
+
+// Focus outline utilities
+:focus-visible {
+    outline: 2px solid color(accent-primary);
+    outline-offset: 2px;
+}
+
+// Selection styles
+::selection {
+    background-color: color(accent-primary);
+    color: color(accent-contrast);
+}
+
+::-moz-selection {
+    background-color: color(accent-primary);
+    color: color(accent-contrast);
+}
+
+// Scrollbar styling for webkit browsers
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: color(bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: color(border-primary);
+    border-radius: 4px;
+
+    &:hover {
+        background: color(accent-primary);
+    }
+}
+
+::-webkit-scrollbar-corner {
+    background: color(bg-secondary);
+}
+
+// Additional reset utilities for new color palette
+// Background color utilities
+.bg-primary {
+    background-color: color(bg-primary) !important;
+}
+
+.bg-secondary {
+    background-color: color(bg-secondary) !important;
+}
+
+.bg-tertiary {
+    background-color: color(bg-tertiary) !important;
+}
+
+.bg-interactive {
+    background-color: color(bg-interactive) !important;
+}
+
+.bg-accent {
+    background-color: color(accent-primary) !important;
+    color: color(accent-contrast) !important;
+}
+
+.bg-error {
+    background-color: color(error-bg) !important;
+    border: 1px solid color(error-border) !important;
+    color: color(error-text) !important;
+}
+
+// Border color utilities
+.border-primary {
+    border-color: color(border-primary) !important;
+}
+
+.border-accent {
+    border-color: color(accent-primary) !important;
+}
+
+.border-error {
+    border-color: color(error-border) !important;
+}
+
+// Reset for form elements with new colors
+input,
+textarea,
+select {
+    background-color: color(bg-primary);
+    color: color(text-primary);
+    border: 1px solid color(border-primary);
+
+    &:focus {
+        border-color: color(accent-primary);
+        box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
+        outline: none;
+    }
+
+    &:disabled {
+        background-color: color(bg-tertiary);
+        color: color(text-tertiary);
+        border-color: color(border-primary);
+        opacity: 0.6;
+    }
+}
+
+// Reset for buttons with new colors
+button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+
+    &:focus-visible {
+        outline: 2px solid color(accent-primary);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+// Reset for links with new colors
+a {
+    color: color(accent-primary);
+    text-decoration: none;
+
+    &:hover {
+        color: color(accent-focus-ring);
+    }
+
+    &:focus-visible {
+        outline: 2px solid color(accent-primary);
+        outline-offset: 2px;
+    }
+}
+
+// Reset for tables with new colors
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th,
+    td {
+        border: 1px solid color(border-primary);
+        background-color: color(bg-primary);
+        color: color(text-primary);
+    }
+
+    th {
+        background-color: color(bg-secondary);
+        font-weight: 600;
+    }
 }

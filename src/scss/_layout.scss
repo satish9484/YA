@@ -1,5 +1,5 @@
 // =============================================================================
-// LAYOUT SYSTEM - CONTAINERS, GRID, SPACING
+// LAYOUT SYSTEM - CONTAINERS, GRID, SPACING, COLORS
 // =============================================================================
 
 @use 'sass:math';
@@ -40,6 +40,122 @@
 }
 
 // Use flex utilities (flex/*) and grid utilities (grid/*) for layout.
+
+// =============================================================================
+// LAYOUT COLOR UTILITIES
+// =============================================================================
+
+// Section background utilities
+.section-bg-primary {
+    background-color: color(bg-primary);
+}
+
+.section-bg-secondary {
+    background-color: color(bg-secondary);
+}
+
+.section-bg-tertiary {
+    background-color: color(bg-tertiary);
+}
+
+.section-bg-interactive {
+    background-color: color(bg-interactive);
+}
+
+// Gradient background utilities
+.section-gradient-primary {
+    background: linear-gradient(135deg, color(bg-primary) 0%, color(bg-secondary) 100%);
+}
+
+.section-gradient-secondary {
+    background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+}
+
+.section-gradient-accent {
+    background: linear-gradient(135deg, color(accent-primary) 0%, color(accent-focus-ring) 100%);
+}
+
+// Border utilities for layout
+.section-border {
+    border: 1px solid color(border-primary);
+}
+
+.section-border-top {
+    border-top: 1px solid color(border-primary);
+}
+
+.section-border-bottom {
+    border-bottom: 1px solid color(border-primary);
+}
+
+.section-border-left {
+    border-left: 1px solid color(border-primary);
+}
+
+.section-border-right {
+    border-right: 1px solid color(border-primary);
+}
+
+// Divider utilities
+.divider {
+    height: 1px;
+    background-color: color(border-primary);
+    margin: $spacing-4 0;
+}
+
+.divider-thick {
+    height: 2px;
+    background-color: color(border-primary);
+    margin: $spacing-6 0;
+}
+
+.divider-accent {
+    height: 1px;
+    background-color: color(accent-primary);
+    margin: $spacing-4 0;
+}
+
+// Layout container utilities with colors
+.container-primary {
+    @extend .container;
+    background-color: color(bg-primary);
+}
+
+.container-secondary {
+    @extend .container;
+    background-color: color(bg-secondary);
+}
+
+.container-accent {
+    @extend .container;
+    background-color: color(accent-primary);
+    color: color(accent-contrast);
+}
+
+// Card layout utilities
+.layout-card {
+    background-color: color(bg-primary);
+    border: 1px solid color(border-primary);
+    border-radius: $border-radius-lg;
+    padding: $spacing-4;
+    @include box-shadow($shadow-sm);
+}
+
+.layout-card-elevated {
+    @extend .layout-card;
+    @include box-shadow($shadow-md);
+}
+
+.layout-card-interactive {
+    @extend .layout-card;
+    cursor: pointer;
+    @include transition(all 0.3s ease);
+
+    &:hover {
+        @include box-shadow($shadow-lg);
+        @include transform(translateY(-2px));
+    }
+}
 
 // =============================================================================
 // RESPONSIVE SPACING SYSTEM
@@ -147,5 +263,186 @@
                 }
             }
         }
+    }
+}
+
+// =============================================================================
+// ADDITIONAL LAYOUT UTILITIES FOR NEW COLOR PALETTE
+// =============================================================================
+
+// Text color utilities for layout sections
+.section-text-primary {
+    color: color(text-primary);
+}
+
+.section-text-secondary {
+    color: color(text-secondary);
+}
+
+.section-text-interactive {
+    color: color(text-interactive);
+}
+
+.section-text-accent {
+    color: color(accent-primary);
+}
+
+// Layout spacing with color context
+.section-spacing {
+    padding: $spacing-8 0;
+
+    @include respond-to('md') {
+        padding: $spacing-12 0;
+    }
+
+    @include respond-to('lg') {
+        padding: $spacing-16 0;
+    }
+}
+
+.section-spacing-sm {
+    padding: $spacing-4 0;
+
+    @include respond-to('md') {
+        padding: $spacing-6 0;
+    }
+}
+
+.section-spacing-lg {
+    padding: $spacing-12 0;
+
+    @include respond-to('md') {
+        padding: $spacing-16 0;
+    }
+
+    @include respond-to('lg') {
+        padding: $spacing-20 0;
+    }
+}
+
+// Layout grid with color theming
+.layout-grid {
+    display: grid;
+    gap: $spacing-4;
+
+    &.layout-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.layout-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &.layout-grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include respond-to-max('md') {
+        &.layout-grid-2,
+        &.layout-grid-3,
+        &.layout-grid-4 {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Layout flex with color theming
+.layout-flex {
+    display: flex;
+    gap: $spacing-4;
+
+    &.layout-flex-center {
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.layout-flex-between {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &.layout-flex-column {
+        flex-direction: column;
+    }
+
+    &.layout-flex-wrap {
+        flex-wrap: wrap;
+    }
+}
+
+// Layout overlay utilities
+.layout-overlay {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .layout-overlay-content {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+// Layout sticky utilities
+.layout-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: color(bg-primary);
+    border-bottom: 1px solid color(border-primary);
+}
+
+// Layout responsive visibility utilities
+.layout-hidden-mobile {
+    @include respond-to-max('sm') {
+        display: none !important;
+    }
+}
+
+.layout-hidden-tablet {
+    @include respond-to-max('md') {
+        display: none !important;
+    }
+}
+
+.layout-hidden-desktop {
+    @include respond-to('lg') {
+        display: none !important;
+    }
+}
+
+.layout-visible-mobile {
+    display: none !important;
+
+    @include respond-to-max('sm') {
+        display: block !important;
+    }
+}
+
+.layout-visible-tablet {
+    display: none !important;
+
+    @include respond-to('sm') {
+        display: block !important;
+    }
+
+    @include respond-to-max('md') {
+        display: block !important;
+    }
+}
+
+.layout-visible-desktop {
+    display: none !important;
+
+    @include respond-to('lg') {
+        display: block !important;
     }
 }

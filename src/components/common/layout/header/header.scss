@@ -9,7 +9,7 @@
 .header {
     width: 100%;
     height: $header-height-xs;
-    background: color(surface);
+    background: color(bg-primary);
     border-bottom: 1px solid color(border);
     position: fixed;
     top: 0;
@@ -151,7 +151,7 @@
 
                 &:hover {
                     color: color(primary);
-                    background: color(surface-2);
+                    background: color(bg-secondary);
                 }
 
                 &.dropdown-link {
@@ -194,7 +194,7 @@
         &:hover {
             @include hover {
                 color: color(primary);
-                background: color(surface-2);
+                background: color(bg-secondary);
             }
         }
 
@@ -231,7 +231,7 @@
             transition: all $transition-base;
 
             &:hover {
-                background: color(surface-2);
+                background: color(bg-secondary);
                 color: color(primary);
             }
 
@@ -288,7 +288,7 @@
         width: calc($spacing-64 + $spacing-16);
         max-width: 90vw;
         height: 100vh;
-        background: color(surface);
+        background: color(bg-primary);
         box-shadow: $shadow-xl;
         display: flex;
         flex-direction: column;
@@ -301,7 +301,7 @@
             justify-content: space-between;
             padding: $spacing-4;
             border-bottom: 1px solid color(border);
-            background: color(surface-2);
+            background: color(bg-secondary);
             flex-shrink: 0;
 
             .mobile-menu-title {
@@ -357,7 +357,7 @@
                 align-items: center;
 
                 &:hover {
-                    background: color(surface-2);
+                    background: color(bg-secondary);
                     color: color(primary);
                 }
 
@@ -388,7 +388,7 @@
                     align-items: center;
 
                     &:hover {
-                        background: color(surface-2);
+                        background: color(bg-secondary);
                         color: color(primary);
                     }
 
@@ -404,7 +404,7 @@
                 }
 
                 .ant-menu-sub {
-                    background: color(surface-2);
+                    background: color(bg-secondary);
                     margin: $spacing-1 0;
                     border-radius: $border-radius-md;
                     padding: $spacing-1;
@@ -513,7 +513,7 @@
     &:hover {
         @include hover {
             color: color(primary) !important;
-            background: color(surface-2);
+            background: color(bg-secondary);
             @include transform(scale(1.05));
         }
     }
@@ -569,7 +569,7 @@ Mobile Menu
 
 .mobile-drawer {
     .ant-drawer-header {
-        background-color: color(surface);
+        background-color: color(bg-primary);
         border-bottom: 1px solid color(border);
     }
 
@@ -599,7 +599,7 @@ Mobile Menu
 
             &:hover {
                 color: color(text-primary);
-                background-color: color(surface-2);
+                background-color: color(bg-secondary);
             }
         }
 
@@ -619,7 +619,7 @@ Mobile Menu
 .dark {
     .mobile-drawer {
         .ant-drawer-header {
-            background-color: color(surface, 'dark');
+            background-color: color(bg-primary, 'dark');
             border-bottom: 1px solid color(border, 'dark');
         }
 
@@ -638,7 +638,7 @@ Mobile Menu
 
                 &:hover {
                     color: color(text-primary, 'dark');
-                    background-color: color(surface-2, 'dark');
+                    background-color: color(bg-secondary, 'dark');
                 }
             }
 

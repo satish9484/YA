@@ -1,10 +1,10 @@
-@use '@/scss/index' as *;
+// Styles for layout component
 
 .layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: color(surface);
+    background-color: color(bg-primary);
 
     .content {
         flex: 1;

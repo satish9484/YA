@@ -26,7 +26,7 @@ body {
     font-weight: $font-weight-normal;
     line-height: $line-height-normal;
     color: color(text-primary);
-    background-color: color(surface);
+    background-color: color(bg-primary);
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
@@ -51,16 +51,16 @@ h5,
 .h5,
 h6,
 .h6 {
-    color: color('text-primary') !important;
+    color: color(text-primary) !important;
 }
 
 a {
-    color: color(link);
+    color: color(accent-primary);
     text-decoration: none;
     transition: color $transition-base;
 
     &:hover {
-        color: color(link-hover);
+        color: color(accent-focus-ring);
     }
 }
 
@@ -118,9 +118,88 @@ p {
     margin: 0 0 $spacing-4 0;
     font-size: $font-size-base;
     line-height: $line-height-relaxed;
-    color: inherit;
+    color: color(text-primary);
 
     @include respond-to('md') {
         font-size: $font-size-lg;
     }
+}
+
+// Additional base text styles for new color palette
+.text-primary {
+    color: color(text-primary) !important;
+}
+
+.text-secondary {
+    color: color(text-secondary) !important;
+}
+
+.text-interactive {
+    color: color(text-interactive) !important;
+}
+
+.text-tertiary {
+    color: color(text-tertiary) !important;
+}
+
+// Background utility classes
+.bg-primary {
+    background-color: color(bg-primary) !important;
+}
+
+.bg-secondary {
+    background-color: color(bg-secondary) !important;
+}
+
+.bg-tertiary {
+    background-color: color(bg-tertiary) !important;
+}
+
+.bg-interactive {
+    background-color: color(bg-interactive) !important;
+}
+
+// Border utility classes
+.border-primary {
+    border-color: color(border-primary) !important;
+}
+
+// Accent utility classes
+.text-accent {
+    color: color(accent-primary) !important;
+}
+
+.bg-accent {
+    background-color: color(accent-primary) !important;
+    color: color(accent-contrast) !important;
+}
+
+// Error utility classes
+.text-error {
+    color: color(error-text) !important;
+}
+
+.bg-error {
+    background-color: color(error-bg) !important;
+    border: 1px solid color(error-border) !important;
+    color: color(error-text) !important;
+}
+
+// Focus states
+.focus-ring {
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px color(accent-focus-ring);
+    }
+}
+
+// Selection styles
+::selection {
+    background-color: color(accent-primary);
+    color: color(accent-contrast);
+}
+
+::-moz-selection {
+    background-color: color(accent-primary);
+    color: color(accent-contrast);
 }
