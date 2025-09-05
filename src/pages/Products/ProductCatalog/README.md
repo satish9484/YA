@@ -1,32 +1,133 @@
-# Product Detail Page - TOA HX-5B
+# Product Catalog - Refactored Architecture
 
-A comprehensive, interactive product detail page for the TOA HX-5B Variable Dispersion Line Array Speaker, built with React, TypeScript, Ant Design, and SCSS.
+A comprehensive, modular product catalog system built with React, TypeScript, and SCSS following modern architectural patterns and CRO optimization principles.
 
-## Features
+## 🏗️ Architecture Overview
 
-### 🖼️ Amazon-Style Image Gallery
+### Modular Component Structure
 
-- **Main Image Display**: High-resolution product images with zoom functionality
-- **Thumbnail Strip**: Quick navigation between different product views
-- **Context Gallery**: Real-world application photos in a carousel
-- **Interactive Preview**: Custom toolbar with rotation, zoom, and navigation controls
-- **Responsive Design**: Optimized for all screen sizes
+```
+src/pages/Products/ProductCatalog/
+├── index.tsx                          # Main catalog page
+├── ProductCatalog.scss               # Page-level styles
+├── components/                       # Modular components
+│   ├── ProductCategory/              # Category display component
+│   ├── ProductCard/                  # Individual product card
+│   ├── ProductImageGallery/          # Image gallery component
+│   └── ProductPagination/            # Pagination component
+├── hooks/                           # Custom React hooks
+├── types/                           # TypeScript definitions
+├── utils/                           # Utility functions
+└── data.ts                          # Sample data
+```
 
-### 🎛️ Interactive Variable Dispersion Showcase
+## ✨ Key Features
 
-- **Real-time Visualization**: Interactive speaker graphic showing dispersion patterns
-- **Dynamic Specifications**: Live updates of sensitivity and frequency response
-- **Angle Selection**: 15°, 30°, 45°, and 60° dispersion options
-- **Use Case Descriptions**: Contextual information for each angle setting
+### 🎯 CRO Optimizations
 
-### 📊 Comprehensive Technical Specifications
+- **Product Discovery**: Enhanced image galleries with preview functionality
+- **Clear CTAs**: Prominent "Add to Cart" buttons with loading states
+- **Social Proof**: Product ratings and review counts
+- **Trust Signals**: Stock status indicators and product specifications
+- **Mobile-First**: Responsive design optimized for all devices
 
-- **Organized Tabs**: Performance, Directivity, Components, Connections, Physical
-- **Download Integration**: One-click access to full specification PDF
-- **Professional Layout**: Clean, scannable table format
-- **Mobile Optimized**: Responsive design for on-the-go professionals
+### 🔧 Technical Excellence
 
-### 🏢 Applications Gallery
+- **TypeScript**: Comprehensive type safety with strict interfaces
+- **Performance**: React.memo, useMemo, and useCallback optimizations
+- **Accessibility**: ARIA labels, semantic HTML, and keyboard navigation
+- **Error Handling**: Comprehensive error states and loading indicators
+- **Modularity**: Reusable components with clear separation of concerns
+
+## 🚀 Usage
+
+### Basic Implementation
+
+```tsx
+import ProductCatalog from './pages/Products/ProductCatalog';
+
+function App() {
+    return (
+        <ProductCatalog
+            productsPerPage={4}
+            onProductClick={product => console.log('Product clicked:', product)}
+            onAddToCart={product => console.log('Added to cart:', product)}
+        />
+    );
+}
+```
+
+## 🧩 Component API
+
+### ProductCatalog Props
+
+```typescript
+interface ProductCatalogProps {
+    readonly initialCategories?: ProductCategory[];
+    readonly productsPerPage?: number;
+    readonly onProductClick?: (product: Product) => void;
+    readonly onAddToCart?: (product: Product) => void;
+}
+```
+
+## 🎨 Styling
+
+### SCSS Architecture
+
+- **Component-Specific**: Each component has its own SCSS file
+- **Global Tokens**: Uses design system variables and mixins
+- **Responsive**: Mobile-first approach with breakpoint mixins
+- **Theming**: Dark mode support with CSS custom properties
+
+## 🔧 Custom Hooks
+
+### useProductCatalog
+
+Manages catalog state, loading, and error handling
+
+### useProductPagination
+
+Handles pagination logic and state
+
+## 📊 Data Structure
+
+### Product Interface
+
+```typescript
+interface Product {
+    readonly id: string;
+    readonly name: string;
+    readonly image: string;
+    readonly price: number;
+    readonly description: string;
+    readonly category?: string;
+    readonly inStock?: boolean;
+    readonly rating?: number;
+    readonly reviewCount?: number;
+    readonly tags?: string[];
+    readonly specifications?: Record<string, string>;
+}
+```
+
+## 🚀 Performance Optimizations
+
+### React Optimizations
+
+- **React.memo**: Prevents unnecessary re-renders
+- **useMemo**: Memoizes expensive calculations
+- **useCallback**: Prevents function recreation on every render
+
+## ♿ Accessibility Features
+
+### ARIA Support
+
+- **Semantic HTML**: Proper heading hierarchy and landmarks
+- **ARIA Labels**: Descriptive labels for screen readers
+- **Keyboard Navigation**: Full keyboard accessibility
+
+---
+
+**Built with ❤️ using React, TypeScript, and modern web standards**
 
 - **Real-world Scenarios**: Auditoriums, houses of worship, boardrooms, sports facilities
 - **Visual Context**: Professional photography showing installations

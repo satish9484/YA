@@ -754,12 +754,12 @@
         }
 
         // Force theme-aware colors for Ant Design tabs
-        --ant-tabs-nav-bg: #{color(bg-secondary)};
-        --ant-tabs-tab-bg: transparent;
-        --ant-tabs-tab-active-bg: #{color(bg-tertiary)};
-        --ant-tabs-tab-hover-bg: #{color(bg-tertiary)};
-        --ant-tabs-tab-active-text: #{color(text-primary)};
-        --ant-tabs-tab-hover-text: #{color(text-primary)};
+        // --ant-tabs-nav-bg: #{color(bg-secondary)};
+        // --ant-tabs-tab-bg: transparent;
+        // --ant-tabs-tab-active-bg: #{color(bg-tertiary)};
+        // --ant-tabs-tab-hover-bg: #{color(bg-tertiary)};
+        // --ant-tabs-tab-active-text: #{color(text-primary)};
+        // --ant-tabs-tab-hover-text: #{color(text-primary)};
     }
 
     .spec-tabs {

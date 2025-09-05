@@ -1,0 +1,84 @@
+/* =====================================================
+  Products Section - Social Proof CRO Optimized
+ ================================================================ */
+
+.products-section {
+    padding: $spacing-20 0;
+    background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, color(accent-primary), transparent);
+    }
+
+    @include respond-to('xl') {
+        padding: $spacing-16 0;
+    }
+
+    @include respond-to('lg') {
+        padding: $spacing-12 0;
+    }
+
+    @include respond-to('md') {
+        padding: $spacing-10 0;
+    }
+
+    @include respond-to('sm') {
+        padding: $spacing-8 0;
+    }
+
+    // Dark theme enhancements
+    [data-theme='dark'] & {
+        background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
+
+        .ant-card {
+            background: color(bg-primary);
+            border: 1px solid color(border-primary);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+// Swiper styles
+.swiper {
+    padding-bottom: 60px;
+}
+
+.swiper-slide {
+    height: auto;
+}
+
+// Swiper Pagination
+.swiper-pagination-bullet {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: color(text-secondary);
+    background: color(surface);
+    border: 1px solid color(border);
+    opacity: 1;
+    border-radius: 50%;
+    transition: all $transition-base;
+
+    @include respond-to('sm') {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: $font-size-xs;
+    }
+}
+
+.swiper-pagination-bullet-active {
+    color: color(accent-contrast);
+    background: color(accent-primary);
+    border-color: color(accent-primary);
+    transform: scale(1.1);
+}

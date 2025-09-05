@@ -1,0 +1,52 @@
+/* =====================================================
+  Product Detail - Page Styles
+  Main Product Detail Page Container
+ ================================================================ */
+
+.product-detail-page {
+    min-height: 100vh;
+    background: color(bg-primary);
+    padding: $spacing-6 0;
+
+    // Hero section
+    &__hero {
+        margin-bottom: $spacing-8;
+    }
+
+    // Error state
+    &__error {
+        text-align: center;
+        padding: $spacing-8;
+        color: color(text-secondary);
+
+        h2 {
+            color: color(text-primary);
+            margin-bottom: $spacing-4;
+        }
+    }
+
+    // Container
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 $spacing-4;
+
+        @include respond-to('sm') {
+            padding: 0 $spacing-6;
+        }
+
+        @include respond-to('lg') {
+            padding: 0 $spacing-8;
+        }
+    }
+
+    // Responsive adjustments
+    @include respond-to('sm') {
+        padding: $spacing-4 0;
+    }
+
+    // Dark theme support
+    [data-theme='dark'] & {
+        background: color(bg-primary);
+    }
+}

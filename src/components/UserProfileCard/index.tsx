@@ -125,8 +125,8 @@ const UserProfilePage = () => {
     );
 
     const breadcrumbs = [
-        { name: 'Home', link: '/', isActive: true },
-        { name: 'Dashboard', link: '/dashboard', isActive: false },
+        { id: 'home', name: 'Home', link: '/', isActive: true },
+        { id: 'dashboard', name: 'Dashboard', link: '/dashboard', isActive: false },
     ];
 
     return (
@@ -208,7 +208,7 @@ const UserProfilePage = () => {
             </aside>
 
             <main className="flex-1 p-6 md:p-10">
-                <Breadcrumbs list={breadcrumbs} />
+                <Breadcrumbs items={breadcrumbs} />
                 <div className="max-w-3xl mx-auto">
                     <div hidden={activeView !== 'profile'}>
                         <div className="card">

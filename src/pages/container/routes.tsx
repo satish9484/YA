@@ -22,8 +22,9 @@ const SubwoofersPage = lazy(() => import('@/pages/Products/Subwoofers'));
 const PowerAmplifiersPage = lazy(() => import('@/pages/Products/Amplifiers'));
 const SignalProcessorsPage = lazy(() => import('@/pages/Products/Processors'));
 
-// Product detail page
-const ProductDetailPage = lazy(() => import('@/pages/Products/ProductCatalog/ProductDetailDemo'));
+// Product detail pages
+const ProductDetailPage = lazy(() => import('@/pages/Products/ProductCatalog/ProductDetail'));
+const LineArrayProductDetailPage = lazy(() => import('@/pages/Products/LineArray/ProductDetail'));
 
 // Application pages
 const LiveSoundPage = lazy(() => import('@/pages/Applications/LiveSound'));
@@ -57,8 +58,12 @@ const Routing: React.FC = () => {
                 <Route path="/products/amplifiers" element={<PowerAmplifiersPage />} />
                 <Route path="/products/processors" element={<SignalProcessorsPage />} />
 
-                {/* Product detail route */}
+                {/* Product detail routes */}
                 <Route path="/products/toa-hx5b" element={<ProductDetailPage />} />
+                <Route
+                    path="/products/line-array/:productId"
+                    element={<LineArrayProductDetailPage />}
+                />
 
                 {/* Application routes */}
                 <Route path="/applications/live-sound" element={<LiveSoundPage />} />
@@ -77,14 +82,14 @@ const Routing: React.FC = () => {
             </Route>
 
             {/* Protected Routes: All routes nested under AuthGuard require authentication */}
-            <Route path="/" element={<AuthGuard />}>
+            <Route path="/admin" element={<AuthGuard />}>
                 {/* Default redirect: If a user navigates to "/", redirect them to "/dashboard" */}
-                <Route path="/" element={<Navigate replace to="/dashboard" />} />
+                <Route path="/admin" element={<Navigate replace to="/dashboard" />} />
 
                 {/* Dashboard Route: Displays the UserProfileCard */}
                 {/* This route is protected by AuthGuard, meaning if not logged in,
               AuthGuard will redirect to /login before UserProfileCard is rendered. */}
-                <Route path="/dashboard" element={<UserProfileCard />} />
+                <Route path="/admin/dashboard" element={<UserProfileCard />} />
             </Route>
 
             {/* Catch-all Route: Redirects any unmatched paths to the root, which then hits AuthGuard */}

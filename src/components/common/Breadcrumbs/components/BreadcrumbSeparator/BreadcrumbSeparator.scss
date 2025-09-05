@@ -1,0 +1,140 @@
+/* =====================================================
+  Breadcrumb Separator - Component Styles
+  Breadcrumb Separator Component
+ ================================================================ */
+
+.breadcrumb-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color(text-secondary);
+    font-weight: $font-weight-light;
+    user-select: none;
+    transition: all 0.2s ease;
+
+    // Base separator styles
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    // Chevron separator
+    &--chevron {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-lg;
+            margin: 0 $spacing-2;
+        }
+    }
+
+    // Slash separator
+    &--slash {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-base;
+            margin: 0 $spacing-2;
+            font-weight: $font-weight-normal;
+        }
+    }
+
+    // Arrow separator
+    &--arrow {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-base;
+            margin: 0 $spacing-2;
+        }
+    }
+
+    // Dot separator
+    &--dot {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-sm;
+            margin: 0 $spacing-1;
+        }
+    }
+
+    // Size variants
+    &--small {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-xs;
+            margin: 0 $spacing-1;
+        }
+    }
+
+    &--medium {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-base;
+            margin: 0 $spacing-2;
+        }
+    }
+
+    &--large {
+        .breadcrumb-separator__icon {
+            font-size: $font-size-lg;
+            margin: 0 $spacing-3;
+        }
+    }
+
+    // Animated variant
+    &--animated {
+        .breadcrumb-separator__icon {
+            animation: pulse 2s infinite;
+        }
+    }
+
+    // Hover effects
+    &:hover {
+        color: color(text-primary);
+        transform: scale(1.1);
+    }
+
+    // Focus styles
+    &:focus {
+        outline: 2px solid color(accent-primary);
+        outline-offset: 2px;
+        border-radius: $border-radius-sm;
+    }
+
+    // Responsive adjustments
+    @include respond-to('sm') {
+        &--chevron .breadcrumb-separator__icon {
+            font-size: $font-size-base;
+            margin: 0 $spacing-1;
+        }
+
+        &--slash .breadcrumb-separator__icon {
+            font-size: $font-size-sm;
+            margin: 0 $spacing-1;
+        }
+
+        &--arrow .breadcrumb-separator__icon {
+            font-size: $font-size-sm;
+            margin: 0 $spacing-1;
+        }
+
+        &--dot .breadcrumb-separator__icon {
+            font-size: $font-size-xs;
+            margin: 0 $spacing-1;
+        }
+    }
+
+    // Dark theme support
+    [data-theme='dark'] & {
+        color: color(text-secondary);
+
+        &:hover {
+            color: color(text-primary);
+        }
+    }
+}
+
+// Pulse animation for animated variant
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}

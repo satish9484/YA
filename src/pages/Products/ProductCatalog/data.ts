@@ -1,9 +1,11 @@
-import type { ProductCategory } from './types';
+import type { ProductCategory } from './types/product-catalog.types';
 
 export const productCategories: ProductCategory[] = [
     {
         id: '1',
         name: 'Featured Products',
+        description: 'Our most popular and highly-rated audio equipment',
+        totalCount: 6,
         products: [
             {
                 id: '101',
@@ -11,6 +13,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-1.webp',
                 price: 299.99,
                 description: 'High-performance loudspeaker for professional audio applications.',
+                category: 'Speakers',
+                inStock: true,
+                rating: 4.8,
+                reviewCount: 124,
+                tags: ['Professional', 'High-Quality'],
+                specifications: {
+                    Power: '500W RMS',
+                    'Frequency Response': '50Hz - 20kHz',
+                    Impedance: '8 Ohms',
+                },
             },
             {
                 id: '102',
@@ -18,6 +30,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-2.jpg',
                 price: 199.99,
                 description: 'Active studio monitor with a flat frequency response.',
+                category: 'Monitors',
+                inStock: true,
+                rating: 4.6,
+                reviewCount: 89,
+                tags: ['Studio', 'Monitor'],
+                specifications: {
+                    Power: '100W RMS',
+                    'Frequency Response': '45Hz - 22kHz',
+                    Input: 'XLR/TRS',
+                },
             },
             {
                 id: '103',
@@ -25,6 +47,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/empty-speaker-cabinet.jpg',
                 price: 499.99,
                 description: 'All-in-one portable PA system with a built-in mixer.',
+                category: 'PA Systems',
+                inStock: true,
+                rating: 4.9,
+                reviewCount: 67,
+                tags: ['Portable', 'PA System'],
+                specifications: {
+                    Power: '1000W Total',
+                    Channels: '4',
+                    Weight: '15kg',
+                },
             },
             {
                 id: '104',
@@ -32,6 +64,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-1.webp',
                 price: 149.99,
                 description: 'UHF wireless microphone system with a handheld transmitter.',
+                category: 'Microphones',
+                inStock: true,
+                rating: 4.4,
+                reviewCount: 156,
+                tags: ['Wireless', 'Microphone'],
+                specifications: {
+                    Frequency: 'UHF 470-608MHz',
+                    Range: '100m',
+                    'Battery Life': '8 hours',
+                },
             },
             {
                 id: '105',
@@ -39,6 +81,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-1.webp',
                 price: 99.99,
                 description: 'Professional studio headphones for critical listening.',
+                category: 'Headphones',
+                inStock: false,
+                rating: 4.7,
+                reviewCount: 203,
+                tags: ['Studio', 'Headphones'],
+                specifications: {
+                    Type: 'Over-ear',
+                    Impedance: '32 Ohms',
+                    'Frequency Response': '20Hz - 20kHz',
+                },
             },
             {
                 id: '106',
@@ -46,12 +98,24 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-2.jpg',
                 price: 79.99,
                 description: 'Sound-absorbing panels for room treatment.',
+                category: 'Acoustics',
+                inStock: true,
+                rating: 4.5,
+                reviewCount: 45,
+                tags: ['Acoustic', 'Treatment'],
+                specifications: {
+                    Size: '60x60cm',
+                    Thickness: '5cm',
+                    Material: 'Fiberglass',
+                },
             },
         ],
     },
     {
         id: '2',
         name: 'New Arrivals',
+        description: 'Latest additions to our professional audio equipment collection',
+        totalCount: 6,
         products: [
             {
                 id: '201',
@@ -59,6 +123,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-2.jpg',
                 price: 399.99,
                 description: '4-deck DJ controller with integrated audio interface.',
+                category: 'DJ Equipment',
+                inStock: true,
+                rating: 4.8,
+                reviewCount: 78,
+                tags: ['DJ', 'Controller', 'New'],
+                specifications: {
+                    Decks: '4',
+                    'Audio Interface': 'Built-in',
+                    Connectivity: 'USB-C',
+                },
             },
             {
                 id: '202',
@@ -66,6 +140,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/empty-speaker-cabinet.jpg',
                 price: 129.99,
                 description: '2-in/2-out USB audio interface with MIDI I/O.',
+                category: 'Audio Interfaces',
+                inStock: true,
+                rating: 4.6,
+                reviewCount: 134,
+                tags: ['Interface', 'USB', 'MIDI'],
+                specifications: {
+                    Inputs: '2',
+                    Outputs: '2',
+                    MIDI: 'I/O',
+                },
             },
             {
                 id: '203',
@@ -73,6 +157,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-1.webp',
                 price: 699.99,
                 description: '16-channel analog mixing console with digital effects.',
+                category: 'Mixers',
+                inStock: true,
+                rating: 4.9,
+                reviewCount: 56,
+                tags: ['Console', 'Analog', 'Effects'],
+                specifications: {
+                    Channels: '16',
+                    Type: 'Analog',
+                    Effects: 'Digital',
+                },
             },
             {
                 id: '204',
@@ -80,6 +174,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-2.jpg',
                 price: 349.99,
                 description: 'Powered subwoofer with a 12-inch driver.',
+                category: 'Subwoofers',
+                inStock: true,
+                rating: 4.7,
+                reviewCount: 92,
+                tags: ['Subwoofer', 'Powered'],
+                specifications: {
+                    Driver: '12 inch',
+                    Power: '500W',
+                    Frequency: '30Hz - 200Hz',
+                },
             },
             {
                 id: '205',
@@ -87,6 +191,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/empty-speaker-cabinet.jpg',
                 price: 899.99,
                 description: '32-channel digital mixer with motorized faders.',
+                category: 'Mixers',
+                inStock: false,
+                rating: 4.9,
+                reviewCount: 34,
+                tags: ['Digital', 'Mixer', 'Motorized'],
+                specifications: {
+                    Channels: '32',
+                    Type: 'Digital',
+                    Faders: 'Motorized',
+                },
             },
             {
                 id: '206',
@@ -94,6 +208,16 @@ export const productCategories: ProductCategory[] = [
                 image: '/bg/bg-1.webp',
                 price: 49.99,
                 description: 'Active direct box for instruments.',
+                category: 'Accessories',
+                inStock: true,
+                rating: 4.5,
+                reviewCount: 167,
+                tags: ['DI Box', 'Active'],
+                specifications: {
+                    Type: 'Active',
+                    Input: '1/4 inch',
+                    Output: 'XLR',
+                },
             },
         ],
     },

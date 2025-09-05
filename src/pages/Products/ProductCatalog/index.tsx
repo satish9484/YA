@@ -1,132 +1,338 @@
-import type * as React from 'react';
-import { useState } from 'react';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-import { Image, Pagination } from 'antd';
+import { Button, Typography } from 'antd';
 
-import { productCategories } from './data.ts';
-import './styles.scss';
+// Import breadcrumbs
+import Breadcrumbs from '@/components/common/Breadcrumbs';
+import { ExclamationCircleOutlined, ReloadOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
-const PRODUCTS_PER_PAGE = 4;
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+// Import modular components
+import ProductCategory from './components/ProductCategory';
+// Import types and data
+import { productCategories } from './data';
+// Import hooks and utilities
+import { useProductCatalog } from './hooks/useProductCatalog';
+// Import styles
+import './ProductCatalog.scss';
+import type { Product, ProductCatalogProps } from './types/product-catalog.types';
+import { calculateCategoryStats, calculatePagination } from './utils/product-catalog.utils';
 
-const ProductCatalog: React.FC = () => {
-    const [currentPage, setCurrentPage] = useState<{ [key: string]: number }>({});
+const { Title, Paragraph } = Typography;
 
-    const handlePageChange = (categoryId: string, page: number) => {
-        setCurrentPage(prev => ({ ...prev, [categoryId]: page }));
-    };
+/**
+ * ProductCatalog Component
+ *
+ * Main product catalog page with modular architecture
+ * CRO-optimized for product discovery and conversion
+ */
+const ProductCatalog: React.FC<ProductCatalogProps> = ({
+    initialCategories = productCategories,
+    productsPerPage = 4,
+    onProductClick,
+    onAddToCart,
+}) => {
+    // State management
+    const [currentPages, setCurrentPages] = useState<Record<string, number>>({});
 
-    return (
-        <div className="product-category-list py-8">
-            <div className="container">
-                {productCategories.map(category => {
-                    const page = currentPage[category.id] || 1;
-                    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-                    const paginatedProducts = category.products.slice(
-                        startIndex,
-                        startIndex + PRODUCTS_PER_PAGE,
-                    );
+    // Custom hooks
+    const { state, actions } = useProductCatalog(initialCategories);
+    const { breadcrumbs, handleBreadcrumbClick } = useBreadcrumbs();
 
-                    return (
-                        <div key={category.id} className="category-section mb-12">
-                            <h2 className="h2 text-primary mb-6">{category.name}</h2>
-                            <div className="product-grid">
-                                {paginatedProducts.map(product => (
-                                    <div key={product.id} className="card product-card">
-                                        <Image.PreviewGroup
-                                            items={[
-                                                product.image,
-                                                '/bg/bg-2.jpg',
-                                                '/bg/empty-speaker-cabinet.jpg',
-                                                '/bg/bg-1.webp',
-                                            ]}
-                                        >
-                                            <Image
-                                                src={product.image}
-                                                alt={product.name}
-                                                className="product-card__image"
-                                                preview={{
-                                                    mask: (
-                                                        <div className="image-preview-mask">
-                                                            <div className="preview-content">
-                                                                <div className="preview-icon">
-                                                                    <svg
-                                                                        width="24"
-                                                                        height="24"
-                                                                        viewBox="0 0 24 24"
-                                                                        fill="none"
-                                                                    >
-                                                                        <path
-                                                                            d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-                                                                            fill="currentColor"
-                                                                        />
-                                                                    </svg>
-                                                                </div>
-                                                                <span className="preview-text">
-                                                                    View Gallery
-                                                                </span>
-                                                                <div className="preview-count">
-                                                                    4
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ),
-                                                    maskClassName: 'custom-preview-mask',
-                                                    scaleStep: 0.5,
-                                                    minScale: 1,
-                                                    maxScale: 3,
-                                                }}
-                                                placeholder={
-                                                    <div className="image-placeholder">
-                                                        <div className="placeholder-content">
-                                                            <svg
-                                                                width="48"
-                                                                height="48"
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                            >
-                                                                <path
-                                                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
-                                                                    fill="currentColor"
-                                                                />
-                                                            </svg>
-                                                            <span>Loading...</span>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            />
-                                        </Image.PreviewGroup>
-                                        <div className="card-body">
-                                            <h3 className="h5 text-primary mb-2">{product.name}</h3>
-                                            <p className="text-secondary mb-4">
-                                                {product.description}
-                                            </p>
-                                            <div style={{ flexGrow: 1 }} />
-                                            <p className="h6 text-primary font-weight-bold mb-4">
-                                                ${product.price.toFixed(2)}
-                                            </p>
-                                            <button className="btn btn-primary w-100">
-                                                Add to Cart
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <Pagination
-                                current={page}
-                                total={category.products.length}
-                                pageSize={PRODUCTS_PER_PAGE}
-                                onChange={newPage => handlePageChange(category.id, newPage)}
-                                showTotal={(total, range) =>
-                                    `${range[0]}-${range[1]} of ${total} items`
-                                }
-                                className="mt-8 d-flex justify-center"
-                            />
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
+    // Calculate total stats
+    const totalStats = useMemo(() => {
+        const totalProducts = state.categories.reduce(
+            (sum, category) => sum + category.products.length,
+            0,
+        );
+        const totalCategories = state.categories.length;
+        const averagePrice =
+            state.categories.reduce((sum, category) => {
+                const categoryStats = calculateCategoryStats(category);
+                return sum + categoryStats.averagePrice;
+            }, 0) / totalCategories;
+
+        return {
+            totalProducts,
+            totalCategories,
+            averagePrice: Number(averagePrice.toFixed(2)),
+        };
+    }, [state.categories]);
+
+    // Handle page change for a category
+    const handlePageChange = useCallback(
+        (categoryId: string, page: number) => {
+            setCurrentPages(prev => ({ ...prev, [categoryId]: page }));
+            actions.setPageForCategory(categoryId, page);
+        },
+        [actions],
     );
+
+    // Handle product click
+    const handleProductClick = useCallback(
+        (product: Product) => {
+            if (onProductClick) {
+                onProductClick(product);
+            } else {
+                // Default behavior - could navigate to product detail page
+                console.log('Product clicked:', product);
+            }
+        },
+        [onProductClick],
+    );
+
+    // Handle add to cart
+    const handleAddToCart = useCallback(
+        (product: Product) => {
+            if (onAddToCart) {
+                onAddToCart(product);
+            } else {
+                // Default behavior - could show success message
+                console.log('Product added to cart:', product);
+            }
+        },
+        [onAddToCart],
+    );
+
+    // Handle category click
+    const handleCategoryClick = useCallback((categoryId: string) => {
+        // Could navigate to category page or expand category
+        console.log('Category clicked:', categoryId);
+    }, []);
+
+    // Handle retry
+    const handleRetry = useCallback(() => {
+        actions.loadCategories();
+    }, [actions]);
+
+    // Render loading state
+    const renderLoadingState = useCallback(
+        () => (
+            <div className="product-catalog product-catalog--loading">
+                <div className="product-catalog__container">
+                    {/* Breadcrumbs */}
+                    <Breadcrumbs
+                        items={breadcrumbs}
+                        onItemClick={handleBreadcrumbClick}
+                        variant="default"
+                        separator="chevron"
+                    />
+
+                    <div className="product-catalog__header">
+                        <div className="product-catalog__header-content">
+                            <Title level={1} className="product-catalog__header-title">
+                                Loading Products...
+                            </Title>
+                            <Paragraph className="product-catalog__header-description">
+                                Please wait while we load our amazing products for you.
+                            </Paragraph>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ),
+        [breadcrumbs, handleBreadcrumbClick],
+    );
+
+    // Render error state
+    const renderErrorState = useCallback(
+        () => (
+            <div className="product-catalog product-catalog--error">
+                <div className="product-catalog__container">
+                    {/* Breadcrumbs */}
+                    <Breadcrumbs
+                        items={breadcrumbs}
+                        onItemClick={handleBreadcrumbClick}
+                        variant="default"
+                        separator="chevron"
+                    />
+
+                    <div className="product-catalog__header">
+                        <div className="product-catalog__header-content">
+                            <Title level={1} className="product-catalog__header-title">
+                                Our Product Catalog
+                            </Title>
+                            <Paragraph className="product-catalog__header-description">
+                                Discover our range of professional audio equipment
+                            </Paragraph>
+                        </div>
+                    </div>
+
+                    <div className="product-catalog__error">
+                        <ExclamationCircleOutlined className="product-catalog__error-icon" />
+                        <Title level={3} className="product-catalog__error-title">
+                            Failed to Load Products
+                        </Title>
+                        <Paragraph className="product-catalog__error-description">
+                            We&apos;re having trouble loading our products. Please try again.
+                        </Paragraph>
+                        <Button
+                            type="primary"
+                            icon={<ReloadOutlined />}
+                            onClick={handleRetry}
+                            className="product-catalog__error-retry"
+                        >
+                            Try Again
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        ),
+        [breadcrumbs, handleBreadcrumbClick, handleRetry],
+    );
+
+    // Render empty state
+    const renderEmptyState = useCallback(
+        () => (
+            <div className="product-catalog product-catalog--empty">
+                <div className="product-catalog__container">
+                    {/* Breadcrumbs */}
+                    <Breadcrumbs
+                        items={breadcrumbs}
+                        onItemClick={handleBreadcrumbClick}
+                        variant="default"
+                        separator="chevron"
+                    />
+
+                    <div className="product-catalog__header">
+                        <div className="product-catalog__header-content">
+                            <Title level={1} className="product-catalog__header-title">
+                                Our Product Catalog
+                            </Title>
+                            <Paragraph className="product-catalog__header-description">
+                                Discover our range of professional audio equipment
+                            </Paragraph>
+                        </div>
+                    </div>
+
+                    <div className="product-catalog__empty">
+                        <ShoppingCartOutlined className="product-catalog__empty-icon" />
+                        <Title level={3} className="product-catalog__empty-title">
+                            No Products Available
+                        </Title>
+                        <Paragraph className="product-catalog__empty-description">
+                            We&apos;re currently updating our product catalog. Please check back
+                            soon!
+                        </Paragraph>
+                    </div>
+                </div>
+            </div>
+        ),
+        [breadcrumbs, handleBreadcrumbClick],
+    );
+
+    // Render main content
+    const renderMainContent = useCallback(
+        () => (
+            <div className="product-catalog">
+                <div className="product-catalog__container">
+                    {/* Breadcrumbs */}
+                    <Breadcrumbs
+                        items={breadcrumbs}
+                        onItemClick={handleBreadcrumbClick}
+                        variant="default"
+                        separator="chevron"
+                    />
+
+                    {/* Header */}
+                    <div className="product-catalog__header">
+                        <div className="product-catalog__header-content">
+                            <Title level={1} className="product-catalog__header-title">
+                                Our Product Catalog
+                            </Title>
+                            <Paragraph className="product-catalog__header-description">
+                                Discover our range of professional audio equipment designed for
+                                exceptional performance
+                            </Paragraph>
+
+                            {/* Stats */}
+                            <div className="product-catalog__header-stats">
+                                <div className="product-catalog__header-stat">
+                                    <span className="product-catalog__header-stat-value">
+                                        {totalStats.totalProducts}
+                                    </span>
+                                    <span className="product-catalog__header-stat-label">
+                                        Products
+                                    </span>
+                                </div>
+                                <div className="product-catalog__header-stat">
+                                    <span className="product-catalog__header-stat-value">
+                                        {totalStats.totalCategories}
+                                    </span>
+                                    <span className="product-catalog__header-stat-label">
+                                        Categories
+                                    </span>
+                                </div>
+                                <div className="product-catalog__header-stat">
+                                    <span className="product-catalog__header-stat-value">
+                                        ${totalStats.averagePrice}
+                                    </span>
+                                    <span className="product-catalog__header-stat-label">
+                                        Avg Price
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Categories */}
+                    <div className="product-catalog__categories">
+                        {state.categories.map(category => {
+                            const currentPage = currentPages[category.id] || 1;
+                            const pagination = calculatePagination(
+                                category.products.length,
+                                currentPage,
+                                productsPerPage,
+                            );
+
+                            return (
+                                <ProductCategory
+                                    key={category.id}
+                                    category={category}
+                                    pagination={pagination}
+                                    onPageChange={page => handlePageChange(category.id, page)}
+                                    onProductClick={handleProductClick}
+                                    onAddToCart={handleAddToCart}
+                                    onCategoryClick={handleCategoryClick}
+                                    variant="default"
+                                    showCategoryDescription={true}
+                                    productsPerRow={4}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        ),
+        [
+            state.categories,
+            currentPages,
+            productsPerPage,
+            totalStats,
+            breadcrumbs,
+            handlePageChange,
+            handleProductClick,
+            handleAddToCart,
+            handleCategoryClick,
+            handleBreadcrumbClick,
+        ],
+    );
+
+    // Determine what to render based on state
+    if (state.loading) {
+        return renderLoadingState();
+    }
+
+    if (state.error) {
+        return renderErrorState();
+    }
+
+    if (state.categories.length === 0) {
+        return renderEmptyState();
+    }
+
+    return renderMainContent();
 };
 
 export default ProductCatalog;

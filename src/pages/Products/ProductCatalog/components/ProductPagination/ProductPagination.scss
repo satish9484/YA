@@ -1,0 +1,255 @@
+/* =====================================================
+  Product Pagination - Component Styles
+  CRO-Optimized for User Experience
+ ================================================================ */
+
+.product-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: $spacing-8;
+    padding: $spacing-4 0;
+
+    // Size variants
+    &--small {
+        .ant-pagination {
+            .ant-pagination-item,
+            .ant-pagination-prev,
+            .ant-pagination-next {
+                min-width: 24px;
+                height: 24px;
+                line-height: 22px;
+                font-size: $font-size-xs;
+            }
+        }
+    }
+
+    &--large {
+        .ant-pagination {
+            .ant-pagination-item,
+            .ant-pagination-prev,
+            .ant-pagination-next {
+                min-width: 40px;
+                height: 40px;
+                line-height: 38px;
+                font-size: $font-size-lg;
+            }
+        }
+    }
+
+    // Custom pagination styles
+    .ant-pagination {
+        .ant-pagination-item {
+            border: 2px solid color(border);
+            border-radius: $border-radius-md;
+            margin: 0 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &:hover {
+                border-color: color(accent-primary);
+                color: color(accent-primary);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(color(accent-primary), 0.2);
+            }
+
+            &-active {
+                background: linear-gradient(
+                    135deg,
+                    color(accent-primary) 0%,
+                    color(primary-600) 100%
+                );
+                border-color: color(accent-primary);
+                color: color(accent-contrast);
+                font-weight: $font-weight-semibold;
+
+                &:hover {
+                    background: linear-gradient(
+                        135deg,
+                        color(primary-600) 0%,
+                        color(accent-primary) 100%
+                    );
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(color(accent-primary), 0.3);
+                }
+            }
+        }
+
+        .ant-pagination-prev,
+        .ant-pagination-next {
+            border: 2px solid color(border);
+            border-radius: $border-radius-md;
+            margin: 0 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &:hover {
+                border-color: color(accent-primary);
+                color: color(accent-primary);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(color(accent-primary), 0.2);
+            }
+
+            &:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+
+                &:hover {
+                    border-color: color(border);
+                    color: color(text-disabled);
+                }
+            }
+        }
+
+        .ant-pagination-jump-prev,
+        .ant-pagination-jump-next {
+            border: 2px solid transparent;
+            border-radius: $border-radius-md;
+            margin: 0 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &:hover {
+                border-color: color(accent-primary);
+                color: color(accent-primary);
+                transform: translateY(-1px);
+            }
+        }
+
+        .ant-pagination-options {
+            margin-left: $spacing-4;
+
+            .ant-pagination-options-size-changer {
+                .ant-select {
+                    .ant-select-selector {
+                        border: 2px solid color(border);
+                        border-radius: $border-radius-md;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                        &:hover {
+                            border-color: color(accent-primary);
+                        }
+                    }
+
+                    &.ant-select-focused .ant-select-selector {
+                        border-color: color(accent-primary);
+                        box-shadow: 0 0 0 2px rgba(color(accent-primary), 0.2);
+                    }
+                }
+            }
+
+            .ant-pagination-options-quick-jumper {
+                input {
+                    border: 2px solid color(border);
+                    border-radius: $border-radius-md;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                    &:hover {
+                        border-color: color(accent-primary);
+                    }
+
+                    &:focus {
+                        border-color: color(accent-primary);
+                        box-shadow: 0 0 0 2px rgba(color(accent-primary), 0.2);
+                    }
+                }
+            }
+        }
+
+        .ant-pagination-total-text {
+            color: color(text-secondary);
+            font-size: $font-size-sm;
+            margin-right: $spacing-4;
+        }
+    }
+
+    // Responsive design
+    &--responsive {
+        @include respond-to('sm') {
+            .ant-pagination {
+                .ant-pagination-options {
+                    display: none;
+                }
+
+                .ant-pagination-total-text {
+                    display: none;
+                }
+            }
+        }
+
+        @include respond-to('md') {
+            .ant-pagination {
+                .ant-pagination-options {
+                    display: block;
+                }
+
+                .ant-pagination-total-text {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    // Loading state
+    &--loading {
+        .ant-pagination {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    }
+
+    // Error state
+    &--error {
+        .ant-pagination {
+            .ant-pagination-item,
+            .ant-pagination-prev,
+            .ant-pagination-next {
+                border-color: color(error-300);
+                color: color(error-500);
+            }
+        }
+    }
+
+    // Dark theme support
+    [data-theme='dark'] & {
+        .ant-pagination {
+            .ant-pagination-item {
+                background: color(bg-primary);
+                border-color: color(border-primary);
+                color: color(text-primary);
+
+                &:hover {
+                    background: color(bg-secondary);
+                    border-color: color(accent-primary);
+                    color: color(accent-primary);
+                }
+
+                &-active {
+                    background: linear-gradient(
+                        135deg,
+                        color(accent-primary) 0%,
+                        color(primary-600) 100%
+                    );
+                    border-color: color(accent-primary);
+                    color: color(accent-contrast);
+                }
+            }
+
+            .ant-pagination-prev,
+            .ant-pagination-next {
+                background: color(bg-primary);
+                border-color: color(border-primary);
+                color: color(text-primary);
+
+                &:hover {
+                    background: color(bg-secondary);
+                    border-color: color(accent-primary);
+                    color: color(accent-primary);
+                }
+            }
+
+            .ant-pagination-total-text {
+                color: color(text-secondary);
+            }
+        }
+    }
+}
