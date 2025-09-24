@@ -18,7 +18,7 @@ import {
     getContextImages,
     getMainImages,
 } from '../../utils/product-detail.utils';
-import './ProductImageGallery.scss';
+import './ProductImageGallery.module.scss';
 import type { ProductImageGalleryComponentProps } from './ProductImageGallery.types';
 
 const ProductImageGallery: React.FC<ProductImageGalleryComponentProps> = ({

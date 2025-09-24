@@ -1,14 +1,12 @@
 import type React from 'react';
-import { useCallback, useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 
-// Import breadcrumbs
-import Breadcrumbs from '@/components/common/Breadcrumbs';
-import type { BreadcrumbItem } from '@/components/common/Breadcrumbs/types/breadcrumbs.types';
+// Import new simplified breadcrumbs
+import Breadcrumbs, { useBreadcrumbs } from '@/components/common/Breadcrumbs';
 
 // Import ProductDetail component
 import ProductDetail from '../ProductCatalog/ProductDetail';
-import { generateProductDetailBreadcrumbs } from '../utils/breadcrumb.utils';
 // Import LineArray data
 import { lineArrayProducts } from './data';
 
@@ -17,7 +15,7 @@ import { lineArrayProducts } from './data';
 
 const LineArrayProductDetail: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
-    const navigate = useNavigate();
+    const { createProductBreadcrumbs } = useBreadcrumbs();
 
     // Find the product in our LineArray data
     const product = useMemo(() => {
@@ -36,30 +34,10 @@ const LineArrayProductDetail: React.FC = () => {
     }, [productId]);
 
     // Generate breadcrumbs for product detail page
-    const breadcrumbs = useMemo((): BreadcrumbItem[] => {
+    const breadcrumbs = useMemo(() => {
         if (!product) return [];
-        return generateProductDetailBreadcrumbs(
-            product.id,
-            product.name,
-            'line-array',
-            'Line Array Speakers',
-        );
-    }, [product]);
-
-    // Handle breadcrumb click
-    const handleBreadcrumbClick = useCallback(
-        (item: BreadcrumbItem, _index: number) => {
-            if (item.id === 'home') {
-                navigate('/');
-            } else if (item.id === 'products') {
-                navigate('/products');
-            } else if (item.id === 'line-array') {
-                navigate('/products/line-array');
-            }
-            // For current product, do nothing
-        },
-        [navigate],
-    );
+        return createProductBreadcrumbs(product.name, product.id, 'line-array');
+    }, [product, createProductBreadcrumbs]);
 
     // For now, we'll use the detailed product data for TOA HX-5B
     // In a real app, this would be fetched based on productId
@@ -91,15 +69,15 @@ const LineArrayProductDetail: React.FC = () => {
     if (!product) {
         return (
             <div className="line-array-product-detail">
-                <div className="container">
-                    {/* Breadcrumbs */}
-                    <Breadcrumbs
-                        items={breadcrumbs}
-                        onItemClick={handleBreadcrumbClick}
-                        variant="default"
-                        separator="chevron"
-                    />
+                {/* Breadcrumbs */}
+                <Breadcrumbs
+                    items={breadcrumbs}
+                    showHome={false}
+                    separator="→"
+                    className="line-array-product-detail-breadcrumbs"
+                />
 
+                <div className="container">
                     <div className="product-detail__error">
                         <h2>Product not found</h2>
                         <p>The requested LineArray product could not be found.</p>
@@ -112,14 +90,12 @@ const LineArrayProductDetail: React.FC = () => {
     return (
         <div className="line-array-product-detail">
             {/* Breadcrumbs */}
-            <div className="container">
-                <Breadcrumbs
-                    items={breadcrumbs}
-                    onItemClick={handleBreadcrumbClick}
-                    variant="default"
-                    separator="chevron"
-                />
-            </div>
+            <Breadcrumbs
+                items={breadcrumbs}
+                showHome={false}
+                separator="→"
+                className="line-array-product-detail-breadcrumbs"
+            />
 
             {/* Product Detail */}
             <ProductDetail />

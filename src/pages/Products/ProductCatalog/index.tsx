@@ -3,11 +3,10 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { Button, Typography } from 'antd';
 
-// Import breadcrumbs
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+// Breadcrumbs are now handled by Breadcrumbs component
 import { ExclamationCircleOutlined, ReloadOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
-import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+// Old useBreadcrumbs hook removed - using Breadcrumbs now
 // Import modular components
 import ProductCategory from './components/ProductCategory';
 // Import types and data
@@ -15,7 +14,7 @@ import { productCategories } from './data';
 // Import hooks and utilities
 import { useProductCatalog } from './hooks/useProductCatalog';
 // Import styles
-import './ProductCatalog.scss';
+import styles from './ProductCatalog.module.scss';
 import type { Product, ProductCatalogProps } from './types/product-catalog.types';
 import { calculateCategoryStats, calculatePagination } from './utils/product-catalog.utils';
 
@@ -32,13 +31,13 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     productsPerPage = 4,
     onProductClick,
     onAddToCart,
+    // showBreadcrumbs = true,
 }) => {
     // State management
     const [currentPages, setCurrentPages] = useState<Record<string, number>>({});
 
     // Custom hooks
     const { state, actions } = useProductCatalog(initialCategories);
-    const { breadcrumbs, handleBreadcrumbClick } = useBreadcrumbs();
 
     // Calculate total stats
     const totalStats = useMemo(() => {
@@ -109,22 +108,16 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     // Render loading state
     const renderLoadingState = useCallback(
         () => (
-            <div className="product-catalog product-catalog--loading">
-                <div className="product-catalog__container">
-                    {/* Breadcrumbs */}
-                    <Breadcrumbs
-                        items={breadcrumbs}
-                        onItemClick={handleBreadcrumbClick}
-                        variant="default"
-                        separator="chevron"
-                    />
+            <div className={`${styles['product-catalog']} ${styles['product-catalog--loading']}`}>
+                <div className="container">
+                    {/* Breadcrumbs are now handled by parent components using Breadcrumbs */}
 
-                    <div className="product-catalog__header">
-                        <div className="product-catalog__header-content">
-                            <Title level={1} className="product-catalog__header-title">
+                    <div className={styles['product-catalog__header']}>
+                        <div className={styles['product-catalog__header-content']}>
+                            <Title level={1} className={styles['product-catalog__header-title']}>
                                 Loading Products...
                             </Title>
-                            <Paragraph className="product-catalog__header-description">
+                            <Paragraph className={styles['product-catalog__header-description']}>
                                 Please wait while we load our amazing products for you.
                             </Paragraph>
                         </div>
@@ -132,46 +125,42 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 </div>
             </div>
         ),
-        [breadcrumbs, handleBreadcrumbClick],
+        [],
     );
 
     // Render error state
     const renderErrorState = useCallback(
         () => (
-            <div className="product-catalog product-catalog--error">
-                <div className="product-catalog__container">
-                    {/* Breadcrumbs */}
-                    <Breadcrumbs
-                        items={breadcrumbs}
-                        onItemClick={handleBreadcrumbClick}
-                        variant="default"
-                        separator="chevron"
-                    />
+            <div className={`${styles['product-catalog']} ${styles['product-catalog--error']}`}>
+                <div className="container">
+                    {/* Breadcrumbs are now handled by parent components using Breadcrumbs */}
 
-                    <div className="product-catalog__header">
-                        <div className="product-catalog__header-content">
-                            <Title level={1} className="product-catalog__header-title">
+                    <div className={styles['product-catalog__header']}>
+                        <div className={styles['product-catalog__header-content']}>
+                            <Title level={1} className={styles['product-catalog__header-title']}>
                                 Our Product Catalog
                             </Title>
-                            <Paragraph className="product-catalog__header-description">
+                            <Paragraph className={styles['product-catalog__header-description']}>
                                 Discover our range of professional audio equipment
                             </Paragraph>
                         </div>
                     </div>
 
-                    <div className="product-catalog__error">
-                        <ExclamationCircleOutlined className="product-catalog__error-icon" />
-                        <Title level={3} className="product-catalog__error-title">
+                    <div className={styles['product-catalog__error']}>
+                        <ExclamationCircleOutlined
+                            className={styles['product-catalog__error-icon']}
+                        />
+                        <Title level={3} className={styles['product-catalog__error-title']}>
                             Failed to Load Products
                         </Title>
-                        <Paragraph className="product-catalog__error-description">
+                        <Paragraph className={styles['product-catalog__error-description']}>
                             We&apos;re having trouble loading our products. Please try again.
                         </Paragraph>
                         <Button
                             type="primary"
                             icon={<ReloadOutlined />}
                             onClick={handleRetry}
-                            className="product-catalog__error-retry"
+                            className={styles['product-catalog__error-retry']}
                         >
                             Try Again
                         </Button>
@@ -179,39 +168,33 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 </div>
             </div>
         ),
-        [breadcrumbs, handleBreadcrumbClick, handleRetry],
+        [handleRetry],
     );
 
     // Render empty state
     const renderEmptyState = useCallback(
         () => (
-            <div className="product-catalog product-catalog--empty">
-                <div className="product-catalog__container">
-                    {/* Breadcrumbs */}
-                    <Breadcrumbs
-                        items={breadcrumbs}
-                        onItemClick={handleBreadcrumbClick}
-                        variant="default"
-                        separator="chevron"
-                    />
+            <div className={`${styles['product-catalog']} ${styles['product-catalog--empty']}`}>
+                <div className="container">
+                    {/* Breadcrumbs are now handled by parent components using Breadcrumbs */}
 
-                    <div className="product-catalog__header">
-                        <div className="product-catalog__header-content">
-                            <Title level={1} className="product-catalog__header-title">
+                    <div className={styles['product-catalog__header']}>
+                        <div className={styles['product-catalog__header-content']}>
+                            <Title level={1} className={styles['product-catalog__header-title']}>
                                 Our Product Catalog
                             </Title>
-                            <Paragraph className="product-catalog__header-description">
+                            <Paragraph className={styles['product-catalog__header-description']}>
                                 Discover our range of professional audio equipment
                             </Paragraph>
                         </div>
                     </div>
 
-                    <div className="product-catalog__empty">
-                        <ShoppingCartOutlined className="product-catalog__empty-icon" />
-                        <Title level={3} className="product-catalog__empty-title">
+                    <div className={styles['product-catalog__empty']}>
+                        <ShoppingCartOutlined className={styles['product-catalog__empty-icon']} />
+                        <Title level={3} className={styles['product-catalog__empty-title']}>
                             No Products Available
                         </Title>
-                        <Paragraph className="product-catalog__empty-description">
+                        <Paragraph className={styles['product-catalog__empty-description']}>
                             We&apos;re currently updating our product catalog. Please check back
                             soon!
                         </Paragraph>
@@ -219,56 +202,50 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 </div>
             </div>
         ),
-        [breadcrumbs, handleBreadcrumbClick],
+        [],
     );
 
     // Render main content
     const renderMainContent = useCallback(
         () => (
-            <div className="product-catalog">
-                <div className="product-catalog__container">
-                    {/* Breadcrumbs */}
-                    <Breadcrumbs
-                        items={breadcrumbs}
-                        onItemClick={handleBreadcrumbClick}
-                        variant="default"
-                        separator="chevron"
-                    />
+            <div className={styles['product-catalog']}>
+                <div className="container">
+                    {/* Breadcrumbs are now handled by parent components using Breadcrumbs */}
 
                     {/* Header */}
-                    <div className="product-catalog__header">
-                        <div className="product-catalog__header-content">
-                            <Title level={1} className="product-catalog__header-title">
+                    <div className={styles['product-catalog__header']}>
+                        <div className={styles['product-catalog__header-content']}>
+                            <Title level={1} className={styles['product-catalog__header-title']}>
                                 Our Product Catalog
                             </Title>
-                            <Paragraph className="product-catalog__header-description">
+                            <Paragraph className={styles['product-catalog__header-description']}>
                                 Discover our range of professional audio equipment designed for
                                 exceptional performance
                             </Paragraph>
 
                             {/* Stats */}
-                            <div className="product-catalog__header-stats">
-                                <div className="product-catalog__header-stat">
-                                    <span className="product-catalog__header-stat-value">
+                            <div className={styles['product-catalog__header-stats']}>
+                                <div className={styles['product-catalog__header-stat']}>
+                                    <span className={styles['product-catalog__header-stat-value']}>
                                         {totalStats.totalProducts}
                                     </span>
-                                    <span className="product-catalog__header-stat-label">
+                                    <span className={styles['product-catalog__header-stat-label']}>
                                         Products
                                     </span>
                                 </div>
-                                <div className="product-catalog__header-stat">
-                                    <span className="product-catalog__header-stat-value">
+                                <div className={styles['product-catalog__header-stat']}>
+                                    <span className={styles['product-catalog__header-stat-value']}>
                                         {totalStats.totalCategories}
                                     </span>
-                                    <span className="product-catalog__header-stat-label">
+                                    <span className={styles['product-catalog__header-stat-label']}>
                                         Categories
                                     </span>
                                 </div>
-                                <div className="product-catalog__header-stat">
-                                    <span className="product-catalog__header-stat-value">
+                                <div className={styles['product-catalog__header-stat']}>
+                                    <span className={styles['product-catalog__header-stat-value']}>
                                         ${totalStats.averagePrice}
                                     </span>
-                                    <span className="product-catalog__header-stat-label">
+                                    <span className={styles['product-catalog__header-stat-label']}>
                                         Avg Price
                                     </span>
                                 </div>
@@ -277,7 +254,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     </div>
 
                     {/* Categories */}
-                    <div className="product-catalog__categories">
+                    <div className={styles['product-catalog__categories']}>
                         {state.categories.map(category => {
                             const currentPage = currentPages[category.id] || 1;
                             const pagination = calculatePagination(
@@ -310,12 +287,10 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
             currentPages,
             productsPerPage,
             totalStats,
-            breadcrumbs,
             handlePageChange,
             handleProductClick,
             handleAddToCart,
             handleCategoryClick,
-            handleBreadcrumbClick,
         ],
     );
 

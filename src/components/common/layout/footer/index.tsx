@@ -16,127 +16,95 @@ import {
     TwitterOutlined,
 } from '@ant-design/icons';
 
-import './footer.scss';
+import styles from './footer.module.scss';
 
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;
 
-// Address History Interface
-// interface AddressEntry {
-//     dateFrom: string;
-//     dateTo: string;
-//     address: string[];
-// }
-
-// // Sample Address History Data
-// // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// const addressHistory: AddressEntry[] = [
-//     {
-//         dateFrom: '14/02/2024',
-//         dateTo: 'Present',
-//         address: ['42 Strelden Ave, Oakleigh East, 3166, VIC, Australia'],
-//     },
-//     {
-//         dateFrom: '16/05/2023',
-//         dateTo: '13/02/2024',
-//         address: ['20 Browns Ct, Clayton, 3168, VIC, Australia'],
-//     },
-//     {
-//         dateFrom: '20/01/2008',
-//         dateTo: '15/02/2023',
-//         address: ['34, OLD GAMTAL AT SANDHAVAYA, TA KOTDA SANGANI, RAJKOT, GUJARAT,INDIA'],
-//     },
-// ];
-
 const PageFooter = () => {
     return (
-        <Footer className="page-footer">
-            <div className="container">
-                <div className="d-grid md:grid-cols-3 gap-8">
+        <Footer className={styles['page-footer']}>
+            <div className={styles.container}>
+                <div className={styles['footer-grid']}>
                     {/* Column 1: Brand and Contact Info */}
-                    <div className="d-flex flex-column gap-4">
+                    <div className={styles['footer-column']}>
                         <Logo
                             variant="image"
-                            className="footer-logo"
+                            className={styles['footer-logo']}
                             width={150}
                             height={60}
                             showBackground={true}
                         />
-                        <Text>{APP_DESCRIPTION}</Text>
-                        <div className="d-flex flex-column gap-2 mar-top-4">
-                            <Link
-                                href="tel:+1234567890"
-                                className="footer-link d-flex items-center gap-2"
-                            >
+                        <Text className={styles['footer-description']}>{APP_DESCRIPTION}</Text>
+                        <div className={styles['contact-info']}>
+                            <Link href="tel:+1234567890" className={styles['footer-link']}>
                                 <PhoneOutlined />
-                                <span className="mar-left-2">+1 (234) 567-890</span>
+                                <span>+1 (234) 567-890</span>
                             </Link>
                             <Link
                                 href="mailto:info@yashviaudio.com"
-                                className="footer-link d-flex items-center gap-2"
+                                className={styles['footer-link']}
                             >
                                 <MailOutlined />
-                                <span className="mar-left-2">info@outburstacoustic.com</span>
+                                <span>info@outburstacoustic.com</span>
                             </Link>
-                            <div className="footer-link d-flex items-center gap-2">
+                            <div className={styles['contact-info-item']}>
                                 <EnvironmentOutlined style={{ fontSize: '1.2rem' }} />
-                                <span className="mar-left-2">
-                                    Unit 38, 25-37 Huntingdale Rd, Burwood, VIC 3125
-                                </span>
+                                <span>Unit 38, 25-37 Huntingdale Rd, Burwood, VIC 3125</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Column 2: Quick Links */}
-                    <div className="d-flex flex-column gap-4">
-                        <Title level={4} className="footer-title">
+                    <div className={styles['footer-column']}>
+                        <Title level={4} className={styles['footer-title']}>
                             Quick Links
                         </Title>
-                        <div className="d-flex flex-column gap-3">
-                            <Link href="/" className="footer-link">
+                        <div className={styles['quick-links']}>
+                            <Link href="/" className={styles['footer-link']}>
                                 <HomeOutlined />
-                                <span className="mar-left-2">Home</span>
+                                <span>Home</span>
                             </Link>
-                            <Link href="/about" className="footer-link">
+                            <Link href="/about" className={styles['footer-link']}>
                                 <QuestionCircleOutlined />
-                                <span className="mar-left-2">About Us</span>
+                                <span>About Us</span>
                             </Link>
-                            <Link href="/terms" className="footer-link">
+                            <Link href="/terms" className={styles['footer-link']}>
                                 <FileTextOutlined />
-                                <span className="mar-left-2">Terms of Service</span>
+                                <span>Terms of Service</span>
                             </Link>
-                            <Link href="/privacy" className="footer-link">
+                            <Link href="/privacy" className={styles['footer-link']}>
                                 <SafetyCertificateOutlined />
-                                <span className="mar-left-2">Privacy Policy</span>
+                                <span>Privacy Policy</span>
                             </Link>
-                            <Link href="/contact" className="footer-link">
+                            <Link href="/contact" className={styles['footer-link']}>
                                 <MessageOutlined />
-                                <span className="mar-left-2">Contact</span>
+                                <span>Contact</span>
                             </Link>
                         </div>
                     </div>
 
                     {/* Column 3: Follow Us */}
-                    <div className="d-flex flex-column gap-4">
-                        <Title level={4} className="footer-title">
+                    <div className={styles['footer-column']}>
+                        <Title level={4} className={styles['footer-title']}>
                             Follow Us
                         </Title>
-                        <div className="d-flex items-center gap-4">
-                            <Link href="#" target="_blank" className="social-icon">
+                        <div className={styles['social-links']}>
+                            <Link href="#" target="_blank" className={styles['social-icon']}>
                                 <FacebookOutlined />
                             </Link>
-                            <Link href="#" target="_blank" className="social-icon">
+                            <Link href="#" target="_blank" className={styles['social-icon']}>
                                 <InstagramOutlined />
                             </Link>
-                            <Link href="#" target="_blank" className="social-icon">
+                            <Link href="#" target="_blank" className={styles['social-icon']}>
                                 <TwitterOutlined />
                             </Link>
                         </div>
                     </div>
                 </div>
 
-                <Divider className="footer-divider" />
-                <div className="footer-bottom text-center">
+                <Divider className={styles['footer-divider']} />
+                <div className={styles['footer-bottom']}>
                     <Text>
                         © {new Date().getFullYear()} {APP_NAME}. All Rights Reserved.
                     </Text>

@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 
 import { Pagination } from 'antd';
 
-import './ProductPagination.scss';
+import './ProductPagination.module.scss';
 import type { ProductPaginationComponentProps } from './ProductPagination.types';
 
 /**

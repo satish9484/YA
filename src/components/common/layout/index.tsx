@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Layout } from 'antd';
 
-import './layout.scss';
+import styles from './layout.module.scss';
 
 const { Content } = Layout;
 
@@ -12,9 +12,9 @@ const PageFooter = lazy(() => import('./footer/index.tsx'));
 
 const App: React.FC = () => {
     return (
-        <Layout className="layout">
+        <Layout className={styles.layout}>
             <PageHeader />
-            <Content className="content">
+            <Content className={styles.content}>
                 <Outlet />
             </Content>
             <PageFooter />

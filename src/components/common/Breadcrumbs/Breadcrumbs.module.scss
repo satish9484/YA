@@ -1,0 +1,245 @@
+// Breadcrumbs Styles
+// Professional styling for Ant Design Breadcrumb integration with theme support
+
+.breadcrumbs {
+    // Mobile-first responsive container
+    @include container();
+    background-color: color(bg-primary) !important;
+
+    // Use responsive padding utility classes
+    padding-top: $spacing-2 !important; // Mobile: 8px top
+    padding-bottom: $spacing-2 !important; // Mobile: 8px bottom
+
+    @include respond-to('sm') {
+        padding-top: $spacing-3 !important; // Small: 12px top
+        padding-bottom: $spacing-3 !important; // Small: 12px bottom
+    }
+
+    @include respond-to('md') {
+        padding-top: $spacing-4 !important; // Medium: 16px top
+        padding-bottom: $spacing-4 !important; // Medium: 16px bottom
+    }
+
+    @include respond-to('lg') {
+        padding-top: $spacing-5 !important; // Large: 20px top
+        padding-bottom: $spacing-5 !important; // Large: 20px bottom
+    }
+
+    // Ant Design Breadcrumb customization
+    :global(.ant-breadcrumb-custom) {
+        // Mobile-first font sizing
+        font-size: 12px;
+        line-height: 1.4;
+
+        // Responsive font sizing
+        @include respond-to('sm') {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @include respond-to('md') {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @include respond-to('lg') {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        // Breadcrumb item styles
+        :global(.ant-breadcrumb-link) {
+            color: color(text-tertiary) !important;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: color(text-primary) !important;
+                text-decoration: none;
+            }
+
+            &:focus {
+                outline: 2px solid color(accent-focus-ring) !important;
+                outline-offset: 2px;
+                border-radius: 4px;
+            }
+        }
+
+        // Last item (current page) styles
+        :global(.ant-breadcrumb-separator + .ant-breadcrumb-link:last-child) {
+            color: color(text-primary) !important;
+            font-weight: 500;
+        }
+
+        // Separator styles
+        :global(.ant-breadcrumb-separator) {
+            color: color(text-tertiary) !important;
+            margin: 0 8px;
+        }
+    }
+
+    // Custom breadcrumb item content
+    .breadcrumb-item-content {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+
+        // Mobile optimizations
+        @include respond-to-max('sm') {
+            gap: 2px;
+        }
+    }
+
+    .breadcrumb-item-icon {
+        display: inline-flex;
+        align-items: center;
+        font-size: 12px;
+
+        // Responsive icon sizing
+        @include respond-to('sm') {
+            font-size: 13px;
+        }
+
+        @include respond-to('md') {
+            font-size: 14px;
+        }
+    }
+
+    .breadcrumb-item-text {
+        display: inline-block;
+
+        // Mobile text optimization
+        @include respond-to-max('sm') {
+            // Ensure text doesn't break awkwardly
+            word-break: break-word;
+            hyphens: auto;
+        }
+    }
+
+    // Link styles
+    .breadcrumb-link {
+        color: color(text-tertiary) !important;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+
+        &:hover {
+            color: color(text-primary) !important;
+            text-decoration: none;
+        }
+
+        &:focus {
+            outline: 2px solid color(accent-focus-ring) !important;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        &:active {
+            color: color(accent-primary) !important;
+        }
+    }
+
+    // Theme support is handled by the color() function
+
+    // Mobile-specific optimizations
+    @include respond-to-max('sm') {
+        // Use utility class values for very small screens
+        padding-top: $spacing-1 !important;
+        padding-bottom: $spacing-1 !important;
+
+        // Optimize for touch targets
+        :global(.ant-breadcrumb-link) {
+            padding-left: $spacing-2 !important;
+            padding-right: $spacing-2 !important;
+            padding-top: $spacing-1 !important;
+            padding-bottom: $spacing-1 !important;
+            min-height: 32px; // Touch target size
+            display: inline-flex;
+            align-items: center;
+        }
+
+        // Smaller separators on mobile
+        :global(.ant-breadcrumb-separator) {
+            margin-left: $spacing-1 !important;
+            margin-right: $spacing-1 !important;
+        }
+
+        // Smaller icons on mobile
+        .breadcrumb-item-icon {
+            font-size: 10px;
+        }
+    }
+
+    // Tablet optimizations
+    @include respond-to('sm') {
+        @media (max-width: 1023px) {
+            // Use utility class values for tablets
+            padding-top: $spacing-3 !important;
+            padding-bottom: $spacing-3 !important;
+
+            // Better touch targets
+            :global(.ant-breadcrumb-link) {
+                padding-left: $spacing-3 !important;
+                padding-right: $spacing-3 !important;
+                padding-top: $spacing-2 !important;
+                padding-bottom: $spacing-2 !important;
+            }
+        }
+    }
+
+    // Compact variant
+    &.compact {
+        padding-top: $spacing-1 !important;
+        padding-bottom: $spacing-1 !important;
+
+        :global(.ant-breadcrumb-custom) {
+            font-size: 12px;
+
+            :global(.ant-breadcrumb-separator) {
+                margin-left: $spacing-1 !important;
+                margin-right: $spacing-1 !important;
+            }
+        }
+    }
+
+    // Detailed variant
+    &.detailed {
+        padding-top: $spacing-3 !important;
+        padding-bottom: $spacing-3 !important;
+
+        :global(.ant-breadcrumb-custom) {
+            font-size: 16px;
+
+            :global(.ant-breadcrumb-separator) {
+                margin-left: $spacing-3 !important;
+                margin-right: $spacing-3 !important;
+            }
+        }
+
+        .breadcrumb-item-icon {
+            font-size: 14px;
+        }
+    }
+}
+
+// Global styles for breadcrumb links (when not using CSS modules)
+:global(.breadcrumbs) {
+    .breadcrumb-link {
+        color: color(text-tertiary) !important;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: color(text-primary) !important;
+            text-decoration: none;
+        }
+
+        &:focus {
+            outline: 2px solid color(accent-focus-ring) !important;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+    }
+}

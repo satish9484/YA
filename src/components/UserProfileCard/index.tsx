@@ -4,8 +4,8 @@ import { useAppSelector } from '@/redux/hooks';
 import { APP_NAME } from '@/utills/constants';
 
 import type { RootState } from '../../redux/store';
-import Breadcrumbs from '../common/Breadcrumbs';
-import './styles.scss';
+import Breadcrumbs, { useBreadcrumbs } from '../common/Breadcrumbs';
+import './styles.module.scss';
 
 // --- (Existing ChangePasswordForm component remains the same) ---
 const ChangePasswordForm = () => {
@@ -87,6 +87,7 @@ const ChangePasswordForm = () => {
 const UserProfilePage = () => {
     const userFromStore = useAppSelector((state: RootState) => state.auth.userData);
     const [activeView, setActiveView] = useState<'profile' | 'security'>('profile');
+    const { createPageBreadcrumbs } = useBreadcrumbs();
 
     const user = {
         id: 'sample-user-id',
@@ -124,10 +125,7 @@ const UserProfilePage = () => {
         </button>
     );
 
-    const breadcrumbs = [
-        { id: 'home', name: 'Home', link: '/', isActive: true },
-        { id: 'dashboard', name: 'Dashboard', link: '/dashboard', isActive: false },
-    ];
+    const breadcrumbs = createPageBreadcrumbs('Dashboard', 'dashboard');
 
     return (
         <div className="d-flex flex-column md:flex-row min-h-screen bg-background text-text-primary header-mr">
@@ -208,7 +206,12 @@ const UserProfilePage = () => {
             </aside>
 
             <main className="flex-1 p-6 md:p-10">
-                <Breadcrumbs items={breadcrumbs} />
+                <Breadcrumbs
+                    items={breadcrumbs}
+                    showHome={false}
+                    separator="→"
+                    className="dashboard-breadcrumbs"
+                />
                 <div className="max-w-3xl mx-auto">
                     <div hidden={activeView !== 'profile'}>
                         <div className="card">

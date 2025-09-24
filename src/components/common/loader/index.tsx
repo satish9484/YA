@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 
-import './style.scss';
+import styles from './style.module.scss';
 
 interface LoadingProps {
     isSuspense?: boolean;
@@ -16,10 +16,10 @@ const Loading: React.FC<LoadingProps> = ({ isSuspense = false, children }: Loadi
     return (
         <>
             {(isSuspense || isLoading) && (
-                <div className="spinner-wrap">
-                    <div className="spinner">
-                        <div className="double-bounce1"></div>
-                        <div className="double-bounce2"></div>
+                <div className={styles['spinner-wrap']}>
+                    <div className={styles.spinner}>
+                        <div className={styles['double-bounce1']}></div>
+                        <div className={styles['double-bounce2']}></div>
                     </div>
                 </div>
             )}

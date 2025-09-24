@@ -25,7 +25,7 @@ import {
     VideoCameraOutlined,
 } from '@ant-design/icons';
 
-import './header.scss';
+import styles from './header.module.scss';
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -36,10 +36,10 @@ const productSubcategories: MenuProps['items'] = [
         key: 'line-array',
         icon: <AudioOutlined />,
         label: (
-            <Link to="/products/line-array" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Line Array Systems</div>
-                    <div className="dropdown-item-desc">
+            <Link to="/products/line-array" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Line Array Systems</div>
+                    <div className={styles['dropdown-item-desc']}>
                         Professional line array speakers for large venues
                     </div>
                 </div>
@@ -50,10 +50,10 @@ const productSubcategories: MenuProps['items'] = [
         key: 'monitors',
         icon: <SoundOutlined />,
         label: (
-            <Link to="/products/monitors" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Stage Monitors</div>
-                    <div className="dropdown-item-desc">
+            <Link to="/products/monitors" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Stage Monitors</div>
+                    <div className={styles['dropdown-item-desc']}>
                         Stage monitoring solutions for performers
                     </div>
                 </div>
@@ -64,10 +64,12 @@ const productSubcategories: MenuProps['items'] = [
         key: 'subwoofers',
         icon: <AudioOutlined />,
         label: (
-            <Link to="/products/subwoofers" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Subwoofers</div>
-                    <div className="dropdown-item-desc">Low-frequency reinforcement systems</div>
+            <Link to="/products/subwoofers" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Subwoofers</div>
+                    <div className={styles['dropdown-item-desc']}>
+                        Low-frequency reinforcement systems
+                    </div>
                 </div>
             </Link>
         ),
@@ -76,10 +78,12 @@ const productSubcategories: MenuProps['items'] = [
         key: 'amplifiers',
         icon: <SettingOutlined />,
         label: (
-            <Link to="/products/amplifiers" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Power Amplifiers</div>
-                    <div className="dropdown-item-desc">High-power amplification solutions</div>
+            <Link to="/products/amplifiers" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Power Amplifiers</div>
+                    <div className={styles['dropdown-item-desc']}>
+                        High-power amplification solutions
+                    </div>
                 </div>
             </Link>
         ),
@@ -88,10 +92,12 @@ const productSubcategories: MenuProps['items'] = [
         key: 'processors',
         icon: <SettingOutlined />,
         label: (
-            <Link to="/products/processors" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Signal Processors</div>
-                    <div className="dropdown-item-desc">Digital signal processing equipment</div>
+            <Link to="/products/processors" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Signal Processors</div>
+                    <div className={styles['dropdown-item-desc']}>
+                        Digital signal processing equipment
+                    </div>
                 </div>
             </Link>
         ),
@@ -104,10 +110,10 @@ const applicationsSubcategories: MenuProps['items'] = [
         key: 'live-sound',
         icon: <VideoCameraOutlined />,
         label: (
-            <Link to="/applications/live-sound" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Live Sound</div>
-                    <div className="dropdown-item-desc">
+            <Link to="/applications/live-sound" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Live Sound</div>
+                    <div className={styles['dropdown-item-desc']}>
                         Concert halls, theaters, and live events
                     </div>
                 </div>
@@ -118,10 +124,10 @@ const applicationsSubcategories: MenuProps['items'] = [
         key: 'corporate',
         icon: <TeamOutlined />,
         label: (
-            <Link to="/applications/corporate" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Corporate Events</div>
-                    <div className="dropdown-item-desc">
+            <Link to="/applications/corporate" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Corporate Events</div>
+                    <div className={styles['dropdown-item-desc']}>
                         Conferences, meetings, and presentations
                     </div>
                 </div>
@@ -132,10 +138,10 @@ const applicationsSubcategories: MenuProps['items'] = [
         key: 'worship',
         icon: <GlobalOutlined />,
         label: (
-            <Link to="/applications/worship" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Worship Spaces</div>
-                    <div className="dropdown-item-desc">
+            <Link to="/applications/worship" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Worship Spaces</div>
+                    <div className={styles['dropdown-item-desc']}>
                         Churches, temples, and religious venues
                     </div>
                 </div>
@@ -146,10 +152,12 @@ const applicationsSubcategories: MenuProps['items'] = [
         key: 'entertainment',
         icon: <TrophyOutlined />,
         label: (
-            <Link to="/applications/entertainment" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Entertainment</div>
-                    <div className="dropdown-item-desc">Clubs, bars, and entertainment venues</div>
+            <Link to="/applications/entertainment" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Entertainment</div>
+                    <div className={styles['dropdown-item-desc']}>
+                        Clubs, bars, and entertainment venues
+                    </div>
                 </div>
             </Link>
         ),
@@ -158,10 +166,10 @@ const applicationsSubcategories: MenuProps['items'] = [
         key: 'outdoor',
         icon: <EnvironmentOutlined />,
         label: (
-            <Link to="/applications/outdoor" className="dropdown-item-content">
-                <div className="dropdown-item-content">
-                    <div className="dropdown-item-title">Outdoor Events</div>
-                    <div className="dropdown-item-desc">
+            <Link to="/applications/outdoor" className={styles['dropdown-item-content']}>
+                <div className={styles['dropdown-item-content']}>
+                    <div className={styles['dropdown-item-title']}>Outdoor Events</div>
+                    <div className={styles['dropdown-item-desc']}>
                         Festivals, outdoor concerts, and events
                     </div>
                 </div>
@@ -217,7 +225,7 @@ const PageHeader: React.FC = () => {
         {
             key: 'home',
             label: (
-                <Link to="/" className="nav-link">
+                <Link to="/" className={styles['nav-link']}>
                     <HomeOutlined />
                     <span>Home</span>
                 </Link>
@@ -230,12 +238,12 @@ const PageHeader: React.FC = () => {
                     menu={{ items: productSubcategories }}
                     placement="bottomLeft"
                     trigger={['hover']}
-                    overlayClassName="header-dropdown"
+                    overlayClassName={styles['header-dropdown']}
                 >
-                    <a className="nav-link dropdown-link">
+                    <a className={`${styles['nav-link']} ${styles['dropdown-link']}`}>
                         <AppstoreOutlined />
                         <span>Products</span>
-                        <DownOutlined className="dropdown-arrow" />
+                        <DownOutlined className={styles['dropdown-arrow']} />
                     </a>
                 </Dropdown>
             ),
@@ -247,12 +255,12 @@ const PageHeader: React.FC = () => {
                     menu={{ items: applicationsSubcategories }}
                     placement="bottomLeft"
                     trigger={['hover']}
-                    overlayClassName="header-dropdown"
+                    overlayClassName={styles['header-dropdown']}
                 >
-                    <a className="nav-link dropdown-link">
+                    <a className={`${styles['nav-link']} ${styles['dropdown-link']}`}>
                         <SettingOutlined />
                         <span>Applications</span>
-                        <DownOutlined className="dropdown-arrow" />
+                        <DownOutlined className={styles['dropdown-arrow']} />
                     </a>
                 </Dropdown>
             ),
@@ -260,7 +268,7 @@ const PageHeader: React.FC = () => {
         {
             key: 'about',
             label: (
-                <Link to="/about" className="nav-link">
+                <Link to="/about" className={styles['nav-link']}>
                     <UserOutlined />
                     <span>About Us</span>
                 </Link>
@@ -269,7 +277,7 @@ const PageHeader: React.FC = () => {
         {
             key: 'contact',
             label: (
-                <Link to="/contact" className="nav-link">
+                <Link to="/contact" className={styles['nav-link']}>
                     <PhoneOutlined />
                     <span>Contact</span>
                 </Link>
@@ -362,19 +370,19 @@ const PageHeader: React.FC = () => {
 
     return (
         <>
-            <Header className="header">
-                <div className="header-container">
+            <Header className={styles.header}>
+                <div className={styles['header-container']}>
                     {/* Logo */}
-                    <div className="header-logo">
+                    <div className={styles['header-logo']}>
                         <Link to="/">
                             <Logo width={120} height={40} variant="image" showBackground={true} />
                         </Link>
                     </div>
 
                     {/* Desktop Navigation */}
-                    <nav className="header-nav desktop-nav">
+                    <nav className={`${styles['header-nav']} ${styles['desktop-nav']}`}>
                         {desktopMenuItems.map(item => (
-                            <div key={item.key} className="nav-item">
+                            <div key={item.key} className={styles['nav-item']}>
                                 {item.label}
                             </div>
                         ))}
@@ -389,7 +397,7 @@ const PageHeader: React.FC = () => {
                         }}
                         trigger={['click']}
                     >
-                        <Button type="text" className="theme-toggle-btn">
+                        <Button type="text" className={styles['theme-toggle-btn']}>
                             {theme === 'light' && <SunOutlined />}
                             {theme === 'dark' && <MoonOutlined />}
                             {theme === 'system' && <SettingOutlined />}
@@ -401,7 +409,7 @@ const PageHeader: React.FC = () => {
                     <Button
                         type="text"
                         icon={<MenuOutlined />}
-                        className="mobile-menu-btn"
+                        className={styles['mobile-menu-btn']}
                         onClick={toggleMobileMenu}
                         aria-label="Toggle mobile menu"
                     />
@@ -411,7 +419,7 @@ const PageHeader: React.FC = () => {
             {/* Mobile Menu Drawer */}
             <Drawer
                 title={
-                    <div className="mobile-drawer-header">
+                    <div className={styles['mobile-drawer-header']}>
                         <Text strong>Menu</Text>
                         <Dropdown
                             menu={{
@@ -421,7 +429,10 @@ const PageHeader: React.FC = () => {
                             }}
                             trigger={['click']}
                         >
-                            <Button type="text" className="theme-toggle-btn mobile">
+                            <Button
+                                type="text"
+                                className={`${styles['theme-toggle-btn']} ${styles.mobile}`}
+                            >
                                 {theme === 'light' && <SunOutlined />}
                                 {theme === 'dark' && <MoonOutlined />}
                                 {theme === 'system' && <SettingOutlined />}
@@ -432,13 +443,13 @@ const PageHeader: React.FC = () => {
                 placement="right"
                 onClose={closeMobileMenu}
                 open={mobileMenuOpen}
-                className="mobile-drawer"
+                className={styles['mobile-drawer']}
                 closable={true}
             >
                 <Menu
                     mode="inline"
                     items={mobileMenuItems}
-                    className="mobile-menu"
+                    className={styles['mobile-menu']}
                     onClick={handleMenuClick}
                     expandIcon={<DownOutlined />}
                 />

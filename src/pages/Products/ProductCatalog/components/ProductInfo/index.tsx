@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons';
 
 import { calculateSavings, formatPrice, formatSavings } from '../../utils/product-detail.utils';
-import './ProductInfo.scss';
+import styles from './ProductInfo.module.scss';
 import type { ProductInfoComponentProps } from './ProductInfo.types';
 
 const { Title, Text } = Typography;
@@ -81,15 +81,15 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
 
     // Pricing section component
     const PricingSection: React.FC = () => (
-        <div className="product-info__pricing">
-            <div className="product-info__price-display">
-                <Text className="product-info__current-price">{formatPrice(product.price)}</Text>
+        <div className={styles.pricingSection}>
+            <div className={styles.priceDisplay}>
+                <Text className={styles.currentPrice}>{formatPrice(product.price)}</Text>
                 {product.originalPrice && (
                     <>
-                        <Text delete className="product-info__original-price">
+                        <Text delete className={styles.originalPrice}>
                             {formatPrice(product.originalPrice)}
                         </Text>
-                        <Tag color="red" className="product-info__savings-tag">
+                        <Tag color="red" className={styles.savingsTag}>
                             {formatSavings(savings)}
                         </Tag>
                     </>
@@ -113,7 +113,7 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
                     type={product.inStock ? 'success' : 'error'}
                     showIcon
                     icon={<CheckCircleOutlined />}
-                    className="product-info__stock-alert"
+                    className={styles.stockAlert}
                 />
             )}
         </div>
@@ -124,24 +124,18 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
         if (!showKeyFeatures) return null;
 
         return (
-            <div className="product-info__key-features">
-                <Title level={4} className="product-info__features-title">
+            <div className={styles.keyFeatures}>
+                <Title level={4} className={styles.featuresTitle}>
                     Key Features
                 </Title>
-                <Space direction="vertical" size="small" className="product-info__feature-list">
+                <Space direction="vertical" size="small" className={styles.featureList}>
                     {keyFeatures.map((feature, index) => (
-                        <div key={index} className="product-info__feature-item">
-                            {index === 0 && (
-                                <SoundOutlined className="product-info__feature-icon" />
-                            )}
-                            {index === 1 && (
-                                <SettingOutlined className="product-info__feature-icon" />
-                            )}
-                            {index === 2 && (
-                                <SafetyOutlined className="product-info__feature-icon" />
-                            )}
-                            {index === 3 && <GiftOutlined className="product-info__feature-icon" />}
-                            <Text className="product-info__feature-text">{feature}</Text>
+                        <div key={index} className={styles.featureItem}>
+                            {index === 0 && <SoundOutlined className={styles.featureIcon} />}
+                            {index === 1 && <SettingOutlined className={styles.featureIcon} />}
+                            {index === 2 && <SafetyOutlined className={styles.featureIcon} />}
+                            {index === 3 && <GiftOutlined className={styles.featureIcon} />}
+                            <Text className={styles.featureText}>{feature}</Text>
                         </div>
                     ))}
                 </Space>
@@ -151,9 +145,9 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
 
     // Purchase actions component
     const PurchaseActions: React.FC = () => (
-        <div className="product-info__purchase">
-            <div className="product-info__quantity-selector">
-                <Text strong className="product-info__quantity-label">
+        <div className={styles.purchaseSection}>
+            <div className={styles.quantitySelector}>
+                <Text strong className={styles.quantityLabel}>
                     Quantity:
                 </Text>
                 <InputNumber
@@ -161,30 +155,30 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
                     max={product.stockCount}
                     value={quantity}
                     onChange={handleQuantityChange}
-                    className="product-info__quantity-input"
+                    className={styles.quantityInput}
                     size="large"
                 />
             </div>
 
-            <Space direction="vertical" size="middle" className="product-info__action-buttons">
+            <Space direction="vertical" size="middle" className={styles.actionButtons}>
                 <Button
                     type="primary"
                     size="large"
                     icon={<ShoppingCartOutlined />}
                     onClick={handleAddToCart}
-                    className="product-info__add-to-cart-btn"
+                    className={styles.addToCartBtn}
                     block
                     disabled={!product.inStock}
                 >
                     Add to Cart - {formatPrice(product.price * quantity)}
                 </Button>
 
-                <Space className="product-info__secondary-actions">
+                <Space className={styles.secondaryActions}>
                     <Button
                         icon={<HeartOutlined />}
                         onClick={handleAddToWishlist}
-                        className={`product-info__secondary-btn product-info__wishlist-btn ${
-                            wishlist ? 'product-info__wishlist-btn--active' : ''
+                        className={`${styles.secondaryBtn} ${styles.wishlistBtn} ${
+                            wishlist ? styles.wishlistActive : ''
                         }`}
                         size="large"
                     >
@@ -193,7 +187,7 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
                     <Button
                         icon={<ShareAltOutlined />}
                         onClick={handleShare}
-                        className="product-info__secondary-btn"
+                        className={styles.secondaryBtn}
                         size="large"
                     >
                         Share
@@ -208,18 +202,18 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
         if (!showTrustSignals) return null;
 
         return (
-            <div className="product-info__trust-signals">
-                <Space direction="vertical" size="small" className="product-info__trust-list">
-                    <div className="product-info__trust-item">
-                        <CheckCircleOutlined className="product-info__trust-icon" />
+            <div className={styles.trustSignals}>
+                <Space direction="vertical" size="small" className={styles.trustList}>
+                    <div className={styles.trustItem}>
+                        <CheckCircleOutlined className={styles.trustIcon} />
                         <Text>✓ {product.warranty}</Text>
                     </div>
-                    <div className="product-info__trust-item">
-                        <CustomerServiceOutlined className="product-info__trust-icon" />
+                    <div className={styles.trustItem}>
+                        <CustomerServiceOutlined className={styles.trustIcon} />
                         <Text>✓ Free Expert Technical Support</Text>
                     </div>
-                    <div className="product-info__trust-item">
-                        <TruckOutlined className="product-info__trust-icon" />
+                    <div className={styles.trustItem}>
+                        <TruckOutlined className={styles.trustIcon} />
                         <Text>✓ Free Shipping on Orders Over $500</Text>
                     </div>
                 </Space>
@@ -228,20 +222,20 @@ const ProductInfo: React.FC<ProductInfoComponentProps> = ({
     };
 
     return (
-        <div className={`product-info product-info--${variant} ${className}`}>
+        <div className={`${styles.productInfo} ${styles[`productInfo--${variant}`]} ${className}`}>
             {/* Header */}
-            <div className="product-info__header">
-                <Title level={2} className="product-info__title">
+            <div className={styles.productHeader}>
+                <Title level={2} className={styles.productTitle}>
                     {product.name}
                 </Title>
-                <Text className="product-info__tagline">{product.tagline}</Text>
+                <Text className={styles.productTagline}>{product.tagline}</Text>
 
-                <div className="product-info__meta">
-                    <div className="product-info__rating">
+                <div className={styles.productMeta}>
+                    <div className={styles.productRating}>
                         <Rate disabled defaultValue={product.rating} />
                         <Text>({product.reviewCount} reviews)</Text>
                     </div>
-                    <Text className="product-info__sku">SKU: {product.sku}</Text>
+                    <Text className={styles.productSku}>SKU: {product.sku}</Text>
                 </div>
             </div>
 

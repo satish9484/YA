@@ -44,6 +44,7 @@ export interface ProductCatalogProps {
     readonly productsPerPage?: number;
     readonly onProductClick?: (product: Product) => void;
     readonly onAddToCart?: (product: Product) => void;
+    readonly showBreadcrumbs?: boolean;
 }
 
 export interface ProductCategoryProps {

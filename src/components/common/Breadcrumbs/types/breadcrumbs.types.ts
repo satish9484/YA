@@ -1,80 +1,57 @@
-// Breadcrumb item interface
+import type { ReactNode } from 'react';
+
+/**
+ * Breadcrumb item interface
+ * Maps to the route structure defined in routes.tsx
+ */
 export interface BreadcrumbItem {
+    /** Unique identifier for the breadcrumb item */
     readonly id: string;
+    /** Display name for the breadcrumb item */
     readonly name: string;
-    readonly link?: string | undefined;
-    readonly isActive: boolean;
-    readonly icon?: React.ReactNode | undefined;
-    readonly ariaLabel?: string | undefined;
+    /** Router name that maps to a route in routes.tsx */
+    readonly routerName: string;
+    /** Optional icon for the breadcrumb item */
+    readonly icon?: ReactNode;
+    /** Whether this is the current/active page (last item) */
+    readonly isActive?: boolean;
 }
 
-// Main breadcrumbs component props
+/**
+ * Props for the Breadcrumbs component
+ */
 export interface BreadcrumbsProps {
+    /** Array of breadcrumb items to display */
     readonly items: BreadcrumbItem[];
+    /** Additional CSS class name */
     readonly className?: string;
-    readonly variant?: 'default' | 'compact' | 'detailed';
-    readonly separator?: 'chevron' | 'slash' | 'arrow' | 'dot';
+    /** Custom separator between breadcrumb items */
+    readonly separator?: ReactNode;
+    /** Whether to show home icon for the first item */
     readonly showHome?: boolean;
-    readonly homeIcon?: React.ReactNode;
+    /** Custom home icon */
+    readonly homeIcon?: ReactNode;
+    /** Maximum number of items to show before truncation */
     readonly maxItems?: number;
+    /** Callback when a breadcrumb item is clicked */
     readonly onItemClick?: (item: BreadcrumbItem, index: number) => void;
+    /** ARIA label for accessibility */
     readonly ariaLabel?: string;
 }
 
-// Breadcrumb item component props
-export interface BreadcrumbItemProps {
+/**
+ * Route mapping configuration
+ * Maps router names to actual route paths
+ */
+export interface RouteMapping {
+    readonly [routerName: string]: string;
+}
+
+/**
+ * Breadcrumb item click event
+ */
+export interface BreadcrumbClickEvent {
     readonly item: BreadcrumbItem;
     readonly index: number;
-    readonly isLast: boolean;
-    readonly separator: BreadcrumbsProps['separator'];
-    readonly onClick?: (item: BreadcrumbItem, index: number) => void;
-    readonly className?: string;
-}
-
-// Breadcrumb separator component props
-export interface BreadcrumbSeparatorProps {
-    readonly type: BreadcrumbsProps['separator'];
-    readonly className?: string;
-}
-
-// Hook return types
-export interface UseBreadcrumbsReturn {
-    readonly visibleItems: BreadcrumbItem[];
-    readonly hiddenItems: BreadcrumbItem[];
-    readonly showEllipsis: boolean;
-    readonly actions: {
-        readonly expandBreadcrumbs: () => void;
-        readonly collapseBreadcrumbs: () => void;
-        readonly isExpanded: boolean;
-    };
-}
-
-// Utility types
-export type BreadcrumbVariant = 'default' | 'compact' | 'detailed';
-export type BreadcrumbSeparator = 'chevron' | 'slash' | 'arrow' | 'dot';
-
-// Event handler types
-export type BreadcrumbItemClickHandler = (item: BreadcrumbItem, index: number) => void;
-
-// API response types
-export interface BreadcrumbApiResponse {
-    readonly success: boolean;
-    readonly data: BreadcrumbItem[];
-    readonly error?: string;
-}
-
-// Error types
-export interface BreadcrumbError {
-    readonly code: string;
-    readonly message: string;
-    readonly details?: Record<string, unknown>;
-}
-
-// Loading states
-export type BreadcrumbLoadingState = 'idle' | 'loading' | 'success' | 'error';
-
-export interface BreadcrumbAsyncState<T> {
-    readonly data: T | null;
-    readonly loading: BreadcrumbLoadingState;
-    readonly error: BreadcrumbError | null;
+    readonly event: React.MouseEvent<HTMLAnchorElement>;
 }

@@ -1,0 +1,415 @@
+/* =============================================================================
+    Footer Component Styling
+========================================================================== */
+
+// Styles for footer component
+.page-footer {
+    background-color: color(bg-primary, light);
+    color: color(text-secondary, light);
+    padding: $spacing-12 0;
+    border-top: 1px solid color(border-primary, light);
+    @include transition(all 0.3s ease);
+
+    // Dark mode styling
+    [data-theme='dark'] & {
+        background-color: color(bg-primary, dark);
+        color: color(text-secondary, dark);
+        border-top-color: color(border-primary, dark);
+    }
+}
+
+.container {
+    max-width: 1400px;
+    @include container();
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-8;
+
+    @include respond-to('md') {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+}
+
+.footer-logo {
+    max-width: 150px;
+    margin-bottom: $spacing-4;
+    @include transition(all 0.3s ease);
+
+    &:hover {
+        @include transform(scale(1.05));
+    }
+}
+
+.footer-description {
+    color: color(text-secondary, light);
+    line-height: 1.6;
+    margin-bottom: $spacing-4;
+
+    [data-theme='dark'] & {
+        color: color(text-secondary, dark);
+    }
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+}
+
+.contact-info-item {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    color: color(text-secondary, light);
+    padding: $spacing-2 $spacing-3;
+    border-radius: $border-radius-md;
+    @include transition(all 0.3s ease);
+
+    [data-theme='dark'] & {
+        color: color(text-secondary, dark);
+    }
+
+    span {
+        margin-left: $spacing-2;
+    }
+
+    .anticon {
+        color: color(accent-primary, light);
+        @include transition(all 0.3s ease);
+
+        [data-theme='dark'] & {
+            color: color(accent-primary, dark);
+        }
+    }
+}
+
+.quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+}
+
+.footer-title {
+    color: color(text-primary, light) !important;
+    font-weight: $font-weight-semibold !important;
+    font-size: $font-size-lg !important;
+    margin-bottom: $spacing-4 !important;
+    @include transition(all 0.3s ease);
+
+    [data-theme='dark'] & {
+        color: color(text-primary, dark) !important;
+    }
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    color: color(text-secondary, light);
+    text-decoration: none;
+    @include transition(all 0.4s cubic-bezier(0.4, 0, 0.2, 1));
+    padding: $spacing-2 $spacing-3;
+    border-radius: $border-radius-md;
+    position: relative;
+    overflow: hidden;
+    margin: $spacing-1 0;
+    border: 1px solid transparent;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            color(accent-primary, light) 0%,
+            color(accent-secondary, light) 100%
+        );
+        opacity: 0;
+        @include transform(scale(0.8) translateY(10px));
+        @include transition(all 0.4s cubic-bezier(0.4, 0, 0.2, 1));
+        z-index: -1;
+        border-radius: $border-radius-md;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: color(bg-tertiary, light);
+        opacity: 0;
+        @include transform(scale(0.95));
+        @include transition(all 0.3s ease);
+        z-index: -2;
+        border-radius: $border-radius-md;
+    }
+
+    &:hover {
+        color: color(accent-contrast, light);
+        @include transform(translateX(8px) translateY(-2px));
+        @include box-shadow($shadow-lg);
+        border-color: color(accent-primary, light);
+
+        &::before {
+            opacity: 0.15;
+            @include transform(scale(1) translateY(0));
+        }
+
+        &::after {
+            opacity: 0.05;
+            @include transform(scale(1));
+        }
+    }
+
+    &:active {
+        @include transform(translateX(6px) translateY(-1px) scale(0.98));
+        @include box-shadow($shadow-md);
+    }
+
+    [data-theme='dark'] & {
+        color: color(text-secondary, dark);
+
+        &::before {
+            background: linear-gradient(
+                135deg,
+                color(accent-primary, dark) 0%,
+                color(accent-secondary, dark) 100%
+            );
+        }
+
+        &::after {
+            background: color(bg-tertiary, dark);
+        }
+
+        &:hover {
+            color: color(accent-contrast, dark);
+            border-color: color(accent-primary, dark);
+
+            &::before {
+                opacity: 0.2;
+            }
+
+            &::after {
+                opacity: 0.1;
+            }
+        }
+    }
+
+    span {
+        margin-left: $spacing-2;
+        @include transition(all 0.3s ease);
+    }
+
+    // Icon animation
+    .anticon {
+        @include transition(all 0.3s ease);
+    }
+
+    &:hover .anticon {
+        @include transform(scale(1.1) rotate(5deg));
+        color: color(accent-primary, light);
+
+        [data-theme='dark'] & {
+            color: color(accent-primary, dark);
+        }
+    }
+}
+
+.social-icon {
+    font-size: $font-size-2xl;
+    color: color(text-secondary, light);
+    @include transition(all 0.4s cubic-bezier(0.4, 0, 0.2, 1));
+    padding: $spacing-3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            color(accent-primary, light) 0%,
+            color(accent-secondary, light) 100%
+        );
+        border-radius: 50%;
+        opacity: 0;
+        @include transform(scale(0) rotate(180deg));
+        @include transition(all 0.4s cubic-bezier(0.4, 0, 0.2, 1));
+        z-index: -1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+            45deg,
+            color(accent-primary, light),
+            color(accent-secondary, light),
+            color(accent-primary, light)
+        );
+        border-radius: 50%;
+        opacity: 0;
+        @include transform(scale(0));
+        @include transition(all 0.3s ease);
+        z-index: -2;
+        background-size: 200% 200%;
+        @include animation(rotate 2s linear infinite);
+    }
+
+    &:hover {
+        color: color(accent-contrast, light);
+        @include transform(scale(1.15) rotate(5deg));
+        @include box-shadow($shadow-xl);
+        border-color: color(accent-primary, light);
+
+        &::before {
+            opacity: 1;
+            @include transform(scale(1) rotate(0deg));
+        }
+
+        &::after {
+            opacity: 0.3;
+            @include transform(scale(1));
+        }
+    }
+
+    &:active {
+        @include transform(scale(1.05) rotate(2deg));
+        @include box-shadow($shadow-lg);
+    }
+
+    [data-theme='dark'] & {
+        color: color(text-secondary, dark);
+
+        &::before {
+            background: linear-gradient(
+                135deg,
+                color(accent-primary, dark) 0%,
+                color(accent-secondary, dark) 100%
+            );
+        }
+
+        &::after {
+            background: linear-gradient(
+                45deg,
+                color(accent-primary, dark),
+                color(accent-secondary, dark),
+                color(accent-primary, dark)
+            );
+        }
+
+        &:hover {
+            color: color(accent-contrast, dark);
+            border-color: color(accent-primary, dark);
+        }
+    }
+}
+
+// Rotating gradient animation
+@include keyframes(rotate) {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.footer-divider {
+    background-color: color(border-primary, light);
+    margin: $spacing-8 0;
+    @include transition(all 0.3s ease);
+
+    [data-theme='dark'] & {
+        background-color: color(border-primary, dark);
+    }
+}
+
+.footer-bottom {
+    color: color(text-secondary, light);
+    text-align: center;
+    @include transition(all 0.3s ease);
+
+    [data-theme='dark'] & {
+        color: color(text-secondary, dark);
+    }
+}
+
+// Responsive Design
+@include respond-to-max('md') {
+    .footer-grid {
+        gap: $spacing-6;
+    }
+
+    .footer-column {
+        gap: $spacing-3;
+    }
+
+    .social-links {
+        justify-content: center;
+        margin-top: $spacing-2;
+    }
+}
+
+@include respond-to-max('sm') {
+    .page-footer {
+        padding: $spacing-8 0;
+    }
+
+    .footer-grid {
+        gap: $spacing-4;
+    }
+
+    .footer-title {
+        font-size: $font-size-base !important;
+    }
+
+    .footer-link {
+        font-size: $font-size-sm;
+    }
+
+    .social-icon {
+        font-size: $font-size-xl;
+        width: 40px;
+        height: 40px;
+        padding: $spacing-2;
+    }
+}

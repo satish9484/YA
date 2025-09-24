@@ -1,3 +1,4 @@
+//config/vite.config.ts
 import autoprefixer from 'autoprefixer';
 import path from 'path';
 import type { UserConfig } from 'vite';
@@ -78,11 +79,14 @@ export default defineConfig(({ mode }) => {
         preprocessorOptions: {
             scss: {
                 // Make the design system available everywhere without manual imports
-                additionalData: `@use "@/scss/_index.scss" as *;`,
+                additionalData: `
+                    @use "@/scss/variables" as *;
+                    @use "@/scss/mixin" as *;
+                `,
             },
         },
         modules: {
-            localsConvention: 'camelCase',
+            // localsConvention: 'camelCase',
         },
     };
 

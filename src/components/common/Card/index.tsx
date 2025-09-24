@@ -1,4 +1,4 @@
-import './style.scss';
+import style from './style.module.scss';
 
 interface CardProps {
     children: React.ReactNode;
@@ -10,7 +10,7 @@ const Card: React.FC<CardProps> = props => {
 
     return (
         <>
-            <div className={`card ${className}`}>{children}</div>
+            <div className={`${style.card} ${className}`}>{children}</div>
         </>
     );
 };

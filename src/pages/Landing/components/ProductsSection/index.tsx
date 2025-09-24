@@ -11,7 +11,7 @@ import Card from '@/components/common/Card/index.tsx';
 
 import type { ProductsSectionProps, SwiperPagination } from '../../types/landing.types';
 import ProductCard from '../ProductCard';
-import './ProductsSection.scss';
+import styles from './ProductsSection.module.scss';
 
 const { Title, Paragraph } = Typography;
 
@@ -30,7 +30,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ products, onViewDetai
     };
 
     return (
-        <section className="products-section">
+        <section className={styles['products-section']}>
             <div className="container">
                 <Card>
                     <Row justify="center" className="mb-12">

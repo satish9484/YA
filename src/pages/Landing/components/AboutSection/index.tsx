@@ -5,7 +5,7 @@ import { Button, Col, Row, Typography } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 
 import type { AboutSectionProps } from '../../types/landing.types';
-import './AboutSection.scss';
+import styles from './AboutSection.module.scss';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -18,11 +18,11 @@ const { Title, Paragraph, Text } = Typography;
  */
 const AboutSection: React.FC<AboutSectionProps> = ({ onViewProducts, onContactUs }) => {
     return (
-        <section className="about-section">
+        <section className={styles['about-section']}>
             <div className="container">
                 <Row gutter={[48, 48]} align="middle">
                     <Col xs={24} md={10}>
-                        <div className="about-section__intro">
+                        <div className={styles['about-section__intro']}>
                             <Text
                                 strong
                                 className="text-success"
@@ -40,7 +40,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ onViewProducts, onContactUs
                         </div>
                     </Col>
                     <Col xs={24} md={14}>
-                        <div className="about-section__content">
+                        <div className={styles['about-section__content']}>
                             <Title level={4} className="text-primary mb-4">
                                 Model Box Speaker Line Array - Factory, Suppliers, Manufacturers
                                 from India
@@ -69,7 +69,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ onViewProducts, onContactUs
                                     View Products
                                 </Button>
                                 <Button
-                                    className="about-section__content__contact_us ant-btn ant-btn-primary ant-btn-lg"
+                                    className={`${styles['about-section__content__contact_us']} ant-btn ant-btn-primary ant-btn-lg`}
                                     onClick={onContactUs}
                                 >
                                     Contact Us

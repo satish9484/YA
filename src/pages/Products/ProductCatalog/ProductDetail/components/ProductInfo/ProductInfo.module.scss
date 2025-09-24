@@ -1,0 +1,253 @@
+// src/pages/Products/ProductCatalog/ProductDetail/components/ProductInfo/ProductInfo.module.scss
+
+// =============================================================================
+// PRODUCT INFO
+// =============================================================================
+
+.productInfo {
+    .productHeader {
+        margin-bottom: $spacing-6;
+
+        .productTitle {
+            margin-bottom: $spacing-2;
+            color: color(text-primary);
+            line-height: $line-height-tight;
+
+            @include respond-to('md') {
+                margin-bottom: $spacing-3;
+            }
+        }
+
+        .productTagline {
+            font-size: $font-size-lg;
+            color: color(text-secondary);
+            margin-bottom: $spacing-4;
+            display: block;
+
+            @include respond-to('md') {
+                font-size: $font-size-xl;
+                margin-bottom: $spacing-6;
+            }
+        }
+
+        .productMeta {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-2;
+
+            @include respond-to('sm') {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+
+    .pricingSection {
+        margin-bottom: $spacing-6;
+        padding: $spacing-4;
+        background: color(bg-secondary);
+        border-radius: $border-radius-lg;
+        border: 1px solid color(border-primary);
+
+        .priceDisplay {
+            display: flex;
+            align-items: center;
+            gap: $spacing-3;
+            margin-bottom: $spacing-4;
+
+            .currentPrice {
+                font-size: $font-size-2xl;
+                font-weight: $font-weight-bold;
+                color: color(accent-primary);
+
+                @include respond-to('md') {
+                    font-size: $font-size-3xl;
+                }
+            }
+
+            .originalPrice {
+                font-size: $font-size-lg;
+                color: color(text-secondary);
+
+                @include respond-to('md') {
+                    font-size: $font-size-xl;
+                }
+            }
+
+            .savingsTag {
+                font-weight: $font-weight-semibold;
+            }
+        }
+
+        .stockAlert {
+            border: none;
+            background: transparent;
+            padding: 0;
+
+            .ant-alert-message {
+                font-weight: $font-weight-semibold;
+            }
+        }
+    }
+
+    .keyFeatures {
+        margin-bottom: $spacing-6;
+
+        .featureList {
+            .featureItem {
+                display: flex;
+                align-items: center;
+                gap: $spacing-3;
+                padding: $spacing-2 0;
+
+                .featureIcon {
+                    color: color(accent-primary);
+                    font-size: $font-size-lg;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+
+    .purchaseSection {
+        .quantitySelector {
+            display: flex;
+            align-items: center;
+            gap: $spacing-3;
+            margin-bottom: $spacing-4;
+
+            .quantityInput {
+                width: 100px;
+            }
+        }
+
+        .actionButtons {
+            .addToCartBtn {
+                height: 48px;
+                font-size: $font-size-lg;
+                font-weight: $font-weight-semibold;
+                @include box-shadow($shadow-md);
+
+                &:hover {
+                    @include transform(translateY(-1px));
+                    @include box-shadow($shadow-lg);
+                }
+            }
+
+            .secondaryActions {
+                width: 100%;
+                justify-content: center;
+                display: flex;
+                gap: $spacing-2;
+
+                @include respond-to('sm') {
+                    justify-content: flex-start;
+                }
+
+                .ant-btn {
+                    flex: 1;
+                    height: 40px;
+                    border: 1px solid #444;
+                    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+                    color: #ccc;
+                    @include transition(all 0.3s ease);
+
+                    &:hover {
+                        background: linear-gradient(135deg, #333 0%, #222 100%);
+                        border-color: #666;
+                        color: #fff;
+                        transform: translateY(-1px);
+                    }
+
+                    .anticon {
+                        margin-right: $spacing-1;
+                    }
+                }
+
+                .wishlistActive {
+                    background: linear-gradient(
+                        135deg,
+                        color(accent-primary) 0%,
+                        color(accent-primary, dark) 100%
+                    );
+                    border-color: color(accent-primary);
+                    color: color(accent-contrast);
+                }
+
+                .shareBtn {
+                    background: linear-gradient(135deg, #1a4d3a 0%, #0d2e1f 100%) !important;
+                    border-color: #2d5a47 !important;
+                    color: #4ade80 !important;
+
+                    &:hover {
+                        background: linear-gradient(135deg, #2d5a47 0%, #1a4d3a 100%) !important;
+                        border-color: #4ade80 !important;
+                        color: #fff !important;
+                    }
+
+                    .anticon {
+                        color: #4ade80;
+                    }
+                }
+            }
+        }
+
+        .trustSignals {
+            margin-top: $spacing-6;
+            padding: $spacing-4;
+            background: color(bg-secondary);
+            border-radius: $border-radius-md;
+            border: 1px solid color(border-primary);
+
+            .trustItem {
+                display: flex;
+                align-items: center;
+                gap: $spacing-2;
+
+                .trustIcon {
+                    color: color(success);
+                    font-size: $font-size-base;
+                }
+            }
+        }
+    }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@include respond-to-max('md') {
+    .productInfo {
+        .pricingSection {
+            .priceDisplay {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: $spacing-2;
+            }
+        }
+    }
+}
+
+@include respond-to-max('sm') {
+    .productInfo {
+        .productHeader {
+            .productTitle {
+                font-size: $font-size-xl;
+            }
+
+            .productTagline {
+                font-size: $font-size-base;
+            }
+        }
+
+        .pricingSection {
+            .priceDisplay {
+                .currentPrice {
+                    font-size: $font-size-xl;
+                }
+            }
+        }
+    }
+}

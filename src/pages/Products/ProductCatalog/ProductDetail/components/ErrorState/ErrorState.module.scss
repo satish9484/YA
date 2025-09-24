@@ -1,0 +1,21 @@
+// Error State Styles
+.product-detail-page {
+    background-color: color(bg-primary, light);
+    min-height: 100vh;
+}
+
+.error-state {
+    text-align: center;
+    padding: $spacing-16 0;
+
+    h2 {
+        color: color(text-primary, light);
+        margin-bottom: $spacing-4;
+        font-size: $font-size-2xl;
+    }
+
+    p {
+        color: color(text-secondary, light);
+        font-size: $font-size-lg;
+    }
+}

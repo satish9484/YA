@@ -173,7 +173,7 @@ interface Product {
 
 ```
 ProductCatalog/
-├── ProductDetail.tsx          # Main product detail component
+├── ProductDetail/              # Modular product detail component
 ├── ProductDetail.scss         # Comprehensive SCSS styles
 ├── ProductDetailDemo.tsx      # Demo wrapper component
 ├── README.md                  # This documentation

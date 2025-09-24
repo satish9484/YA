@@ -23,12 +23,24 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
             effectiveTheme = selectedTheme;
         }
 
+        // Apply theme immediately to prevent FOUC (Flash of Unstyled Content)
         document.documentElement.setAttribute('data-theme', effectiveTheme);
+
+        // Force a reflow to ensure the theme is applied
+        // document.documentElement.offsetHeight;
     }, []);
 
+    // Apply theme immediately on mount and when theme changes
     useEffect(() => {
         applyTheme(theme);
     }, [theme, applyTheme]);
+
+    // Apply theme immediately on component mount to prevent styling issues during navigation
+    useEffect(() => {
+        // Get the current theme from localStorage or default to system
+        const currentTheme = (localStorage.getItem('theme') as Theme | null) ?? 'system';
+        applyTheme(currentTheme);
+    }, [applyTheme]);
 
     // Listen for system theme changes when 'system' theme is active
     useEffect(() => {
@@ -42,6 +54,20 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         mediaQuery.addEventListener('change', handleSystemChange);
         return () => mediaQuery.removeEventListener('change', handleSystemChange);
     }, [theme, applyTheme]);
+
+    // Sync theme with localStorage changes (e.g., from other tabs)
+    useEffect(() => {
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === 'theme' && e.newValue) {
+                const newTheme = e.newValue as Theme;
+                setThemeState(newTheme);
+                applyTheme(newTheme);
+            }
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
+    }, [applyTheme]);
 
     const setTheme = (newTheme: Theme) => {
         setThemeState(newTheme);

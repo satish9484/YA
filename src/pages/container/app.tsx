@@ -9,6 +9,7 @@ import axios from 'axios';
 
 import { ErrorBoundary } from '@/components/common/ErrorBoundary/index.tsx';
 import Loader from '@/components/common/loader/index.tsx';
+import OptimizedLoader from '@/components/common/loader/OptimizedLoader';
 import { ThemeProvider } from '@/contexts/ThemeContext.tsx';
 import store from '@/redux/store.tsx';
 import { setupAxios } from '@/utills/index.tsx';
@@ -21,12 +22,8 @@ const App: React.FC = () => {
     const [isAppReady, setIsAppReady] = useState<boolean>(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            // 💡 Replace this with real "ready" logic later
-            setIsAppReady(true);
-        }, 500); // Simulate delay for now
-
-        return () => clearTimeout(timer);
+        // Set app ready immediately - remove artificial delay
+        setIsAppReady(true);
     }, []);
 
     return (
@@ -37,7 +34,7 @@ const App: React.FC = () => {
                 <Provider store={store}>
                     <ThemeProvider>
                         <BrowserRouter>
-                            <Suspense fallback={<Loader isSuspense={true} />}>
+                            <Suspense fallback={<OptimizedLoader isSuspense={true} />}>
                                 <Routes />
                             </Suspense>
                         </BrowserRouter>

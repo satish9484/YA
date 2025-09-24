@@ -1,3 +1,5 @@
+// src/scss/variables/_colors.scss
+
 @use 'sass:map';
 
 // =============================================================================
@@ -203,7 +205,7 @@ $theme-dark: (
 
     // Text colors
     text-primary: #d3dad9,
-    text-secondary: rgba(211, 218, 217, 0.8),
+    text-secondary: #d3dad9,
     text-interactive: #d3dad9,
     text-tertiary: rgba(211, 218, 217, 0.6),
     text-inverse: #37353e,
@@ -307,293 +309,293 @@ $color-error-border: map.get($theme-light, error-border) !default;
 // =============================================================================
 
 // Light theme as default - using existing SCSS color palettes
-:root {
-    // Background colors - using existing SCSS variables
-    --color-bg-primary: #{$neutral-50};
-    --color-bg-secondary: #{$neutral-100};
-    --color-bg-tertiary: #{$neutral-200};
-    --color-bg-interactive: #{$neutral-50};
-    --color-background: #{$neutral-50};
+// :root {
+//     // Background colors - using existing SCSS variables
+//     --color-bg-primary: #{$neutral-50};
+//     --color-bg-secondary: #{$neutral-100};
+//     --color-bg-tertiary: #{$neutral-200};
+//     --color-bg-interactive: #{$neutral-50};
+//     --color-background: #{$neutral-50};
 
-    // Text colors - using existing SCSS variables
-    --color-text-primary: #{$neutral-900};
-    --color-text-secondary: #{$neutral-500};
-    --color-text-interactive: #{$neutral-700};
-    --color-text-tertiary: #{$neutral-400};
-    --color-text-inverse: #{$neutral-50};
+//     // Text colors - using existing SCSS variables
+//     --color-text-primary: #{$neutral-900};
+//     --color-text-secondary: #{$neutral-500};
+//     --color-text-interactive: #{$neutral-700};
+//     --color-text-tertiary: #{$neutral-400};
+//     --color-text-inverse: #{$neutral-50};
 
-    // Border colors - using existing SCSS variables
-    --color-border-primary: #{$neutral-200};
-    --color-border: #{$neutral-200};
-    --color-ring: #{$neutral-200};
+//     // Border colors - using existing SCSS variables
+//     --color-border-primary: #{$neutral-200};
+//     --color-border: #{$neutral-200};
+//     --color-ring: #{$neutral-200};
 
-    // Accent colors - using existing primary palette
-    --color-accent-primary: #{$primary-500};
-    --color-accent-focus-ring: #{$primary-300};
-    --color-accent: #{$primary-500};
-    --color-accent-contrast: #{$neutral-50};
+//     // Accent colors - using existing primary palette
+//     --color-accent-primary: #{$primary-500};
+//     --color-accent-focus-ring: #{$primary-300};
+//     --color-accent: #{$primary-500};
+//     --color-accent-contrast: #{$neutral-50};
 
-    // Error colors - using existing error palette
-    --color-error-bg: #{$error-50};
-    --color-error-text: #{$error-600};
-    --color-error-border: #{$error-400};
-    --color-error: #{$error-600};
+//     // Error colors - using existing error palette
+//     --color-error-bg: #{$error-50};
+//     --color-error-text: #{$error-600};
+//     --color-error-border: #{$error-400};
+//     --color-error: #{$error-600};
 
-    // Success colors - using existing success palette
-    --color-success-bg: #{$success-50};
-    --color-success-text: #{$success-600};
-    --color-success-border: #{$success-400};
-    --color-success: #{$success-600};
+//     // Success colors - using existing success palette
+//     --color-success-bg: #{$success-50};
+//     --color-success-text: #{$success-600};
+//     --color-success-border: #{$success-400};
+//     --color-success: #{$success-600};
 
-    // Warning colors - using existing warning palette
-    --color-warning-bg: #{$warning-50};
-    --color-warning-text: #{$warning-600};
-    --color-warning-border: #{$warning-400};
-    --color-warning: #{$warning-600};
+//     // Warning colors - using existing warning palette
+//     --color-warning-bg: #{$warning-50};
+//     --color-warning-text: #{$warning-600};
+//     --color-warning-border: #{$warning-400};
+//     --color-warning: #{$warning-600};
 
-    // Info colors - using existing info palette
-    --color-info-bg: #{$info-50};
-    --color-info-text: #{$info-600};
-    --color-info-border: #{$info-400};
-    --color-info: #{$info-600};
+//     // Info colors - using existing info palette
+//     --color-info-bg: #{$info-50};
+//     --color-info-text: #{$info-600};
+//     --color-info-border: #{$info-400};
+//     --color-info: #{$info-600};
 
-    // Legacy colors for backward compatibility
-    --color-primary: #{$primary-500};
-    --color-primary-contrast: #{$neutral-50};
-    --color-btn-bg: #{$neutral-100};
-    --color-link: #{$primary-500};
-    --color-link-hover: #{$primary-600};
-    --color-success: #{$success-600};
-    --color-success-contrast: #{$neutral-50};
-    --color-warning: #{$warning-600};
-    --color-info: #{$info-600};
-    --color-muted: #{$neutral-500};
+//     // Legacy colors for backward compatibility
+//     --color-primary: #{$primary-500};
+//     --color-primary-contrast: #{$neutral-50};
+//     --color-btn-bg: #{$neutral-100};
+//     --color-link: #{$primary-500};
+//     --color-link-hover: #{$primary-600};
+//     --color-success: #{$success-600};
+//     --color-success-contrast: #{$neutral-50};
+//     --color-warning: #{$warning-600};
+//     --color-info: #{$info-600};
+//     --color-muted: #{$neutral-500};
 
-    // Footer-specific roles
-    --color-footer-bg: #{$neutral-50};
-    --color-footer-text: #{$neutral-900};
-    --color-footer-accent: #{$success-600};
-    --color-footer-accent-contrast: #{$neutral-50};
-    --color-footer-bar-bg: #{$neutral-900};
-    --color-footer-bar-text: #{$neutral-50};
+//     // Footer-specific roles
+//     --color-footer-bg: #{$neutral-50};
+//     --color-footer-text: #{$neutral-900};
+//     --color-footer-accent: #{$success-600};
+//     --color-footer-accent-contrast: #{$neutral-50};
+//     --color-footer-bar-bg: #{$neutral-900};
+//     --color-footer-bar-text: #{$neutral-50};
 
-    // Button states
-    --color-primary-hover-bg: #{$primary-600};
-    --color-secondary-hover-bg: #{$neutral-200};
-    --color-secondary-hover-border: #{$neutral-400};
+//     // Button states
+//     --color-primary-hover-bg: #{$primary-600};
+//     --color-secondary-hover-bg: #{$neutral-200};
+//     --color-secondary-hover-border: #{$neutral-400};
 
-    // Additional custom properties for legacy compatibility
-    --zwc-link-clr: var(--color-accent-primary);
-    --primary-focus-color: var(--color-accent-primary);
-    --primary-btn-color: var(--color-accent-primary);
-    --zsh-place-fontcolor: var(--color-text-tertiary);
-    --primary-anchor-clr: var(--color-accent-primary);
+//     // Additional custom properties for legacy compatibility
+//     --zwc-link-clr: var(--color-accent-primary);
+//     --primary-focus-color: var(--color-accent-primary);
+//     --primary-btn-color: var(--color-accent-primary);
+//     --zsh-place-fontcolor: var(--color-text-tertiary);
+//     --primary-anchor-clr: var(--color-accent-primary);
 
-    // Ant Design CSS Variables Integration
-    --ant-primary-color: var(--color-accent-primary);
-    --ant-primary-color-hover: var(--color-primary-hover-bg);
-    --ant-primary-color-active: #{$primary-700};
-    --ant-primary-color-outline: var(--color-accent-focus-ring);
-    --ant-success-color: var(--color-success);
-    --ant-warning-color: var(--color-warning);
-    --ant-error-color: var(--color-error);
-    --ant-info-color: var(--color-info);
-    --ant-text-color: var(--color-text-primary);
-    --ant-text-color-secondary: var(--color-text-secondary);
-    --ant-text-color-tertiary: var(--color-text-tertiary);
-    --ant-text-color-quaternary: var(--color-text-tertiary);
-    --ant-background-color: var(--color-bg-primary);
-    --ant-background-color-light: var(--color-bg-secondary);
-    --ant-background-color-base: var(--color-bg-tertiary);
-    --ant-border-color-base: var(--color-border-primary);
-    --ant-border-color-split: var(--color-border);
-    --ant-border-radius-base: 6px;
-    --ant-border-radius-sm: 4px;
-    --ant-border-radius-lg: 8px;
-    --ant-box-shadow-base:
-        0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-        0 9px 28px 8px rgba(0, 0, 0, 0.05);
-    --ant-box-shadow-card:
-        0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
-        0 5px 12px 4px rgba(0, 0, 0, 0.09);
-    --ant-font-size-base: 14px;
-    --ant-font-size-lg: 16px;
-    --ant-font-size-sm: 12px;
-    --ant-line-height-base: 1.5715;
-    --ant-line-height-lg: 1.5;
-    --ant-line-height-sm: 1.66;
+//     // Ant Design CSS Variables Integration
+//     --ant-primary-color: var(--color-accent-primary);
+//     --ant-primary-color-hover: var(--color-primary-hover-bg);
+//     --ant-primary-color-active: #{$primary-700};
+//     --ant-primary-color-outline: var(--color-accent-focus-ring);
+//     --ant-success-color: var(--color-success);
+//     --ant-warning-color: var(--color-warning);
+//     --ant-error-color: var(--color-error);
+//     --ant-info-color: var(--color-info);
+//     --ant-text-color: var(--color-text-primary);
+//     --ant-text-color-secondary: var(--color-text-secondary);
+//     --ant-text-color-tertiary: var(--color-text-tertiary);
+//     --ant-text-color-quaternary: var(--color-text-tertiary);
+//     --ant-background-color: var(--color-bg-primary);
+//     --ant-background-color-light: var(--color-bg-secondary);
+//     --ant-background-color-base: var(--color-bg-tertiary);
+//     --ant-border-color-base: var(--color-border-primary);
+//     --ant-border-color-split: var(--color-border);
+//     --ant-border-radius-base: 6px;
+//     --ant-border-radius-sm: 4px;
+//     --ant-border-radius-lg: 8px;
+//     --ant-box-shadow-base:
+//         0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+//         0 9px 28px 8px rgba(0, 0, 0, 0.05);
+//     --ant-box-shadow-card:
+//         0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+//         0 5px 12px 4px rgba(0, 0, 0, 0.09);
+//     --ant-font-size-base: 14px;
+//     --ant-font-size-lg: 16px;
+//     --ant-font-size-sm: 12px;
+//     --ant-line-height-base: 1.5715;
+//     --ant-line-height-lg: 1.5;
+//     --ant-line-height-sm: 1.66;
 
-    // Button Color Variables - Light Theme
-    --btn-primary-bg: #3b82f6;
-    --btn-primary-hover-bg: #1d4ed8;
-    --btn-primary-active-bg: #1e40af;
-    --btn-primary-text: #ffffff;
-    --btn-primary-border: #3b82f6;
-    --btn-primary-focus-ring: #93c5fd;
+//     // Button Color Variables - Light Theme
+//     --btn-primary-bg: #3b82f6;
+//     --btn-primary-hover-bg: #1d4ed8;
+//     --btn-primary-active-bg: #1e40af;
+//     --btn-primary-text: #ffffff;
+//     --btn-primary-border: #3b82f6;
+//     --btn-primary-focus-ring: #93c5fd;
 
-    --btn-secondary-bg: #6b7280;
-    --btn-secondary-hover-bg: #4b5563;
-    --btn-secondary-active-bg: #374151;
-    --btn-secondary-text: #ffffff;
-    --btn-secondary-border: #6b7280;
-    --btn-secondary-focus-ring: #9ca3af;
+//     --btn-secondary-bg: #6b7280;
+//     --btn-secondary-hover-bg: #4b5563;
+//     --btn-secondary-active-bg: #374151;
+//     --btn-secondary-text: #ffffff;
+//     --btn-secondary-border: #6b7280;
+//     --btn-secondary-focus-ring: #9ca3af;
 
-    --btn-success-bg: #10b981;
-    --btn-success-hover-bg: #059669;
-    --btn-success-active-bg: #047857;
-    --btn-success-text: #ffffff;
-    --btn-success-border: #10b981;
-    --btn-success-focus-ring: #6ee7b7;
+//     --btn-success-bg: #10b981;
+//     --btn-success-hover-bg: #059669;
+//     --btn-success-active-bg: #047857;
+//     --btn-success-text: #ffffff;
+//     --btn-success-border: #10b981;
+//     --btn-success-focus-ring: #6ee7b7;
 
-    --btn-warning-bg: #f59e0b;
-    --btn-warning-hover-bg: #d97706;
-    --btn-warning-active-bg: #b45309;
-    --btn-warning-text: #ffffff;
-    --btn-warning-border: #f59e0b;
-    --btn-warning-focus-ring: #fcd34d;
+//     --btn-warning-bg: #f59e0b;
+//     --btn-warning-hover-bg: #d97706;
+//     --btn-warning-active-bg: #b45309;
+//     --btn-warning-text: #ffffff;
+//     --btn-warning-border: #f59e0b;
+//     --btn-warning-focus-ring: #fcd34d;
 
-    --btn-danger-bg: #ef4444;
-    --btn-danger-hover-bg: #dc2626;
-    --btn-danger-active-bg: #b91c1c;
-    --btn-danger-text: #ffffff;
-    --btn-danger-border: #ef4444;
-    --btn-danger-focus-ring: #fca5a5;
-}
+//     --btn-danger-bg: #ef4444;
+//     --btn-danger-hover-bg: #dc2626;
+//     --btn-danger-active-bg: #b91c1c;
+//     --btn-danger-text: #ffffff;
+//     --btn-danger-border: #ef4444;
+//     --btn-danger-focus-ring: #fca5a5;
+// }
 
 // Dark theme override - using existing SCSS color palettes
-[data-theme='dark'] {
-    // Background colors - using existing SCSS variables
-    --color-bg-primary: #{$neutral-900};
-    --color-bg-secondary: #{$neutral-800};
-    --color-bg-tertiary: #{$neutral-700};
-    --color-bg-interactive: #{$neutral-50};
-    --color-background: #{$neutral-900};
+// [data-theme='dark'] {
+//     // Background colors - using existing SCSS variables
+//     --color-bg-primary: #{$neutral-900};
+//     --color-bg-secondary: #{$neutral-800};
+//     --color-bg-tertiary: #{$neutral-700};
+//     --color-bg-interactive: #{$neutral-50};
+//     --color-background: #{$neutral-900};
 
-    // Text colors - using existing SCSS variables
-    --color-text-primary: #{$neutral-50};
-    --color-text-secondary: #{$neutral-300};
-    --color-text-interactive: #{$neutral-200};
-    --color-text-tertiary: #{$neutral-400};
-    --color-text-inverse: #{$neutral-900};
+//     // Text colors - using existing SCSS variables
+//     --color-text-primary: #{$neutral-50};
+//     --color-text-secondary: #{$neutral-300};
+//     --color-text-interactive: #{$neutral-200};
+//     --color-text-tertiary: #{$neutral-400};
+//     --color-text-inverse: #{$neutral-900};
 
-    // Border colors - using existing SCSS variables
-    --color-border-primary: #{$neutral-600};
-    --color-border: #{$neutral-600};
-    --color-ring: #{$neutral-600};
+//     // Border colors - using existing SCSS variables
+//     --color-border-primary: #{$neutral-600};
+//     --color-border: #{$neutral-600};
+//     --color-ring: #{$neutral-600};
 
-    // Accent colors - using existing primary palette
-    --color-accent-primary: #{$primary-400};
-    --color-accent-focus-ring: #{$primary-200};
-    --color-accent: #{$primary-400};
-    --color-accent-contrast: #{$neutral-50};
+//     // Accent colors - using existing primary palette
+//     --color-accent-primary: #{$primary-400};
+//     --color-accent-focus-ring: #{$primary-200};
+//     --color-accent: #{$primary-400};
+//     --color-accent-contrast: #{$neutral-50};
 
-    // Error colors - using existing error palette
-    --color-error-bg: rgba(153, 27, 27, 0.3);
-    --color-error-text: #{$error-300};
-    --color-error-border: #{$error-500};
-    --color-error: #{$error-300};
+//     // Error colors - using existing error palette
+//     --color-error-bg: rgba(153, 27, 27, 0.3);
+//     --color-error-text: #{$error-300};
+//     --color-error-border: #{$error-500};
+//     --color-error: #{$error-300};
 
-    // Success colors - using existing success palette
-    --color-success-bg: rgba(82, 196, 26, 0.2);
-    --color-success-text: #{$success-300};
-    --color-success-border: #{$success-500};
-    --color-success: #{$success-300};
+//     // Success colors - using existing success palette
+//     --color-success-bg: rgba(82, 196, 26, 0.2);
+//     --color-success-text: #{$success-300};
+//     --color-success-border: #{$success-500};
+//     --color-success: #{$success-300};
 
-    // Warning colors - using existing warning palette
-    --color-warning-bg: rgba(250, 173, 20, 0.2);
-    --color-warning-text: #{$warning-300};
-    --color-warning-border: #{$warning-500};
-    --color-warning: #{$warning-300};
+//     // Warning colors - using existing warning palette
+//     --color-warning-bg: rgba(250, 173, 20, 0.2);
+//     --color-warning-text: #{$warning-300};
+//     --color-warning-border: #{$warning-500};
+//     --color-warning: #{$warning-300};
 
-    // Info colors - using existing info palette
-    --color-info-bg: rgba(24, 144, 255, 0.2);
-    --color-info-text: #{$info-300};
-    --color-info-border: #{$info-500};
-    --color-info: #{$info-300};
+//     // Info colors - using existing info palette
+//     --color-info-bg: rgba(24, 144, 255, 0.2);
+//     --color-info-text: #{$info-300};
+//     --color-info-border: #{$info-500};
+//     --color-info: #{$info-300};
 
-    // Legacy colors for backward compatibility
-    --color-primary: #{$primary-400};
-    --color-primary-contrast: #{$neutral-50};
-    --color-btn-bg: #{$neutral-800};
-    --color-link: #{$primary-400};
-    --color-link-hover: #{$primary-300};
-    --color-success: #{$success-300};
-    --color-success-contrast: #{$neutral-50};
-    --color-warning: #{$warning-300};
-    --color-info: #{$info-300};
-    --color-muted: #{$neutral-400};
+//     // Legacy colors for backward compatibility
+//     --color-primary: #{$primary-400};
+//     --color-primary-contrast: #{$neutral-50};
+//     --color-btn-bg: #{$neutral-800};
+//     --color-link: #{$primary-400};
+//     --color-link-hover: #{$primary-300};
+//     --color-success: #{$success-300};
+//     --color-success-contrast: #{$neutral-50};
+//     --color-warning: #{$warning-300};
+//     --color-info: #{$info-300};
+//     --color-muted: #{$neutral-400};
 
-    // Footer-specific roles
-    --color-footer-bg: #{$neutral-800};
-    --color-footer-text: #{$neutral-50};
-    --color-footer-accent: #{$success-300};
-    --color-footer-accent-contrast: #{$neutral-50};
-    --color-footer-bar-bg: #{$neutral-800};
-    --color-footer-bar-text: #{$neutral-50};
+//     // Footer-specific roles
+//     --color-footer-bg: #{$neutral-800};
+//     --color-footer-text: #{$neutral-50};
+//     --color-footer-accent: #{$success-300};
+//     --color-footer-accent-contrast: #{$neutral-50};
+//     --color-footer-bar-bg: #{$neutral-800};
+//     --color-footer-bar-text: #{$neutral-50};
 
-    // Button states
-    --color-primary-hover-bg: #{$primary-300};
-    --color-secondary-hover-bg: #{$neutral-700};
-    --color-secondary-hover-border: #{$neutral-500};
+//     // Button states
+//     --color-primary-hover-bg: #{$primary-300};
+//     --color-secondary-hover-bg: #{$neutral-700};
+//     --color-secondary-hover-border: #{$neutral-500};
 
-    // Ant Design CSS Variables Integration for Dark Theme
-    --ant-primary-color: var(--color-accent-primary);
-    --ant-primary-color-hover: var(--color-primary-hover-bg);
-    --ant-primary-color-active: #{$primary-500};
-    --ant-primary-color-outline: var(--color-accent-focus-ring);
-    --ant-success-color: var(--color-success);
-    --ant-warning-color: var(--color-warning);
-    --ant-error-color: var(--color-error);
-    --ant-info-color: var(--color-info);
-    --ant-text-color: var(--color-text-primary);
-    --ant-text-color-secondary: var(--color-text-secondary);
-    --ant-text-color-tertiary: var(--color-text-tertiary);
-    --ant-text-color-quaternary: var(--color-text-tertiary);
-    --ant-background-color: var(--color-bg-primary);
-    --ant-background-color-light: var(--color-bg-secondary);
-    --ant-background-color-base: var(--color-bg-tertiary);
-    --ant-border-color-base: var(--color-border-primary);
-    --ant-border-color-split: var(--color-border);
-    --ant-box-shadow-base:
-        0 3px 6px -4px rgba(0, 0, 0, 0.3), 0 6px 16px 0 rgba(0, 0, 0, 0.2),
-        0 9px 28px 8px rgba(0, 0, 0, 0.15);
-    --ant-box-shadow-card:
-        0 1px 2px -2px rgba(0, 0, 0, 0.3), 0 3px 6px 0 rgba(0, 0, 0, 0.2),
-        0 5px 12px 4px rgba(0, 0, 0, 0.15);
+//     // Ant Design CSS Variables Integration for Dark Theme
+//     --ant-primary-color: var(--color-accent-primary);
+//     --ant-primary-color-hover: var(--color-primary-hover-bg);
+//     --ant-primary-color-active: #{$primary-500};
+//     --ant-primary-color-outline: var(--color-accent-focus-ring);
+//     --ant-success-color: var(--color-success);
+//     --ant-warning-color: var(--color-warning);
+//     --ant-error-color: var(--color-error);
+//     --ant-info-color: var(--color-info);
+//     --ant-text-color: var(--color-text-primary);
+//     --ant-text-color-secondary: var(--color-text-secondary);
+//     --ant-text-color-tertiary: var(--color-text-tertiary);
+//     --ant-text-color-quaternary: var(--color-text-tertiary);
+//     --ant-background-color: var(--color-bg-primary);
+//     --ant-background-color-light: var(--color-bg-secondary);
+//     --ant-background-color-base: var(--color-bg-tertiary);
+//     --ant-border-color-base: var(--color-border-primary);
+//     --ant-border-color-split: var(--color-border);
+//     --ant-box-shadow-base:
+//         0 3px 6px -4px rgba(0, 0, 0, 0.3), 0 6px 16px 0 rgba(0, 0, 0, 0.2),
+//         0 9px 28px 8px rgba(0, 0, 0, 0.15);
+//     --ant-box-shadow-card:
+//         0 1px 2px -2px rgba(0, 0, 0, 0.3), 0 3px 6px 0 rgba(0, 0, 0, 0.2),
+//         0 5px 12px 4px rgba(0, 0, 0, 0.15);
 
-    // Button Color Variables - Dark Theme
-    --btn-primary-bg: #60a5fa;
-    --btn-primary-hover-bg: #3b82f6;
-    --btn-primary-active-bg: #1d4ed8;
-    --btn-primary-text: #1f2937;
-    --btn-primary-border: #60a5fa;
-    --btn-primary-focus-ring: #1e40af;
+//     // Button Color Variables - Dark Theme
+//     --btn-primary-bg: #60a5fa;
+//     --btn-primary-hover-bg: #3b82f6;
+//     --btn-primary-active-bg: #1d4ed8;
+//     --btn-primary-text: #1f2937;
+//     --btn-primary-border: #60a5fa;
+//     --btn-primary-focus-ring: #1e40af;
 
-    --btn-secondary-bg: #9ca3af;
-    --btn-secondary-hover-bg: #6b7280;
-    --btn-secondary-active-bg: #4b5563;
-    --btn-secondary-text: #1f2937;
-    --btn-secondary-border: #9ca3af;
-    --btn-secondary-focus-ring: #6b7280;
+//     --btn-secondary-bg: #9ca3af;
+//     --btn-secondary-hover-bg: #6b7280;
+//     --btn-secondary-active-bg: #4b5563;
+//     --btn-secondary-text: #1f2937;
+//     --btn-secondary-border: #9ca3af;
+//     --btn-secondary-focus-ring: #6b7280;
 
-    --btn-success-bg: #34d399;
-    --btn-success-hover-bg: #10b981;
-    --btn-success-active-bg: #059669;
-    --btn-success-text: #1f2937;
-    --btn-success-border: #34d399;
-    --btn-success-focus-ring: #10b981;
+//     --btn-success-bg: #34d399;
+//     --btn-success-hover-bg: #10b981;
+//     --btn-success-active-bg: #059669;
+//     --btn-success-text: #1f2937;
+//     --btn-success-border: #34d399;
+//     --btn-success-focus-ring: #10b981;
 
-    --btn-warning-bg: #fbbf24;
-    --btn-warning-hover-bg: #f59e0b;
-    --btn-warning-active-bg: #d97706;
-    --btn-warning-text: #1f2937;
-    --btn-warning-border: #fbbf24;
-    --btn-warning-focus-ring: #f59e0b;
+//     --btn-warning-bg: #fbbf24;
+//     --btn-warning-hover-bg: #f59e0b;
+//     --btn-warning-active-bg: #d97706;
+//     --btn-warning-text: #1f2937;
+//     --btn-warning-border: #fbbf24;
+//     --btn-warning-focus-ring: #f59e0b;
 
-    --btn-danger-bg: #f87171;
-    --btn-danger-hover-bg: #ef4444;
-    --btn-danger-active-bg: #dc2626;
-    --btn-danger-text: #1f2937;
-    --btn-danger-border: #f87171;
-    --btn-danger-focus-ring: #ef4444;
-}
+//     --btn-danger-bg: #f87171;
+//     --btn-danger-hover-bg: #ef4444;
+//     --btn-danger-active-bg: #dc2626;
+//     --btn-danger-text: #1f2937;
+//     --btn-danger-border: #f87171;
+//     --btn-danger-focus-ring: #ef4444;
+// }

@@ -7,7 +7,7 @@ import { EyeOutlined, HeartOutlined, ShoppingCartOutlined, SwapOutlined } from '
 
 import { formatPrice, formatProductName } from '../../utils/product-catalog.utils';
 import ProductImageGallery from '../ProductImageGallery';
-import './ProductCard.scss';
+import styles from './ProductCard.module.scss';
 import type { ProductCardComponentProps } from './ProductCard.types';
 
 /**
@@ -98,13 +98,21 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
         for (let i = 0; i < 5; i++) {
             if (i < fullStars) {
                 stars.push(
-                    <span key={i} className="product-card__rating-star" aria-hidden="true">
+                    <span
+                        key={i}
+                        className={styles['product-card__rating-star']}
+                        aria-hidden="true"
+                    >
                         ★
                     </span>,
                 );
             } else if (i === fullStars && hasHalfStar) {
                 stars.push(
-                    <span key={i} className="product-card__rating-star" aria-hidden="true">
+                    <span
+                        key={i}
+                        className={styles['product-card__rating-star']}
+                        aria-hidden="true"
+                    >
                         ☆
                     </span>,
                 );
@@ -112,7 +120,7 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
                 stars.push(
                     <span
                         key={i}
-                        className="product-card__rating-star product-card__rating-star--empty"
+                        className={`${styles['product-card__rating-star']} ${styles['product-card__rating-star--empty']}`}
                         aria-hidden="true"
                     >
                         ☆
@@ -122,15 +130,15 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
         }
 
         return (
-            <div className="product-card__rating">
+            <div className={styles['product-card__rating']}>
                 <div
-                    className="product-card__rating-stars"
+                    className={styles['product-card__rating-stars']}
                     role="img"
                     aria-label={`${product.rating} out of 5 stars`}
                 >
                     {stars}
                 </div>
-                <span className="product-card__rating-text">
+                <span className={styles['product-card__rating-text']}>
                     {product.rating} ({product.reviewCount ?? 0} reviews)
                 </span>
             </div>
@@ -149,7 +157,11 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
             statusText = 'Out of Stock';
         }
 
-        return <div className={`product-card__stock-status ${statusClass}`}>{statusText}</div>;
+        return (
+            <div className={`${styles['product-card__stock-status']} ${statusClass}`}>
+                {statusText}
+            </div>
+        );
     }, [product.inStock]);
 
     // Render tags
@@ -157,9 +169,9 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
         if (!product.tags || product.tags.length === 0) return null;
 
         return (
-            <div className="product-card__tags">
+            <div className={styles['product-card__tags']}>
                 {product.tags.slice(0, 2).map((tag, index) => (
-                    <span key={index} className="product-card__tag">
+                    <span key={index} className={styles['product-card__tag']}>
                         {tag}
                     </span>
                 ))}
@@ -172,14 +184,14 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
         if (variant !== 'detailed' || !product.specifications) return null;
 
         return (
-            <div className="product-card__specifications">
-                <ul className="product-card__spec-list">
+            <div className={styles['product-card__specifications']}>
+                <ul className={styles['product-card__spec-list']}>
                     {Object.entries(product.specifications)
                         .slice(0, 3)
                         .map(([key, value]) => (
-                            <li key={key} className="product-card__spec-item">
-                                <span className="product-card__spec-label">{key}:</span>
-                                <span className="product-card__spec-value">{value}</span>
+                            <li key={key} className={styles['product-card__spec-item']}>
+                                <span className={styles['product-card__spec-label']}>{key}:</span>
+                                <span className={styles['product-card__spec-value']}>{value}</span>
                             </li>
                         ))}
                 </ul>
@@ -189,7 +201,7 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
 
     return (
         <article
-            className={`product-card product-card--${variant} ${className}`}
+            className={`${styles['product-card']} ${styles[`product-card--${variant}`]} ${className}`}
             onClick={handleProductClick}
             role="button"
             tabIndex={0}
@@ -206,7 +218,7 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
             {renderTags()}
 
             {/* Product image */}
-            <div className="product-card__image-container">
+            <div className={styles['product-card__image-container']}>
                 <ProductImageGallery
                     images={[
                         {
@@ -219,32 +231,32 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
                     selectedImage={0}
                     onImageSelect={() => {}}
                     onImageClick={handleImageClick}
-                    className="product-card__image"
+                    className={styles['product-card__image']}
                 />
             </div>
 
             {/* Product content */}
-            <div className="product-card__content">
-                <div className="product-card__header">
-                    <h3 className="product-card__title" title={product.name}>
+            <div className={styles['product-card__content']}>
+                <div className={styles['product-card__header']}>
+                    <h3 className={styles['product-card__title']} title={product.name}>
                         {formattedName}
                     </h3>
-                    <p className="product-card__description">{product.description}</p>
+                    <p className={styles['product-card__description']}>{product.description}</p>
                 </div>
 
                 {/* Rating */}
                 {renderRating()}
 
                 {/* Price */}
-                <div className="product-card__price">{formattedPrice}</div>
+                <div className={styles['product-card__price']}>{formattedPrice}</div>
 
                 {/* Specifications (detailed variant) */}
                 {renderSpecifications()}
 
                 {/* Actions */}
-                <div className="product-card__actions">
+                <div className={styles['product-card__actions']}>
                     <Button
-                        className="product-card__primary-action"
+                        className={styles['product-card__primary-action']}
                         type="primary"
                         icon={<ShoppingCartOutlined />}
                         onClick={handleAddToCart}
@@ -255,23 +267,23 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
                     </Button>
 
                     {showQuickActions && (
-                        <div className="product-card__secondary-actions">
+                        <div className={styles['product-card__secondary-actions']}>
                             <Button
-                                className="product-card__secondary-action"
+                                className={styles['product-card__secondary-action']}
                                 icon={<EyeOutlined />}
                                 onClick={handleQuickView}
                                 aria-label={`Quick view ${product.name}`}
                                 title="Quick View"
                             />
                             <Button
-                                className="product-card__secondary-action"
+                                className={styles['product-card__secondary-action']}
                                 icon={<HeartOutlined />}
                                 onClick={handleWishlistToggle}
                                 aria-label={`Add ${product.name} to wishlist`}
                                 title="Add to Wishlist"
                             />
                             <Button
-                                className="product-card__secondary-action"
+                                className={styles['product-card__secondary-action']}
                                 icon={<SwapOutlined />}
                                 onClick={handleCompareToggle}
                                 aria-label={`Compare ${product.name}`}

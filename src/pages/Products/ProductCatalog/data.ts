@@ -10,7 +10,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '101',
                 name: 'Professional Loudspeaker',
-                image: '/bg/bg-1.webp',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 299.99,
                 description: 'High-performance loudspeaker for professional audio applications.',
                 category: 'Speakers',
@@ -27,7 +27,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '102',
                 name: 'Studio Monitor',
-                image: '/bg/bg-2.jpg',
+                image: '/adobe/AdobeStock_1399177776_Preview.png',
                 price: 199.99,
                 description: 'Active studio monitor with a flat frequency response.',
                 category: 'Monitors',
@@ -44,7 +44,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '103',
                 name: 'Portable PA System',
-                image: '/bg/empty-speaker-cabinet.jpg',
+                image: '/adobe/AdobeStock_1149130582_Preview.jpeg',
                 price: 499.99,
                 description: 'All-in-one portable PA system with a built-in mixer.',
                 category: 'PA Systems',
@@ -61,7 +61,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '104',
                 name: 'Wireless Microphone System',
-                image: '/bg/bg-1.webp',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 149.99,
                 description: 'UHF wireless microphone system with a handheld transmitter.',
                 category: 'Microphones',
@@ -78,7 +78,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '105',
                 name: 'Headphones',
-                image: '/bg/bg-1.webp',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 99.99,
                 description: 'Professional studio headphones for critical listening.',
                 category: 'Headphones',
@@ -95,7 +95,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '106',
                 name: 'Acoustic Panels',
-                image: '/bg/bg-2.jpg',
+                image: '/adobe/AdobeStock_1399177776_Preview.png',
                 price: 79.99,
                 description: 'Sound-absorbing panels for room treatment.',
                 category: 'Acoustics',
@@ -120,7 +120,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '201',
                 name: 'DJ Controller',
-                image: '/bg/bg-2.jpg',
+                image: '/adobe/AdobeStock_1399177776_Preview.png',
                 price: 399.99,
                 description: '4-deck DJ controller with integrated audio interface.',
                 category: 'DJ Equipment',
@@ -137,7 +137,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '202',
                 name: 'Audio Interface',
-                image: '/bg/empty-speaker-cabinet.jpg',
+                image: '/adobe/AdobeStock_1149130582_Preview.jpeg',
                 price: 129.99,
                 description: '2-in/2-out USB audio interface with MIDI I/O.',
                 category: 'Audio Interfaces',
@@ -154,7 +154,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '203',
                 name: 'Mixing Console',
-                image: '/bg/bg-1.webp',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 699.99,
                 description: '16-channel analog mixing console with digital effects.',
                 category: 'Mixers',
@@ -171,7 +171,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '204',
                 name: 'Subwoofer',
-                image: '/bg/bg-2.jpg',
+                image: '/adobe/AdobeStock_1399177776_Preview.png',
                 price: 349.99,
                 description: 'Powered subwoofer with a 12-inch driver.',
                 category: 'Subwoofers',
@@ -188,7 +188,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '205',
                 name: 'Digital Mixer',
-                image: '/bg/empty-speaker-cabinet.jpg',
+                image: '/adobe/AdobeStock_1149130582_Preview.jpeg',
                 price: 899.99,
                 description: '32-channel digital mixer with motorized faders.',
                 category: 'Mixers',
@@ -205,7 +205,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '206',
                 name: 'DI Box',
-                image: '/bg/bg-1.webp',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 49.99,
                 description: 'Active direct box for instruments.',
                 category: 'Accessories',

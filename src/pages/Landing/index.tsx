@@ -14,7 +14,7 @@ import AboutSection from './components/AboutSection';
 import HeroSection from './components/HeroSection';
 import ProductsSection from './components/ProductsSection';
 import WhyChooseUsSection from './components/WhyChooseUsSection';
-import './landing.scss';
+import './landing.module.scss';
 // Import types
 import type { FeatureItem, LandingPageProps, Product } from './types/landing.types';
 
@@ -36,10 +36,17 @@ const Index: React.FC<LandingPageProps> = () => {
         navigate('/about');
     };
 
-    const handleViewDetails = (_productId: number) => {
-        // For now, we'll navigate to the TOA HX-5B product detail page
-        // In a real application, you'd map productId to specific product routes
-        navigate('/products/toa-hx5b');
+    const handleViewDetails = (productId: number) => {
+        // Map product IDs to their respective product detail routes
+        const productRoutes: Record<number, string> = {
+            1: '/products/toa-hx5b', // Full Range PA Speaker -> TOA HX-5B
+            2: '/products/toa-hx5b', // FP Power Amplifier -> TOA HX-5B (placeholder)
+            3: '/products/toa-hx5b', // Dual 12" Line Array -> TOA HX-5B (placeholder)
+            4: '/products/toa-hx5b', // Professional DJ Mixer -> TOA HX-5B (placeholder)
+        };
+
+        const route = productRoutes[productId] || '/products/toa-hx5b';
+        navigate(route);
     };
 
     const handleContactUs = () => {
@@ -50,19 +57,19 @@ const Index: React.FC<LandingPageProps> = () => {
     const products: Product[] = [
         {
             id: 1,
-            title: 'Full Range PA Speaker',
+            title: 'TOA HX-5B Line Array Speaker',
             image: 'https://tse4.mm.bing.net/th/id/OIP.ze6zwZu5ovcPy-6hqgLrZwAAAA?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3',
             features: [
-                '8", 10", 12" and dual 15" models available',
-                'Dual 18" and 21" subwoofers',
-                'High-quality plywood cabinet',
-                'Custom-made woofers for high output',
+                'Variable dispersion control (60°-120°)',
+                'High-performance 2-way system',
+                'Professional audio quality',
+                'Perfect for challenging acoustic spaces',
             ],
             icon: <AudioOutlined />,
         },
         {
             id: 2,
-            title: 'FP Power Amplifier',
+            title: 'Professional Power Amplifiers',
             image: 'https://tse1.mm.bing.net/th/id/OIP.ofHTW0BFe4Qju4aQWWOeTwHaHa?cb=thfvnext&pid=ImgDet&w=184&h=184&c=7&dpr=1.3&o=7&rm=3',
             features: [
                 '2-channel and 4-channel series',
@@ -74,7 +81,7 @@ const Index: React.FC<LandingPageProps> = () => {
         },
         {
             id: 3,
-            title: 'Dual 12" Line Array',
+            title: 'Line Array Systems',
             image: 'https://tse1.mm.bing.net/th/id/OIP.xX9Tc2PYtjkoaiGYcxq9ygAAAA?cb=thfvnext&pid=ImgDet&w=184&h=235&c=7&dpr=1.3&o=7&rm=3',
             features: [
                 'High-performance 2-way system',
@@ -86,7 +93,7 @@ const Index: React.FC<LandingPageProps> = () => {
         },
         {
             id: 4,
-            title: 'Professional DJ Mixer',
+            title: 'Professional Audio Mixers',
             image: 'https://tse1.mm.bing.net/th/id/OIP.Vm-L7e9cr6ba-zN3O_KRawHaHg?cb=thfvnext&pid=ImgDet&w=184&h=186&c=7&dpr=1.3&o=7&rm=3',
             features: [
                 '4-channel club-style layout',

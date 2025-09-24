@@ -1,0 +1,470 @@
+// src/pages/Products/ProductCatalog/ProductDetail/components/HeroSection/HeroSection.module.scss
+
+// =============================================================================
+// HERO SECTION
+// =============================================================================
+
+.hero-section {
+    // padding: $spacing-8 0;
+    background: color(bg-primary);
+
+    @include respond-to('md') {
+        // padding: $spacing-12 0;
+    }
+
+    @include respond-to('lg') {
+        // padding: $spacing-16 0;
+    }
+
+    .container {
+        max-width: 1400px;
+        @include container();
+    }
+}
+
+// =============================================================================
+// IMAGE GALLERY
+// =============================================================================
+
+.image-gallery {
+    .main-image-container {
+        position: relative;
+        margin-bottom: $spacing-4;
+        border-radius: $border-radius-lg;
+        overflow: hidden;
+        @include box-shadow($shadow-lg);
+
+        @include respond-to('md') {
+            margin-bottom: $spacing-6;
+        }
+
+        .ant-image {
+            width: 100%;
+            height: 400px;
+
+            @include respond-to('sm') {
+                height: 500px;
+            }
+
+            @include respond-to('md') {
+                height: 600px;
+            }
+
+            @include respond-to('lg') {
+                height: 700px;
+            }
+
+            .ant-image-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                @include transition(transform 0.3s ease);
+            }
+
+            &:hover .ant-image-img {
+                transform: scale(1.02);
+            }
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: $border-radius-lg;
+
+            @include respond-to('sm') {
+                height: 500px;
+            }
+
+            @include respond-to('md') {
+                height: 600px;
+            }
+
+            @include respond-to('lg') {
+                height: 700px;
+            }
+        }
+    }
+
+    .thumbnail-strip {
+        display: flex;
+        gap: $spacing-2;
+        overflow-x: auto;
+        padding: $spacing-2 0;
+        margin-bottom: $spacing-6;
+
+        @include respond-to('md') {
+            gap: $spacing-3;
+            margin-bottom: $spacing-8;
+        }
+
+        .thumbnail {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: $border-radius-md;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            @include transition(all 0.3s ease);
+
+            @include respond-to('sm') {
+                width: 100px;
+                height: 100px;
+            }
+
+            @include respond-to('md') {
+                width: 120px;
+                height: 120px;
+            }
+
+            &.active {
+                border-color: color(accent-primary);
+                @include box-shadow(0 0 0 2px rgba(color(accent-primary), 0.2));
+            }
+
+            &:hover {
+                border-color: color(accent-focus-ring);
+                @include transform(translateY(-2px));
+            }
+
+            .ant-image {
+                width: 100%;
+                height: 100%;
+
+                .ant-image-img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    .context-gallery {
+        .ant-carousel {
+            .slick-slide {
+                padding: 0 $spacing-1;
+            }
+
+            .context-image-item {
+                .context-image {
+                    width: 100%;
+                    height: 120px;
+                    border-radius: $border-radius-md;
+                    overflow: hidden;
+
+                    @include respond-to('sm') {
+                        height: 150px;
+                    }
+
+                    @include respond-to('md') {
+                        height: 180px;
+                    }
+
+                    .ant-image-img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        @include transition(transform 0.3s ease);
+                    }
+
+                    &:hover .ant-image-img {
+                        transform: scale(1.05);
+                    }
+                }
+
+                .context-mask {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    opacity: 0;
+                    @include transition(all 0.3s ease);
+
+                    .anticon {
+                        font-size: 24px;
+                        margin-bottom: $spacing-1;
+                    }
+
+                    span {
+                        font-size: $font-size-sm;
+                        font-weight: $font-weight-medium;
+                    }
+                }
+
+                &:hover .context-mask {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// =============================================================================
+// PRODUCT INFO
+// =============================================================================
+
+.product-info {
+    .productHeader {
+        margin-bottom: $spacing-6;
+
+        .productTitle {
+            margin-bottom: $spacing-2;
+            color: color(text-primary);
+            line-height: $line-height-tight;
+
+            @include respond-to('md') {
+                margin-bottom: $spacing-3;
+            }
+        }
+
+        .productTagline {
+            font-size: $font-size-lg;
+            color: color(text-secondary);
+            margin-bottom: $spacing-4;
+            display: block;
+
+            @include respond-to('md') {
+                font-size: $font-size-xl;
+                margin-bottom: $spacing-6;
+            }
+        }
+
+        .productMeta {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-2;
+
+            @include respond-to('sm') {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+
+    .pricingSection {
+        margin-bottom: $spacing-6;
+        padding: $spacing-4;
+        background: color(bg-secondary);
+        border-radius: $border-radius-lg;
+        border: 1px solid color(border-primary);
+
+        .priceDisplay {
+            display: flex;
+            align-items: center;
+            gap: $spacing-3;
+            margin-bottom: $spacing-4;
+
+            .currentPrice {
+                font-size: $font-size-2xl;
+                font-weight: $font-weight-bold;
+                color: color(accent-primary);
+
+                @include respond-to('md') {
+                    font-size: $font-size-3xl;
+                }
+            }
+
+            .originalPrice {
+                font-size: $font-size-lg;
+                color: color(text-secondary);
+
+                @include respond-to('md') {
+                    font-size: $font-size-xl;
+                }
+            }
+
+            .savingsTag {
+                font-weight: $font-weight-semibold;
+            }
+        }
+
+        .stockAlert {
+            border: none;
+            background: transparent;
+            padding: 0;
+
+            .ant-alert-message {
+                font-weight: $font-weight-semibold;
+            }
+        }
+    }
+
+    .keyFeatures {
+        margin-bottom: $spacing-6;
+
+        .featureList {
+            .featureItem {
+                display: flex;
+                align-items: center;
+                gap: $spacing-3;
+                padding: $spacing-2 0;
+
+                .featureIcon {
+                    color: color(accent-primary);
+                    font-size: $font-size-lg;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+
+    .purchaseSection {
+        .quantitySelector {
+            display: flex;
+            align-items: center;
+            gap: $spacing-3;
+            margin-bottom: $spacing-4;
+
+            .quantityInput {
+                width: 100px;
+            }
+        }
+
+        .actionButtons {
+            .addToCartBtn {
+                height: 48px;
+                font-size: $font-size-lg;
+                font-weight: $font-weight-semibold;
+                @include box-shadow($shadow-md);
+
+                &:hover {
+                    @include transform(translateY(-1px));
+                    @include box-shadow($shadow-lg);
+                }
+            }
+
+            .secondaryActions {
+                width: 100%;
+                justify-content: center;
+
+                @include respond-to('sm') {
+                    justify-content: flex-start;
+                }
+
+                .wishlistActive {
+                    background-color: color(accent-primary);
+                    border-color: color(accent-primary);
+                    color: color(accent-contrast);
+                }
+            }
+        }
+
+        .trustSignals {
+            margin-top: $spacing-6;
+            padding: $spacing-4;
+            background: color(bg-secondary);
+            border-radius: $border-radius-md;
+            border: 1px solid color(border-primary);
+
+            .trustItem {
+                display: flex;
+                align-items: center;
+                gap: $spacing-2;
+
+                .trustIcon {
+                    color: color(success);
+                    font-size: $font-size-base;
+                }
+            }
+        }
+    }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@include respond-to-max('md') {
+    .hero-section {
+        .image-gallery {
+            .main-image-container {
+                .ant-image {
+                    height: 300px;
+                }
+            }
+        }
+
+        .product-info {
+            .pricingSection {
+                .priceDisplay {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: $spacing-2;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to-max('sm') {
+    .hero-section {
+        padding: $spacing-6 0;
+
+        .image-gallery {
+            .main-image-container {
+                .ant-image {
+                    height: 250px;
+                }
+            }
+
+            .thumbnail-strip {
+                .thumbnail {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+        }
+
+        .product-info {
+            .productHeader {
+                .productTitle {
+                    font-size: $font-size-xl;
+                }
+
+                .productTagline {
+                    font-size: $font-size-base;
+                }
+            }
+
+            .pricingSection {
+                .priceDisplay {
+                    .currentPrice {
+                        font-size: $font-size-xl;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+.image-gallery,
+.product-info {
+    @include animation(scaleIn 0.8s ease-out);
+}
+
+@include print {
+    .hero-section {
+        .image-gallery {
+            .context-gallery {
+                display: none;
+            }
+        }
+    }
+}

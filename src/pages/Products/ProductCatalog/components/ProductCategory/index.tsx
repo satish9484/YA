@@ -8,7 +8,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { getPaginatedItems } from '../../utils/product-catalog.utils';
 import ProductCard from '../ProductCard';
 import ProductPagination from '../ProductPagination';
-import './ProductCategory.scss';
+import styles from './ProductCategory.module.scss';
 import type { ProductCategoryComponentProps } from './ProductCategory.types';
 
 const { Title, Paragraph } = Typography;
@@ -58,12 +58,12 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
     // Render empty state
     const renderEmptyState = useCallback(
         () => (
-            <div className="product-category__empty">
-                <InfoCircleOutlined className="product-category__empty-icon" />
-                <Title level={4} className="product-category__empty-title">
+            <div className={styles['product-category__empty']}>
+                <InfoCircleOutlined className={styles['product-category__empty-icon']} />
+                <Title level={4} className={styles['product-category__empty-title']}>
                     No products found
                 </Title>
-                <Paragraph className="product-category__empty-description">
+                <Paragraph className={styles['product-category__empty-description']}>
                     This category doesn&apos;t have any products yet. Check back later!
                 </Paragraph>
             </div>
@@ -74,10 +74,10 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
     // Render category header
     const renderCategoryHeader = useCallback(
         () => (
-            <div className="product-category__header">
+            <div className={styles['product-category__header']}>
                 <Title
                     level={2}
-                    className="product-category__title"
+                    className={styles['product-category__title']}
                     onClick={handleCategoryClick}
                     role={onCategoryClick ? 'button' : undefined}
                     tabIndex={onCategoryClick ? 0 : undefined}
@@ -96,7 +96,7 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
                     {category.name}
                 </Title>
                 {showCategoryDescription && category.description && (
-                    <Paragraph className="product-category__description">
+                    <Paragraph className={styles['product-category__description']}>
                         {category.description}
                     </Paragraph>
                 )}
@@ -118,7 +118,7 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
         }
 
         return (
-            <div className="product-category__products-grid">
+            <div className={styles['product-category__products-grid']}>
                 {paginatedProducts.map(product => (
                     <ProductCard
                         key={product.id}

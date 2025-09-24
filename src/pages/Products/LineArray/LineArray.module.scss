@@ -1,0 +1,30 @@
+/* =====================================================
+  Line Array Page Styles
+ ================================================================ */
+
+.line-array-page {
+    min-height: 100vh;
+    // background: color(background);
+    // padding: $spacing-4 0;
+
+    // @include respond-to('md') {
+    //     padding: $spacing-6 0;
+    // }
+
+    // @include respond-to('lg') {
+    //     padding: $spacing-8 0;
+    // }
+}
+
+// Breadcrumbs styling - now uses layout system
+.line-array-breadcrumbs {
+    // Additional custom styling if needed
+    // The container and background styling is now handled by the component props
+    margin-bottom: 20px;
+
+    // Ensure proper spacing within the container
+    .container {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}

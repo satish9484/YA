@@ -5,7 +5,7 @@ import { Button, Col, Row, Typography } from 'antd';
 import { PlayCircleOutlined, StarOutlined } from '@ant-design/icons';
 
 import type { HeroSectionProps } from '../../types/landing.types';
-import './HeroSection.scss';
+import styles from './HeroSection.module.scss';
 
 const { Title, Paragraph } = Typography;
 
@@ -17,7 +17,7 @@ const { Title, Paragraph } = Typography;
  */
 const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onLearnMore }) => {
     return (
-        <section className="hero-section">
+        <section className={styles['hero-section']}>
             <div className="container h-100">
                 <Row
                     className="h-100"
@@ -26,11 +26,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onLearnMore }) 
                     style={{ textAlign: 'center' }}
                 >
                     <Col span={24}>
-                        <Title level={1} className="hero-section__title text-white">
+                        <Title level={1} className={`${styles['hero-section__title']} text-white`}>
                             Professional Speaker Manufacturer <br />
                             and Distributor in India
                         </Title>
-                        <Paragraph className="hero-section__description text-white">
+                        <Paragraph className={`${styles['hero-section__description']} text-white`}>
                             Best Line Array for Your Best Business & Events
                         </Paragraph>
                         <div
@@ -38,7 +38,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onLearnMore }) 
                             style={{ marginTop: '2rem' }}
                         >
                             <Button
-                                className="hero-section__get-started ant-btn ant-btn-primary ant-btn-xl"
+                                className={`${styles['hero-section__get-started']} ant-btn ant-btn-primary ant-btn-xl`}
                                 type="primary"
                                 size="large"
                                 icon={<PlayCircleOutlined />}
@@ -47,7 +47,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onLearnMore }) 
                                 Get Started
                             </Button>
                             <Button
-                                className="hero-section__learn-more ant-btn ant-btn-ghost ant-btn-xl"
+                                className={`${styles['hero-section__learn-more']} ant-btn ant-btn-ghost ant-btn-xl`}
                                 size="large"
                                 icon={<StarOutlined />}
                                 onClick={onLearnMore}

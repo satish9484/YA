@@ -3,7 +3,7 @@ import type React from 'react';
 import { Button, Typography } from 'antd';
 
 import type { ProductCardProps } from '../../types/landing.types';
-import './ProductCard.scss';
+import styles from './ProductCard.module.scss';
 
 const { Title } = Typography;
 
@@ -15,20 +15,28 @@ const { Title } = Typography;
  */
 const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails }) => {
     return (
-        <div className="product-card">
-            <div className="product-card__image-container">
-                <img src={product.image} alt={product.title} className="product-card__image" />
+        <div className={styles['product-card']}>
+            <div className={styles['product-card__image-container']}>
+                <img
+                    src={product.image}
+                    alt={product.title}
+                    className={styles['product-card__image']}
+                />
             </div>
-            <div className="product-card__content">
+            <div className={styles['product-card__content']}>
                 <div className="d-flex items-center mb-3">
                     <span className="text-primary mr-2" style={{ fontSize: '18px' }}>
                         {product.icon}
                     </span>
-                    <Title level={4} className="product-card__title" style={{ margin: 0 }}>
+                    <Title
+                        level={4}
+                        className={styles['product-card__title']}
+                        style={{ margin: 0 }}
+                    >
                         {product.title}
                     </Title>
                 </div>
-                <ul className="product-card__features">
+                <ul className={styles['product-card__features']}>
                     {product.features.map((feature, index) => (
                         <li key={index}>{feature}</li>
                     ))}

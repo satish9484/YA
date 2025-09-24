@@ -40,7 +40,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hx5b',
                 name: 'TOA HX-5B Variable Dispersion Line Array Speaker',
-                image: '/images/01.png',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 1299.99,
                 originalPrice: 1499.99,
                 description:
@@ -66,7 +66,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hx5b-wp',
                 name: 'TOA HX-5B-WP Weatherproof Line Array Speaker',
-                image: '/images/02.png',
+                image: '/adobe/AdobeStock_1399177776_Preview.png',
                 price: 1399.99,
                 originalPrice: 1599.99,
                 description: 'Weatherproof version with IP55 rating for outdoor applications',
@@ -91,7 +91,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hx3b',
                 name: 'TOA HX-3B Compact Line Array Speaker',
-                image: '/images/03.png',
+                image: '/adobe/AdobeStock_1149130582_Preview.jpeg',
                 price: 899.99,
                 originalPrice: 1099.99,
                 description: 'Compact line array speaker for medium-sized venues and installations',
@@ -116,7 +116,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hx7b',
                 name: 'TOA HX-7B High-Power Line Array Speaker',
-                image: '/images/04.png',
+                image: '/adobe/AdobeStock_1267188545_Preview.jpeg',
                 price: 1899.99,
                 originalPrice: 2199.99,
                 description: 'High-power line array speaker for large venues and outdoor events',
@@ -141,7 +141,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hx1b',
                 name: 'TOA HX-1B Entry-Level Line Array Speaker',
-                image: '/images/01.png',
+                image: '/adobe/AdobeStock_1596433811.jpeg',
                 price: 599.99,
                 originalPrice: 749.99,
                 description:
@@ -167,7 +167,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hx9b',
                 name: 'TOA HX-9B Premium Line Array Speaker',
-                image: '/images/02.png',
+                image: '/adobe/AdobeStock_1192725827.jpeg',
                 price: 2499.99,
                 originalPrice: 2799.99,
                 description:
@@ -201,7 +201,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-fb-120b',
                 name: 'TOA FB-120B Matching Subwoofer',
-                image: '/images/02.png',
+                image: '/adobe/AdobeStock_1399177776_Preview.png',
                 price: 899.99,
                 description: 'Matching 12" subwoofer for extended low-frequency response',
                 category: 'Subwoofers',
@@ -224,7 +224,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hy-wm1b',
                 name: 'HY-WM1B Wall Mount Bracket',
-                image: '/images/03.png',
+                image: '/adobe/AdobeStock_1149130582_Preview.jpeg',
                 price: 149.99,
                 description: 'Heavy-duty wall mounting bracket for single speaker',
                 category: 'Mounting Hardware',
@@ -246,7 +246,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hy-cw1b',
                 name: 'HY-CW1B Ceiling Mount Bracket',
-                image: '/images/04.png',
+                image: '/adobe/AdobeStock_1267188545_Preview.jpeg',
                 price: 199.99,
                 description: 'Professional ceiling mounting system with tilt adjustment',
                 category: 'Mounting Hardware',
@@ -268,7 +268,7 @@ export const lineArrayProducts: LineArrayProductCategory[] = [
             {
                 id: 'toa-hy-st1',
                 name: 'HY-ST1 Stand Adapter',
-                image: '/images/01.png',
+                image: '/adobe/AdobeStock_1399177338_Preview.png',
                 price: 89.99,
                 description: 'Universal stand adapter for portable applications',
                 category: 'Mounting Hardware',

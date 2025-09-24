@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, memo } from 'react';
 // Import Suspense for lazy loading
 import { Navigate, Route, Routes } from 'react-router-dom';
 
@@ -12,7 +12,6 @@ import UserProfileCard from '@/components/UserProfileCard';
 
 const PageLayout = lazy(() => import('@/components/common/layout'));
 const Landing = lazy(() => import('@/pages/Landing'));
-const DesignSystemDemo = lazy(() => import('@/pages/DesignSystemDemo'));
 const ProductsPage = lazy(() => import('@/pages/Products'));
 
 // Product subcategory pages
@@ -23,7 +22,7 @@ const PowerAmplifiersPage = lazy(() => import('@/pages/Products/Amplifiers'));
 const SignalProcessorsPage = lazy(() => import('@/pages/Products/Processors'));
 
 // Product detail pages
-const ProductDetailPage = lazy(() => import('@/pages/Products/ProductCatalog/ProductDetail'));
+const ProductDetailPage = lazy(() => import('@/pages/Products/ProductCatalog/ProductDetailPage'));
 const LineArrayProductDetailPage = lazy(() => import('@/pages/Products/LineArray/ProductDetail'));
 
 // Application pages
@@ -37,7 +36,7 @@ const OutdoorEventsPage = lazy(() => import('@/pages/Applications/Outdoor'));
 const AboutPage = lazy(() => import('@/pages/About'));
 const ContactPage = lazy(() => import('@/pages/Contact'));
 
-const Routing: React.FC = () => {
+const Routing: React.FC = memo(() => {
     return (
         <Routes>
             {/* Public Route: Login page */}
@@ -77,7 +76,6 @@ const Routing: React.FC = () => {
                 <Route path="/contact" element={<ContactPage />} />
 
                 {/* Design System Demo */}
-                <Route path="/design-system" element={<DesignSystemDemo />} />
                 <Route path="/dashboard" element={<UserProfileCard />} />
             </Route>
 
@@ -98,6 +96,8 @@ const Routing: React.FC = () => {
             <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
     );
-};
+});
+
+Routing.displayName = 'Routing';
 
 export default Routing;

@@ -1,0 +1,321 @@
+// src/pages/Products/ProductCatalog/ProductDetail/components/DispersionShowcase/DispersionShowcase.module.scss
+
+// =============================================================================
+// INTERACTIVE DISPERSION SHOWCASE
+// =============================================================================
+
+.dispersionShowcase {
+    padding: $spacing-12 0;
+    background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
+
+    @include respond-to('md') {
+        padding: $spacing-16 0;
+    }
+
+    .dispersionVisualizer {
+        .angleSelector {
+            display: flex;
+            gap: $spacing-2;
+            margin-bottom: $spacing-6;
+            justify-content: center;
+
+            @include respond-to('sm') {
+                gap: $spacing-3;
+            }
+
+            .angleButton {
+                min-width: 60px;
+                height: 40px;
+                font-weight: $font-weight-semibold;
+                border-radius: $border-radius-md;
+
+                @include respond-to('sm') {
+                    min-width: 80px;
+                    height: 48px;
+                }
+            }
+        }
+
+        .speakerVisualization {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+            border-radius: $border-radius-lg;
+            padding: $spacing-6;
+            @include box-shadow($shadow-md);
+
+            @include respond-to('md') {
+                min-height: 400px;
+                padding: $spacing-8;
+            }
+
+            .speakerGraphic {
+                position: relative;
+                width: 200px;
+                height: 200px;
+
+                @include respond-to('md') {
+                    width: 250px;
+                    height: 250px;
+                }
+
+                .speakerBody {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 80px;
+                    height: 120px;
+                    background: linear-gradient(
+                        135deg,
+                        color(bg-interactive) 0%,
+                        color(bg-tertiary) 100%
+                    );
+                    border-radius: $border-radius-md;
+                    @include box-shadow($shadow-lg);
+
+                    @include respond-to('md') {
+                        width: 100px;
+                        height: 150px;
+                    }
+
+                    .speakerDriver {
+                        position: absolute;
+                        top: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 50px;
+                        height: 50px;
+                        background: radial-gradient(
+                            circle,
+                            color(bg-tertiary) 0%,
+                            color(bg-interactive) 100%
+                        );
+                        border-radius: 50%;
+                        border: 2px solid color(border-primary);
+
+                        @include respond-to('md') {
+                            width: 60px;
+                            height: 60px;
+                        }
+                    }
+
+                    .speakerTweeter {
+                        position: absolute;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 20px;
+                        height: 20px;
+                        background: radial-gradient(
+                            circle,
+                            color(accent-primary) 0%,
+                            color(accent-focus-ring) 100%
+                        );
+                        border-radius: 50%;
+
+                        @include respond-to('md') {
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
+                }
+
+                .dispersionPattern {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform-origin: 50% 0%;
+                    width: 2px;
+                    height: 100px;
+                    background: linear-gradient(
+                        to top,
+                        rgba(color(accent-primary), 0.8) 0%,
+                        rgba(color(accent-primary), 0.2) 100%
+                    );
+                    border-radius: 1px;
+
+                    @include respond-to('md') {
+                        height: 120px;
+                    }
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 0;
+                        height: 0;
+                        border-left: 15px solid transparent;
+                        border-right: 15px solid transparent;
+                        border-bottom: 20px solid rgba(color(accent-primary), 0.6);
+
+                        @include respond-to('md') {
+                            border-left: 20px solid transparent;
+                            border-right: 20px solid transparent;
+                            border-bottom: 25px solid rgba(color(accent-primary), 0.6);
+                        }
+                    }
+
+                    &.pattern15 {
+                        height: 60px;
+                        &::before {
+                            border-left: 8px solid transparent;
+                            border-right: 8px solid transparent;
+                            border-bottom: 15px solid rgba(color(accent-primary), 0.6);
+                        }
+                    }
+
+                    &.pattern30 {
+                        height: 80px;
+                        &::before {
+                            border-left: 12px solid transparent;
+                            border-right: 12px solid transparent;
+                            border-bottom: 18px solid rgba(color(accent-primary), 0.6);
+                        }
+                    }
+
+                    &.pattern45 {
+                        height: 100px;
+                        &::before {
+                            border-left: 15px solid transparent;
+                            border-right: 15px solid transparent;
+                            border-bottom: 20px solid rgba(color(accent-primary), 0.6);
+                        }
+                    }
+
+                    &.pattern60 {
+                        height: 120px;
+                        &::before {
+                            border-left: 20px solid transparent;
+                            border-right: 20px solid transparent;
+                            border-bottom: 25px solid rgba(color(accent-primary), 0.6);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .dispersionInfo {
+        .dispersionDescription {
+            font-size: $font-size-lg;
+            color: color(text-secondary);
+            margin-bottom: $spacing-6;
+            display: block;
+        }
+
+        .dynamicSpecs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $spacing-3;
+            margin-bottom: $spacing-6;
+
+            @include respond-to('sm') {
+                gap: $spacing-4;
+            }
+
+            .specCard {
+                text-align: center;
+                @include box-shadow($shadow-sm);
+
+                .ant-statistic {
+                    .ant-statistic-title {
+                        font-size: $font-size-sm;
+                        color: color(text-secondary);
+                        margin-bottom: $spacing-1;
+                    }
+
+                    .ant-statistic-content {
+                        font-size: $font-size-lg;
+                        font-weight: $font-weight-semibold;
+                        color: color(text-primary);
+
+                        @include respond-to('md') {
+                            font-size: $font-size-xl;
+                        }
+                    }
+                }
+            }
+        }
+
+        .useCase {
+            padding: $spacing-4;
+            background: color(bg-secondary);
+            border-radius: $border-radius-md;
+            border-left: 4px solid color(accent-primary);
+        }
+    }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@include respond-to-max('md') {
+    .dispersionShowcase {
+        .dispersionVisualizer {
+            .speakerVisualization {
+                min-height: 250px;
+                padding: $spacing-4;
+            }
+        }
+
+        .dispersionInfo {
+            .dynamicSpecs {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+
+@include respond-to-max('sm') {
+    .dispersionShowcase {
+        padding: $spacing-8 0;
+
+        .dispersionVisualizer {
+            .angleSelector {
+                flex-wrap: wrap;
+                gap: $spacing-2;
+
+                .angleButton {
+                    min-width: 50px;
+                    height: 36px;
+                    font-size: $font-size-sm;
+                }
+            }
+
+            .speakerVisualization {
+                min-height: 200px;
+                padding: $spacing-3;
+
+                .speakerGraphic {
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+        }
+    }
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+.dispersionVisualizer,
+.dispersionInfo {
+    @include animation(scaleIn 0.8s ease-out);
+}
+
+@include print {
+    .dispersionShowcase {
+        .dispersionVisualizer {
+            .speakerVisualization {
+                display: none;
+            }
+        }
+    }
+}

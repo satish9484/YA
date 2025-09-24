@@ -1,5 +1,11 @@
+// src/style.scss
+
 @use './scss/index' as *;
 
-#root {
-    height: 100%;
-}
+// Emit theme CSS variables for both light and dark themes
+@include emit-theme-css-variables(':root', light);
+@include emit-theme-css-variables('[data-theme="dark"]', dark);
+
+// #root {
+//     height: 100%;
+// }

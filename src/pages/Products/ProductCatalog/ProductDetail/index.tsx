@@ -1,22 +1,27 @@
 import type React from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-import { Col, Row } from 'antd';
+// Breadcrumbs are now handled by parent pages
 
-// Import breadcrumbs
-import Breadcrumbs from '@/components/common/Breadcrumbs';
-
-import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-// Import modular components
-import ProductImageGallery from '../components/ProductImageGallery';
-import ProductInfo from '../components/ProductInfo';
 // Import types and data
 import { productDetailData } from '../data/product-detail.data';
 // Import hooks and utilities
 import { useProductDetail } from '../hooks/useProductDetail';
 import type { ProductDetailProps } from '../types/product-detail.types';
+// Import modular components
+import {
+    ApplicationsGallery,
+    DispersionShowcase,
+    ErrorState,
+    HeroSection,
+    ResourceHub,
+    ReviewsQA,
+    SectionWrapper,
+    SystemBuilder,
+    TechnicalSpecifications,
+} from './components';
 // Import styles
-import './ProductDetail.scss';
+import styles from './ProductDetail.module.scss';
 
 const ProductDetail: React.FC<ProductDetailProps> = ({
     productId: _productId,
@@ -28,32 +33,21 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
     // For now, we'll use the mock data. In a real app, this would fetch based on productId
     const product = useMemo(() => productDetailData, []);
 
-    // Generate breadcrumbs for product detail page
-    // Use path-based generation since URL structure is /products/productId
-    const { breadcrumbs, handleBreadcrumbClick } = useBreadcrumbs();
-
     // Use the product detail hook
-    const {
-        selectedImage,
-        quantity,
-        wishlist,
-        actions,
-        // Exclude unused variables
-        selectedDispersion,
-        selectedAccessories,
-        ...rest
-    } = useProductDetail(product, {
-        productId: _productId,
-        onProductClick,
-        onAddToCart,
-        onAddToWishlist,
-        onShare,
-    });
+    const { selectedImage, quantity, wishlist, actions, selectedDispersion } = useProductDetail(
+        product,
+        {
+            productId: _productId,
+            onProductClick,
+            onAddToCart,
+            onAddToWishlist,
+            onShare,
+        },
+    );
 
-    // Suppress unused variable warnings for variables we'll use later
-    void selectedDispersion;
-    void selectedAccessories;
-    void rest;
+    // State for technical specifications
+    const [specsLoading, setSpecsLoading] = useState(false);
+    const [specsError, setSpecsError] = useState(false);
 
     // Handle product click
     const handleProductClick = useCallback(() => {
@@ -79,8 +73,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
 
     // Handle quantity change
     const handleQuantityChange = useCallback(
-        (newQuantity: number) => {
-            actions.setQuantity(newQuantity);
+        (newQuantity: number | null) => {
+            if (newQuantity !== null) {
+                actions.setQuantity(newQuantity);
+            }
         },
         [actions],
     );
@@ -93,78 +89,165 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
         [actions],
     );
 
-    if (!product) {
-        return (
-            <div className="product-detail-page">
-                <div className="container">
-                    {/* Breadcrumbs */}
-                    <Breadcrumbs
-                        items={breadcrumbs}
-                        onItemClick={handleBreadcrumbClick}
-                        variant="default"
-                        separator="chevron"
-                    />
+    // Handle dispersion change
+    const handleDispersionChange = useCallback(
+        (angle: number) => {
+            actions.setSelectedDispersion(angle);
+        },
+        [actions],
+    );
 
-                    <div className="product-detail__error">
-                        <h2>Product not found</h2>
-                        <p>The requested product could not be found.</p>
-                    </div>
-                </div>
-            </div>
-        );
+    // Handle accessory selection
+    const handleAddToSystem = useCallback(
+        (accessoryId: string) => {
+            actions.toggleAccessory(accessoryId);
+        },
+        [actions],
+    );
+
+    const handleRemoveFromSystem = useCallback(
+        (accessoryId: string) => {
+            actions.toggleAccessory(accessoryId);
+        },
+        [actions],
+    );
+
+    // Handle downloads
+    const handleDownloadSpecs = useCallback(() => {
+        // Implementation for downloading specifications
+        console.log('Downloading specifications...');
+    }, []);
+
+    const handleDownloadResource = useCallback((resourceId: number) => {
+        // Implementation for downloading resources
+        console.log('Downloading resource:', resourceId);
+    }, []);
+
+    // Handle support actions
+    const handleContactSupport = useCallback(() => {
+        // Implementation for contacting support
+        console.log('Contacting support...');
+    }, []);
+
+    // Handle Q&A actions
+    const handleAskQuestion = useCallback(() => {
+        // Implementation for asking questions
+        console.log('Asking question...');
+    }, []);
+
+    const handleHelpfulReview = useCallback((reviewId: number) => {
+        // Implementation for marking review as helpful
+        console.log('Marking review as helpful:', reviewId);
+    }, []);
+
+    const handleHelpfulAnswer = useCallback((qaId: number) => {
+        // Implementation for marking answer as helpful
+        console.log('Marking answer as helpful:', qaId);
+    }, []);
+
+    // Transform ProductAccessory[] to Accessory[] for SystemBuilder
+    const transformedAccessories = useMemo(() => {
+        return product.accessories.map(accessory => ({
+            id: accessory.id,
+            name: accessory.name,
+            price: accessory.price,
+            image: accessory.image,
+            description: accessory.description,
+            compatible: accessory.compatible,
+            recommended: accessory.recommended,
+            category: 'Audio Accessories', // Default category
+            features: [], // Default empty features array
+            inStock: true, // Default to in stock
+        }));
+    }, [product.accessories]);
+
+    // Handle specifications retry
+    const handleSpecsRetry = useCallback(() => {
+        setSpecsError(false);
+        setSpecsLoading(true);
+        // Simulate loading
+        setTimeout(() => {
+            setSpecsLoading(false);
+        }, 2000);
+    }, []);
+
+    if (!product) {
+        return <ErrorState />;
     }
 
     return (
-        <div className="product-detail-page">
-            {/* Breadcrumbs */}
-            <div className="container">
-                <Breadcrumbs
-                    items={breadcrumbs}
-                    onItemClick={handleBreadcrumbClick}
-                    variant="default"
-                    separator="chevron"
-                />
-            </div>
+        <div className={styles['product-detail-page']}>
+            {/* Breadcrumbs are handled by parent pages */}
 
             {/* Hero Section */}
-            <section className="product-detail__hero">
-                <div className="container">
-                    <Row gutter={[32, 32]} align="top">
-                        {/* Image Gallery */}
-                        <Col xs={24} lg={14}>
-                            <ProductImageGallery
-                                images={product.images}
-                                selectedImage={selectedImage}
-                                onImageSelect={handleImageSelect}
-                                onImageClick={handleProductClick}
-                                showThumbnails={true}
-                                showContextGallery={true}
-                                showToolbar={true}
-                            />
-                        </Col>
+            <HeroSection
+                product={product}
+                selectedImage={selectedImage}
+                quantity={quantity}
+                wishlist={wishlist}
+                onImageSelect={handleImageSelect}
+                onProductClick={handleProductClick}
+                onQuantityChange={handleQuantityChange}
+                onAddToCart={handleAddToCart}
+                onAddToWishlist={handleAddToWishlist}
+                onShare={handleShare}
+            />
 
-                        {/* Product Info & Purchase */}
-                        <Col xs={24} lg={10}>
-                            <ProductInfo
-                                product={product}
-                                quantity={quantity}
-                                onQuantityChange={handleQuantityChange}
-                                onAddToCart={handleAddToCart}
-                                onAddToWishlist={handleAddToWishlist}
-                                onShare={handleShare}
-                                wishlist={wishlist}
-                                showTrustSignals={true}
-                                showKeyFeatures={true}
-                                showStockAlert={true}
-                                variant="default"
-                            />
-                        </Col>
-                    </Row>
-                </div>
-            </section>
+            {/* Dispersion Showcase Section */}
+            <SectionWrapper>
+                <DispersionShowcase
+                    dispersionConfigs={product.dispersionConfigs}
+                    selectedDispersion={selectedDispersion}
+                    onDispersionChange={handleDispersionChange}
+                />
+            </SectionWrapper>
 
-            {/* Additional sections will be added here as we create more components */}
-            {/* For now, we have the basic product display working */}
+            {/* Technical Specifications Section */}
+            <SectionWrapper>
+                <TechnicalSpecifications
+                    specifications={product.specifications}
+                    onDownloadSpecs={handleDownloadSpecs}
+                    isLoading={specsLoading}
+                    hasError={specsError}
+                    onRetry={handleSpecsRetry}
+                />
+            </SectionWrapper>
+
+            {/* Applications Gallery Section */}
+            <SectionWrapper>
+                <ApplicationsGallery applications={product.applications} />
+            </SectionWrapper>
+
+            {/* System Builder Section */}
+            <SectionWrapper>
+                <SystemBuilder
+                    accessories={transformedAccessories}
+                    onAddToSystem={handleAddToSystem}
+                    onRemoveFromSystem={handleRemoveFromSystem}
+                />
+            </SectionWrapper>
+
+            {/* Reviews & Q&A Section */}
+            <SectionWrapper>
+                <ReviewsQA
+                    reviews={product.reviews}
+                    qa={product.qa}
+                    rating={product.rating}
+                    reviewCount={product.reviewCount}
+                    onAskQuestion={handleAskQuestion}
+                    onHelpfulReview={handleHelpfulReview}
+                    onHelpfulAnswer={handleHelpfulAnswer}
+                />
+            </SectionWrapper>
+
+            {/* Resource Hub Section */}
+            <SectionWrapper>
+                <ResourceHub
+                    resources={product.resources}
+                    onDownload={handleDownloadResource}
+                    onContactSupport={handleContactSupport}
+                />
+            </SectionWrapper>
         </div>
     );
 };

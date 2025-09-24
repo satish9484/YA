@@ -1,0 +1,544 @@
+// Technical Specifications Styles
+.specifications-section {
+    padding: $spacing-12 0;
+    background: linear-gradient(
+        135deg,
+        color(bg-primary, light) 0%,
+        color(bg-secondary, light) 100%
+    );
+    @include transition(all 0.3s ease);
+
+    @include respond-to('md') {
+        padding: $spacing-16 0;
+    }
+
+    // Dark mode section styling
+    [data-theme='dark'] & {
+        background: linear-gradient(
+            135deg,
+            color(bg-primary, dark) 0%,
+            color(bg-secondary, dark) 100%
+        );
+    }
+}
+
+.container {
+    max-width: 1400px;
+    @include container();
+}
+
+.spec-header {
+    text-align: center;
+    margin-bottom: $spacing-8;
+
+    .section-title {
+        color: color(text-primary, light);
+        margin-bottom: $spacing-2;
+        font-weight: 700;
+        font-size: 2.5rem;
+
+        @include respond-to('md') {
+            font-size: 3rem;
+        }
+    }
+
+    .section-description {
+        color: color(text-secondary, light);
+        font-size: $font-size-lg;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+.spec-actions {
+    text-align: center;
+    margin-bottom: $spacing-10;
+
+    .download-spec-btn {
+        height: 48px;
+        padding: 0 $spacing-8;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        @include box-shadow($shadow-md);
+        @include transition(all 0.3s ease);
+
+        &:hover {
+            @include transform(translateY(-2px));
+            @include box-shadow($shadow-lg);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.spec-tabs-container {
+    background: color(bg-primary, light);
+    border-radius: $border-radius-xl;
+    padding: $spacing-6;
+    @include box-shadow($shadow-lg);
+    border: 1px solid color(border-primary, light);
+    @include transition(all 0.3s ease);
+
+    @include respond-to('md') {
+        padding: $spacing-8;
+    }
+
+    // Dark mode tabs container styling
+    [data-theme='dark'] & {
+        background: color(bg-primary, dark);
+        border-color: color(border-primary, dark);
+        @include box-shadow($shadow-lg);
+    }
+}
+
+.spec-tabs {
+    .ant-tabs-nav {
+        margin-bottom: $spacing-8;
+        background: var(--ant-tabs-nav-bg, color(bg-secondary, light)) !important;
+        border-radius: $border-radius-lg;
+        padding: $spacing-2;
+
+        .ant-tabs-nav-wrap {
+            .ant-tabs-nav-list {
+                background: var(--ant-tabs-nav-bg, color(bg-secondary, light)) !important;
+                transform: none !important;
+
+                .ant-tabs-tab {
+                    font-weight: $font-weight-semibold;
+                    padding: $spacing-3 $spacing-5;
+                    margin: 0 $spacing-2;
+                    border-radius: $border-radius-lg;
+                    @include transition(all 0.3s ease);
+                    background: transparent !important;
+                    border: 2px solid transparent;
+
+                    .ant-tabs-tab-btn {
+                        background: transparent !important;
+                        border: none !important;
+                        outline: none !important;
+                        padding: $spacing-2 $spacing-4;
+                        border-radius: $border-radius-md;
+
+                        .tab-label {
+                            color: color(text-secondary, light);
+                            font-size: $font-size-base;
+                            font-weight: $font-weight-medium;
+                            padding: $spacing-1 $spacing-2;
+                            border-radius: $border-radius-sm;
+                            @include transition(all 0.3s ease);
+                        }
+                    }
+
+                    &:hover {
+                        background: var(
+                            --ant-tabs-tab-hover-bg,
+                            color(bg-tertiary, light)
+                        ) !important;
+                        border-color: color(border-primary, light);
+                        @include box-shadow($shadow-sm);
+
+                        .ant-tabs-tab-btn {
+                            background: var(
+                                --ant-tabs-tab-hover-bg,
+                                color(bg-tertiary, light)
+                            ) !important;
+
+                            .tab-label {
+                                color: var(--ant-tabs-tab-hover-text, color(text-primary, light));
+                                background: color(bg-secondary, light);
+                                @include box-shadow($shadow-sm);
+                            }
+                        }
+                    }
+
+                    &.ant-tabs-tab-active {
+                        background: var(
+                            --ant-tabs-tab-active-bg,
+                            color(bg-tertiary, light)
+                        ) !important;
+                        border-color: color(accent-primary, light);
+                        @include box-shadow($shadow-md);
+
+                        .ant-tabs-tab-btn {
+                            background: var(
+                                --ant-tabs-tab-active-bg,
+                                color(bg-tertiary, light)
+                            ) !important;
+
+                            .tab-label {
+                                color: var(--ant-tabs-tab-active-text, color(text-primary, light));
+                                font-weight: $font-weight-bold;
+                                background: color(accent-primary, light);
+                                color: color(accent-contrast, light);
+                                @include box-shadow($shadow-sm);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .ant-tabs-ink-bar {
+                display: none !important;
+            }
+        }
+    }
+
+    // Dark mode tabs styling
+    [data-theme='dark'] & {
+        .ant-tabs-nav {
+            background: color(bg-secondary, dark) !important;
+
+            .ant-tabs-nav-wrap {
+                .ant-tabs-nav-list {
+                    background: color(bg-secondary, dark) !important;
+
+                    .ant-tabs-tab {
+                        .ant-tabs-tab-btn {
+                            .tab-label {
+                                color: color(text-secondary, dark);
+                            }
+                        }
+
+                        &:hover {
+                            background: color(bg-tertiary, dark) !important;
+                            border-color: color(border-primary, dark);
+
+                            .ant-tabs-tab-btn {
+                                background: color(bg-tertiary, dark) !important;
+
+                                .tab-label {
+                                    color: color(text-primary, dark);
+                                    background: color(bg-primary, dark);
+                                }
+                            }
+                        }
+
+                        &.ant-tabs-tab-active {
+                            background: color(bg-tertiary, dark) !important;
+                            border-color: color(accent-primary, dark);
+
+                            .ant-tabs-tab-btn {
+                                background: color(bg-tertiary, dark) !important;
+
+                                .tab-label {
+                                    color: color(accent-contrast, dark);
+                                    background: color(accent-primary, dark);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.spec-table {
+    background: color(bg-primary, light);
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    @include box-shadow($shadow-sm);
+
+    .ant-table-tbody {
+        .ant-table-row {
+            border-bottom: 1px solid color(border-primary, light);
+            @include transition(all 0.3s ease);
+
+            &:hover {
+                background: color(bg-tertiary, light);
+                @include transform(translateX(4px));
+                @include box-shadow($shadow-sm);
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:nth-child(even) {
+                background: color(bg-secondary, light);
+
+                &:hover {
+                    background: color(bg-tertiary, light);
+                }
+            }
+
+            .spec-key {
+                font-weight: $font-weight-semibold;
+                color: color(text-primary, light);
+                padding: $spacing-4 $spacing-6;
+                background: color(bg-secondary, light);
+                border-right: 1px solid color(border-primary, light);
+                @include transition(all 0.3s ease);
+
+                // Dark mode specific adjustments
+                [data-theme='dark'] & {
+                    background: color(bg-tertiary, dark);
+                    color: color(text-primary, dark);
+                    border-right-color: color(border-primary, dark);
+                }
+            }
+
+            .spec-value {
+                color: color(text-secondary, light);
+                padding: $spacing-4 $spacing-6;
+                font-family: 'Courier New', monospace;
+                background: color(bg-primary, light);
+                @include transition(all 0.3s ease);
+
+                // Dark mode specific adjustments
+                [data-theme='dark'] & {
+                    background: color(bg-primary, dark);
+                    color: color(text-secondary, dark);
+                }
+            }
+        }
+    }
+
+    // Dark mode table styling
+    [data-theme='dark'] & {
+        background: color(bg-primary, dark);
+        border: 1px solid color(border-primary, dark);
+
+        .ant-table-tbody {
+            .ant-table-row {
+                border-bottom-color: color(border-primary, dark);
+
+                &:hover {
+                    background: color(bg-tertiary, dark);
+                }
+
+                &:nth-child(even) {
+                    background: color(bg-secondary, dark);
+
+                    &:hover {
+                        background: color(bg-tertiary, dark);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Loading States
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-12;
+    min-height: 300px;
+
+    .loading-text {
+        margin-top: $spacing-4;
+        font-size: $font-size-lg;
+    }
+}
+
+.table-skeleton {
+    padding: $spacing-4;
+    background: color(bg-primary, light);
+    border-radius: $border-radius-lg;
+    @include box-shadow($shadow-sm);
+
+    .skeleton-row {
+        display: flex;
+        gap: $spacing-4;
+        margin-bottom: $spacing-4;
+        padding: $spacing-2 0;
+
+        .skeleton-key {
+            flex: 0 0 40%;
+            height: 20px;
+            background: color(bg-secondary, light);
+            border-radius: $border-radius-sm;
+        }
+
+        .skeleton-value {
+            flex: 1;
+            height: 20px;
+            background: color(bg-tertiary, light);
+            border-radius: $border-radius-sm;
+        }
+    }
+
+    // Dark mode skeleton styling
+    [data-theme='dark'] & {
+        background: color(bg-primary, dark);
+
+        .skeleton-row {
+            .skeleton-key {
+                background: color(bg-secondary, dark);
+            }
+
+            .skeleton-value {
+                background: color(bg-tertiary, dark);
+            }
+        }
+    }
+}
+
+// Error States
+.error-state {
+    padding: $spacing-8;
+    text-align: center;
+
+    .ant-alert {
+        border-radius: $border-radius-lg;
+        @include box-shadow($shadow-sm);
+    }
+}
+
+// Empty States
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-12;
+    min-height: 200px;
+    background: color(bg-secondary, light);
+    border-radius: $border-radius-lg;
+    border: 2px dashed color(border-primary, light);
+    @include transition(all 0.3s ease);
+
+    .empty-icon {
+        font-size: 48px;
+        color: color(text-tertiary, light);
+        margin-bottom: $spacing-4;
+        @include transition(all 0.3s ease);
+    }
+
+    // Dark mode empty state styling
+    [data-theme='dark'] & {
+        background: color(bg-secondary, dark);
+        border-color: color(border-primary, dark);
+
+        .empty-icon {
+            color: color(text-tertiary, dark);
+        }
+    }
+}
+
+// Responsive Design
+@include respond-to-max('md') {
+    .specifications-section {
+        .spec-header {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .spec-tabs-container {
+            padding: $spacing-4;
+        }
+
+        .spec-tabs {
+            .ant-tabs-nav {
+                .ant-tabs-nav-wrap {
+                    .ant-tabs-nav-list {
+                        .ant-tabs-tab {
+                            padding: $spacing-2 $spacing-3;
+                            margin: 0 $spacing-1;
+
+                            .ant-tabs-tab-btn {
+                                padding: $spacing-1 $spacing-2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include respond-to-max('sm') {
+    .specifications-section {
+        .spec-header {
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .section-description {
+                font-size: $font-size-base;
+            }
+        }
+
+        .spec-actions {
+            .download-spec-btn {
+                height: 44px;
+                padding: 0 $spacing-6;
+                font-size: $font-size-base;
+            }
+        }
+
+        .spec-tabs-container {
+            padding: $spacing-3;
+        }
+
+        .spec-tabs {
+            .ant-tabs-nav {
+                .ant-tabs-nav-wrap {
+                    .ant-tabs-nav-list {
+                        .ant-tabs-tab {
+                            padding: $spacing-1 $spacing-2;
+                            margin: 0 2px;
+
+                            .ant-tabs-tab-btn {
+                                .tab-label {
+                                    font-size: $font-size-sm;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .spec-table {
+            .ant-table-tbody {
+                .ant-table-row {
+                    .spec-key,
+                    .spec-value {
+                        padding: $spacing-2 $spacing-3;
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Animations
+@include keyframes(fadeInUp) {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@include keyframes(pulse) {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.specifications-section {
+    @include animation(fadeInUp 0.6s ease-out);
+}
+
+.table-skeleton {
+    .skeleton-row {
+        @include animation(pulse 1.5s ease-in-out infinite);
+    }
+}
