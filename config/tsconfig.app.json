@@ -7,17 +7,9 @@
         "moduleDetection": "auto",
         "strict": true,
         "jsx": "react-jsx",
-        "baseUrl": "../src",
+        "baseUrl": ".",
         "paths": {
-            "@/assets/*": ["assets/*"],
-            "@/components/*": ["components/*"],
-            "@/contexts/*": ["contexts/*"],
-            "@/hooks/*": ["hooks/*"],
-            "@/pages/*": ["pages/*"],
-            "@/redux/*": ["redux/*"],
-            "@/types/*": ["types/*"],
-            "@/utills/*": ["utills/*"],
-            "@/scss/*": ["scss/*"]
+            "@/*": ["../src/*"]
         },
 
         "resolveJsonModule": true,

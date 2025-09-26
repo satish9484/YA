@@ -2,14 +2,15 @@
 // Professional styling for Ant Design Breadcrumb integration with theme support
 
 .breadcrumbs {
-    // Mobile-first responsive container
-    @include container();
+    // All declarations moved above nested rules
     background-color: color(bg-primary) !important;
-
-    // Use responsive padding utility classes
     padding-top: $spacing-2 !important; // Mobile: 8px top
     padding-bottom: $spacing-2 !important; // Mobile: 8px bottom
 
+    // Mobile-first responsive container
+    @include container();
+
+    // Responsive padding utility classes
     @include respond-to('sm') {
         padding-top: $spacing-3 !important; // Small: 12px top
         padding-bottom: $spacing-3 !important; // Small: 12px bottom
@@ -27,7 +28,7 @@
 
     // Ant Design Breadcrumb customization
     :global(.ant-breadcrumb-custom) {
-        // Mobile-first font sizing
+        // All declarations moved above nested rules
         font-size: 12px;
         line-height: 1.4;
 
@@ -49,6 +50,7 @@
 
         // Breadcrumb item styles
         :global(.ant-breadcrumb-link) {
+            // All declarations moved above nested rules
             color: color(text-tertiary) !important;
             text-decoration: none;
             transition: color 0.3s ease;
@@ -80,6 +82,7 @@
 
     // Custom breadcrumb item content
     .breadcrumb-item-content {
+        // All declarations moved above nested rules
         display: inline-flex;
         align-items: center;
         gap: 4px;
@@ -91,6 +94,7 @@
     }
 
     .breadcrumb-item-icon {
+        // All declarations moved above nested rules
         display: inline-flex;
         align-items: center;
         font-size: 12px;
@@ -106,6 +110,7 @@
     }
 
     .breadcrumb-item-text {
+        // All declarations moved above nested rules
         display: inline-block;
 
         // Mobile text optimization
@@ -118,6 +123,7 @@
 
     // Link styles
     .breadcrumb-link {
+        // All declarations moved above nested rules
         color: color(text-tertiary) !important;
         text-decoration: none;
         transition: color 0.3s ease;
@@ -151,6 +157,7 @@
 
         // Optimize for touch targets
         :global(.ant-breadcrumb-link) {
+            // All declarations moved above nested rules
             padding-left: $spacing-2 !important;
             padding-right: $spacing-2 !important;
             padding-top: $spacing-1 !important;
@@ -181,6 +188,7 @@
 
             // Better touch targets
             :global(.ant-breadcrumb-link) {
+                // All declarations moved above nested rules
                 padding-left: $spacing-3 !important;
                 padding-right: $spacing-3 !important;
                 padding-top: $spacing-2 !important;
@@ -191,6 +199,7 @@
 
     // Compact variant
     &.compact {
+        // All declarations moved above nested rules
         padding-top: $spacing-1 !important;
         padding-bottom: $spacing-1 !important;
 
@@ -206,6 +215,7 @@
 
     // Detailed variant
     &.detailed {
+        // All declarations moved above nested rules
         padding-top: $spacing-3 !important;
         padding-bottom: $spacing-3 !important;
 
@@ -227,6 +237,7 @@
 // Global styles for breadcrumb links (when not using CSS modules)
 :global(.breadcrumbs) {
     .breadcrumb-link {
+        // All declarations moved above nested rules
         color: color(text-tertiary) !important;
         text-decoration: none;
         transition: color 0.3s ease;

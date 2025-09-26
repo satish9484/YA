@@ -1,129 +1,280 @@
 @use './mixin' as *;
 @use './variable' as *;
 
+// =============================================================================
+// ANT DESIGN OVERRIDES - COMPREHENSIVE RESPONSIVE SYSTEM
+// =============================================================================
+
+// =============================================================================
+// SASS PLACEHOLDERS & EXTENDS
+// =============================================================================
+
+// Base input styling placeholder
+%ant-input-base {
+    background: color(bg-primary);
+    border: 1px solid color(border-primary);
+    color: color(text-primary);
+    border-radius: $border-radius-lg;
+    font-family: 'Poppins';
+    font-size: $font-size-sm;
+    width: 100%;
+    @include transition(all 0.2s ease);
+
+    @include respond-to('md') {
+        font-size: $font-size-base;
+    }
+
+    &:focus {
+        border-color: color(accent-primary);
+        box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
+        outline: none;
+    }
+
+    &:hover:not(:focus) {
+        border-color: color(accent-focus-ring);
+    }
+
+    &::placeholder {
+        color: color(text-tertiary);
+        opacity: 1;
+    }
+
+    &:disabled {
+        background: color(bg-tertiary);
+        color: color(text-tertiary);
+        border-color: color(border-primary);
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+// Responsive sizing placeholder
+%ant-input-responsive {
+    min-height: 40px;
+    padding: $spacing-2 $spacing-3;
+
+    @include respond-to('sm') {
+        min-height: 42px;
+        padding: $spacing-2 $spacing-4;
+    }
+
+    @include respond-to('md') {
+        min-height: 45px;
+        padding: $spacing-3 $spacing-4;
+    }
+
+    @include respond-to('lg') {
+        min-height: 48px;
+        padding: $spacing-3 $spacing-5;
+    }
+}
+
+// Error state placeholder
+%ant-input-error {
+    border-color: color(error-border);
+
+    &:focus {
+        border-color: color(error-border);
+        box-shadow: 0 0 0 2px rgba(color(error-border), 0.2);
+    }
+}
+
+// =============================================================================
+// GLOBAL ANT DESIGN STYLES
+// =============================================================================
+
 // Apply Poppins font to all Ant Design components
 [class*='ant-'] {
     font-family: 'Poppins';
     font-size: $font-size-sm;
-    // color: color('text-primary');
 
     @include respond-to('md') {
         font-size: $font-size-base;
     }
 }
 
+// Typography overrides
 span.ant-typography {
     color: color(text-secondary);
 }
 
-.form-group {
-    // Controls Input Field For Text
+// =============================================================================
+// COMPREHENSIVE INPUT SYSTEM
+// =============================================================================
 
-    .ant-input {
-        background: color(bg-primary);
-        border: 1px solid color(border-primary);
-        color: color(text-primary);
-        // @include prefix(box-shadow, 0px 4px 12px rgba(18, 42, 70, 0.31));
-        border-radius: 10px;
-        min-height: 45px;
-        padding: 5px 10px;
+// Global input styling (applies to all inputs)
+.ant-input,
+.ant-input-number,
+.ant-picker,
+.ant-select-selector {
+    @extend %ant-input-base;
+    @extend %ant-input-responsive;
+}
+
+// Specific input overrides
+.ant-input {
+    font-family: 'Courier New', Courier, monospace;
+    // Additional specific styles for text inputs
+}
+
+.ant-input-number {
+    // Number input specific styles
+    .ant-input-number-input {
+        padding: 0;
+        height: auto;
+        border: none;
+        background: transparent;
+        color: inherit;
 
         &:focus {
-            border-color: color(accent-primary);
-            box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
+            box-shadow: none;
         }
+    }
+}
 
-        &::placeholder {
+.ant-picker {
+    // Date picker specific styles
+    padding: $spacing-2 $spacing-4;
+
+    .ant-picker-input {
+        > input {
+            border: none;
+            background: transparent;
+            padding: 0;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.ant-select {
+    // Select dropdown specific styles
+
+    .ant-select-selector {
+        align-items: center;
+
+        .ant-select-selection-placeholder {
             color: color(text-tertiary);
         }
-    }
 
-    .ant-input-number {
-        width: 100%;
-        background: color(bg-primary);
-        border: 1px solid color(border-primary);
-        color: color(text-primary);
-        // @include prefix(box-shadow, 0px 4px 12px rgba(18, 42, 70, 0.31));
-        border-radius: 10px;
-        height: 45px;
-        padding: 5px 10px;
-
-        &:focus {
-            border-color: color(accent-primary);
-            box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
+        .ant-select-selection-item {
+            color: color(text-primary);
         }
     }
 
-    // Controls Input Field For Number
-    .ant-input-number-input {
-        padding-top: 3px;
-        height: 28px;
-        padding: 0;
+    &.ant-select-focused .ant-select-selector {
+        @extend %ant-input-base;
     }
 
-    // .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    // 	min-height: 45px;
-    // 	align-items: center;
-    // 	border: 1px solid $placeholder-color;
-    // 	// @include prefix(box-shadow, 0px 4px 12px rgba(18, 42, 70, 0.31));
-    // 	border-radius: 10px;
-    // 	padding: 5px 40px 5px 20px;
-    // }
-    // .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    // 	background: $color4;
-    // 	border: 2px solid $theme-color;
-    // }
-    .ant-picker {
-        background: color(bg-primary);
-        border: 1px solid color(border-primary);
-        color: color(text-primary);
-        // @include prefix(box-shadow, 0px 4px 12px rgba(18, 42, 70, 0.31));
-        border-radius: 10px;
-        min-height: 45px;
-        padding: 5px 20px;
-        width: 100%;
-
-        &:focus {
-            border-color: color(accent-primary);
-            box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
-        }
-    }
-    .ant-select-selector {
-        min-height: 45px;
-    }
-    .ant-select-multiple {
+    &.ant-select-multiple {
         .ant-select-selection-item {
             background-color: color(accent-primary);
-            border-radius: 8px;
+            border-radius: $border-radius-md;
             color: color(accent-contrast);
-            padding: 1px 10px;
-            height: 28px;
+            padding: $spacing-1 $spacing-2;
+            height: auto;
             display: flex;
             align-items: center;
+            margin: $spacing-1;
+
             .ant-select-selection-item-remove {
-                line-height: 10px;
                 color: color(accent-contrast);
+                margin-left: $spacing-1;
+
+                &:hover {
+                    color: color(accent-contrast);
+                }
             }
+
             svg {
                 fill: color(accent-contrast);
             }
         }
+
         .ant-select-arrow {
             border-left: 1px solid color(border-primary);
-            padding-left: 14px;
-            height: 15px;
+            padding-left: $spacing-3;
         }
     }
 }
 
-.ant-form-item-explain-error {
-    text-align: right;
-    margin-top: 8px;
-    color: color(error-text);
+// =============================================================================
+// FORM GROUP SYSTEM
+// =============================================================================
+
+.form-group {
+    margin-bottom: $spacing-4;
+
+    @include respond-to('md') {
+        margin-bottom: $spacing-6;
+    }
+
+    // Error state for form groups
+    &.has-error {
+        .ant-input,
+        .ant-input-number,
+        .ant-picker,
+        .ant-select-selector {
+            @extend %ant-input-error;
+        }
+    }
 }
 
-// Additional Ant Design component overrides for new color palette
+// =============================================================================
+// FORM VALIDATION & ERROR STATES
+// =============================================================================
+
+.ant-form-item-explain-error {
+    text-align: right;
+    margin-top: $spacing-2;
+    color: color(error-text);
+    font-size: $font-size-xs;
+
+    @include respond-to('md') {
+        font-size: $font-size-sm;
+    }
+}
+
+.ant-form-item-has-error {
+    .ant-input,
+    .ant-input-number,
+    .ant-picker,
+    .ant-select-selector {
+        @extend %ant-input-error;
+    }
+}
+
+// =============================================================================
+// BUTTON SYSTEM
+// =============================================================================
+
 .ant-btn {
+    font-family: 'Poppins';
+    font-weight: $font-weight-medium;
+    border-radius: $border-radius-lg;
+    @include transition(all 0.2s ease);
+
+    // Responsive sizing
+    height: 40px;
+    padding: $spacing-2 $spacing-4;
+
+    @include respond-to('sm') {
+        height: 42px;
+        padding: $spacing-2 $spacing-5;
+    }
+
+    @include respond-to('md') {
+        height: 45px;
+        padding: $spacing-3 $spacing-6;
+    }
+
+    @include respond-to('lg') {
+        height: 48px;
+        padding: $spacing-3 $spacing-8;
+    }
+
     &.ant-btn-primary {
         background: color(accent-primary);
         border-color: color(accent-primary);
@@ -132,6 +283,11 @@ span.ant-typography {
         &:hover {
             background: color(accent-focus-ring);
             border-color: color(accent-focus-ring);
+            @include transform(translateY(-1px));
+        }
+
+        &:active {
+            @include transform(translateY(0));
         }
     }
 
@@ -146,39 +302,73 @@ span.ant-typography {
             color: color(text-primary);
         }
     }
+
+    &.ant-btn-ghost {
+        background: transparent;
+        border-color: color(accent-primary);
+        color: color(accent-primary);
+
+        &:hover {
+            background: color(accent-primary);
+            color: color(accent-contrast);
+        }
+    }
 }
+
+// =============================================================================
+// CARD SYSTEM
+// =============================================================================
 
 .ant-card {
     background: color(bg-primary);
     border: 1px solid color(border-primary);
+    border-radius: $border-radius-lg;
+    @include box-shadow($shadow-sm);
+    @include transition(all 0.2s ease);
+
+    &:hover {
+        @include box-shadow($shadow-md);
+    }
 
     .ant-card-head {
         background: color(bg-secondary);
         border-bottom: 1px solid color(border-primary);
+        padding: $spacing-4;
 
         .ant-card-head-title {
             color: color(text-primary);
+            font-weight: $font-weight-semibold;
         }
     }
 
     .ant-card-body {
         background: color(bg-primary);
         color: color(text-primary);
+        padding: $spacing-4;
     }
 }
 
+// =============================================================================
+// TABLE SYSTEM
+// =============================================================================
+
 .ant-table {
     background: color(bg-primary);
+    border-radius: $border-radius-lg;
+    overflow: hidden;
 
     .ant-table-thead > tr > th {
         background: color(bg-secondary);
         border-bottom: 1px solid color(border-primary);
         color: color(text-primary);
+        font-weight: $font-weight-semibold;
+        padding: $spacing-3 $spacing-4;
     }
 
     .ant-table-tbody > tr > td {
         border-bottom: 1px solid color(border-primary);
         color: color(text-primary);
+        padding: $spacing-3 $spacing-4;
     }
 
     .ant-table-tbody > tr:hover > td {
@@ -186,63 +376,103 @@ span.ant-typography {
     }
 }
 
+// =============================================================================
+// ALERT SYSTEM
+// =============================================================================
+
 .ant-alert {
+    border-radius: $border-radius-lg;
+    padding: $spacing-3 $spacing-4;
+
     &.ant-alert-error {
         background: color(error-bg);
         border: 1px solid color(error-border);
         color: color(error-text);
     }
+
+    &.ant-alert-success {
+        background: color(success-bg);
+        border: 1px solid color(success-border);
+        color: color(success-text);
+    }
+
+    &.ant-alert-warning {
+        background: color(warning-bg);
+        border: 1px solid color(warning-border);
+        color: color(warning-text);
+    }
 }
+
+// =============================================================================
+// TABS SYSTEM
+// =============================================================================
 
 .ant-tabs-nav-list {
     background-color: color(accent-primary) !important;
     border-radius: 50px;
-    padding: 15px 25px;
+    padding: $spacing-3 $spacing-6;
 }
+
 .ant-tabs-nav::before {
     border-bottom: none !important;
 }
+
 .ant-tabs-ink-bar {
     display: none;
 }
+
 .ant-tabs-tab {
     padding: 0 !important;
     color: color(text-secondary) !important;
+    margin: 0 $spacing-2;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     color: color(accent-contrast) !important;
     opacity: 1;
+    font-weight: $font-weight-semibold;
 }
+
+// =============================================================================
+// SEARCH INPUT SYSTEM
+// =============================================================================
 
 .searchGrp {
     .ant-input {
-        border-radius: 10px;
-        color: color(text-primary);
-        background: color(bg-primary);
-        border: 1px solid color(border-primary);
+        @extend %ant-input-base;
+        @extend %ant-input-responsive;
     }
+
     .ant-input-search .ant-input:hover {
         border-color: color(accent-focus-ring);
     }
+
     .ant-input-search .ant-input:focus-within {
         border: 1px solid color(accent-primary);
     }
+
     .ant-input:focus {
         box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
     }
+
     .ant-input-group-addon {
-        border-radius: 10px;
+        border-radius: $border-radius-lg;
         background: color(bg-secondary);
         border: 1px solid color(border-primary);
     }
+
     .ant-input-search
         > .ant-input-group
         > .ant-input-group-addon:last-child
         .ant-input-search-button {
-        border-radius: 0 10px 10px 0;
+        border-radius: 0 $border-radius-lg $border-radius-lg 0;
         background: color(accent-primary);
         border-color: color(accent-primary);
         color: color(accent-contrast);
+
+        &:hover {
+            background: color(accent-focus-ring);
+            border-color: color(accent-focus-ring);
+        }
     }
 }

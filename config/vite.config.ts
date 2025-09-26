@@ -83,6 +83,10 @@ export default defineConfig(({ mode }) => {
                     @use "@/scss/variables" as *;
                     @use "@/scss/mixin" as *;
                 `,
+                // Enable verbose mode to see all deprecation warnings
+                verbose: true,
+                // Enable quiet mode to suppress warnings (set to true to hide warnings)
+                quietDeps: false,
             },
         },
         modules: {

@@ -115,7 +115,7 @@
         transition: all 0.2s ease;
         border-radius: $border-radius-sm;
         padding: $spacing-1 $spacing-2;
-        margin: -$spacing-1 -$spacing-2;
+        margin: (-$spacing-1) (-$spacing-2);
 
         &:hover {
             color: #4a9eff;

@@ -5,34 +5,34 @@
 @use './mixin' as *;
 @use './fonts/index' as *;
 
-// Base HTML and body styles
+// Base HTML and body styles - Higher specificity than reset
 html {
-    font-size: $font-size-base;
-    font-weight: $font-weight-normal;
-    line-height: $line-height-normal;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    box-sizing: border-box;
+    font-size: $font-size-base !important;
+    font-weight: $font-weight-normal !important;
+    line-height: $line-height-normal !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    box-sizing: border-box !important;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+    box-sizing: inherit !important;
 }
 
 body {
-    font-size: $font-size-base;
-    font-weight: $font-weight-normal;
-    line-height: $line-height-normal;
-    color: color(text-primary);
-    background-color: color(bg-primary);
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    font-size: $font-size-base !important;
+    font-weight: $font-weight-normal !important;
+    line-height: $line-height-normal !important;
+    color: color(text-primary) !important;
+    background-color: color(bg-primary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
     @include font-family-role('primary', 300, normal); // Corrected syntax and arguments
 }
 
@@ -56,12 +56,12 @@ h6,
 }
 
 a {
-    color: color(accent-primary);
-    text-decoration: none;
-    transition: color $transition-base;
+    color: color(accent-primary) !important;
+    text-decoration: none !important;
+    transition: color $transition-base !important;
 
     &:hover {
-        color: color(accent-focus-ring);
+        color: color(accent-focus-ring) !important;
     }
 }
 
@@ -116,68 +116,14 @@ h6,
 
 // Responsive paragraph and text
 p {
-    margin: 0 0 $spacing-4 0;
-    font-size: $font-size-base;
-    line-height: $line-height-relaxed;
-    color: color(text-primary);
+    margin: 0 0 $spacing-4 0 !important;
+    font-size: $font-size-base !important;
+    line-height: $line-height-relaxed !important;
+    color: color(text-primary) !important;
 
     @include respond-to('md') {
-        font-size: $font-size-lg;
+        font-size: $font-size-lg !important;
     }
-}
-
-// Additional base text styles for new color palette
-.text-primary {
-    color: color(text-primary) !important;
-}
-
-.text-secondary {
-    color: color(text-secondary) !important;
-}
-
-.text-interactive {
-    color: color(text-interactive) !important;
-}
-
-.text-tertiary {
-    color: color(text-tertiary) !important;
-}
-
-// Background utility classes
-.bg-primary {
-    background-color: color(bg-primary) !important;
-}
-
-.bg-secondary {
-    background-color: color(bg-secondary) !important;
-}
-
-.bg-tertiary {
-    background-color: color(bg-tertiary) !important;
-}
-
-.bg-interactive {
-    background-color: color(bg-interactive) !important;
-}
-
-// Border utility classes
-.border-primary {
-    border-color: color(border-primary) !important;
-}
-
-// Accent utility classes
-.text-accent {
-    color: color(accent-primary) !important;
-}
-
-.bg-accent {
-    background-color: color(accent-primary) !important;
-    color: color(accent-contrast) !important;
-}
-
-// Error utility classes
-.text-error {
-    color: color(error-text) !important;
 }
 
 .bg-error {

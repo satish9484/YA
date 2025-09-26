@@ -26,72 +26,6 @@
     color: color(info);
 }
 
-.text-primary {
-    color: color(text-primary);
-}
-
-.text-secondary {
-    color: color(text-secondary);
-}
-
-// New semantic text colors
-.text-interactive {
-    color: color(text-interactive);
-}
-
-.text-tertiary {
-    color: color(text-tertiary);
-}
-
-.text-accent {
-    color: color(accent-primary);
-}
-
-.text-error {
-    color: color(error-text);
-}
-
-// Background utility classes
-.bg-primary {
-    background-color: color(bg-primary);
-}
-
-.bg-secondary {
-    background-color: color(bg-secondary);
-}
-
-.bg-tertiary {
-    background-color: color(bg-tertiary);
-}
-
-.bg-interactive {
-    background-color: color(bg-interactive);
-}
-
-.bg-accent {
-    background-color: color(accent-primary);
-    color: color(accent-contrast);
-}
-
-.bg-error {
-    background-color: color(error-bg);
-    border: 1px solid color(error-border);
-    color: color(error-text);
-}
-
-// Border utility classes
-.border-primary {
-    border-color: color(border-primary);
-}
-
-.border-accent {
-    border-color: color(accent-primary);
-}
-
-.border-error {
-    border-color: color(error-border);
-}
-
 // Positioning and cursor
 .position-relative {
     position: relative;
@@ -282,10 +216,6 @@
 // Additional color utility classes for new palette
 .text-muted {
     color: color(text-tertiary);
-}
-
-.text-inverse {
-    color: color(text-inverse);
 }
 
 // Focus and interaction utilities

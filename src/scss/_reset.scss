@@ -95,35 +95,6 @@ b {
     }
 }
 
-// Additional text color utilities for new palette
-.text-primary {
-    color: color(text-primary) !important;
-}
-
-.text-secondary {
-    color: color(text-secondary) !important;
-}
-
-.text-interactive {
-    color: color(text-interactive) !important;
-}
-
-.text-tertiary {
-    color: color(text-tertiary) !important;
-}
-
-.text-accent {
-    color: color(accent-primary) !important;
-}
-
-.text-error {
-    color: color(error-text) !important;
-}
-
-.text-inverse {
-    color: color(text-inverse) !important;
-}
-
 p {
     margin: 0;
     padding: 0;
@@ -227,48 +198,6 @@ header {
     background: color(bg-secondary);
 }
 
-// Additional reset utilities for new color palette
-// Background color utilities
-.bg-primary {
-    background-color: color(bg-primary) !important;
-}
-
-.bg-secondary {
-    background-color: color(bg-secondary) !important;
-}
-
-.bg-tertiary {
-    background-color: color(bg-tertiary) !important;
-}
-
-.bg-interactive {
-    background-color: color(bg-interactive) !important;
-}
-
-.bg-accent {
-    background-color: color(accent-primary) !important;
-    color: color(accent-contrast) !important;
-}
-
-.bg-error {
-    background-color: color(error-bg) !important;
-    border: 1px solid color(error-border) !important;
-    color: color(error-text) !important;
-}
-
-// Border color utilities
-.border-primary {
-    border-color: color(border-primary) !important;
-}
-
-.border-accent {
-    border-color: color(accent-primary) !important;
-}
-
-.border-error {
-    border-color: color(error-border) !important;
-}
-
 // Reset for form elements with new colors
 input,
 textarea,
@@ -339,4 +268,152 @@ table {
         background-color: color(bg-secondary);
         font-weight: 600;
     }
+}
+
+// Font feature settings for better typography
+* {
+    -moz-font-feature-settings: 'calt';
+    -webkit-font-feature-settings: 'calt';
+    font-feature-settings: normal;
+}
+
+a,
+em,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+sub,
+summary,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video,
+select {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-variant-ligatures: none;
+}
+
+// Body styles moved to _base.scss for proper organization
+// This file should only contain font-related styles
+
+embed,
+img,
+object,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+// Link reset - basic styling only
+a {
+    text-decoration: none;
+    outline: 0;
 }

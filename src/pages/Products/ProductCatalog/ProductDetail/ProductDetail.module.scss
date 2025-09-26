@@ -116,7 +116,7 @@
         transition: all 0.2s ease;
         border-radius: $border-radius-sm;
         padding: $spacing-1 $spacing-2;
-        margin: -$spacing-1 -$spacing-2;
+        margin: (-$spacing-1) (-$spacing-2);
 
         &:hover {
             color: #4a9eff;
@@ -295,10 +295,11 @@
     }
 
     .container {
+        // All declarations moved above nested rules
         max-width: 1400px;
-        @include container();
         position: relative;
         z-index: 1;
+        @include container();
     }
 
     .section-title {

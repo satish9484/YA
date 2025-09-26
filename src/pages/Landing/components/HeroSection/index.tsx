@@ -30,7 +30,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onLearnMore }) 
                             Professional Speaker Manufacturer <br />
                             and Distributor in India
                         </Title>
-                        <Paragraph className={`${styles['hero-section__description']} text-white`}>
+                        <Paragraph className={`${styles['hero-section__description']} `}>
                             Best Line Array for Your Best Business & Events
                         </Paragraph>
                         <div

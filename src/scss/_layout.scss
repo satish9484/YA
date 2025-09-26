@@ -267,25 +267,82 @@
 }
 
 // =============================================================================
-// ADDITIONAL LAYOUT UTILITIES FOR NEW COLOR PALETTE
+// UTILITY CLASSES FOR NEW COLOR PALETTE
 // =============================================================================
 
-// Text color utilities for layout sections
-.section-text-primary {
-    color: color(text-primary);
+// Text color utilities
+.text-primary {
+    color: color(text-primary) !important;
 }
 
-.section-text-secondary {
-    color: color(text-secondary);
+.text-secondary {
+    color: color(text-secondary) !important;
 }
 
-.section-text-interactive {
-    color: color(text-interactive);
+.text-interactive {
+    color: color(text-interactive) !important;
 }
 
-.section-text-accent {
-    color: color(accent-primary);
+.text-tertiary {
+    color: color(text-tertiary) !important;
 }
+
+.text-accent {
+    color: color(accent-primary) !important;
+}
+
+.text-error {
+    color: color(error-text) !important;
+}
+
+.text-inverse {
+    color: color(text-inverse) !important;
+}
+
+// Background color utilities
+.bg-primary {
+    background-color: color(bg-primary) !important;
+}
+
+.bg-secondary {
+    background-color: color(bg-secondary) !important;
+}
+
+.bg-tertiary {
+    background-color: color(bg-tertiary) !important;
+}
+
+.bg-interactive {
+    background-color: color(bg-interactive) !important;
+}
+
+.bg-accent {
+    background-color: color(accent-primary) !important;
+    color: color(accent-contrast) !important;
+}
+
+.bg-error {
+    background-color: color(error-bg) !important;
+    border: 1px solid color(error-border) !important;
+    color: color(error-text) !important;
+}
+
+// Border color utilities
+.border-primary {
+    border-color: color(border-primary) !important;
+}
+
+.border-accent {
+    border-color: color(accent-primary) !important;
+}
+
+.border-error {
+    border-color: color(error-border) !important;
+}
+
+// =============================================================================
+// ADDITIONAL LAYOUT UTILITIES FOR NEW COLOR PALETTE
+// =============================================================================
 
 // Layout spacing with color context
 .section-spacing {
