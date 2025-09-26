@@ -95,7 +95,12 @@
 .quick-links {
     display: flex;
     flex-direction: column;
-    gap: $spacing-3;
+    gap: $spacing-4;
+    width: 100%;
+    max-width: 100%;
+    align-items: flex-start;
+    min-height: 280px;
+    justify-content: flex-start;
 }
 
 .social-links {
@@ -109,7 +114,6 @@
     font-weight: $font-weight-semibold !important;
     font-size: $font-size-lg !important;
     margin-bottom: $spacing-4 !important;
-    @include transition(all 0.3s ease);
 
     [data-theme='dark'] & {
         color: color(text-primary, dark) !important;
@@ -122,116 +126,92 @@
     gap: $spacing-2;
     color: color(text-secondary, light);
     text-decoration: none;
-    @include transition(all 0.4s cubic-bezier(0.4, 0, 0.2, 1));
-    padding: $spacing-2 $spacing-3;
-    border-radius: $border-radius-md;
-    position: relative;
-    overflow: hidden;
-    margin: $spacing-1 0;
-    border: 1px solid transparent;
+    padding: $spacing-3 $spacing-4;
+    transform: none;
+    transition: none;
+    animation: none;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            135deg,
-            color(accent-primary, light) 0%,
-            color(accent-secondary, light) 100%
-        );
-        opacity: 0;
-        @include transform(scale(0.8) translateY(10px));
-        @include transition(all 0.4s cubic-bezier(0.4, 0, 0.2, 1));
-        z-index: -1;
-        border-radius: $border-radius-md;
-    }
+    // Override Ant Design Typography.Link defaults with higher specificity
+    &.ant-typography {
+        color: color(text-secondary, light);
+        text-decoration: none;
+        position: static;
+        transform: none;
+        transition: none;
+        animation: none;
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: color(bg-tertiary, light);
-        opacity: 0;
-        @include transform(scale(0.95));
-        @include transition(all 0.3s ease);
-        z-index: -2;
-        border-radius: $border-radius-md;
-    }
-
-    &:hover {
-        color: color(accent-contrast, light);
-        @include transform(translateX(8px) translateY(-2px));
-        @include box-shadow($shadow-lg);
-        border-color: color(accent-primary, light);
-
-        &::before {
-            opacity: 0.15;
-            @include transform(scale(1) translateY(0));
+        &:hover {
+            color: color(accent-primary, light);
+            text-decoration: none;
+            position: static;
+            transform: none;
+            transition: none;
+            animation: none;
         }
 
-        &::after {
-            opacity: 0.05;
-            @include transform(scale(1));
+        &:focus,
+        &:active,
+        &:visited {
+            color: color(text-secondary, light);
+            text-decoration: none;
+            position: static;
+            transform: none;
+            transition: none;
+            animation: none;
         }
     }
 
-    &:active {
-        @include transform(translateX(6px) translateY(-1px) scale(0.98));
-        @include box-shadow($shadow-md);
+    // Higher specificity override for Ant Design's CSS
+    &:where(.css-dev-only-do-not-override-1vjf2v5).ant-typography {
+        color: color(text-secondary, light);
+
+        &:hover {
+            color: color(accent-primary, light);
+        }
+
+        &:focus {
+            color: color(text-secondary, light);
+        }
     }
 
     [data-theme='dark'] & {
         color: color(text-secondary, dark);
 
-        &::before {
-            background: linear-gradient(
-                135deg,
-                color(accent-primary, dark) 0%,
-                color(accent-secondary, dark) 100%
-            );
-        }
+        &.ant-typography {
+            color: color(text-secondary, dark);
 
-        &::after {
-            background: color(bg-tertiary, dark);
-        }
-
-        &:hover {
-            color: color(accent-contrast, dark);
-            border-color: color(accent-primary, dark);
-
-            &::before {
-                opacity: 0.2;
+            &:hover {
+                color: color(accent-primary, dark);
             }
 
-            &::after {
-                opacity: 0.1;
+            &:focus,
+            &:active,
+            &:visited {
+                color: color(text-secondary, dark);
+            }
+        }
+
+        // Higher specificity override for Ant Design's CSS in dark theme
+        &:where(.css-dev-only-do-not-override-1vjf2v5).ant-typography {
+            color: color(text-secondary, dark);
+
+            &:hover {
+                color: color(accent-primary, dark);
+            }
+
+            &:focus {
+                color: color(text-secondary, dark);
             }
         }
     }
 
     span {
         margin-left: $spacing-2;
-        @include transition(all 0.3s ease);
+        color: inherit;
     }
 
-    // Icon animation
     .anticon {
-        @include transition(all 0.3s ease);
-    }
-
-    &:hover .anticon {
-        @include transform(scale(1.1) rotate(5deg));
-        color: color(accent-primary, light);
-
-        [data-theme='dark'] & {
-            color: color(accent-primary, dark);
-        }
+        color: inherit;
     }
 }
 
@@ -398,12 +378,24 @@
         gap: $spacing-4;
     }
 
+    .quick-links {
+        gap: $spacing-3;
+        align-items: center;
+        min-height: 240px;
+        justify-content: center;
+    }
+
     .footer-title {
         font-size: $font-size-base !important;
     }
 
     .footer-link {
         font-size: $font-size-sm;
+        min-height: 2.5rem;
+        min-width: auto;
+        max-width: none;
+        width: auto;
+        padding: $spacing-2 $spacing-3;
     }
 
     .social-icon {

@@ -96,6 +96,9 @@
 // Typography overrides
 span.ant-typography {
     color: color(text-secondary);
+    font-family: 'Poppins';
+    transform: none;
+    transition: none;
 }
 
 // =============================================================================
