@@ -99,3 +99,10 @@ playwright-report
 *.vspscc
 *.vssscc
 
+# --- Generated/Temporary Files ---
+# Ignore accidentally created files from command outputs
+ign customer reviews and Q
+*.temp
+*.tmp
+*.bak
+
