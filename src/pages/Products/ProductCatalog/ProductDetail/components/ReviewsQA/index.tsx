@@ -14,7 +14,6 @@ import {
     Rate,
     Select,
     Space,
-    Tag,
     Tooltip,
     Typography,
 } from 'antd';
@@ -48,7 +47,6 @@ interface Review {
     content: string;
     helpful: number;
     images: string[];
-    helpfulCount: number;
     response?: {
         author: string;
         content: string;
@@ -63,7 +61,6 @@ interface QA {
     answeredBy: string;
     date: string;
     helpful: number;
-    category: string;
 }
 
 interface ReviewsQAProps {
@@ -141,7 +138,7 @@ const ReviewsQA: React.FC<ReviewsQAProps> = memo(
                 case 'lowest':
                     return a.rating - b.rating;
                 case 'most_helpful':
-                    return b.helpfulCount - a.helpfulCount;
+                    return b.helpful - a.helpful;
                 default:
                     return 0;
             }
@@ -407,7 +404,7 @@ const ReviewsQA: React.FC<ReviewsQAProps> = memo(
                                                     icon={<LikeOutlined />}
                                                     onClick={() => onHelpfulReview?.(review.id)}
                                                 >
-                                                    Helpful ({review.helpfulCount})
+                                                    Helpful ({review.helpful})
                                                 </Button>
                                             </div>
                                             <div className={styles.reviewResponse}>
@@ -480,9 +477,6 @@ const ReviewsQA: React.FC<ReviewsQAProps> = memo(
                                                     {item.question}
                                                 </Text>
                                                 <div className={styles.qaQuestionMeta}>
-                                                    <Tag className={styles.qaCategory}>
-                                                        {item.category}
-                                                    </Tag>
                                                     <Text className={styles.qaDate}>
                                                         {item.date}
                                                     </Text>
