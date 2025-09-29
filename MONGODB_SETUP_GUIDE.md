@@ -106,13 +106,45 @@ Always use the full path:
 4. Select **"Connect your application"**
 5. Copy the connection string
 
-### Step 2: Connect Using mongosh
+### Step 2: Set Up Database User (If Not Already Done)
 
-```bash
-mongosh "mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/"
+1. In MongoDB Atlas, go to **"Database Access"** in the left sidebar
+2. Click **"Add New Database User"**
+3. Choose **"Password"** authentication method
+4. Enter username (e.g., `yashvi-audio-user`)
+5. Generate or enter a secure password
+6. Select **"Read and write to any database"** or specific database permissions
+7. Click **"Add User"**
+
+### Step 3: Get Your Connection Details
+
+1. Go to **"Database"** → **"Connect"**
+2. Select **"Connect your application"**
+3. Copy the connection string
+4. Replace `<password>` with your actual password
+5. Replace `<dbname>` with your database name (e.g., `yashvi-audio`)
+
+**Example connection string:**
+
+```
+mongodb+srv://yashvi-audio-user:YourSecurePassword123@cluster0.xxxxx.mongodb.net/yashvi-audio?retryWrites=true&w=majority
 ```
 
-### Step 3: Navigate to Database
+### Step 4: Connect Using mongosh
+
+```bash
+# Replace with your actual credentials
+mongosh "mongodb+srv://yashvi-audio-user:YourSecurePassword123@cluster0.xxxxx.mongodb.net/yashvi-audio"
+```
+
+**Alternative: Connect without password in connection string (more secure)**
+
+```bash
+# This will prompt for password
+mongosh "mongodb+srv://yashvi-audio-user@cluster0.xxxxx.mongodb.net/yashvi-audio"
+```
+
+### Step 5: Navigate to Database
 
 ```bash
 # List all databases
@@ -148,24 +180,28 @@ Ensure your JSON file is in the correct format (array of documents):
 ### Step 2: Import Data
 
 ```bash
-# Using full path
-/c/IT_tech/mongodb-database-tools-windows-x86_64-100.13.0/bin/mongoimport --uri="mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/yashvi-audio" --collection=line-array-products --file=line-array-products.json --jsonArray
+# Using full path with your actual credentials
+/c/IT_tech/mongodb-database-tools-windows-x86_64-100.13.0/bin/mongoimport --uri="mongodb+srv://yashvi-audio-user:YourSecurePassword123@cluster0.xxxxx.mongodb.net/yashvi-audio" --collection=line-array-products --file=line-array-products.json --jsonArray
 
 # Or if PATH is configured
-mongoimport --uri="mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/yashvi-audio" --collection=line-array-products --file=line-array-products.json --jsonArray
+mongoimport --uri="mongodb+srv://yashvi-audio-user:YourSecurePassword123@cluster0.xxxxx.mongodb.net/yashvi-audio" --collection=line-array-products --file=line-array-products.json --jsonArray
+
+# Alternative: Use environment variable for password (more secure)
+export MONGODB_PASSWORD="YourSecurePassword123"
+mongoimport --uri="mongodb+srv://yashvi-audio-user:$MONGODB_PASSWORD@cluster0.xxxxx.mongodb.net/yashvi-audio" --collection=line-array-products --file=line-array-products.json --jsonArray
 ```
 
 ### Step 3: Verify Import
 
 ```bash
-# Connect to database
-mongosh "mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/"
-
-# Switch to database
-use yashvi-audio
+# Connect to database with your credentials
+mongosh "mongodb+srv://yashvi-audio-user:YourSecurePassword123@cluster0.xxxxx.mongodb.net/yashvi-audio"
 
 # Check import success
 db['line-array-products'].countDocuments()
+
+# View sample documents
+db['line-array-products'].find().limit(3)
 ```
 
 ## Verify Installation
@@ -194,6 +230,53 @@ use yashvi-audio
 db['line-array-products'].findOne()
 ```
 
+## Security Best Practices
+
+### Password Management
+
+1. **Never commit passwords to Git**
+
+    ```bash
+    # Add to .gitignore
+    echo "*.env" >> .gitignore
+    echo ".env.local" >> .gitignore
+    ```
+
+2. **Use Environment Variables**
+
+    ```bash
+    # Create .env file (don't commit this)
+    echo "MONGODB_USERNAME=yashvi-audio-user" > .env
+    echo "MONGODB_PASSWORD=YourSecurePassword123" >> .env
+    echo "MONGODB_CLUSTER=cluster0.xxxxx.mongodb.net" >> .env
+    echo "MONGODB_DATABASE=yashvi-audio" >> .env
+
+    # Load environment variables
+    source .env
+
+    # Use in connection string
+    mongosh "mongodb+srv://$MONGODB_USERNAME:$MONGODB_PASSWORD@$MONGODB_CLUSTER/$MONGODB_DATABASE"
+    ```
+
+3. **Use Strong Passwords**
+    - Minimum 12 characters
+    - Mix of uppercase, lowercase, numbers, and symbols
+    - Avoid common words or patterns
+
+4. **Rotate Passwords Regularly**
+    - Change database passwords every 90 days
+    - Update connection strings accordingly
+
+### Network Security
+
+1. **IP Whitelist**
+    - Add your IP address to MongoDB Atlas Network Access
+    - Use `0.0.0.0/0` only for development (never production)
+
+2. **Connection String Security**
+    - Use SSL/TLS connections (default in Atlas)
+    - Include `?retryWrites=true&w=majority` for write concerns
+
 ## Troubleshooting
 
 ### Common Issues
@@ -221,16 +304,43 @@ export PATH="$PATH:/c/IT_tech/mongodb-database-tools-windows-x86_64-100.13.0/bin
 - Ensure connection string is correct
 - Check internet connection
 
-#### 3. Permission Errors
+#### 3. Authentication Issues
 
-**Problem**: Authentication failed
+**Problem**: Authentication failed or password incorrect
 **Solutions**:
 
-- Verify database user permissions
-- Check username/password spelling
-- Ensure user has read/write access
+- Verify username and password in MongoDB Atlas Database Access
+- Check for special characters in password (may need URL encoding)
+- Ensure user has proper permissions for the database
+- Try connecting without password in connection string (will prompt)
+- Check if password contains characters that need escaping: `@`, `:`, `/`, `?`, `#`, `[`, `]`
 
-#### 4. File Not Found
+**Password URL Encoding**:
+
+```bash
+# If password contains special characters, encode them:
+# @ becomes %40
+# : becomes %3A
+# / becomes %2F
+# ? becomes %3F
+# # becomes %23
+# [ becomes %5B
+# ] becomes %5D
+
+# Example: password "pass@word" becomes "pass%40word"
+mongosh "mongodb+srv://username:pass%40word@cluster0.xxxxx.mongodb.net/"
+```
+
+#### 4. Permission Errors
+
+**Problem**: User lacks required permissions
+**Solutions**:
+
+- Verify database user permissions in Atlas
+- Ensure user has read/write access to specific database
+- Check if user is assigned to correct database
+
+#### 5. File Not Found
 
 **Problem**: JSON file not found
 **Solutions**:
@@ -263,6 +373,8 @@ source ~/.bashrc
 ```
 
 ## Quick Reference Commands
+
+⚠️ **SECURITY WARNING**: Replace all placeholder credentials (`username:password`, `cluster0.xxxxx`) with your actual MongoDB Atlas credentials. Never commit real credentials to version control!
 
 ### Connection
 
