@@ -34,7 +34,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
     return (
         <section className={styles['hero-section']}>
-            <div className={styles.container}>
+            <div className="container">
                 <Row gutter={[32, 32]} align="top">
                     {/* Image Gallery - TEMPORARILY DISABLED FOR PERFORMANCE TESTING */}
                     <Col xs={24} lg={14}>

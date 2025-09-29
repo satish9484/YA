@@ -16,10 +16,7 @@
         // padding: $spacing-16 0;
     }
 
-    .container {
-        max-width: 1400px;
-        @include container();
-    }
+    // Container styles removed - using global .container class
 }
 
 // =============================================================================

@@ -3,8 +3,8 @@ import { type FormEvent, type ReactNode, useState } from 'react';
 import { useAppSelector } from '@/redux/hooks';
 import { APP_NAME } from '@/utills/constants';
 
+import Breadcrumbs, { useBreadcrumbs } from '../../components/common/Breadcrumbs';
 import type { RootState } from '../../redux/store';
-import Breadcrumbs, { useBreadcrumbs } from '../common/Breadcrumbs';
 import './styles.module.scss';
 
 // --- (Existing ChangePasswordForm component remains the same) ---

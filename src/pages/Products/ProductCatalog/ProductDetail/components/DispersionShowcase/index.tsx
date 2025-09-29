@@ -27,7 +27,7 @@ const DispersionShowcase: React.FC<DispersionShowcaseProps> = memo(
 
         return (
             <section className={styles.dispersionShowcase}>
-                <div className={styles.container}>
+                <div className="container">
                     <Title level={2} className={styles.sectionTitle}>
                         Variable Dispersion Technology
                     </Title>

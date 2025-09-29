@@ -16,7 +16,6 @@ import {
     HeroSection,
     ResourceHub,
     ReviewsQA,
-    SectionWrapper,
     SystemBuilder,
     TechnicalSpecifications,
 } from './components';
@@ -194,60 +193,48 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
             />
 
             {/* Dispersion Showcase Section */}
-            <SectionWrapper>
-                <DispersionShowcase
-                    dispersionConfigs={product.dispersionConfigs}
-                    selectedDispersion={selectedDispersion}
-                    onDispersionChange={handleDispersionChange}
-                />
-            </SectionWrapper>
+            <DispersionShowcase
+                dispersionConfigs={product.dispersionConfigs}
+                selectedDispersion={selectedDispersion}
+                onDispersionChange={handleDispersionChange}
+            />
 
             {/* Technical Specifications Section */}
-            <SectionWrapper>
-                <TechnicalSpecifications
-                    specifications={product.specifications}
-                    onDownloadSpecs={handleDownloadSpecs}
-                    isLoading={specsLoading}
-                    hasError={specsError}
-                    onRetry={handleSpecsRetry}
-                />
-            </SectionWrapper>
+            <TechnicalSpecifications
+                specifications={product.specifications}
+                onDownloadSpecs={handleDownloadSpecs}
+                isLoading={specsLoading}
+                hasError={specsError}
+                onRetry={handleSpecsRetry}
+            />
 
             {/* Applications Gallery Section */}
-            <SectionWrapper>
-                <ApplicationsGallery applications={product.applications} />
-            </SectionWrapper>
+            <ApplicationsGallery applications={product.applications} />
 
             {/* System Builder Section */}
-            <SectionWrapper>
-                <SystemBuilder
-                    accessories={transformedAccessories}
-                    onAddToSystem={handleAddToSystem}
-                    onRemoveFromSystem={handleRemoveFromSystem}
-                />
-            </SectionWrapper>
+            <SystemBuilder
+                accessories={transformedAccessories}
+                onAddToSystem={handleAddToSystem}
+                onRemoveFromSystem={handleRemoveFromSystem}
+            />
 
             {/* Reviews & Q&A Section */}
-            <SectionWrapper>
-                <ReviewsQA
-                    reviews={product.reviews}
-                    qa={product.qa}
-                    rating={product.rating}
-                    reviewCount={product.reviewCount}
-                    onAskQuestion={handleAskQuestion}
-                    onHelpfulReview={handleHelpfulReview}
-                    onHelpfulAnswer={handleHelpfulAnswer}
-                />
-            </SectionWrapper>
+            <ReviewsQA
+                reviews={product.reviews}
+                qa={product.qa}
+                rating={product.rating}
+                reviewCount={product.reviewCount}
+                onAskQuestion={handleAskQuestion}
+                onHelpfulReview={handleHelpfulReview}
+                onHelpfulAnswer={handleHelpfulAnswer}
+            />
 
             {/* Resource Hub Section */}
-            <SectionWrapper>
-                <ResourceHub
-                    resources={product.resources}
-                    onDownload={handleDownloadResource}
-                    onContactSupport={handleContactSupport}
-                />
-            </SectionWrapper>
+            <ResourceHub
+                resources={product.resources}
+                onDownload={handleDownloadResource}
+                onContactSupport={handleContactSupport}
+            />
         </div>
     );
 };

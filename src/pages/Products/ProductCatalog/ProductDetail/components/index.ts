@@ -6,6 +6,5 @@ export { default as ProductImageGallery } from './ProductImageGallery/index';
 export { default as ProductInfo } from './ProductInfo/index';
 export { default as ResourceHub } from './ResourceHub/index';
 export { default as ReviewsQA } from './ReviewsQA/index';
-export { default as SectionWrapper } from './SectionWrapper/index';
 export { default as SystemBuilder } from './SystemBuilder/index';
 export { default as TechnicalSpecifications } from './TechnicalSpecifications/index';

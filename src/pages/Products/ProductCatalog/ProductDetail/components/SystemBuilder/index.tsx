@@ -109,7 +109,7 @@ const SystemBuilder: React.FC<SystemBuilderProps> = memo(
         if (!accessories || accessories.length === 0) {
             return (
                 <section className={styles['system-builder-section']}>
-                    <div className={styles.container}>
+                    <div className="container">
                         <div className={styles['section-header']}>
                             <Title level={2} className={styles['section-title']}>
                                 Build Your Complete System
@@ -130,7 +130,7 @@ const SystemBuilder: React.FC<SystemBuilderProps> = memo(
 
         return (
             <section className={styles['system-builder-section']}>
-                <div className={styles.container}>
+                <div className="container">
                     <div className={styles['section-header']}>
                         <Title level={2} className={styles['section-title']}>
                             Build Your Complete System

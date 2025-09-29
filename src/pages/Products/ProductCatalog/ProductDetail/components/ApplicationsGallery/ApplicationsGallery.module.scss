@@ -40,19 +40,7 @@
         padding: $spacing-16 0;
     }
 
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 $spacing-4;
-
-        @include respond-to('sm') {
-            padding: 0 $spacing-6;
-        }
-
-        @include respond-to('md') {
-            padding: 0 $spacing-8;
-        }
-    }
+    // Container styles removed - using global .container class
 
     .sectionTitle {
         text-align: center;
@@ -284,9 +272,7 @@
     .applicationsSection {
         padding: $spacing-8 0;
 
-        .container {
-            padding: 0 $spacing-3;
-        }
+        // Container styles removed - using global .container class
 
         .sectionTitle {
             font-size: 2rem;

@@ -77,7 +77,7 @@ const ResourceHub: React.FC<ResourceHubProps> = memo(
 
         return (
             <section className={styles.resourceHubSection}>
-                <div className={styles.container}>
+                <div className="container">
                     <Title level={2} className={styles.sectionTitle}>
                         Resources & Support
                     </Title>

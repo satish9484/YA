@@ -1,4 +1,4 @@
-// src/pages/Products/ProductCatalog/ProductDetail/components/ReviewsQA.module.scss
+// src/pages/Products/ProductCatalog/ProductDetail/components/ReviewsQA/ReviewsQA.module.scss
 
 // =============================================================================
 // REVIEWS & Q&A SECTION - MODERN REDESIGN
@@ -10,14 +10,17 @@
     position: relative;
     overflow: hidden;
 
+    // Subtle accent line
     &::before {
         content: '';
         position: absolute;
         top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
         background: linear-gradient(90deg, transparent, color(accent-primary), transparent);
+        border-radius: 0 0 2px 2px;
     }
 
     @include respond-to('md') {
@@ -26,39 +29,172 @@
 
     // Section Header
     .sectionHeader {
-        text-align: center;
-        margin-bottom: $spacing-12;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: $spacing-8;
+        padding: $spacing-8;
+        background: color(bg-primary);
+        border-radius: $border-radius-xl;
+        @include box-shadow($shadow-lg);
+        border: 1px solid color(border-primary);
 
-        .sectionTitle {
-            color: color(text-primary);
-            margin-bottom: $spacing-2;
-            font-weight: 700;
-            font-size: 2.5rem;
+        .headerContent {
+            flex: 1;
 
-            @include respond-to('md') {
-                font-size: 3rem;
+            .sectionTitle {
+                color: color(text-primary);
+                margin-bottom: $spacing-2;
+                font-weight: 700;
+                font-size: 2.5rem;
+                background: linear-gradient(
+                    135deg,
+                    color(text-primary) 0%,
+                    color(accent-primary) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+
+                @include respond-to('md') {
+                    font-size: 3rem;
+                }
+            }
+
+            .sectionSubtitle {
+                color: color(text-secondary);
+                font-size: $font-size-lg;
+                max-width: 500px;
             }
         }
 
-        .sectionSubtitle {
-            color: color(text-secondary);
-            font-size: $font-size-lg;
-            max-width: 600px;
-            margin: 0 auto;
+        .headerStats {
+            .overallRating {
+                text-align: center;
+                padding: $spacing-4;
+                background: color(bg-secondary);
+                border-radius: $border-radius-lg;
+                border: 1px solid color(border-primary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: $spacing-4;
+                flex-wrap: wrap;
+
+                .ratingNumber {
+                    font-size: 3.5rem;
+                    font-weight: 700;
+                    color: color(accent-primary);
+                    line-height: 1;
+                }
+
+                .ratingStars {
+                    .ant-rate {
+                        font-size: 1.5rem;
+                    }
+                }
+
+                .ratingCount {
+                    color: color(text-secondary);
+                    font-size: $font-size-sm;
+                    white-space: nowrap;
+                }
+
+                // Responsive layout
+                @include respond-to('md') {
+                    flex-direction: column;
+                    gap: $spacing-2;
+
+                    .ratingNumber {
+                        font-size: 3rem;
+                    }
+
+                    .ratingStars {
+                        .ant-rate {
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+
+                @include respond-to('sm') {
+                    .ratingNumber {
+                        font-size: 2.5rem;
+                    }
+
+                    .ratingStars {
+                        .ant-rate {
+                            font-size: 1rem;
+                        }
+                    }
+
+                    .ratingCount {
+                        font-size: $font-size-xs;
+                    }
+                }
+            }
+        }
+
+        @include respond-to('md') {
+            flex-direction: column;
+            gap: $spacing-6;
+
+            .headerStats {
+                align-self: center;
+            }
         }
     }
 
-    // Reviews Section
-    .reviewsSection {
+    // Tab Navigation
+    .tabNavigation {
+        margin-bottom: $spacing-8;
+
+        .tabButtons {
+            display: flex;
+            gap: $spacing-2;
+            background: color(bg-primary);
+            padding: $spacing-2;
+            border-radius: $border-radius-lg;
+            @include box-shadow($shadow-sm);
+            border: 1px solid color(border-primary);
+
+            .tabButton {
+                flex: 1;
+                height: 48px;
+                border-radius: $border-radius-md;
+                font-weight: 600;
+                transition: all 0.3s ease;
+
+                &.ant-btn-primary {
+                    background: color(accent-primary);
+                    border-color: color(accent-primary);
+                    @include box-shadow($shadow-md);
+                }
+
+                &:not(.ant-btn-primary) {
+                    background: transparent;
+                    border-color: transparent;
+                    color: color(text-secondary);
+
+                    &:hover {
+                        background: color(bg-secondary);
+                        color: color(text-primary);
+                    }
+                }
+            }
+        }
+    }
+
+    // Reviews Tab
+    .reviewsTab {
         .reviewsHeader {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: $spacing-8;
+            margin-bottom: $spacing-6;
             padding: $spacing-6;
             background: color(bg-primary);
-            border-radius: $border-radius-xl;
-            @include box-shadow($shadow-lg);
+            border-radius: $border-radius-lg;
+            @include box-shadow($shadow-sm);
             border: 1px solid color(border-primary);
 
             .reviewsTitleGroup {
@@ -66,50 +202,53 @@
 
                 .reviewsTitle {
                     color: color(text-primary);
-                    margin-bottom: $spacing-4;
+                    margin-bottom: $spacing-1;
                     font-weight: 600;
                 }
 
-                .reviewStats {
-                    .ratingDisplay {
-                        display: flex;
-                        align-items: center;
-                        gap: $spacing-4;
+                .reviewsSubtitle {
+                    color: color(text-secondary);
+                    font-size: $font-size-base;
+                }
+            }
 
-                        .ratingNumber {
-                            font-size: 3rem;
-                            font-weight: 700;
-                            color: color(accent-primary);
-                            line-height: 1;
-                        }
+            .reviewsControls {
+                .controlsGroup {
+                    display: flex;
+                    gap: $spacing-3;
+                    flex-wrap: wrap;
 
-                        .ratingStars {
-                            .ant-rate {
-                                font-size: 1.5rem;
+                    .filterSelect,
+                    .sortSelect {
+                        min-width: 150px;
+
+                        .ant-select-selector {
+                            border-radius: $border-radius-md;
+                            border-color: color(border-primary);
+                            background: color(bg-primary);
+
+                            &:hover {
+                                border-color: color(accent-primary);
                             }
-                        }
-
-                        .ratingCount {
-                            color: color(text-secondary);
-                            font-size: $font-size-base;
                         }
                     }
                 }
             }
 
-            .reviewFilters {
-                display: flex;
-                gap: $spacing-3;
-                flex-wrap: wrap;
+            @include respond-to('md') {
+                flex-direction: column;
+                gap: $spacing-4;
 
-                .ant-select {
-                    .ant-select-selector {
-                        border-radius: $border-radius-md;
-                        border-color: color(border-primary);
-                        background: color(bg-primary);
+                .reviewsControls {
+                    width: 100%;
 
-                        &:hover {
-                            border-color: color(accent-primary);
+                    .controlsGroup {
+                        width: 100%;
+                        justify-content: space-between;
+
+                        .filterSelect,
+                        .sortSelect {
+                            flex: 1;
                         }
                     }
                 }
@@ -121,40 +260,111 @@
             background: color(bg-primary);
             border-radius: $border-radius-lg;
             padding: $spacing-6;
-            margin-bottom: $spacing-8;
+            margin-bottom: $spacing-6;
             @include box-shadow($shadow-sm);
             border: 1px solid color(border-primary);
 
-            .ratingBar {
+            .breakdownHeader {
+                margin-bottom: $spacing-4;
+
+                .breakdownTitle {
+                    color: color(text-primary);
+                    font-weight: 600;
+                    font-size: $font-size-lg;
+                }
+            }
+
+            .breakdownBars {
                 display: flex;
-                align-items: center;
+                flex-direction: column;
                 gap: $spacing-4;
-                margin-bottom: $spacing-3;
 
-                &:last-child {
-                    margin-bottom: 0;
-                }
+                .ratingBar {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: $spacing-4;
 
-                .starLabel {
-                    min-width: 60px;
-                    color: color(text-secondary);
-                    font-size: $font-size-sm;
-                }
+                    .starLabel {
+                        display: flex;
+                        align-items: center;
+                        gap: $spacing-1;
+                        min-width: 50px;
 
-                .ratingProgress {
-                    flex: 1;
-                    margin: 0;
+                        .starNumber {
+                            font-weight: 600;
+                            color: color(text-primary);
+                            font-size: $font-size-base;
+                        }
 
-                    .ant-progress-bg {
-                        border-radius: $border-radius-sm;
+                        .starIcon {
+                            color: color(accent-primary);
+                            font-size: $font-size-base;
+                        }
+                    }
+
+                    .progressContainer {
+                        flex: 1;
+                        min-width: 0;
+
+                        .ratingProgress {
+                            .ant-progress-bg {
+                                background: linear-gradient(
+                                    90deg,
+                                    color(accent-primary) 0%,
+                                    #ffed4e 100%
+                                );
+                                height: 12px;
+                                border-radius: 6px;
+                            }
+
+                            .ant-progress-outer {
+                                .ant-progress-inner {
+                                    background-color: rgba(255, 255, 255, 0.1);
+                                    border-radius: 6px;
+                                }
+                            }
+                        }
+                    }
+
+                    .starCount {
+                        display: flex;
+                        align-items: center;
+                        gap: $spacing-1;
+                        min-width: 90px;
+
+                        .countNumber {
+                            font-weight: 600;
+                            color: color(text-primary);
+                            font-size: $font-size-sm;
+                        }
+
+                        .countLabel {
+                            color: color(text-secondary);
+                            font-size: $font-size-xs;
+                        }
                     }
                 }
+            }
+        }
 
-                .starCount {
-                    min-width: 30px;
-                    text-align: right;
-                    color: color(text-secondary);
-                    font-size: $font-size-sm;
+        // Search Section
+        .searchSection {
+            margin-bottom: $spacing-6;
+
+            .searchInput {
+                height: 48px;
+                border-radius: $border-radius-lg;
+                border-color: color(border-primary);
+
+                &:hover,
+                &:focus {
+                    border-color: color(accent-primary);
+                    box-shadow: 0 0 0 2px color(accent-focus-ring);
+                }
+
+                .ant-input-prefix {
+                    color: color(text-tertiary);
                 }
             }
         }
@@ -168,6 +378,7 @@
                 border: 1px solid color(border-primary);
                 transition: all 0.3s ease;
                 background: color(bg-primary);
+                overflow: hidden;
 
                 &:hover {
                     @include box-shadow($shadow-lg);
@@ -187,8 +398,10 @@
                         gap: $spacing-3;
                         flex: 1;
 
-                        .ant-avatar {
+                        .reviewerAvatar {
                             flex-shrink: 0;
+                            background: color(accent-primary);
+                            color: color(accent-contrast);
                         }
 
                         .reviewerDetails {
@@ -200,23 +413,39 @@
                                 gap: $spacing-2;
                                 margin-bottom: $spacing-1;
 
-                                .verifiedTag {
-                                    font-size: $font-size-xs;
-                                    padding: 2px 6px;
-                                    border-radius: $border-radius-sm;
+                                .name {
+                                    color: color(text-primary);
+                                    font-weight: 600;
+                                }
+
+                                .verifiedBadge {
+                                    .ant-badge-count {
+                                        background: color(success);
+                                        color: color(success-contrast);
+                                        border-radius: 50%;
+                                        width: 16px;
+                                        height: 16px;
+                                        font-size: 10px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
                                 }
                             }
 
-                            .reviewRating {
+                            .reviewMeta {
                                 display: flex;
                                 align-items: center;
                                 gap: $spacing-2;
 
-                                .ant-rate {
-                                    font-size: $font-size-sm;
+                                .reviewRating {
+                                    .ant-rate {
+                                        font-size: $font-size-sm;
+                                    }
                                 }
 
                                 .reviewDate {
+                                    color: color(text-tertiary);
                                     font-size: $font-size-xs;
                                 }
                             }
@@ -224,13 +453,11 @@
                     }
 
                     .reviewActions {
-                        display: flex;
-                        gap: $spacing-1;
-
-                        .ant-btn {
+                        .actionBtn {
                             border: none;
                             background: transparent;
                             color: color(text-tertiary);
+                            border-radius: $border-radius-md;
 
                             &:hover {
                                 color: color(accent-primary);
@@ -262,9 +489,6 @@
                         flex-wrap: wrap;
 
                         .reviewImage {
-                            width: 80px;
-                            height: 80px;
-                            object-fit: cover;
                             border-radius: $border-radius-md;
                             cursor: pointer;
                             transition: transform 0.2s ease;
@@ -272,7 +496,52 @@
                             &:hover {
                                 transform: scale(1.05);
                             }
+
+                            .imageMask {
+                                background: rgba(0, 0, 0, 0.5);
+                                color: white;
+                                font-size: $font-size-xs;
+                                font-weight: 600;
+                            }
                         }
+                    }
+                }
+
+                // Seller Response
+                .sellerResponse {
+                    margin: $spacing-4 $spacing-6 0;
+                    padding: $spacing-4;
+                    background: color(bg-secondary);
+                    border-radius: $border-radius-md;
+                    border-left: 4px solid color(accent-primary);
+
+                    .responseDivider {
+                        margin: 0 0 $spacing-3 0;
+                        border-color: color(border-primary);
+                    }
+
+                    .responseHeader {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: $spacing-2;
+
+                        .responseLabel {
+                            color: color(accent-primary);
+                            font-weight: 600;
+                            font-size: $font-size-sm;
+                        }
+
+                        .responseDate {
+                            color: color(text-tertiary);
+                            font-size: $font-size-xs;
+                        }
+                    }
+
+                    .responseText {
+                        color: color(text-secondary);
+                        line-height: 1.6;
+                        margin: 0;
                     }
                 }
 
@@ -282,12 +551,14 @@
                     align-items: center;
                     padding: $spacing-4 $spacing-6 $spacing-6;
                     border-top: 1px solid color(border-primary);
+                    margin-top: $spacing-4;
 
                     .reviewHelpful {
                         .helpfulBtn {
                             color: color(text-tertiary);
                             border: none;
                             background: transparent;
+                            border-radius: $border-radius-md;
 
                             &:hover {
                                 color: color(accent-primary);
@@ -297,7 +568,7 @@
                     }
 
                     .reviewResponse {
-                        .ant-btn-link {
+                        .responseBtn {
                             color: color(accent-primary);
                             padding: 0;
 
@@ -315,17 +586,34 @@
             margin-top: $spacing-8;
             text-align: center;
 
-            .ant-btn {
-                height: 48px;
-                border-radius: $border-radius-lg;
-                font-weight: 600;
-                font-size: $font-size-base;
+            .ant-pagination {
+                .ant-pagination-item {
+                    border-radius: $border-radius-md;
+                    border-color: color(border-primary);
+
+                    &:hover,
+                    &.ant-pagination-item-active {
+                        border-color: color(accent-primary);
+                        color: color(accent-primary);
+                    }
+                }
+
+                .ant-pagination-prev,
+                .ant-pagination-next {
+                    border-radius: $border-radius-md;
+                    border-color: color(border-primary);
+
+                    &:hover {
+                        border-color: color(accent-primary);
+                        color: color(accent-primary);
+                    }
+                }
             }
         }
     }
 
-    // Q&A Section
-    .qaSection {
+    // Q&A Tab
+    .qaTab {
         .qaHeader {
             display: flex;
             justify-content: space-between;
@@ -333,8 +621,8 @@
             margin-bottom: $spacing-6;
             padding: $spacing-6;
             background: color(bg-primary);
-            border-radius: $border-radius-xl;
-            @include box-shadow($shadow-lg);
+            border-radius: $border-radius-lg;
+            @include box-shadow($shadow-sm);
             border: 1px solid color(border-primary);
 
             .qaTitleGroup {
@@ -342,7 +630,7 @@
 
                 .qaTitle {
                     color: color(text-primary);
-                    margin-bottom: $spacing-2;
+                    margin-bottom: $spacing-1;
                     font-weight: 600;
                 }
 
@@ -353,7 +641,7 @@
             }
 
             .askQuestionBtn {
-                height: 40px;
+                height: 48px;
                 border-radius: $border-radius-lg;
                 font-weight: 600;
                 @include box-shadow($shadow-sm);
@@ -361,6 +649,15 @@
                 &:hover {
                     @include box-shadow($shadow-md);
                     transform: translateY(-1px);
+                }
+            }
+
+            @include respond-to('md') {
+                flex-direction: column;
+                gap: $spacing-4;
+
+                .askQuestionBtn {
+                    width: 100%;
                 }
             }
         }
@@ -410,6 +707,7 @@
                             line-height: 1.5;
                             margin-bottom: $spacing-3;
                             display: block;
+                            font-weight: 500;
                         }
 
                         .qaQuestionMeta {
@@ -418,13 +716,17 @@
                             gap: $spacing-3;
                             margin-bottom: $spacing-4;
 
-                            .qaAnsweredBy {
+                            .qaCategory {
                                 font-size: $font-size-xs;
                                 padding: 2px 8px;
                                 border-radius: $border-radius-sm;
+                                background: color(accent-primary);
+                                color: color(accent-contrast);
+                                border: none;
                             }
 
                             .qaDate {
+                                color: color(text-tertiary);
                                 font-size: $font-size-xs;
                             }
                         }
@@ -440,7 +742,7 @@
                         margin-bottom: $spacing-3;
 
                         .qaAnswerLabel {
-                            color: color(text-primary);
+                            color: color(accent-primary);
                             font-size: $font-size-sm;
                             font-weight: 600;
                         }
@@ -461,6 +763,7 @@
                             color: color(text-tertiary);
                             border: none;
                             background: transparent;
+                            border-radius: $border-radius-md;
 
                             &:hover {
                                 color: color(accent-primary);
@@ -486,56 +789,62 @@
             margin-top: $spacing-8;
             text-align: center;
 
-            .ant-btn {
+            .loadMoreBtn {
                 height: 48px;
                 border-radius: $border-radius-lg;
                 font-weight: 600;
                 font-size: $font-size-base;
+                padding: 0 $spacing-8;
             }
         }
     }
 
     // Responsive Design
-    @include respond-to('lg') {
-        .reviewsHeader,
-        .qaHeader {
-            flex-direction: column;
-            gap: $spacing-4;
-
-            .reviewFilters,
-            .askQuestionBtn {
-                width: 100%;
+    @include respond-to('md') {
+        .sectionHeader {
+            .headerContent {
+                .sectionTitle {
+                    font-size: 2rem;
+                }
             }
         }
 
-        .ratingBreakdown {
-            .ratingBar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: $spacing-2;
+        .reviewsTab {
+            .reviewsList {
+                .reviewCard {
+                    .reviewCardHeader {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: $spacing-3;
 
-                .ratingProgress {
-                    width: 100%;
+                        .reviewActions {
+                            align-self: flex-end;
+                        }
+                    }
                 }
             }
         }
     }
 
-    @include respond-to('md') {
-        .sectionHeader {
-            .sectionTitle {
-                font-size: 2rem;
-            }
-        }
-
-        .reviewsList {
-            .reviewCard {
-                .reviewCardHeader {
+    @include respond-to('sm') {
+        .ratingBreakdown {
+            .breakdownBars {
+                .ratingBar {
                     flex-direction: column;
                     align-items: flex-start;
-                    gap: $spacing-3;
+                    gap: $spacing-2;
 
-                    .reviewActions {
+                    .starLabel {
+                        min-width: auto;
+                    }
+
+                    .progressContainer {
+                        width: 100%;
+                        margin: 0;
+                    }
+
+                    .starCount {
+                        min-width: auto;
                         align-self: flex-end;
                     }
                 }

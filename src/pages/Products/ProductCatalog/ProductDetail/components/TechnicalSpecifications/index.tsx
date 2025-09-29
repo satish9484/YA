@@ -156,7 +156,7 @@ const TechnicalSpecifications: React.FC<TechnicalSpecificationsProps> = memo(
 
         return (
             <section className={styles['specifications-section']}>
-                <div className={styles.container}>
+                <div className="container">
                     <div className={styles['spec-header']}>
                         <Title level={2} className={styles['section-title']}>
                             Technical Specifications

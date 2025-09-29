@@ -170,7 +170,7 @@
 
 // Ghost Button - Subtle action (Modern Design System Colors)
 .ant-btn-ghost {
-    background: transparent;
+    // background: transparent;
     border-color: #e5e7eb;
     color: #374151;
 
@@ -446,7 +446,6 @@
 
 [data-theme='dark'] {
     .ant-btn-default {
-        background: #1f2937;
         border-color: #374151;
         color: #f9fafb;
 

@@ -22,7 +22,7 @@ interface ApplicationsGalleryProps {
 const ApplicationsGallery: React.FC<ApplicationsGalleryProps> = memo(({ applications }) => {
     return (
         <section className={styles.applicationsSection}>
-            <div className={styles.container}>
+            <div className="container">
                 <Title level={2} className={styles.sectionTitle}>
                     Real-World Applications
                 </Title>

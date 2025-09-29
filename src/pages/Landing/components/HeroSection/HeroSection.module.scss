@@ -44,17 +44,6 @@
         position: relative;
         overflow: hidden;
 
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
         &:hover {
             background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             border-color: #1d4ed8;
@@ -80,33 +69,17 @@
         @extend .ant-btn-xl !optional;
 
         // Custom hero secondary button styling
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(43, 8, 199, 0.15);
         border: 2px solid rgba(255, 255, 255, 0.4);
-        color: #ffffff;
+        color: #ffffff !important;
         backdrop-filter: blur(15px);
         position: relative;
         overflow: hidden;
 
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.05) 100%
-            );
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
         &:hover {
             background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.6);
-            color: #ffffff;
+            color: #000000 !important;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
             transform: translateY(-2px);
 

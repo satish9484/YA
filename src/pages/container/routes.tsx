@@ -5,7 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 // Import  AuthGuard component
 import AuthGuard from '@/components/auth';
 // Import  UserProfileCard component
-import UserProfileCard from '@/components/UserProfileCard';
+import UserProfileCard from '@/pages/UserProfileCard';
 
 // Lazily load the LogIn component for better bundle splitting
 // const LogIn = lazy(() => import('@/pages/LogIn/index.tsx'));
@@ -39,6 +39,7 @@ const OutdoorEventsPage = lazy(() => import('@/pages/Applications/Outdoor'));
 // Other pages
 const AboutPage = lazy(() => import('@/pages/About'));
 const ContactPage = lazy(() => import('@/pages/Contact'));
+const PageNotFound = lazy(() => import('@/pages/PageNotFound'));
 
 const Routing: React.FC = memo(() => {
     return (
@@ -78,6 +79,7 @@ const Routing: React.FC = memo(() => {
                 {/* Other pages */}
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/404" element={<PageNotFound />} />
 
                 {/* Design System Demo */}
                 <Route path="/dashboard" element={<UserProfileCard />} />
