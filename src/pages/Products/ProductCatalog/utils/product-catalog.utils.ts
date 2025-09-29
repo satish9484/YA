@@ -164,22 +164,53 @@ export const validateProduct = (product: Partial<Product>): product is Product =
     return !!(
         product.id &&
         product.name &&
-        product.image &&
         typeof product.price === 'number' &&
-        product.price >= 0 &&
-        product.description
+        product.price >= 0
     );
+};
+
+export const coerceProduct = (product: Partial<Product>): Product | null => {
+    // require minimal identity fields
+    if (!product.id || !product.name) return null;
+
+    // coerce numeric fields
+    const parsedPrice = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
+    if (typeof parsedPrice !== 'number' || Number.isNaN(parsedPrice)) return null;
+
+    const safeImage = product.image && String(product.image).trim() ? product.image as string : '/images/placeholder.png';
+    const safeDescription = (product.description as string) ?? '';
+    const safeInStock = product.inStock ?? true;
+    return {
+        id: product.id,
+        name: product.name,
+        image: safeImage,
+        price: Math.max(0, parsedPrice),
+        description: safeDescription,
+        category: product.category ?? '',
+        inStock: safeInStock,
+        rating: product.rating ?? 0,
+        reviewCount: product.reviewCount ?? 0,
+        tags: product.tags ?? [],
+        specifications: product.specifications ?? {},
+    };
 };
 
 export const validateProductCategory = (
     category: Partial<ProductCategory>,
 ): category is ProductCategory => {
-    return !!(
-        category.id &&
-        category.name &&
-        Array.isArray(category.products) &&
-        category.products.every(validateProduct)
-    );
+    // Lenient: allow partial category; sanitize later
+    return !!(category && typeof category === 'object');
+};
+
+export const sanitizeCategory = (category: ProductCategory): ProductCategory => {
+    const products = (category.products || [])
+        .map(p => coerceProduct(p))
+        .filter((p): p is Product => p !== null);
+    return {
+        ...category,
+        products,
+        totalCount: products.length,
+    };
 };
 
 // Image utilities

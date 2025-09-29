@@ -6,6 +6,7 @@ export interface ProductCategoryComponentProps extends ProductCategoryProps {
     readonly showCategoryDescription?: boolean;
     readonly productsPerRow?: number;
     readonly onCategoryClick?: (categoryId: string) => void;
+    readonly onPageSizeChange?: (current: number, size: number) => void;
 }
 
 export interface ProductCategoryHeaderProps {

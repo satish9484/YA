@@ -30,7 +30,10 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
     showCategoryDescription = true,
     productsPerRow = 4,
     onCategoryClick,
+    onPageSizeChange,
 }) => {
+
+    
     // Get paginated products
     const paginatedProducts = useMemo(() => {
         return getPaginatedItems(category.products, pagination.currentPage, pagination.pageSize);
@@ -146,9 +149,10 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
                 showSizeChanger={true}
                 size={variant === 'compact' ? 'small' : 'default'}
                 responsive={true}
+                onPageSizeChange={onPageSizeChange}
             />
         );
-    }, [pagination, onPageChange, variant]);
+    }, [pagination, onPageChange, variant, onPageSizeChange]);
 
     return (
         <section className={classNames} aria-labelledby={`category-${category.id}`} role="region">

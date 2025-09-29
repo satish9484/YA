@@ -74,6 +74,7 @@ export interface ProductPaginationProps {
     readonly showTotal?: boolean;
     readonly showSizeChanger?: boolean;
     readonly pageSizeOptions?: string[];
+    readonly onPageSizeChange?: ((current: number, size: number) => void) | undefined;
 }
 
 // Hook return types

@@ -7,8 +7,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: $spacing-8;
+    flex-wrap: nowrap; // keep in one line
+    gap: $spacing-3;
+    margin-top: $spacing-6;
     padding: $spacing-4 0;
+    overflow-x: auto; // allow horizontal scroll on narrow viewports
+    -webkit-overflow-scrolling: touch;
 
     // Size variants
     &--small {
@@ -39,10 +43,13 @@
 
     // Custom pagination styles
     .ant-pagination {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap; // do not wrap page items
         .ant-pagination-item {
             border: 2px solid color(border);
             border-radius: $border-radius-md;
-            margin: 0 2px;
+            margin: 0 4px; // more breathing room between numbers
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
             &:hover {
@@ -78,8 +85,19 @@
         .ant-pagination-next {
             border: 2px solid color(border);
             border-radius: $border-radius-md;
-            margin: 0 4px;
+            margin: 0 6px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            // style arrow buttons to look like numbered pills
+            .ant-pagination-item-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                border-radius: inherit;
+                color: color(text-primary);
+            }
 
             &:hover {
                 border-color: color(accent-primary);
@@ -117,6 +135,7 @@
 
         .ant-pagination-options {
             margin-left: $spacing-4;
+            flex: 0 0 auto; // prevent wrapping of size selector
 
             .ant-pagination-options-size-changer {
                 .ant-select {

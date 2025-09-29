@@ -89,16 +89,11 @@
     // Products grid
     &__products-grid {
         display: grid;
-        gap: $spacing-6;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: $spacing-4;
+        grid-template-columns: 1fr; // mobile-first: stack items
         margin-bottom: $spacing-6;
 
-        // Responsive grid columns
-        @include respond-to('sm') {
-            grid-template-columns: 1fr;
-            gap: $spacing-4;
-        }
-
+        // increase gaps and columns progressively
         @include respond-to('md') {
             grid-template-columns: repeat(2, 1fr);
             gap: $spacing-5;
@@ -122,15 +117,30 @@
     }
 
     &--products-2 &__products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 800px;
-        margin: 0 auto;
+        // only enforce 2 columns at medium screens and above
+        @include respond-to('md') {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 800px;
+            margin: 0 auto;
+        }
     }
 
     &--products-3 &__products-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1200px;
-        margin: 0 auto;
+        // only enforce 3 columns at large screens and above
+        @include respond-to('lg') {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    }
+
+    // do not force 4+ column modifiers on mobile; apply at xl
+    &--products-4 &__products-grid {
+        @include respond-to('xl') {
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
     }
 
     // Loading state

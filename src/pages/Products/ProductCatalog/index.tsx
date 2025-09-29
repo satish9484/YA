@@ -1,18 +1,16 @@
 import type React from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
-import { Button, Typography } from 'antd';
+import { Typography } from 'antd';
 
 // Breadcrumbs are now handled by Breadcrumbs component
-import { ExclamationCircleOutlined, ReloadOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
-// Old useBreadcrumbs hook removed - using Breadcrumbs now
 // Import modular components
 import ProductCategory from './components/ProductCategory';
 // Import types and data
 import { productCategories } from './data';
-// Import hooks and utilities
-import { useProductCatalog } from './hooks/useProductCatalog';
+// Utilities
 // Import styles
 import styles from './ProductCatalog.module.scss';
 import type { Product, ProductCatalogProps } from './types/product-catalog.types';
@@ -31,23 +29,25 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     productsPerPage = 4,
     onProductClick,
     onAddToCart,
-    // showBreadcrumbs = true,
 }) => {
+    
     // State management
     const [currentPages, setCurrentPages] = useState<Record<string, number>>({});
+    const [categoryPagination, setCategoryPagination] = useState<Record<string, { pageSize: number }>>({});
 
-    // Custom hooks
-    const { state, actions } = useProductCatalog(initialCategories);
+    // Derive categories from props (sanitized) – no external hook needed
+    const categories =   initialCategories ;
+
 
     // Calculate total stats
     const totalStats = useMemo(() => {
-        const totalProducts = state.categories.reduce(
+        const totalProducts = categories.reduce(
             (sum, category) => sum + category.products.length,
             0,
         );
-        const totalCategories = state.categories.length;
+        const totalCategories = categories.length;
         const averagePrice =
-            state.categories.reduce((sum, category) => {
+            categories.reduce((sum, category) => {
                 const categoryStats = calculateCategoryStats(category);
                 return sum + categoryStats.averagePrice;
             }, 0) / totalCategories;
@@ -57,15 +57,25 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
             totalCategories,
             averagePrice: Number(averagePrice.toFixed(2)),
         };
-    }, [state.categories]);
+    }, [categories]);
+
+    console.log('totalStats', categories);
 
     // Handle page change for a category
     const handlePageChange = useCallback(
         (categoryId: string, page: number) => {
             setCurrentPages(prev => ({ ...prev, [categoryId]: page }));
-            actions.setPageForCategory(categoryId, page);
         },
-        [actions],
+        [],
+    );
+
+    // Handle page size change for a category
+    const handlePageSizeChange = useCallback(
+        (categoryId: string, current: number, size: number) => {
+            setCategoryPagination(prev => ({ ...prev, [categoryId]: { pageSize: size } }));
+            setCurrentPages(prev => ({ ...prev, [categoryId]: current }));
+        },
+        [],
     );
 
     // Handle product click
@@ -100,76 +110,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
         console.log('Category clicked:', categoryId);
     }, []);
 
-    // Handle retry
-    const handleRetry = useCallback(() => {
-        actions.loadCategories();
-    }, [actions]);
-
-    // Render loading state
-    const renderLoadingState = useCallback(
-        () => (
-            <div className={`${styles['product-catalog']} ${styles['product-catalog--loading']}`}>
-                <div className="container">
-                    {/* Breadcrumbs are now handled by parent components using Breadcrumbs */}
-
-                    <div className={styles['product-catalog__header']}>
-                        <div className={styles['product-catalog__header-content']}>
-                            <Title level={1} className={styles['product-catalog__header-title']}>
-                                Loading Products...
-                            </Title>
-                            <Paragraph className={styles['product-catalog__header-description']}>
-                                Please wait while we load our amazing products for you.
-                            </Paragraph>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        ),
-        [],
-    );
-
-    // Render error state
-    const renderErrorState = useCallback(
-        () => (
-            <div className={`${styles['product-catalog']} ${styles['product-catalog--error']}`}>
-                <div className="container">
-                    {/* Breadcrumbs are now handled by parent components using Breadcrumbs */}
-
-                    <div className={styles['product-catalog__header']}>
-                        <div className={styles['product-catalog__header-content']}>
-                            <Title level={1} className={styles['product-catalog__header-title']}>
-                                Our Product Catalog
-                            </Title>
-                            <Paragraph className={styles['product-catalog__header-description']}>
-                                Discover our range of professional audio equipment
-                            </Paragraph>
-                        </div>
-                    </div>
-
-                    <div className={styles['product-catalog__error']}>
-                        <ExclamationCircleOutlined
-                            className={styles['product-catalog__error-icon']}
-                        />
-                        <Title level={3} className={styles['product-catalog__error-title']}>
-                            Failed to Load Products
-                        </Title>
-                        <Paragraph className={styles['product-catalog__error-description']}>
-                            We&apos;re having trouble loading our products. Please try again.
-                        </Paragraph>
-                        <Button
-                            type="primary"
-                            icon={<ReloadOutlined />}
-                            onClick={handleRetry}
-                            className={styles['product-catalog__error-retry']}
-                        >
-                            Try Again
-                        </Button>
-                    </div>
-                </div>
-            </div>
-        ),
-        [handleRetry],
-    );
+    // No remote loading/error states; we render based on provided data
 
     // Render empty state
     const renderEmptyState = useCallback(
@@ -255,12 +196,18 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
                     {/* Categories */}
                     <div className={styles['product-catalog__categories']}>
-                        {state.categories.map(category => {
+                        {categories.map(category => {
                             const currentPage = currentPages[category.id] || 1;
+                            const defaultPageSize =
+                                typeof window !== 'undefined' && window.innerWidth >= 992
+                                    ? productsPerPage
+                                    : Math.min(productsPerPage, 4);
+                            const pageSize =
+                                categoryPagination[category.id]?.pageSize || defaultPageSize;
                             const pagination = calculatePagination(
                                 category.products.length,
                                 currentPage,
-                                productsPerPage,
+                                pageSize,
                             );
 
                             return (
@@ -269,12 +216,15 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                                     category={category}
                                     pagination={pagination}
                                     onPageChange={page => handlePageChange(category.id, page)}
+                                    onPageSizeChange={(current, size) =>
+                                        handlePageSizeChange(category.id, current, size)
+                                    }
                                     onProductClick={handleProductClick}
                                     onAddToCart={handleAddToCart}
                                     onCategoryClick={handleCategoryClick}
                                     variant="default"
                                     showCategoryDescription={true}
-                                    productsPerRow={4}
+                                    productsPerRow={3}
                                 />
                             );
                         })}
@@ -283,8 +233,9 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
             </div>
         ),
         [
-            state.categories,
+            categories,
             currentPages,
+            categoryPagination,
             productsPerPage,
             totalStats,
             handlePageChange,
@@ -295,15 +246,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     );
 
     // Determine what to render based on state
-    if (state.loading) {
-        return renderLoadingState();
-    }
-
-    if (state.error) {
-        return renderErrorState();
-    }
-
-    if (state.categories.length === 0) {
+    if (categories.length === 0) {
         return renderEmptyState();
     }
 

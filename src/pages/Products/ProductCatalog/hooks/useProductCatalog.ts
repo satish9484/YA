@@ -1,11 +1,11 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type {
     ProductCatalogState,
     ProductCategory,
     UseProductCatalogReturn,
 } from '../types/product-catalog.types';
-import { validateProductCategory } from '../utils/product-catalog.utils';
+import { sanitizeCategory, validateProductCategory } from '../utils/product-catalog.utils';
 
 /**
  * Custom hook for managing product catalog state and operations
@@ -44,6 +44,18 @@ export const useProductCatalog = (
                 error: error instanceof Error ? error.message : 'Failed to load categories',
             }));
         }
+    }, [initialCategories]);
+
+    // Keep state in sync when initialCategories prop changes (e.g., after Redux fetch)
+    useEffect(() => {
+        const validCategories = initialCategories
+            .filter(validateProductCategory)
+            .map(sanitizeCategory);
+        setState(prev => ({
+            ...prev,
+            categories: validCategories,
+            error: null,
+        }));
     }, [initialCategories]);
 
     const refreshCategory = useCallback(async (_categoryId: string): Promise<void> => {

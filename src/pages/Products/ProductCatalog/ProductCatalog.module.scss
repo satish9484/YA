@@ -365,6 +365,17 @@
         }
     }
 
+    // Categories list layout and spacing
+    &__categories {
+        display: flex;
+        flex-direction: column;
+        row-gap: $spacing-12; // control vertical space between categories
+
+        @include respond-to('sm') {
+            row-gap: $spacing-8;
+        }
+    }
+
     // Error state
     &--error {
         .product-catalog__error {

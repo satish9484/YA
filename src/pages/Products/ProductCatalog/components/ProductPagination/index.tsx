@@ -24,6 +24,7 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
     showLessItems = false,
     hideOnSinglePage = true,
     responsive = true,
+    onPageSizeChange,
 }) => {
     // Memoized pagination props
     const paginationProps = useMemo(() => {
@@ -72,10 +73,16 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
     );
 
     // Handle page size change
-    const handlePageSizeChange = useCallback((current: number, size: number) => {
-        // This would typically be handled by the parent component
-        console.log('Page size changed:', { current, size });
-    }, []);
+    const handlePageSizeChange = useCallback(
+        (current: number, size: number) => {
+            if (onPageSizeChange) {
+                onPageSizeChange(current, size);
+            } else {
+                console.log('Page size changed:', { current, size });
+            }
+        },
+        [onPageSizeChange],
+    );
 
     // Handle show size change
     const handleShowSizeChange = useCallback(

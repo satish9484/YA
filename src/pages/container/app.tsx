@@ -36,7 +36,7 @@ const App: React.FC = () => {
                     <ThemeProvider>
                         <BrowserRouter>
                             <ScrollToTop>
-                                <Suspense fallback={<OptimizedLoader isSuspense={true} />}>
+                                <Suspense fallback={<OptimizedLoader context="overlay" variant="error" color="#ff7a45" size="large" isSuspense={true} />}>
                                     <Routes />
                                 </Suspense>
                             </ScrollToTop>

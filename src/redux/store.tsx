@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 // import { thunk } from "redux-thunk";
 import reduxApiMiddleware from './Middleware';
 import AuthSlice from './reducers/AuthSlice';
+import LineArrayProductsSlice from './reducers/LineArrayProductsSlice';
 import UserSlice from './reducers/UserSlice';
 
 const store = configureStore({
     reducer: {
         auth: AuthSlice,
         user: UserSlice,
+        lineArrayProducts: LineArrayProductsSlice,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({

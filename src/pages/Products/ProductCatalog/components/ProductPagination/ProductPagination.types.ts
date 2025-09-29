@@ -7,4 +7,5 @@ export interface ProductPaginationComponentProps extends ProductPaginationProps 
     readonly showLessItems?: boolean;
     readonly hideOnSinglePage?: boolean;
     readonly responsive?: boolean;
+    readonly onPageSizeChange?: ((current: number, size: number) => void) | undefined;
 }

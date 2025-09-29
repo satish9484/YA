@@ -43,6 +43,8 @@ const OptimizedLoader: React.FC<OptimizedLoaderProps> = memo(
                     return styles['loading-overlay'];
                 case 'inline':
                     return styles['loading-inline'];
+                case 'page':
+                    return isSuspense ? styles.suspense : styles['loading-page'];
                 default:
                     return isSuspense ? styles.suspense : styles.fullscreen;
             }
@@ -64,6 +66,9 @@ const OptimizedLoader: React.FC<OptimizedLoaderProps> = memo(
         return (
             <div
                 className={`${styles['loader-container']} ${getContextClass()} ${getVariantClass()} ${floating ? styles.floating : ''}`}
+                role="status"
+                aria-live="polite"
+                aria-busy="true"
             >
                 <div className={`${styles['bouncing-loader']} ${getSizeClass()}`}>
                     <div
