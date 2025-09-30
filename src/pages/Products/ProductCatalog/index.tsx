@@ -30,14 +30,14 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     onProductClick,
     onAddToCart,
 }) => {
-    
     // State management
     const [currentPages, setCurrentPages] = useState<Record<string, number>>({});
-    const [categoryPagination, setCategoryPagination] = useState<Record<string, { pageSize: number }>>({});
+    const [categoryPagination, setCategoryPagination] = useState<
+        Record<string, { pageSize: number }>
+    >({});
 
     // Derive categories from props (sanitized) – no external hook needed
-    const categories =   initialCategories ;
-
+    const categories = initialCategories;
 
     // Calculate total stats
     const totalStats = useMemo(() => {
@@ -62,12 +62,9 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     console.log('totalStats', categories);
 
     // Handle page change for a category
-    const handlePageChange = useCallback(
-        (categoryId: string, page: number) => {
-            setCurrentPages(prev => ({ ...prev, [categoryId]: page }));
-        },
-        [],
-    );
+    const handlePageChange = useCallback((categoryId: string, page: number) => {
+        setCurrentPages(prev => ({ ...prev, [categoryId]: page }));
+    }, []);
 
     // Handle page size change for a category
     const handlePageSizeChange = useCallback(
@@ -239,6 +236,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
             productsPerPage,
             totalStats,
             handlePageChange,
+            handlePageSizeChange,
             handleProductClick,
             handleAddToCart,
             handleCategoryClick,

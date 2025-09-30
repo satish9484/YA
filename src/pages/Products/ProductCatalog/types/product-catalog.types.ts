@@ -13,13 +13,24 @@ export interface Product {
     readonly specifications?: Record<string, string>;
 }
 
-// Product category interface
+// Product category interface (for backward compatibility)
 export interface ProductCategory {
     readonly id: string;
     readonly name: string;
     readonly description?: string;
     readonly products: Product[];
     readonly totalCount: number;
+}
+
+// Hierarchical category structure (matches new JSON structure)
+export interface HierarchicalProductCategory {
+    readonly categoryName: string;
+    readonly subCategories: HierarchicalProductSubCategory[];
+}
+
+export interface HierarchicalProductSubCategory {
+    readonly subCategoryName: string;
+    readonly products: Product[];
 }
 
 // Pagination state interface
@@ -33,6 +44,7 @@ export interface PaginationState {
 // Product catalog state interface
 export interface ProductCatalogState {
     readonly categories: ProductCategory[];
+    readonly hierarchicalCategories?: HierarchicalProductCategory[];
     readonly pagination: Record<string, PaginationState>;
     readonly loading: boolean;
     readonly error: string | null;
@@ -41,10 +53,12 @@ export interface ProductCatalogState {
 // Component props interfaces
 export interface ProductCatalogProps {
     readonly initialCategories?: ProductCategory[];
+    readonly hierarchicalCategories?: HierarchicalProductCategory[];
     readonly productsPerPage?: number;
     readonly onProductClick?: (product: Product) => void;
     readonly onAddToCart?: (product: Product) => void;
     readonly showBreadcrumbs?: boolean;
+    readonly useHierarchicalView?: boolean;
 }
 
 export interface ProductCategoryProps {
@@ -75,6 +89,21 @@ export interface ProductPaginationProps {
     readonly showSizeChanger?: boolean;
     readonly pageSizeOptions?: string[];
     readonly onPageSizeChange?: ((current: number, size: number) => void) | undefined;
+}
+
+// Hierarchical component props
+export interface HierarchicalProductCategoryProps {
+    readonly category: HierarchicalProductCategory;
+    readonly onProductClick?: (product: Product) => void;
+    readonly onAddToCart?: (product: Product) => void;
+    readonly showSubCategoryHeaders?: boolean;
+}
+
+export interface HierarchicalProductSubCategoryProps {
+    readonly subCategory: HierarchicalProductSubCategory;
+    readonly onProductClick?: (product: Product) => void;
+    readonly onAddToCart?: (product: Product) => void;
+    readonly showSubCategoryName?: boolean;
 }
 
 // Hook return types
@@ -112,6 +141,10 @@ export interface ProductSortOptions {
     readonly field: ProductSortField;
     readonly direction: SortDirection;
 }
+
+// Hierarchical data utility types
+export type HierarchicalDataView = 'flat' | 'hierarchical';
+export type CategoryDisplayMode = 'cards' | 'list' | 'grid';
 
 // API response types
 export interface ProductCatalogApiResponse {

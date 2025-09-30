@@ -30,11 +30,25 @@ export interface ILineArrayProduct {
     updatedAt: string;
 }
 
+// Hierarchical Category Structure Interfaces
+export interface IProductSubCategory {
+    subCategoryName: string;
+    products: ILineArrayProduct[];
+}
+
+export interface IProductCategory {
+    categoryName: string;
+    subCategories: IProductSubCategory[];
+}
+
+// Hierarchical Data Structure (matches JSON structure)
+export type ILineArrayProductsData = IProductCategory[];
+
 // Validation Error Interface
 export interface ValidationError {
     field: string;
     message: string;
-    value?: any;
+    value?: unknown;
 }
 
 // Product Validator Class
@@ -70,13 +84,22 @@ export class ProductValidator {
         // Validate originalPrice
         if (product.originalPrice !== undefined) {
             if (product.originalPrice < 0) {
-                errors.push({ field: 'originalPrice', message: 'Original price cannot be negative' });
+                errors.push({
+                    field: 'originalPrice',
+                    message: 'Original price cannot be negative',
+                });
             }
             if (product.originalPrice > 999999.99) {
-                errors.push({ field: 'originalPrice', message: 'Original price exceeds maximum allowed value' });
+                errors.push({
+                    field: 'originalPrice',
+                    message: 'Original price exceeds maximum allowed value',
+                });
             }
             if (product.price && product.originalPrice < product.price) {
-                errors.push({ field: 'originalPrice', message: 'Original price cannot be less than current price' });
+                errors.push({
+                    field: 'originalPrice',
+                    message: 'Original price cannot be less than current price',
+                });
             }
         }
 
@@ -123,7 +146,10 @@ export class ProductValidator {
         } else if (product.stockCount < 0) {
             errors.push({ field: 'stockCount', message: 'Stock count cannot be negative' });
         } else if (product.stockCount > 9999) {
-            errors.push({ field: 'stockCount', message: 'Stock count exceeds maximum allowed value' });
+            errors.push({
+                field: 'stockCount',
+                message: 'Stock count exceeds maximum allowed value',
+            });
         }
 
         // Validate rating
@@ -142,7 +168,10 @@ export class ProductValidator {
         } else if (product.reviewCount < 0) {
             errors.push({ field: 'reviewCount', message: 'Review count cannot be negative' });
         } else if (product.reviewCount > 99999) {
-            errors.push({ field: 'reviewCount', message: 'Review count exceeds maximum allowed value' });
+            errors.push({
+                field: 'reviewCount',
+                message: 'Review count exceeds maximum allowed value',
+            });
         }
 
         // Validate tags
@@ -160,13 +189,19 @@ export class ProductValidator {
 
         // Validate specifications
         if (!product.specifications || Object.keys(product.specifications).length === 0) {
-            errors.push({ field: 'specifications', message: 'At least one specification is required' });
+            errors.push({
+                field: 'specifications',
+                message: 'At least one specification is required',
+            });
         } else if (Object.keys(product.specifications).length > 20) {
             errors.push({ field: 'specifications', message: 'Too many specifications' });
         } else {
             Object.entries(product.specifications).forEach(([key, value]) => {
                 if (value.length > 200) {
-                    errors.push({ field: `specifications.${key}`, message: 'Specification value is too long' });
+                    errors.push({
+                        field: `specifications.${key}`,
+                        message: 'Specification value is too long',
+                    });
                 }
             });
         }
@@ -187,8 +222,11 @@ export class ProductValidator {
             errors.push({ field: 'sku', message: 'SKU is too short' });
         } else if (product.sku.length > 50) {
             errors.push({ field: 'sku', message: 'SKU is too long' });
-        } else if (!/^[A-Z0-9\-]+$/.test(product.sku)) {
-            errors.push({ field: 'sku', message: 'SKU must contain only uppercase letters, numbers, and hyphens' });
+        } else if (!/^[A-Z0-9-]+$/.test(product.sku)) {
+            errors.push({
+                field: 'sku',
+                message: 'SKU must contain only uppercase letters, numbers, and hyphens',
+            });
         }
 
         // Validate warranty
@@ -205,6 +243,101 @@ export class ProductValidator {
 
     static isValidProduct(product: Partial<ILineArrayProduct>): boolean {
         return this.validateProduct(product).length === 0;
+    }
+
+    // Validation for hierarchical data structure
+    static validateSubCategory(subCategory: Partial<IProductSubCategory>): ValidationError[] {
+        const errors: ValidationError[] = [];
+
+        if (!subCategory.subCategoryName) {
+            errors.push({ field: 'subCategoryName', message: 'Subcategory name is required' });
+        } else if (subCategory.subCategoryName.length < 1) {
+            errors.push({ field: 'subCategoryName', message: 'Subcategory name is too short' });
+        } else if (subCategory.subCategoryName.length > 100) {
+            errors.push({ field: 'subCategoryName', message: 'Subcategory name is too long' });
+        }
+
+        if (!subCategory.products || !Array.isArray(subCategory.products)) {
+            errors.push({ field: 'products', message: 'Products array is required' });
+        } else {
+            subCategory.products.forEach((product, index) => {
+                const productErrors = this.validateProduct(product);
+                productErrors.forEach(error => {
+                    errors.push({
+                        field: `products[${index}].${error.field}`,
+                        message: error.message,
+                        value: error.value,
+                    });
+                });
+            });
+        }
+
+        return errors;
+    }
+
+    static validateCategory(category: Partial<IProductCategory>): ValidationError[] {
+        const errors: ValidationError[] = [];
+
+        if (!category.categoryName) {
+            errors.push({ field: 'categoryName', message: 'Category name is required' });
+        } else if (category.categoryName.length < 1) {
+            errors.push({ field: 'categoryName', message: 'Category name is too short' });
+        } else if (category.categoryName.length > 100) {
+            errors.push({ field: 'categoryName', message: 'Category name is too long' });
+        }
+
+        if (!category.subCategories || !Array.isArray(category.subCategories)) {
+            errors.push({ field: 'subCategories', message: 'Subcategories array is required' });
+        } else {
+            category.subCategories.forEach((subCategory, index) => {
+                const subCategoryErrors = this.validateSubCategory(subCategory);
+                subCategoryErrors.forEach(error => {
+                    errors.push({
+                        field: `subCategories[${index}].${error.field}`,
+                        message: error.message,
+                        value: error.value,
+                    });
+                });
+            });
+        }
+
+        return errors;
+    }
+
+    static validateHierarchicalData(data: Partial<ILineArrayProductsData>): ValidationError[] {
+        const errors: ValidationError[] = [];
+
+        if (!Array.isArray(data)) {
+            errors.push({ field: 'data', message: 'Data must be an array' });
+            return errors;
+        }
+
+        data.forEach((category, index) => {
+            if (category) {
+                const categoryErrors = this.validateCategory(category);
+                categoryErrors.forEach(error => {
+                    errors.push({
+                        field: `[${index}].${error.field}`,
+                        message: error.message,
+                        value: error.value,
+                    });
+                });
+            }
+        });
+
+        return errors;
+    }
+
+    static isValidSubCategory(subCategory: Partial<IProductSubCategory>): boolean {
+        return this.validateSubCategory(subCategory).length === 0;
+    }
+
+    static isValidCategory(category: Partial<IProductCategory>): boolean {
+        return this.validateCategory(category).length === 0;
+    }
+
+    static isValidHierarchicalData(data: Partial<ILineArrayProductsData>): boolean {
+        return this.validateHierarchicalData(data).length === 0;
     }
 }
 
@@ -230,9 +363,20 @@ export class ProductUtils {
     }
 
     static generateSKU(brand: string, model: string, variant?: string): string {
-        const brandCode = brand.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 3);
-        const modelCode = model.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 3);
-        const variantCode = variant ? variant.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 2) : '01';
+        const brandCode = brand
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, '')
+            .substring(0, 3);
+        const modelCode = model
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, '')
+            .substring(0, 3);
+        const variantCode = variant
+            ? variant
+                  .toUpperCase()
+                  .replace(/[^A-Z0-9]/g, '')
+                  .substring(0, 2)
+            : '01';
         return `${brandCode}-${modelCode}-${variantCode}`;
     }
 }

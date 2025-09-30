@@ -1,39 +1,29 @@
 // Example usage of the Line Array Products Redux slice
-import { useLineArrayProducts, useProductFilters, useProductOperations } from '@/redux/hooks/useLineArrayProducts';
-import React, { useEffect } from 'react';
+import type React from 'react';
+import { useEffect } from 'react';
+
+import {
+    useLineArrayProducts,
+    useProductFilters,
+    useProductOperations,
+} from '@/redux/hooks/useLineArrayProducts';
 
 const LineArrayProductsExample: React.FC = () => {
     // Main hook for products
-    const {
-        productList,
-        productInfo,
-        filteredProducts,
-        isLoading,
-        error,
-        fetchProducts,
-        fetchProduct,
-        clearProductError,
-    } = useLineArrayProducts();
+    const { productInfo, filteredProducts, isLoading, error, fetchProducts, clearProductError } =
+        useLineArrayProducts();
 
     // Hook for product operations
     const {
         isLoading: isOperating,
-        error: operationError,
         createProductAsync,
         updateProductAsync,
         deleteProductAsync,
     } = useProductOperations();
 
     // Hook for filtering
-    const {
-        filters,
-        searchQuery,
-        sorting,
-        setFilters,
-        setSearchQuery,
-        setSorting,
-        resetFilters,
-    } = useProductFilters();
+    const { filters, searchQuery, sorting, setFilters, setSearchQuery, setSorting, resetFilters } =
+        useProductFilters();
 
     // Fetch products on component mount
     useEffect(() => {
@@ -51,15 +41,16 @@ const LineArrayProductsExample: React.FC = () => {
                 image: '/path/to/image.jpg',
                 price: 999.99,
                 description: 'A new line array speaker',
-                category: 'Line Array Speakers',
-                categoryId: 'line-array-professional',
+                category: 'Line Array Speakers' as const,
+                categoryId: 'line-array-professional' as const,
                 categoryName: 'Professional Line Array Systems',
                 inStock: true,
                 stockCount: 5,
+                reviewCount: 0,
                 tags: ['New', 'Professional'],
                 specifications: {
                     'Power Handling': '500W',
-                    'Impedance': '8 Ω',
+                    Impedance: '8 Ω',
                 },
                 brand: 'TOA',
                 sku: 'TOA-NEW-001',
@@ -127,27 +118,21 @@ const LineArrayProductsExample: React.FC = () => {
     return (
         <div>
             <h1>Line Array Products</h1>
-            
+
             {/* Search and Filters */}
             <div>
                 <input
                     type="text"
                     placeholder="Search products..."
                     value={searchQuery}
-                    onChange={(e) => handleSearch(e.target.value)}
+                    onChange={e => handleSearch(e.target.value)}
                 />
-                
-                <button onClick={() => handleFilterByBrand('TOA')}>
-                    Filter by TOA
-                </button>
-                
-                <button onClick={() => handleSort('price')}>
-                    Sort by Price
-                </button>
-                
-                <button onClick={resetFilters}>
-                    Reset Filters
-                </button>
+
+                <button onClick={() => handleFilterByBrand('TOA')}>Filter by TOA</button>
+
+                <button onClick={() => handleSort('price')}>Sort by Price</button>
+
+                <button onClick={resetFilters}>Reset Filters</button>
             </div>
 
             {/* Product Operations */}
@@ -160,24 +145,27 @@ const LineArrayProductsExample: React.FC = () => {
             {/* Products List */}
             <div>
                 <h2>Products ({filteredProducts.length})</h2>
-                {filteredProducts.map((product) => (
-                    <div key={product._id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
+                {filteredProducts.map(product => (
+                    <div
+                        key={product._id}
+                        style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}
+                    >
                         <h3>{product.name}</h3>
                         <p>{product.description}</p>
                         <p>Price: ${product.price}</p>
                         <p>Brand: {product.brand}</p>
                         <p>Stock: {product.stockCount}</p>
-                        <p>Rating: {product.rating || 'N/A'}</p>
-                        
+                        <p>Rating: {product.rating ?? 'N/A'}</p>
+
                         <div>
-                            <button 
+                            <button
                                 onClick={() => handleUpdateProduct(product._id)}
                                 disabled={isOperating}
                             >
                                 {isOperating ? 'Updating...' : 'Update'}
                             </button>
-                            
-                            <button 
+
+                            <button
                                 onClick={() => handleDeleteProduct(product._id)}
                                 disabled={isOperating}
                             >
@@ -198,7 +186,7 @@ const LineArrayProductsExample: React.FC = () => {
                     <p>Brand: {productInfo.brand}</p>
                     <p>SKU: {productInfo.sku}</p>
                     <p>Warranty: {productInfo.warranty}</p>
-                    
+
                     <h4>Specifications:</h4>
                     <ul>
                         {Object.entries(productInfo.specifications).map(([key, value]) => (

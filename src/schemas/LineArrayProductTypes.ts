@@ -25,6 +25,20 @@ export interface LineArrayProduct {
     updatedAt: string;
 }
 
+// Hierarchical Category Structure Interfaces
+export interface ProductSubCategory {
+    subCategoryName: string;
+    products: LineArrayProduct[];
+}
+
+export interface ProductCategory {
+    categoryName: string;
+    subCategories: ProductSubCategory[];
+}
+
+// Hierarchical Data Structure (matches JSON structure)
+export type LineArrayProductsData = ProductCategory[];
+
 // Product Specifications Interface
 export interface ProductSpecifications {
     [key: string]: string;
@@ -32,6 +46,17 @@ export interface ProductSpecifications {
 
 // API Response Interfaces
 export interface LineArrayProductsResponse {
+    success: boolean;
+    data: LineArrayProductsData;
+    total?: number;
+    page?: number;
+    limit?: number;
+    totalPages?: number;
+    message?: string;
+}
+
+// Flat product list response (for backward compatibility)
+export interface LineArrayProductsFlatResponse {
     success: boolean;
     data: LineArrayProduct[];
     total?: number;
@@ -111,6 +136,9 @@ export interface ProductSearchParams {
 
 // Redux State Interface
 export interface LineArrayProductsState {
+    // Hierarchical data structure
+    categoriesData: LineArrayProductsData;
+    // Flat product list (for backward compatibility and easy access)
     productList: LineArrayProduct[];
     productInfo: LineArrayProduct | null;
     isLoading: boolean;
@@ -137,7 +165,7 @@ export interface ProductError {
 // Utility Types
 export type ProductSortField = 'price' | 'rating' | 'name' | 'createdAt';
 export type SortOrder = 'asc' | 'desc';
-export type ProductCategory = 'Line Array Speakers' | 'Subwoofers' | 'Mounting Hardware';
+export type ProductCategoryType = 'Line Array Speakers' | 'Subwoofers' | 'Mounting Hardware';
 export type CategoryId = 'line-array-professional' | 'line-array-accessories';
 
 // Computed Properties Interface
@@ -170,7 +198,7 @@ export interface ProductListQueryParams {
 export interface ValidationError {
     field: string;
     message: string;
-    value?: any;
+    value?: unknown;
 }
 
 // Bulk Operations Interface
@@ -195,7 +223,7 @@ export interface ProductStatistics {
     averagePrice: number;
     averageRating: number;
     categoryBreakdown: {
-        [key in ProductCategory]: number;
+        [key in ProductCategoryType]: number;
     };
     brandBreakdown: {
         [brand: string]: number;
@@ -205,6 +233,110 @@ export interface ProductStatistics {
         max: number;
         average: number;
     };
+}
+
+// Utility Functions for Hierarchical Data
+export class LineArrayDataUtils {
+    /**
+     * Flatten hierarchical data to get all products
+     */
+    static flattenProducts(categoriesData: LineArrayProductsData): LineArrayProduct[] {
+        const products: LineArrayProduct[] = [];
+        categoriesData.forEach(category => {
+            category.subCategories.forEach(subCategory => {
+                products.push(...subCategory.products);
+            });
+        });
+        return products;
+    }
+
+    /**
+     * Get products by category name
+     */
+    static getProductsByCategory(
+        categoriesData: LineArrayProductsData,
+        categoryName: string,
+    ): LineArrayProduct[] {
+        const category = categoriesData.find(cat => cat.categoryName === categoryName);
+        if (!category) return [];
+
+        const products: LineArrayProduct[] = [];
+        category.subCategories.forEach(subCategory => {
+            products.push(...subCategory.products);
+        });
+        return products;
+    }
+
+    /**
+     * Get products by subcategory name
+     */
+    static getProductsBySubCategory(
+        categoriesData: LineArrayProductsData,
+        subCategoryName: string,
+    ): LineArrayProduct[] {
+        const products: LineArrayProduct[] = [];
+        categoriesData.forEach(category => {
+            const subCategory = category.subCategories.find(
+                sub => sub.subCategoryName === subCategoryName,
+            );
+            if (subCategory) {
+                products.push(...subCategory.products);
+            }
+        });
+        return products;
+    }
+
+    /**
+     * Get all category names
+     */
+    static getCategoryNames(categoriesData: LineArrayProductsData): string[] {
+        return categoriesData.map(category => category.categoryName);
+    }
+
+    /**
+     * Get all subcategory names
+     */
+    static getSubCategoryNames(categoriesData: LineArrayProductsData): string[] {
+        const subCategories: string[] = [];
+        categoriesData.forEach(category => {
+            category.subCategories.forEach(subCategory => {
+                subCategories.push(subCategory.subCategoryName);
+            });
+        });
+        return subCategories;
+    }
+
+    /**
+     * Get total product count across all categories
+     */
+    static getTotalProductCount(categoriesData: LineArrayProductsData): number {
+        let total = 0;
+        categoriesData.forEach(category => {
+            category.subCategories.forEach(subCategory => {
+                total += subCategory.products.length;
+            });
+        });
+        return total;
+    }
+
+    /**
+     * Search products across all categories and subcategories
+     */
+    static searchProducts(
+        categoriesData: LineArrayProductsData,
+        query: string,
+    ): LineArrayProduct[] {
+        const allProducts = this.flattenProducts(categoriesData);
+        const searchTerm = query.toLowerCase();
+
+        return allProducts.filter(
+            product =>
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
+                product.brand.toLowerCase().includes(searchTerm) ||
+                product.tags.some(tag => tag.toLowerCase().includes(searchTerm)),
+        );
+    }
 }
 
 // All interfaces are already exported above

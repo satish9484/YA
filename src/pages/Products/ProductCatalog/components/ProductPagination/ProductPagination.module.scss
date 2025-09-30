@@ -7,50 +7,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap; // keep in one line
+    flex-wrap: nowrap;
     gap: $spacing-3;
     margin-top: $spacing-6;
     padding: $spacing-4 0;
-    overflow-x: auto; // allow horizontal scroll on narrow viewports
     -webkit-overflow-scrolling: touch;
 
     // Size variants
     &--small {
-        .ant-pagination {
-            .ant-pagination-item,
-            .ant-pagination-prev,
-            .ant-pagination-next {
-                min-width: 24px;
-                height: 24px;
-                line-height: 22px;
-                font-size: $font-size-xs;
-            }
+        .ant-pagination-item,
+        .ant-pagination-prev,
+        .ant-pagination-next {
+            min-width: 24px;
+            height: 24px;
+            font-size: $font-size-xs;
         }
     }
 
     &--large {
-        .ant-pagination {
-            .ant-pagination-item,
-            .ant-pagination-prev,
-            .ant-pagination-next {
-                min-width: 40px;
-                height: 40px;
-                line-height: 38px;
-                font-size: $font-size-lg;
-            }
+        .ant-pagination-item,
+        .ant-pagination-prev,
+        .ant-pagination-next {
+            min-width: 40px;
+            height: 40px;
+            font-size: $font-size-lg;
         }
     }
 
-    // Custom pagination styles
-    .ant-pagination {
+    // Custom pagination styles with higher specificity
+    ul.ant-pagination {
         display: flex;
         align-items: center;
-        flex-wrap: nowrap; // do not wrap page items
-        .ant-pagination-item {
+        flex-wrap: nowrap;
+
+        // FIX: Grouped common styles for items, prev, and next buttons to reduce duplication.
+        .ant-pagination-item,
+        .ant-pagination-prev,
+        .ant-pagination-next {
             border: 2px solid color(border);
             border-radius: $border-radius-md;
-            margin: 0 4px; // more breathing room between numbers
+            margin: 0 4px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            // FIX: Use flexbox for robust vertical and horizontal centering.
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &:hover {
                 border-color: color(accent-primary);
@@ -59,6 +60,15 @@
                 box-shadow: 0 2px 8px rgba(color(accent-primary), 0.2);
             }
 
+            // FIX: Added focus-visible for accessibility. Provides a clear outline for keyboard users.
+            &:focus-visible {
+                outline: none;
+                border-color: color(accent-primary);
+                box-shadow: 0 0 0 2px rgba(color(accent-primary), 0.3);
+            }
+        }
+
+        .ant-pagination-item {
             &-active {
                 background: linear-gradient(
                     135deg,
@@ -83,27 +93,16 @@
 
         .ant-pagination-prev,
         .ant-pagination-next {
-            border: 2px solid color(border);
-            border-radius: $border-radius-md;
-            margin: 0 6px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-            // style arrow buttons to look like numbered pills
             .ant-pagination-item-link {
+                // FIX: Removed hardcoded size. It now correctly inherits from the parent.
+                width: 100%;
+                height: 100%;
+                border-radius: inherit;
+                color: color(text-primary);
+                // FIX: Flex properties already on parent, this ensures icon is centered.
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 36px;
-                height: 36px;
-                border-radius: inherit;
-                color: color(text-primary);
-            }
-
-            &:hover {
-                border-color: color(accent-primary);
-                color: color(accent-primary);
-                transform: translateY(-1px);
-                box-shadow: 0 2px 8px rgba(color(accent-primary), 0.2);
             }
 
             &:disabled {
@@ -119,45 +118,14 @@
             }
         }
 
-        .ant-pagination-jump-prev,
-        .ant-pagination-jump-next {
-            border: 2px solid transparent;
-            border-radius: $border-radius-md;
-            margin: 0 2px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-            &:hover {
-                border-color: color(accent-primary);
-                color: color(accent-primary);
-                transform: translateY(-1px);
-            }
-        }
-
         .ant-pagination-options {
             margin-left: $spacing-4;
-            flex: 0 0 auto; // prevent wrapping of size selector
 
-            .ant-pagination-options-size-changer {
-                .ant-select {
-                    .ant-select-selector {
-                        border: 2px solid color(border);
-                        border-radius: $border-radius-md;
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-                        &:hover {
-                            border-color: color(accent-primary);
-                        }
-                    }
-
-                    &.ant-select-focused .ant-select-selector {
-                        border-color: color(accent-primary);
-                        box-shadow: 0 0 0 2px rgba(color(accent-primary), 0.2);
-                    }
-                }
-            }
-
-            .ant-pagination-options-quick-jumper {
-                input {
+            .ant-select {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .ant-select-selector {
                     border: 2px solid color(border);
                     border-radius: $border-radius-md;
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -166,7 +134,8 @@
                         border-color: color(accent-primary);
                     }
 
-                    &:focus {
+                    &:focus,
+                    &:focus-within {
                         border-color: color(accent-primary);
                         box-shadow: 0 0 0 2px rgba(color(accent-primary), 0.2);
                     }
@@ -174,10 +143,31 @@
             }
         }
 
-        .ant-pagination-total-text {
+        li.ant-pagination-total-text {
+            display: inline-block;
+            height: 32px;
+            margin-inline-end: 8px;
+            line-height: 30px;
+            vertical-align: middle;
             color: color(text-secondary);
             font-size: $font-size-sm;
             margin-right: $spacing-4;
+            font-weight: 500;
+            transition: color 0.2s ease-in-out;
+
+            // Theme-aware text color support using global selectors
+            :global([data-theme='light']) & {
+                color: color(text-secondary, light);
+            }
+
+            :global([data-theme='dark']) & {
+                color: color(text-secondary, dark);
+            }
+
+            // Hover state for better UX
+            &:hover {
+                color: color(text-interactive);
+            }
         }
     }
 
@@ -219,18 +209,15 @@
     // Error state
     &--error {
         .ant-pagination {
-            .ant-pagination-item,
-            .ant-pagination-prev,
-            .ant-pagination-next {
-                border-color: color(error-300);
-                color: color(error-500);
-            }
+            opacity: 0.4;
+            pointer-events: none;
         }
     }
 
     // Dark theme support
     [data-theme='dark'] & {
-        .ant-pagination {
+        ul.ant-pagination {
+            color: color(text-secondary);
             .ant-pagination-item {
                 background: color(bg-primary);
                 border-color: color(border-primary);
@@ -249,7 +236,7 @@
                         color(primary-600) 100%
                     );
                     border-color: color(accent-primary);
-                    color: color(accent-contrast);
+                    color: color(accent-primary);
                 }
             }
 
@@ -264,10 +251,32 @@
                     border-color: color(accent-primary);
                     color: color(accent-primary);
                 }
+
+                &:disabled {
+                    opacity: 0.4;
+                    cursor: not-allowed;
+
+                    &:hover {
+                        background: color(bg-primary);
+                        border-color: color(border-primary);
+                        color: color(text-disabled);
+                    }
+                }
             }
 
-            .ant-pagination-total-text {
-                color: color(text-secondary);
+            li.ant-pagination-total-text {
+                display: inline-block;
+                height: 32px;
+                margin-inline-end: 8px;
+                line-height: 30px;
+                vertical-align: middle;
+                font-weight: 500;
+                transition: color 0.2s ease-in-out;
+
+                // Hover state for better UX
+                &:hover {
+                    color: color(text-interactive);
+                }
             }
         }
     }

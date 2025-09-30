@@ -201,6 +201,45 @@ span.ant-typography {
             padding-left: $spacing-3;
         }
     }
+
+    // Global select arrow styling for all select components
+    .ant-select-arrow {
+        color: color(text-secondary);
+        position: absolute;
+        top: 50%;
+        right: 11px;
+        height: 12px;
+        margin-top: -6px;
+        font-size: 12px;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // Theme-aware arrow color
+        [data-theme='light'] & {
+            color: color(text-secondary, light);
+        }
+
+        [data-theme='dark'] & {
+            color: color(text-secondary, dark);
+        }
+
+        // Override Ant Design's search icon with proper dropdown arrow
+        .anticon {
+            color: inherit;
+            font-size: inherit;
+
+            // Ensure it shows as dropdown arrow, not search icon
+            &::before {
+                content: '▼';
+                font-family: inherit;
+                font-size: 10px;
+                line-height: 1;
+            }
+        }
+    }
 }
 
 // =============================================================================

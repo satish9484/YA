@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 
 import { Pagination } from 'antd';
 
-import './ProductPagination.module.scss';
+import styles from './ProductPagination.module.scss';
 import type { ProductPaginationComponentProps } from './ProductPagination.types';
 
 /**
@@ -17,7 +17,7 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
     onPageChange,
     showTotal = true,
     showSizeChanger = true,
-    pageSizeOptions = ['4', '8', '12', '24'],
+    pageSizeOptions = ['2', '4', '8', '12', '24'],
     className = '',
     size = 'default',
     showQuickJumper = false,
@@ -92,13 +92,13 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
         [handlePageSizeChange],
     );
 
-    // Generate class names
+    // Generate class names using CSS modules
     const classNames = useMemo(() => {
-        const classes = ['product-pagination'];
+        const classes = [styles['product-pagination']];
 
         if (className) classes.push(className);
-        if (size !== 'default') classes.push(`product-pagination--${size}`);
-        if (responsive) classes.push('product-pagination--responsive');
+        if (size !== 'default') classes.push(styles[`product-pagination--${size}`]);
+        if (responsive) classes.push(styles['product-pagination--responsive']);
 
         return classes.join(' ');
     }, [className, size, responsive]);
@@ -114,7 +114,7 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
                 {...paginationProps}
                 onChange={handlePageChange}
                 onShowSizeChange={handleShowSizeChange}
-                className="product-pagination__pagination"
+                className={styles['ant-pagination']}
             />
         </div>
     );
