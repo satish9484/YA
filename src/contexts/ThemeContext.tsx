@@ -2,7 +2,7 @@ import { type ReactNode, useCallback, useEffect, useState } from 'react';
 
 import { ConfigProvider } from 'antd';
 
-import { createAppTheme } from './antDesingtheam';
+import { createAppTheme } from './antDesignThemeConfig';
 import { type Theme, ThemeContext } from './theme.ts';
 
 interface ThemeProviderProps {
