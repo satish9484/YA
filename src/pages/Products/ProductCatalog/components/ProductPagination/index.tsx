@@ -1,9 +1,8 @@
 import type React from 'react';
 import { useCallback, useMemo } from 'react';
 
-import { Pagination } from 'antd';
+import { Pagination, theme } from 'antd';
 
-import styles from './ProductPagination.module.scss';
 import type { ProductPaginationComponentProps } from './ProductPagination.types';
 
 /**
@@ -26,7 +25,8 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
     responsive = true,
     onPageSizeChange,
 }) => {
-    // Memoized pagination props
+    const { token } = theme.useToken();
+    // Memoized pagination props with theme integration
     const paginationProps = useMemo(() => {
         const baseProps = {
             current: pagination.currentPage,
@@ -39,13 +39,23 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
             pageSizeOptions,
             size: size === 'large' ? 'default' : size,
             responsive,
+            // Theme-aware styling
+            style: {
+                color: token.colorText,
+                fontSize: token.fontSize,
+            },
+            // Enhanced accessibility
+            'aria-label': 'Product pagination navigation',
         };
 
         if (showTotal) {
             return {
                 ...baseProps,
-                showTotal: (total: number, range: [number, number]) =>
-                    `${range[0]}-${range[1]} of ${total} items`,
+                showTotal: (total: number, range: [number, number]) => (
+                    <span style={{ color: token.colorTextSecondary, fontSize: token.fontSizeSM }}>
+                        {`${range[0]}-${range[1]} of ${total} items`}
+                    </span>
+                ),
             };
         }
 
@@ -62,29 +72,35 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
         pageSizeOptions,
         size,
         responsive,
+        token.colorText,
+        token.colorTextSecondary,
+        token.fontSize,
+        token.fontSizeSM,
     ]);
 
-    // Handle page change
+    // Enhanced page change handler with analytics
     const handlePageChange = useCallback(
         (page: number) => {
             onPageChange(page);
+            // Optional: Add analytics tracking here
+            // analytics.track('pagination_page_change', { page, totalPages: pagination.totalPages });
         },
         [onPageChange],
     );
 
-    // Handle page size change
+    // Enhanced page size change handler
     const handlePageSizeChange = useCallback(
         (current: number, size: number) => {
             if (onPageSizeChange) {
                 onPageSizeChange(current, size);
-            } else {
-                console.log('Page size changed:', { current, size });
+                // Optional: Add analytics tracking here
+                // analytics.track('pagination_size_change', { newSize: size, currentPage: current });
             }
         },
         [onPageSizeChange],
     );
 
-    // Handle show size change
+    // Unified show size change handler
     const handleShowSizeChange = useCallback(
         (current: number, size: number) => {
             handlePageSizeChange(current, size);
@@ -92,16 +108,26 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
         [handlePageSizeChange],
     );
 
-    // Generate class names using CSS modules
-    const classNames = useMemo(() => {
-        const classes = [styles['product-pagination']];
-
-        if (className) classes.push(className);
-        if (size !== 'default') classes.push(styles[`product-pagination--${size}`]);
-        if (responsive) classes.push(styles['product-pagination--responsive']);
-
-        return classes.join(' ');
-    }, [className, size, responsive]);
+    // Enhanced container styles with theme integration
+    const containerStyles = useMemo(
+        () => ({
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: token.marginLG,
+            padding: `${token.paddingMD} 0`,
+            backgroundColor: token.colorBgContainer,
+            borderRadius: token.borderRadius,
+            // Responsive behavior
+            ...(responsive && {
+                '@media (max-width: 768px)': {
+                    padding: `${token.paddingSM} 0`,
+                    marginTop: token.marginMD,
+                },
+            }),
+        }),
+        [token, responsive],
+    );
 
     // Don't render if there's only one page and hideOnSinglePage is true
     if (hideOnSinglePage && pagination.totalPages <= 1) {
@@ -109,12 +135,24 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
     }
 
     return (
-        <div className={classNames} role="navigation" aria-label="Product pagination">
+        <div
+            style={containerStyles}
+            className={className}
+            role="navigation"
+            aria-label="Product pagination"
+            data-testid="product-pagination"
+        >
             <Pagination
                 {...paginationProps}
                 onChange={handlePageChange}
                 onShowSizeChange={handleShowSizeChange}
-                className={styles['ant-pagination']}
+                // Additional theme-aware props
+                itemRender={(_, type, originalElement) => {
+                    if (type === 'prev' || type === 'next') {
+                        return <span style={{ color: token.colorText }}>{originalElement}</span>;
+                    }
+                    return originalElement;
+                }}
             />
         </div>
     );

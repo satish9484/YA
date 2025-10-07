@@ -41,6 +41,9 @@ const AboutPage = lazy(() => import('@/pages/About'));
 const ContactPage = lazy(() => import('@/pages/Contact'));
 const PageNotFound = lazy(() => import('@/pages/PageNotFound'));
 
+// Theme overview page
+const ThemeOverviewPage = lazy(() => import('@/contexts/antDesingtheam'));
+
 const Routing: React.FC = memo(() => {
     return (
         <Routes>
@@ -80,6 +83,9 @@ const Routing: React.FC = memo(() => {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/404" element={<PageNotFound />} />
+
+                {/* Theme Overview Page */}
+                <Route path="/themeoverview" element={<ThemeOverviewPage />} />
 
                 {/* Design System Demo */}
                 <Route path="/dashboard" element={<UserProfileCard />} />

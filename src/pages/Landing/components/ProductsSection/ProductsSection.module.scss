@@ -1,20 +1,83 @@
+/* =================================================================
+ * Products Section - Social Proof CRO Optimized
+ * Refactored for maintainability and proper CSS specificity
+ * ================================================================= */
+
+// Swiper CSS Custom Properties - Centralized Configuration
+:global(:root) {
+    // Pagination Bullet Sizing
+    --swiper-pagination-bullet-size: 35px;
+    --swiper-pagination-bullet-width: 35px;
+    --swiper-pagination-bullet-height: 35px;
+    --swiper-pagination-bullet-border-radius: 50%;
+    --swiper-pagination-bullet-horizontal-gap: 8px;
+
+    // Light Theme Colors (Default)
+    --swiper-pagination-color: #12313f;
+    --swiper-pagination-bullet-inactive-color: #e2e8f0;
+    --swiper-pagination-bullet-inactive-opacity: 0.4;
+    --swiper-pagination-bullet-opacity: 1;
+
+    // Navigation button styling
+    --swiper-navigation-size: 44px;
+    --swiper-navigation-color: #0ea5e9;
+    --swiper-navigation-color-hover: #0284c7;
+    --swiper-navigation-color-disabled: #94a3b8;
+}
+
+// Dark Theme Override - Only redefine variables for simplicity
+:global([data-theme='dark']) {
+    --swiper-pagination-color: rgb(53, 18, 105);
+    --swiper-pagination-bullet-inactive-color: #475569;
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+
+    --swiper-navigation-color: #38bdf8;
+    --swiper-navigation-color-hover: #7dd3fc;
+    --swiper-navigation-color-disabled: #64748b;
+}
+
+// Responsive size adjustments for variables
+@include respond-to('sm') {
+    :global(:root) {
+        --swiper-pagination-bullet-size: 30px;
+        --swiper-pagination-bullet-width: 30px;
+        --swiper-pagination-bullet-height: 30px;
+    }
+}
+
+// Gradient Animation
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* =====================================================
-  Products Section - Social Proof CRO Optimized
- ================================================================ */
+ * Main Component Styles
+ * ===================================================== */
 
 .products-section {
     padding: $spacing-20 0;
     background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
     position: relative;
 
+    // Enhanced transparency overlay for better content visibility
     &::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, color(accent-primary), transparent);
+        bottom: 0;
+        background: overlay-gradient(135deg, 0.05);
+        pointer-events: none;
+        z-index: 0;
     }
 
     @include respond-to('xl') {
@@ -37,48 +100,227 @@
     [data-theme='dark'] & {
         background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-primary) 100%);
 
+        &::before {
+            background: overlay-gradient(135deg, 0.08);
+        }
+
         .ant-card {
             background: color(bg-primary);
             border: 1px solid color(border-primary);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
     }
-}
 
-// Swiper styles
-.swiper {
-    padding-bottom: 60px;
-}
+    // Scoped Swiper Container ensures high specificity for all child rules
+    .products-swiper,
+    :global(.swiper),
+    :global(.swiper-container) {
+        padding-bottom: 60px;
+        height: 610px; // Fixed height to ensure consistency with 560px cards
+        width: 100%;
+        position: relative;
 
-.swiper-slide {
-    height: auto;
-}
+        // Ensure proper initialization
+        &:global(.swiper-initialized) {
+            overflow: hidden;
+        }
 
-// Swiper Pagination
-.swiper-pagination-bullet {
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    color: color(text-secondary);
-    background: color(surface);
-    border: 1px solid color(border);
-    opacity: 1;
-    border-radius: 50%;
-    transition: all $transition-base;
+        // Force override Swiper's default styles
+        &.products-swiper {
+            padding-bottom: 60px !important;
+            height: 610px !important;
+            width: 100% !important;
+            position: relative !important;
+        }
 
-    @include respond-to('sm') {
-        width: 24px;
-        height: 24px;
-        line-height: 24px;
-        font-size: $font-size-xs;
+        @include respond-to('md') {
+            height: 570px; // Adjusted for 520px cards
+
+            &.products-swiper {
+                height: 570px !important;
+            }
+        }
+
+        @include respond-to('sm') {
+            height: 550px; // Adjusted for 500px cards
+
+            &.products-swiper {
+                height: 550px !important;
+            }
+        }
+
+        // Swiper Wrapper - Contains all slides
+        :global(.swiper-wrapper) {
+            display: flex;
+            align-items: stretch;
+
+            // Individual Swiper Slides
+            :global(.swiper-slide) {
+                height: auto;
+                display: flex;
+                align-items: stretch;
+
+                // Active and adjacent slides
+                &:global(.swiper-slide-active),
+                &:global(.swiper-slide-next),
+                &:global(.swiper-slide-prev) {
+                    height: 100%;
+                }
+            }
+        }
+
+        // ✨ Scoped Swiper Navigation Buttons
+        :global(.swiper-button-next),
+        :global(.swiper-button-prev) {
+            width: var(--swiper-navigation-size);
+            height: var(--swiper-navigation-size);
+            background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+            border: 2px solid color(border-primary);
+            border-radius: 50%;
+            color: color(text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 2px 8px rgba(14, 165, 233, 0.1),
+                0 0 0 1px color(border-primary),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-top: -22px; // Center vertically
+            z-index: 10;
+
+            &:after {
+                font-size: 16px;
+                font-weight: $font-weight-bold;
+                color: var(--swiper-navigation-color);
+                transition: color 0.3s ease;
+            }
+
+            &:hover {
+                background: linear-gradient(
+                    135deg,
+                    var(--swiper-navigation-color-hover) 0%,
+                    color(accent-focus-ring) 100%
+                );
+                border-color: var(--swiper-navigation-color-hover);
+                color: color(accent-contrast);
+                transform: translateY(-2px) scale(1.05);
+                box-shadow:
+                    0 4px 12px rgba(14, 165, 233, 0.25),
+                    0 0 0 1px var(--swiper-navigation-color-hover),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+                &:after {
+                    color: color(accent-contrast);
+                }
+            }
+
+            &:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+                transform: none;
+                color: var(--swiper-navigation-color-disabled);
+
+                &:after {
+                    color: var(--swiper-navigation-color-disabled);
+                }
+            }
+        }
+
+        // Specific button positioning
+        :global(.swiper-button-next) {
+            right: 20px;
+        }
+
+        :global(.swiper-button-prev) {
+            left: 20px;
+        }
+
+        // Swiper Pagination Container
+        :global(.swiper-pagination) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            position: relative;
+            margin-top: $spacing-6;
+
+            // ✨ CONSOLIDATED Pagination Bullet Styles (No !important needed)
+            :global(.swiper-pagination-bullet) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: var(--swiper-pagination-bullet-width);
+                height: var(--swiper-pagination-bullet-height);
+                border-radius: var(--swiper-pagination-bullet-border-radius);
+                background: var(--swiper-pagination-bullet-inactive-color);
+                opacity: var(--swiper-pagination-bullet-inactive-opacity);
+                line-height: var(--swiper-pagination-bullet-height);
+                font-size: $font-size-sm;
+                font-weight: $font-weight-semibold;
+                color: color(text-primary);
+                border: 2px solid color(border-primary);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                margin: 0 var(--swiper-pagination-bullet-horizontal-gap);
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow:
+                    0 2px 8px rgba(14, 165, 233, 0.1),
+                    0 0 0 1px color(border-primary),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+                &:hover {
+                    transform: translateY(-2px) scale(1.05);
+                    background: linear-gradient(
+                        135deg,
+                        var(--swiper-pagination-color) 0%,
+                        color(accent-focus-ring) 100%
+                    );
+                    border-color: var(--swiper-pagination-color);
+                    opacity: 0.8;
+                    box-shadow:
+                        0 4px 12px rgba(14, 165, 233, 0.25),
+                        0 0 0 1px var(--swiper-pagination-color),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                    color: color(accent-contrast);
+                }
+
+                // Active state
+                &:global(.swiper-pagination-bullet-active) {
+                    color: color(accent-contrast);
+                    background: linear-gradient(
+                        135deg,
+                        var(--swiper-pagination-color) 0%,
+                        color(accent-focus-ring) 50%,
+                        var(--swiper-pagination-color) 100%
+                    );
+                    border-color: var(--swiper-pagination-color);
+                    opacity: var(--swiper-pagination-bullet-opacity);
+                    transform: scale(1.15);
+                    box-shadow:
+                        0 4px 16px rgba(14, 165, 233, 0.4),
+                        0 2px 8px rgba(14, 165, 233, 0.3),
+                        0 0 0 2px var(--swiper-pagination-color),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                    background-size: 200% 200%;
+                    animation: gradientShift 3s ease infinite;
+
+                    &:hover {
+                        transform: scale(1.2) translateY(-2px);
+                        box-shadow:
+                            0 6px 20px rgba(14, 165, 233, 0.5),
+                            0 4px 12px rgba(14, 165, 233, 0.4),
+                            0 0 0 2px var(--swiper-pagination-color),
+                            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+                    }
+                }
+
+                @include respond-to('sm') {
+                    width: var(--swiper-pagination-bullet-width);
+                    height: var(--swiper-pagination-bullet-height);
+                    line-height: var(--swiper-pagination-bullet-height);
+                    font-size: $font-size-xs;
+                    margin: 0 $spacing-1;
+                }
+            }
+        }
     }
-}
-
-.swiper-pagination-bullet-active {
-    color: color(accent-contrast);
-    background: color(accent-primary);
-    border-color: color(accent-primary);
-    transform: scale(1.1);
 }

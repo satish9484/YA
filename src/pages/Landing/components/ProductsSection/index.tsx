@@ -1,6 +1,10 @@
+// Import Swiper styles
 import 'swiper/css';
+// Import Swiper modules
+import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import type React from 'react';
@@ -9,7 +13,7 @@ import { Col, Row, Typography } from 'antd';
 
 import Card from '@/components/common/Card/index.tsx';
 
-import type { ProductsSectionProps, SwiperPagination } from '../../types/landing.types';
+import type { ProductsSectionProps } from '../../types/landing.types';
 import ProductCard from '../ProductCard';
 import styles from './ProductsSection.module.scss';
 
@@ -22,10 +26,52 @@ const { Title, Paragraph } = Typography;
  * CRO optimized with interactive carousel and clear CTAs
  */
 const ProductsSection: React.FC<ProductsSectionProps> = ({ products, onViewDetails }) => {
-    const pagination: SwiperPagination = {
-        clickable: true,
-        renderBullet: function (index: number, className: string) {
-            return '<span class="' + className + '">' + (index + 1) + '</span>';
+    // Swiper configuration
+    const swiperConfig = {
+        modules: [Pagination, Navigation, Autoplay],
+        pagination: {
+            clickable: true,
+            renderBullet: function (index: number, className: string) {
+                return '<span class="' + className + '">' + (index + 1) + '</span>';
+            },
+        },
+        navigation: true,
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+        spaceBetween: 30,
+        slidesPerView: 1,
+        breakpoints: {
+            576: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+            1200: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+            },
+        },
+        // Performance optimizations
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        // Accessibility
+        a11y: {
+            enabled: true,
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            firstSlideMessage: 'This is the first slide',
+            lastSlideMessage: 'This is the last slide',
         },
     };
 
@@ -49,19 +95,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ products, onViewDetai
                     </Row>
 
                     <Swiper
-                        modules={[Pagination, Autoplay]}
-                        pagination={pagination}
-                        loop={false}
-                        navigation={true}
-                        autoplay={{ delay: 3000, disableOnInteraction: false }}
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        breakpoints={{
-                            576: { slidesPerView: 1, spaceBetween: 20 },
-                            768: { slidesPerView: 2, spaceBetween: 30 },
-                            1024: { slidesPerView: 3, spaceBetween: 30 },
-                            1200: { slidesPerView: 4, spaceBetween: 30 },
-                        }}
+                        className={`${styles['products-swiper']} products-swiper-custom`}
+                        {...swiperConfig}
                     >
                         {products.map(product => (
                             <SwiperSlide key={product.id}>

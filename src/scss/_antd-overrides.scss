@@ -108,8 +108,7 @@ span.ant-typography {
 // Global input styling (applies to all inputs)
 .ant-input,
 .ant-input-number,
-.ant-picker,
-.ant-select-selector {
+.ant-picker {
     @extend %ant-input-base;
     @extend %ant-input-responsive;
 }
@@ -117,7 +116,12 @@ span.ant-typography {
 // Specific input overrides
 .ant-input {
     font-family: 'Courier New', Courier, monospace;
-    // Additional specific styles for text inputs
+
+    ::placeholder {
+        background-color: blanchedalmond;
+        color: color(text-tertiary);
+        opacity: 1;
+    }
 }
 
 .ant-input-number {
@@ -479,42 +483,42 @@ span.ant-typography {
 // SEARCH INPUT SYSTEM
 // =============================================================================
 
-.searchGrp {
-    .ant-input {
-        @extend %ant-input-base;
-        @extend %ant-input-responsive;
-    }
+// .searchGrp {
+//     .ant-input {
+//         @extend %ant-input-base;
+//         @extend %ant-input-responsive;
+//     }
 
-    .ant-input-search .ant-input:hover {
-        border-color: color(accent-focus-ring);
-    }
+//     .ant-input-search .ant-input:hover {
+//         border-color: color(accent-focus-ring);
+//     }
 
-    .ant-input-search .ant-input:focus-within {
-        border: 1px solid color(accent-primary);
-    }
+//     .ant-input-search .ant-input:focus-within {
+//         border: 1px solid color(accent-primary);
+//     }
 
-    .ant-input:focus {
-        box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
-    }
+//     .ant-input:focus {
+//         box-shadow: 0 0 0 2px rgba(color(accent-focus-ring), 0.2);
+//     }
 
-    .ant-input-group-addon {
-        border-radius: $border-radius-lg;
-        background: color(bg-secondary);
-        border: 1px solid color(border-primary);
-    }
+//     .ant-input-group-addon {
+//         border-radius: $border-radius-lg;
+//         background: color(bg-secondary);
+//         border: 1px solid color(border-primary);
+//     }
 
-    .ant-input-search
-        > .ant-input-group
-        > .ant-input-group-addon:last-child
-        .ant-input-search-button {
-        border-radius: 0 $border-radius-lg $border-radius-lg 0;
-        background: color(accent-primary);
-        border-color: color(accent-primary);
-        color: color(accent-contrast);
+//     .ant-input-search
+//         > .ant-input-group
+//         > .ant-input-group-addon:last-child
+//         .ant-input-search-button {
+//         border-radius: 0 $border-radius-lg $border-radius-lg 0;
+//         background: color(accent-primary);
+//         border-color: color(accent-primary);
+//         color: color(accent-contrast);
 
-        &:hover {
-            background: color(accent-focus-ring);
-            border-color: color(accent-focus-ring);
-        }
-    }
-}
+//         &:hover {
+//             background: color(accent-focus-ring);
+//             border-color: color(accent-focus-ring);
+//         }
+//     }
+// }

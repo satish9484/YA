@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Typography } from 'antd';
 
@@ -35,9 +35,54 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
     const [categoryPagination, setCategoryPagination] = useState<
         Record<string, { pageSize: number }>
     >({});
+    const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+
+    // Screen size detection
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                setScreenSize('mobile');
+            } else if (width < 1024) {
+                setScreenSize('tablet');
+            } else {
+                setScreenSize('desktop');
+            }
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Derive categories from props (sanitized) – no external hook needed
     const categories = initialCategories;
+
+    // Dynamic variant logic based on screen size and context
+    const getVariant = useCallback(
+        (categoryId: string) => {
+            const category = categories.find(c => c.id === categoryId);
+            const productCount = category?.products.length ?? 0;
+
+            // Mobile: always compact
+            if (screenSize === 'mobile') {
+                return 'compact';
+            }
+
+            // Tablet: compact for categories with many products, default for others
+            if (screenSize === 'tablet') {
+                return productCount > 12 ? 'compact' : 'default';
+            }
+
+            // Desktop: detailed for featured categories, default for others
+            if (screenSize === 'desktop') {
+                return productCount > 8 ? 'detailed' : 'default';
+            }
+
+            return 'default';
+        },
+        [screenSize, categories],
+    );
 
     // Calculate total stats
     const totalStats = useMemo(() => {
@@ -194,18 +239,22 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     {/* Categories */}
                     <div className={styles['product-catalog__categories']}>
                         {categories.map(category => {
-                            const currentPage = currentPages[category.id] || 1;
+                            const currentPage = currentPages[category.id] ?? 1;
                             const defaultPageSize =
                                 typeof window !== 'undefined' && window.innerWidth >= 992
                                     ? productsPerPage
                                     : Math.min(productsPerPage, 4);
                             const pageSize =
-                                categoryPagination[category.id]?.pageSize || defaultPageSize;
+                                categoryPagination[category.id]?.pageSize ?? defaultPageSize;
                             const pagination = calculatePagination(
                                 category.products.length,
                                 currentPage,
                                 pageSize,
                             );
+
+                            const variant = getVariant(category.id);
+                            const productsPerRow =
+                                variant === 'compact' ? 2 : variant === 'detailed' ? 3 : 4;
 
                             return (
                                 <ProductCategory
@@ -219,9 +268,9 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
                                     onProductClick={handleProductClick}
                                     onAddToCart={handleAddToCart}
                                     onCategoryClick={handleCategoryClick}
-                                    variant="default"
-                                    showCategoryDescription={true}
-                                    productsPerRow={3}
+                                    variant={variant}
+                                    showCategoryDescription={variant !== 'compact'}
+                                    productsPerRow={productsPerRow}
                                 />
                             );
                         })}
@@ -240,6 +289,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({
             handleProductClick,
             handleAddToCart,
             handleCategoryClick,
+            getVariant,
         ],
     );
 

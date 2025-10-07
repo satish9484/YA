@@ -1,5 +1,8 @@
 import { type ReactNode, useCallback, useEffect, useState } from 'react';
 
+import { ConfigProvider } from 'antd';
+
+import { createAppTheme } from './antDesingtheam';
 import { type Theme, ThemeContext } from './theme.ts';
 
 interface ThemeProviderProps {
@@ -74,5 +77,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         localStorage.setItem('theme', newTheme);
     };
 
-    return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+    // Create Ant Design theme configuration
+    const antdThemeConfig = createAppTheme(theme === 'dark');
+
+    return (
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+            <ConfigProvider theme={antdThemeConfig}>{children}</ConfigProvider>
+        </ThemeContext.Provider>
+    );
 };

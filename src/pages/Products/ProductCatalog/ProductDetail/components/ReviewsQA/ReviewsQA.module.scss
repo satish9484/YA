@@ -809,6 +809,12 @@
             }
         }
 
+        @include respond-to('sm') {
+            .sectionHeader {
+                flex-direction: column;
+            }
+        }
+
         .reviewsTab {
             .reviewsList {
                 .reviewCard {

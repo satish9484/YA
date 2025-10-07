@@ -2,12 +2,13 @@ import { useContext } from 'react';
 
 import { theme as antdTheme } from 'antd';
 
-import { ThemeContext } from '../contexts/theme';
+import { ThemeContext } from './theme.ts';
 
-export const useTheme = () => {
+// Enhanced useTheme hook with direct token access
+export const useUnifiedTheme = () => {
     const context = useContext(ThemeContext);
     if (!context) {
-        throw new Error('useTheme must be used within a ThemeProvider');
+        throw new Error('useUnifiedTheme must be used within a UnifiedThemeProvider');
     }
 
     const { token } = antdTheme.useToken();

@@ -9,6 +9,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 560px;
+    max-height: 560px;
     max-width: 360px;
     margin: 0 auto;
     box-shadow: $shadow-sm;
@@ -26,7 +28,7 @@
 
     &__image-container {
         height: 200px;
-        padding: $spacing-2;
+        // padding: $spacing-2;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -34,6 +36,7 @@
         transition: all 0.3s ease;
         position: relative;
 
+        // Enhanced transparency overlay for better image visibility
         &::before {
             content: '';
             position: absolute;
@@ -41,33 +44,50 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-                45deg,
-                rgba(59, 130, 246, 0.05) 0%,
-                rgba(16, 185, 129, 0.05) 50%,
-                rgba(245, 158, 11, 0.05) 100%
-            );
+            background: overlay-gradient(45deg, 0.03);
             opacity: 0;
             transition: opacity 0.3s ease;
+            z-index: 1;
         }
+
+        // &::before {
+        //     content: '';
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     background: linear-gradient(
+        //         45deg,
+        //         rgba(59, 130, 246, 0.05) 0%,
+        //         rgba(16, 185, 129, 0.05) 50%,
+        //         rgba(245, 158, 11, 0.05) 100%
+        //     );
+        //     opacity: 0;
+        //     transition: opacity 0.3s ease;
+        // }
 
         @include respond-to('md') {
             height: 180px;
         }
     }
 
-    &:hover &__image-container::before {
-        opacity: 1;
-    }
+    // &:hover &__image-container::before {
+    //     opacity: 1;
+    // }
 
     &__image {
         max-width: 100%;
         max-height: 100%;
-        object-fit: fill;
+        object-fit: cover;
         transition: transform 0.3s ease;
         filter: brightness(1.1) contrast(1.1);
         position: relative;
-        z-index: 1;
+        z-index: 2;
+    }
+
+    &:hover &__image-container::before {
+        opacity: 1;
     }
 
     &:hover &__image {
@@ -82,6 +102,7 @@
         flex-grow: 1;
         text-align: left;
         transition: all 0.3s ease;
+        justify-content: space-between;
 
         @include respond-to('md') {
             padding: $spacing-5;
@@ -115,15 +136,15 @@
             margin-bottom: $spacing-2;
             line-height: $line-height-normal;
 
-            &::before {
-                content: '•';
-                position: absolute;
-                left: 0;
-                top: 0;
-                color: color(accent-primary);
-                font-weight: $font-weight-bold;
-                font-size: $font-size-base;
-            }
+            // &::before {
+            //     content: '•';
+            //     position: absolute;
+            //     left: 0;
+            //     top: 0;
+            //     color: color(accent-primary);
+            //     font-weight: $font-weight-bold;
+            //     font-size: $font-size-base;
+            // }
         }
     }
 
@@ -133,41 +154,41 @@
         @extend .ant-btn-primary !optional;
         @extend .ant-btn-lg !optional;
 
-        // Custom product card button styling with modern colors
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        border: 2px solid #3b82f6;
-        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+        // Custom product card button styling with Color Hunt colors
+        background: linear-gradient(135deg, color(accent-primary) 0%, color(primary-600) 100%);
+        border: 2px solid color(accent-primary);
+        box-shadow: 0 4px 16px rgba(14, 165, 233, 0.25);
         margin-top: auto;
         position: relative;
         overflow: hidden;
 
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
+        // &::before {
+        //     content: '';
+        //     position: absolute;
+        //     top: 0;
+        //     left: -100%;
+        //     width: 100%;
+        //     height: 100%;
+        //     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        //     transition: left 0.5s;
+        // }
 
         &:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            border-color: #1d4ed8;
-            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+            background: linear-gradient(135deg, color(primary-600) 0%, color(primary-700) 100%);
+            border-color: color(primary-600);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
             transform: translateY(-2px);
 
-            &::before {
-                left: 100%;
-            }
+            // &::before {
+            //     left: 100%;
+            // }
         }
 
         &:active {
-            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-            border-color: #1e40af;
+            background: linear-gradient(135deg, color(primary-700) 0%, color(primary-800) 100%);
+            border-color: color(primary-700);
             transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
         }
     }
 
@@ -187,14 +208,14 @@
         &__image-container {
             background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
 
-            &::before {
-                background: linear-gradient(
-                    45deg,
-                    rgba(59, 130, 246, 0.1) 0%,
-                    rgba(16, 185, 129, 0.1) 50%,
-                    rgba(245, 158, 11, 0.1) 100%
-                );
-            }
+            // &::before {
+            //     background: linear-gradient(
+            //         45deg,
+            //         rgba(59, 130, 246, 0.1) 0%,
+            //         rgba(16, 185, 129, 0.1) 50%,
+            //         rgba(245, 158, 11, 0.1) 100%
+            //     );
+            // }
         }
 
         &__image {
@@ -210,7 +231,7 @@
 // Responsive adjustments
 @include respond-to('sm') {
     .product-card .ant-btn {
-        padding: 10px 20px;
+        // padding: 10px 20px;
         font-size: 13px;
         min-height: 40px;
     }

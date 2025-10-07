@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import {
     AudioOutlined,
+    PhoneOutlined,
     PlayCircleOutlined,
     SettingOutlined,
     TeamOutlined,
     TrophyOutlined,
+    VideoCameraOutlined,
 } from '@ant-design/icons';
 
 // Import modular components
@@ -57,7 +59,7 @@ const Index: React.FC<LandingPageProps> = () => {
     const products: Product[] = [
         {
             id: 1,
-            title: 'TOA HX-5B Line Array Speaker',
+            title: '1. TOA HX-5B Line Array Speaker',
             image: 'https://tse4.mm.bing.net/th/id/OIP.ze6zwZu5ovcPy-6hqgLrZwAAAA?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3',
             features: [
                 'Variable dispersion control (60°-120°)',
@@ -69,7 +71,7 @@ const Index: React.FC<LandingPageProps> = () => {
         },
         {
             id: 2,
-            title: 'Professional Power Amplifiers',
+            title: '2. Professional Power Amplifiers',
             image: 'https://tse1.mm.bing.net/th/id/OIP.ofHTW0BFe4Qju4aQWWOeTwHaHa?cb=thfvnext&pid=ImgDet&w=184&h=184&c=7&dpr=1.3&o=7&rm=3',
             features: [
                 '2-channel and 4-channel series',
@@ -81,7 +83,7 @@ const Index: React.FC<LandingPageProps> = () => {
         },
         {
             id: 3,
-            title: 'Line Array Systems',
+            title: '3. Line Array Systems',
             image: 'https://tse1.mm.bing.net/th/id/OIP.xX9Tc2PYtjkoaiGYcxq9ygAAAA?cb=thfvnext&pid=ImgDet&w=184&h=235&c=7&dpr=1.3&o=7&rm=3',
             features: [
                 'High-performance 2-way system',
@@ -93,7 +95,7 @@ const Index: React.FC<LandingPageProps> = () => {
         },
         {
             id: 4,
-            title: 'Professional Audio Mixers',
+            title: '4. Professional Audio Mixers',
             image: 'https://tse1.mm.bing.net/th/id/OIP.Vm-L7e9cr6ba-zN3O_KRawHaHg?cb=thfvnext&pid=ImgDet&w=184&h=186&c=7&dpr=1.3&o=7&rm=3',
             features: [
                 '4-channel club-style layout',
@@ -102,6 +104,30 @@ const Index: React.FC<LandingPageProps> = () => {
                 'Durable Magvel fader',
             ],
             icon: <PlayCircleOutlined />,
+        },
+        {
+            id: 5,
+            title: '5. Wireless Microphone Systems',
+            image: 'https://tse1.mm.bing.net/th/id/OIP.ofHTW0BFe4Qju4aQWWOeTwHaHa?cb=thfvnext&pid=ImgDet&w=184&h=184&c=7&dpr=1.3&o=7&rm=3',
+            features: [
+                'Digital wireless technology',
+                'Crystal clear audio quality',
+                'Long-range transmission',
+                'Multiple frequency options',
+            ],
+            icon: <PhoneOutlined />,
+        },
+        {
+            id: 6,
+            title: '6. Studio Monitor Speakers',
+            image: 'https://tse1.mm.bing.net/th/id/OIP.xX9Tc2PYtjkoaiGYcxq9ygAAAA?cb=thfvnext&pid=ImgDet&w=184&h=235&c=7&dpr=1.3&o=7&rm=3',
+            features: [
+                'Flat frequency response',
+                'Active bi-amplified design',
+                'Professional studio quality',
+                'Multiple input options',
+            ],
+            icon: <VideoCameraOutlined />,
         },
     ];
 

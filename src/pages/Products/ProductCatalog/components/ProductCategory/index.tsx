@@ -32,8 +32,6 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
     onCategoryClick,
     onPageSizeChange,
 }) => {
-
-    
     // Get paginated products
     const paginatedProducts = useMemo(() => {
         return getPaginatedItems(category.products, pagination.currentPage, pagination.pageSize);
@@ -147,9 +145,16 @@ const ProductCategory: React.FC<ProductCategoryComponentProps> = ({
                 onPageChange={onPageChange}
                 showTotal={true}
                 showSizeChanger={true}
-                size={variant === 'compact' ? 'small' : 'default'}
+                showQuickJumper={variant !== 'compact'}
+                showLessItems={variant === 'compact'}
+                size={
+                    variant === 'compact' ? 'small' : variant === 'detailed' ? 'large' : 'default'
+                }
                 responsive={true}
+                hideOnSinglePage={true}
                 onPageSizeChange={onPageSizeChange}
+                pageSizeOptions={['2', '4', '8', '12', '24']}
+                className={`product-category-pagination product-category-pagination--${variant}`}
             />
         );
     }, [pagination, onPageChange, variant, onPageSizeChange]);

@@ -11,7 +11,7 @@ import { ErrorBoundary } from '@/components/common/ErrorBoundary/index.tsx';
 import Loader from '@/components/common/loader/index.tsx';
 import OptimizedLoader from '@/components/common/loader/OptimizedLoader';
 import ScrollToTop from '@/components/common/scroll/index.tsx';
-import { ThemeProvider } from '@/contexts/ThemeContext.tsx';
+import { UnifiedThemeProvider } from '@/contexts/unifiedTheme';
 import store from '@/redux/store.tsx';
 import { setupAxios } from '@/utills/index.tsx';
 
@@ -33,15 +33,25 @@ const App: React.FC = () => {
                 <Loader />
             ) : (
                 <Provider store={store}>
-                    <ThemeProvider>
+                    <UnifiedThemeProvider>
                         <BrowserRouter>
                             <ScrollToTop>
-                                <Suspense fallback={<OptimizedLoader context="overlay" variant="error" color="#ff7a45" size="large" isSuspense={true} />}>
+                                <Suspense
+                                    fallback={
+                                        <OptimizedLoader
+                                            context="overlay"
+                                            variant="error"
+                                            color="#ff7a45"
+                                            size="large"
+                                            isSuspense={true}
+                                        />
+                                    }
+                                >
                                     <Routes />
                                 </Suspense>
                             </ScrollToTop>
                         </BrowserRouter>
-                    </ThemeProvider>
+                    </UnifiedThemeProvider>
                 </Provider>
             )}
         </ErrorBoundary>
