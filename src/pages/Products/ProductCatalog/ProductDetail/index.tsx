@@ -25,13 +25,21 @@ const TechnicalSpecifications = lazy(() => import('./components/TechnicalSpecifi
 
 const ProductDetail: React.FC<ProductDetailProps> = ({
     productId: _productId,
+    product: passedProduct,
     onProductClick,
     onAddToCart,
     onAddToWishlist,
     onShare,
 }) => {
-    // For now, we'll use the mock data. In a real app, this would fetch based on productId
-    const product = useMemo(() => productDetailData, []);
+    console.log('passedProduct', passedProduct);
+    // Use passed product data or fallback to mock data
+    const product = useMemo(() => {
+        if (passedProduct) {
+            return passedProduct;
+        }
+        // Fallback to mock data for backward compatibility
+        return productDetailData;
+    }, [passedProduct]);
 
     // Use the product detail hook
     const { selectedImage, quantity, wishlist, actions, selectedDispersion } = useProductDetail(

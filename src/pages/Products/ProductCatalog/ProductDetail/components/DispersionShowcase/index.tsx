@@ -25,6 +25,11 @@ const DispersionShowcase: React.FC<DispersionShowcaseProps> = memo(
     ({ dispersionConfigs, selectedDispersion, onDispersionChange }) => {
         const currentConfig = dispersionConfigs[selectedDispersion];
 
+        // Safety check: if no dispersion configs available, don't render
+        if (!dispersionConfigs || Object.keys(dispersionConfigs).length === 0 || !currentConfig) {
+            return null;
+        }
+
         return (
             <section className={styles.dispersionShowcase}>
                 <div className="container">

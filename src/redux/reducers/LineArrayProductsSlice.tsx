@@ -392,9 +392,9 @@ const lineArrayProductsSlice = createSlice({
 
         // Product Info Actions
         builder.addCase(PRODUCT_INFO_S as string, (state, action: PayloadAction<unknown>) => {
-            const response = action.payload as { data: LineArrayProduct };
+            const response = action.payload as { data: { product: LineArrayProduct } };
             console.log('LineArrayProducts: INFO_SUCCESS', response);
-            state.productInfo = response.data;
+            state.productInfo = response.data.product;
             state.error = null;
         });
         builder.addCase(PRODUCT_INFO_F as string, state => {

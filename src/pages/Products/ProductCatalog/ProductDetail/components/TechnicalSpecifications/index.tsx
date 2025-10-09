@@ -48,6 +48,11 @@ const TechnicalSpecifications: React.FC<TechnicalSpecificationsProps> = memo(
             }
         }, [onDownloadSpecs]);
 
+        // Safety check: if no specifications available, don't render
+        if (!specifications) {
+            return null;
+        }
+
         // Loading placeholder for table rows
         const TableSkeleton = () => (
             <div className={styles['table-skeleton']}>

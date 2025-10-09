@@ -24,7 +24,7 @@ const SignalProcessorsPage = lazy(() => import('@/pages/Products/Processors'));
 // Product detail pages
 const ProductDetailPage = lazy(() => import('@/pages/Products/ProductCatalog/ProductDetailPage'));
 const LineArrayProductDetailPage = lazy(
-    () => import('@/pages/Products/LineArray/ProductDetail.tsx'),
+    () => import('@/pages/Products/LineArray/LineArrayProductDetail.tsx'),
 );
 
 // Application pages

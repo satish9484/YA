@@ -50,6 +50,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
     onProductClick,
     onAddToCart,
 }) => {
+    console.log('products', products[0]);
     if (products.length === 0) {
         return <EmptyState />;
     }

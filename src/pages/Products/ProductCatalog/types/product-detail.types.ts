@@ -239,6 +239,7 @@ export type QASearchHandler = (query: string) => void;
 // Component props interfaces
 export interface ProductDetailProps {
     readonly productId?: string | undefined;
+    readonly product?: ProductDetail | undefined;
     readonly onProductClick?: ((product: ProductDetail) => void) | undefined;
     readonly onAddToCart?: ((product: ProductDetail, quantity: number) => void) | undefined;
     readonly onAddToWishlist?: ((product: ProductDetail) => void) | undefined;

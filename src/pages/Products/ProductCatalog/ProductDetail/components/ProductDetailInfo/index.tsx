@@ -48,12 +48,14 @@ const ProductDetailInfo: React.FC<ProductInfoProps> = memo(
 
                 <div className={styles.pricingSection}>
                     <div className={styles.priceDisplay}>
-                        <Text className={styles.currentPrice}>${product.price.toFixed(2)}</Text>
+                        <Text className={styles.currentPrice}>
+                            ${(product.price ?? 0).toFixed(2)}
+                        </Text>
                         <Text delete className={styles.originalPrice}>
                             ${product.originalPrice?.toFixed(2) ?? '0.00'}
                         </Text>
                         <Tag color="red" className={styles.savingsTag}>
-                            Save ${((product.originalPrice ?? 0) - product.price).toFixed(2)}
+                            Save ${((product.originalPrice ?? 0) - (product.price ?? 0)).toFixed(2)}
                         </Tag>
                     </div>
 
@@ -116,7 +118,7 @@ const ProductDetailInfo: React.FC<ProductInfoProps> = memo(
                             className={styles.addToCartBtn}
                             block
                         >
-                            Add to Cart - ${(product.price * quantity).toFixed(2)}
+                            Add to Cart - ${((product.price ?? 0) * quantity).toFixed(2)}
                         </Button>
 
                         <Space className={styles.secondaryActions}>
