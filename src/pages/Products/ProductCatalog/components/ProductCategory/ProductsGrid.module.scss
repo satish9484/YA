@@ -1,0 +1,105 @@
+/* =====================================================
+  Products Grid - Component Styles
+  CRO-Optimized for Product Discovery
+ ================================================================ */
+
+.products-grid {
+    display: grid;
+    gap: $spacing-4;
+    grid-template-columns: 1fr; // mobile-first: stack items
+    margin-bottom: $spacing-6;
+
+    // increase gaps and columns progressively
+    @include respond-to('md') {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-5;
+    }
+
+    @include respond-to('lg') {
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-6;
+    }
+
+    @include respond-to('xl') {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// Custom grid columns for specific counts
+.products-grid--products-1 {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.products-grid--products-2 {
+    // only enforce 2 columns at medium screens and above
+    @include respond-to('md') {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+.products-grid--products-3 {
+    // only enforce 3 columns at large screens and above
+    @include respond-to('lg') {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+// do not force 4+ column modifiers on mobile; apply at xl
+.products-grid--products-4 {
+    @include respond-to('xl') {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+
+// Loading state
+.products-grid--loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+// Empty state
+.products-grid__empty {
+    text-align: center;
+    padding: $spacing-12;
+}
+
+.products-grid__empty-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto $spacing-4;
+    color: color(text-disabled);
+}
+
+.products-grid__empty-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: color(text-secondary);
+    margin: 0 0 $spacing-2 0;
+}
+
+.products-grid__empty-description {
+    color: color(text-disabled);
+    font-size: $font-size-sm;
+    margin: 0;
+}
+
+// Dark theme support
+.products-grid__empty-icon {
+    color: color(text-disabled);
+}
+
+.products-grid__empty-title {
+    color: color(text-secondary);
+}
+
+.products-grid__empty-description {
+    color: color(text-disabled);
+}

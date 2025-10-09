@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+// UI library imports
 import { Typography } from 'antd';
 
 // Breadcrumbs are now handled by Breadcrumbs component
@@ -10,20 +11,14 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import ProductCategory from './components/ProductCategory';
 // Import types and data
 import { productCategories } from './data';
-// Utilities
 // Import styles
 import styles from './ProductCatalog.module.scss';
+// Import utils and types
 import type { Product, ProductCatalogProps } from './types/product-catalog.types';
 import { calculateCategoryStats, calculatePagination } from './utils/product-catalog.utils';
 
 const { Title, Paragraph } = Typography;
 
-/**
- * ProductCatalog Component
- *
- * Main product catalog page with modular architecture
- * CRO-optimized for product discovery and conversion
- */
 const ProductCatalog: React.FC<ProductCatalogProps> = ({
     initialCategories = productCategories,
     productsPerPage = 4,

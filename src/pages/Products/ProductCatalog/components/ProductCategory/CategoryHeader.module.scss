@@ -1,0 +1,181 @@
+/* =====================================================
+  Category Header - Component Styles
+  CRO-Optimized for Product Discovery
+ ================================================================ */
+
+.category-header {
+    margin-bottom: $spacing-6;
+    text-align: center;
+    position: relative;
+    padding: $spacing-4 $spacing-6;
+    border-radius: $border-radius-lg;
+    background: color(bg-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid color(border-primary);
+
+    &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+        border-color: color(accent-primary);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -$spacing-3;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, color(accent-primary), color(primary-600));
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    &:hover::after {
+        width: 80px;
+        height: 4px;
+        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+    }
+}
+
+.category-header__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: color(text-primary);
+    margin: 0 0 $spacing-2 0;
+    line-height: $line-height-tight;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        color: color(accent-primary);
+        text-shadow: 0 2px 4px rgba(14, 165, 233, 0.2);
+        transform: scale(1.02);
+    }
+
+    &--clickable {
+        cursor: pointer;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(14, 165, 233, 0.05), transparent);
+            border-radius: $border-radius-sm;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover::before {
+            opacity: 1;
+        }
+
+        &:focus {
+            outline: 2px solid color(accent-focus-ring);
+            outline-offset: 2px;
+            border-radius: $border-radius-sm;
+        }
+    }
+}
+
+.category-header__description {
+    color: color(text-secondary);
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+
+    &:hover {
+        opacity: 1;
+        color: color(text-interactive);
+    }
+}
+
+// Loading state
+.category-header--loading {
+    .category-header__title {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: loading-shimmer 1.5s infinite;
+        }
+    }
+}
+
+// Error state
+.category-header--error {
+    .category-header__title {
+        color: color(error-600);
+    }
+}
+
+// Animation for new category entrance
+@keyframes category-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// Pulse animation for attention
+@keyframes attention-pulse {
+    0%,
+    100% {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+    50% {
+        box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+    }
+}
+
+// Apply entrance animation to new categories
+.category-header--new {
+    animation: category-entrance 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &::after {
+        animation: attention-pulse 2s ease-in-out infinite;
+    }
+}
+
+// Responsive adjustments
+@include respond-to('sm') {
+    .category-header {
+        margin-bottom: $spacing-4;
+        padding: $spacing-3 $spacing-4;
+    }
+
+    .category-header__title {
+        font-size: $font-size-lg;
+    }
+
+    .category-header__description {
+        font-size: $font-size-sm;
+    }
+}

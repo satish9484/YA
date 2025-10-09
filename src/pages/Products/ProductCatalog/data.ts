@@ -10,7 +10,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '101',
                 name: 'Professional Loudspeaker',
-                image: '/adobe/AdobeStock_1399177338_Preview.png',
+                image: '/products/AX4C_1.jpg',
                 price: 299.99,
                 description: 'High-performance loudspeaker for professional audio applications.',
                 category: 'Speakers',
@@ -44,7 +44,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '103',
                 name: 'Portable PA System',
-                image: '/adobe/AdobeStock_1149130582_Preview.jpeg',
+                image: '/products/JBL_BRX300.jpg',
                 price: 499.99,
                 description: 'All-in-one portable PA system with a built-in mixer.',
                 category: 'PA Systems',
@@ -120,7 +120,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '201',
                 name: 'DJ Controller',
-                image: '/adobe/AdobeStock_1399177776_Preview.png',
+                image: '/products/CCL_subwoofer_1.png',
                 price: 399.99,
                 description: '4-deck DJ controller with integrated audio interface.',
                 category: 'DJ Equipment',
@@ -154,7 +154,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '203',
                 name: 'Mixing Console',
-                image: '/adobe/AdobeStock_1399177338_Preview.png',
+                image: '/products/AX4C_3.jpg',
                 price: 699.99,
                 description: '16-channel analog mixing console with digital effects.',
                 category: 'Mixers',
@@ -171,7 +171,7 @@ export const productCategories: ProductCategory[] = [
             {
                 id: '204',
                 name: 'Subwoofer',
-                image: '/adobe/AdobeStock_1399177776_Preview.png',
+                image: '/products/CCL8_loudspeaker_1.png',
                 price: 349.99,
                 description: 'Powered subwoofer with a 12-inch driver.',
                 category: 'Subwoofers',

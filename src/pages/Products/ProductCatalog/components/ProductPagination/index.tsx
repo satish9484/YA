@@ -120,7 +120,7 @@ const ProductPagination: React.FC<ProductPaginationComponentProps> = ({
             borderRadius: token.borderRadius,
             // Responsive behavior
             ...(responsive && {
-                '@media (max-width: 768px)': {
+                '@media (maxWidth: 768px)': {
                     padding: `${token.paddingSM} 0`,
                     marginTop: token.marginMD,
                 },

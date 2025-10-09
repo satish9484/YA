@@ -218,23 +218,6 @@
     }
 }
 
-// Responsive font size mixin
-@mixin responsive-font-size($element) {
-    @if map.has-key($responsive-font-sizes, $element) {
-        $sizes: map.get($responsive-font-sizes, $element);
-
-        @each $respond-to, $size in $sizes {
-            @if $respond-to == xs {
-                font-size: $size;
-            } @else {
-                @include respond-to($respond-to) {
-                    font-size: $size;
-                }
-            }
-        }
-    }
-}
-
 // Vendor prefix mixin for cross-browser compatibility
 @mixin prefix($property, $value, $prefixes: $vendor-prefixes-list) {
     @each $prefix in $prefixes {

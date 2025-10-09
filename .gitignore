@@ -7,10 +7,16 @@
 # --- Database & Configuration Files ---
 # Ignore database setup guides and configuration files that may contain sensitive information
 MONGODB_SETUP_GUIDE.md
+SASS_DEPRECATION_WARNINGS_REPORT.md
+PERFORMANCE_OPTIMIZATION_WORK.md
+
+
 *.env
 .env.local
 .env.production
 .env.development
+.env.prod
+.env.dev
 
 # Database connection strings and credentials
 database-config.json

@@ -30,9 +30,7 @@ const reduxApiMiddleware: Middleware = store => next => action => {
             method,
             url,
             // Use query params for GET requests; body for others
-            ...(method.toLowerCase() === 'get'
-                ? { params: data ?? {} }
-                : { data: data ?? {} }),
+            ...(method.toLowerCase() === 'get' ? { params: data ?? {} } : { data: data ?? {} }),
         })
             .then(res => {
                 store.dispatch(loaderChange(false));

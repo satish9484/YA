@@ -1,0 +1,127 @@
+.lazy-wrapper {
+    min-height: 200px;
+    width: 100%;
+}
+
+.fallback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    width: 100%;
+    padding: 2rem;
+}
+
+/* Specific skeleton configurations for different component types */
+.skeleton-technical-specs {
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            width: 60%;
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+.skeleton-reviews-qa {
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            width: 40%;
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.75rem;
+            }
+        }
+    }
+}
+
+.skeleton-system-builder {
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            width: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+.skeleton-resource-hub {
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            width: 45%;
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+}
+
+.skeleton-dispersion-showcase {
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            width: 55%;
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.4rem;
+            }
+        }
+    }
+}
+
+.skeleton-product-use-cases {
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            width: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fallback-container {
+        min-height: 150px;
+        padding: 1rem;
+    }
+
+    .lazy-wrapper {
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fallback-container {
+        min-height: 120px;
+        padding: 0.75rem;
+    }
+
+    .lazy-wrapper {
+        min-height: 120px;
+    }
+}

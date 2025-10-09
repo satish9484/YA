@@ -174,10 +174,14 @@ export const coerceProduct = (product: Partial<Product>): Product | null => {
     if (!product.id || !product.name) return null;
 
     // coerce numeric fields
-    const parsedPrice = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
+    const parsedPrice =
+        typeof product.price === 'string' ? parseFloat(product.price) : product.price;
     if (typeof parsedPrice !== 'number' || Number.isNaN(parsedPrice)) return null;
 
-    const safeImage = product.image && String(product.image).trim() ? product.image as string : '/images/placeholder.png';
+    const safeImage =
+        product.image && String(product.image).trim()
+            ? (product.image as string)
+            : '/images/placeholder.png';
     const safeDescription = (product.description as string) ?? '';
     const safeInStock = product.inStock ?? true;
     return {

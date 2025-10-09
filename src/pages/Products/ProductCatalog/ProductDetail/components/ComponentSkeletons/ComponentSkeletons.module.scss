@@ -1,0 +1,119 @@
+/* Component-specific skeleton styles */
+.skeleton-technical-specs {
+    padding: 1.5rem;
+
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+.skeleton-reviews-qa {
+    padding: 1.5rem;
+
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.75rem;
+            }
+        }
+    }
+}
+
+.skeleton-system-builder {
+    padding: 1.5rem;
+
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+.skeleton-resource-hub {
+    padding: 1.5rem;
+
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+}
+
+.skeleton-dispersion-showcase {
+    padding: 1.5rem;
+
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.4rem;
+            }
+        }
+    }
+}
+
+.skeleton-product-use-cases {
+    padding: 1.5rem;
+
+    .ant-skeleton-content {
+        .ant-skeleton-title {
+            margin-bottom: 1rem;
+        }
+
+        .ant-skeleton-paragraph {
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .skeleton-technical-specs,
+    .skeleton-reviews-qa,
+    .skeleton-system-builder,
+    .skeleton-resource-hub,
+    .skeleton-dispersion-showcase,
+    .skeleton-product-use-cases {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skeleton-technical-specs,
+    .skeleton-reviews-qa,
+    .skeleton-system-builder,
+    .skeleton-resource-hub,
+    .skeleton-dispersion-showcase,
+    .skeleton-product-use-cases {
+        padding: 0.75rem;
+    }
+}

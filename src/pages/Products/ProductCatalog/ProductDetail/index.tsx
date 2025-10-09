@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react';
 
 // Breadcrumbs are now handled by parent pages
 
@@ -8,19 +8,20 @@ import { productDetailData } from '../data/product-detail.data';
 // Import hooks and utilities
 import { useProductDetail } from '../hooks/useProductDetail';
 import type { ProductDetailProps } from '../types/product-detail.types';
-// Import modular components
-import {
-    ApplicationsGallery,
-    DispersionShowcase,
-    ErrorState,
-    HeroSection,
-    ResourceHub,
-    ReviewsQA,
-    SystemBuilder,
-    TechnicalSpecifications,
-} from './components';
+// Import critical components (HeroSection loads immediately)
+import { ErrorState, HeroSection } from './components';
+// Import lazy loading components
+import LazyLoadWrapper from './components/LazyLoadWrapper';
 // Import styles
 import styles from './ProductDetail.module.scss';
+
+// Lazy load non-critical components - Simplified imports
+const DispersionShowcase = lazy(() => import('./components/DispersionShowcase/index'));
+const ProductUseCases = lazy(() => import('./components/ProductUseCases/index'));
+const ResourceHub = lazy(() => import('./components/ResourceHub/index'));
+const ReviewsQA = lazy(() => import('./components/ReviewsQA/index'));
+const SystemBuilder = lazy(() => import('./components/SystemBuilder/index'));
+const TechnicalSpecifications = lazy(() => import('./components/TechnicalSpecifications/index'));
 
 const ProductDetail: React.FC<ProductDetailProps> = ({
     productId: _productId,
@@ -178,7 +179,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
         <div className={styles['product-detail-page']}>
             {/* Breadcrumbs are handled by parent pages */}
 
-            {/* Hero Section */}
+            {/* Hero Section - Loads immediately */}
             <HeroSection
                 product={product}
                 selectedImage={selectedImage}
@@ -192,49 +193,85 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
                 onShare={handleShare}
             />
 
-            {/* Dispersion Showcase Section */}
-            <DispersionShowcase
-                dispersionConfigs={product.dispersionConfigs}
-                selectedDispersion={selectedDispersion}
-                onDispersionChange={handleDispersionChange}
-            />
+            {/* Dispersion Showcase Section - Lazy loaded */}
+            <LazyLoadWrapper fallback="optimized">
+                <Suspense fallback={<div>Loading dispersion showcase...</div>}>
+                    <DispersionShowcase
+                        dispersionConfigs={product.dispersionConfigs}
+                        selectedDispersion={selectedDispersion}
+                        onDispersionChange={handleDispersionChange}
+                    />
+                </Suspense>
+            </LazyLoadWrapper>
 
-            {/* Technical Specifications Section */}
-            <TechnicalSpecifications
-                specifications={product.specifications}
-                onDownloadSpecs={handleDownloadSpecs}
-                isLoading={specsLoading}
-                hasError={specsError}
-                onRetry={handleSpecsRetry}
-            />
+            {/* Technical Specifications Section - Lazy loaded */}
+            <LazyLoadWrapper
+                fallback="skeleton"
+                skeletonConfig={{ rows: 8, title: true, paragraph: true }}
+            >
+                <Suspense fallback={<div>Loading technical specifications...</div>}>
+                    <TechnicalSpecifications
+                        specifications={product.specifications}
+                        onDownloadSpecs={handleDownloadSpecs}
+                        isLoading={specsLoading}
+                        hasError={specsError}
+                        onRetry={handleSpecsRetry}
+                    />
+                </Suspense>
+            </LazyLoadWrapper>
 
-            {/* Applications Gallery Section */}
-            <ApplicationsGallery applications={product.applications} />
+            {/* Applications Gallery Section - Lazy loaded */}
+            <LazyLoadWrapper fallback="optimized">
+                <Suspense fallback={<div>Loading product use cases...</div>}>
+                    <ProductUseCases applications={product.applications} />
+                </Suspense>
+            </LazyLoadWrapper>
 
-            {/* System Builder Section */}
-            <SystemBuilder
-                accessories={transformedAccessories}
-                onAddToSystem={handleAddToSystem}
-                onRemoveFromSystem={handleRemoveFromSystem}
-            />
+            {/* System Builder Section - Lazy loaded */}
+            <LazyLoadWrapper
+                fallback="skeleton"
+                skeletonConfig={{ rows: 5, title: true, paragraph: true }}
+            >
+                <Suspense fallback={<div>Loading system builder...</div>}>
+                    <SystemBuilder
+                        accessories={transformedAccessories}
+                        onAddToSystem={handleAddToSystem}
+                        onRemoveFromSystem={handleRemoveFromSystem}
+                    />
+                </Suspense>
+            </LazyLoadWrapper>
 
-            {/* Reviews & Q&A Section */}
-            <ReviewsQA
-                reviews={product.reviews}
-                qa={product.qa}
-                rating={product.rating}
-                reviewCount={product.reviewCount}
-                onAskQuestion={handleAskQuestion}
-                onHelpfulReview={handleHelpfulReview}
-                onHelpfulAnswer={handleHelpfulAnswer}
-            />
+            {/* Reviews & Q&A Section - Lazy loaded */}
+            <LazyLoadWrapper
+                fallback="skeleton"
+                skeletonConfig={{ rows: 6, title: true, paragraph: true }}
+            >
+                <Suspense fallback={<div>Loading reviews and Q&A...</div>}>
+                    <ReviewsQA
+                        reviews={product.reviews}
+                        qa={product.qa}
+                        rating={product.rating}
+                        reviewCount={product.reviewCount}
+                        onAskQuestion={handleAskQuestion}
+                        onHelpfulReview={handleHelpfulReview}
+                        onHelpfulAnswer={handleHelpfulAnswer}
+                    />
+                </Suspense>
+            </LazyLoadWrapper>
 
-            {/* Resource Hub Section */}
-            <ResourceHub
-                resources={product.resources}
-                onDownload={handleDownloadResource}
-                onContactSupport={handleContactSupport}
-            />
+            {/* Resource Hub Section - Lazy loaded */}
+            <LazyLoadWrapper
+                fallback="skeleton"
+                skeletonConfig={{ rows: 4, title: true, paragraph: true }}
+            >
+                <Suspense fallback={<div>Loading resource hub...</div>}>
+                    <ResourceHub
+                        resources={product.resources}
+                        onDownload={handleDownloadResource}
+                        onContactSupport={handleContactSupport}
+                    />
+                </Suspense>
+            </LazyLoadWrapper>
         </div>
     );
 };

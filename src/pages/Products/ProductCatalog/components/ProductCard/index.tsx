@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import { EyeOutlined, HeartOutlined, ShoppingCartOutlined, SwapOutlined } from '@ant-design/icons';
 
 import { formatPrice, formatProductName } from '../../utils/product-catalog.utils';
-import ProductImageGallery from '../ProductImageGallery';
+import ProductCatalogImageGallery from '../ProductCatalogImageGallery';
 import styles from './ProductCard.module.scss';
 import type { ProductCardComponentProps } from './ProductCard.types';
 
@@ -219,7 +219,7 @@ const ProductCard: React.FC<ProductCardComponentProps> = ({
 
             {/* Product image */}
             <div className={styles['product-card__image-container']}>
-                <ProductImageGallery
+                <ProductCatalogImageGallery
                     images={[
                         {
                             id: 1,

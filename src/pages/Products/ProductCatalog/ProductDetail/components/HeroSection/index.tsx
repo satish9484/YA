@@ -3,8 +3,9 @@ import type React from 'react';
 import { Col, Row } from 'antd';
 
 import type { ProductDetail } from '../../../types/product-detail.types';
-// import ProductImageGallery from '../ProductImageGallery'; // Temporarily disabled for performance testing
-import ProductInfo from '../ProductInfo';
+// Temporarily disabled for performance testing
+import ProductDetailInfo from '../ProductDetailInfo';
+import ProductPhotoGallery from '../ProductPhotoGallery';
 import styles from './HeroSection.module.scss';
 
 interface HeroSectionProps {
@@ -22,11 +23,11 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({
     product,
-    selectedImage: _selectedImage,
+    selectedImage: selectedImage,
     quantity,
     wishlist,
-    onImageSelect: _onImageSelect,
-    onProductClick: _onProductClick,
+    onImageSelect: onImageSelect,
+    onProductClick: onProductClick,
     onQuantityChange,
     onAddToCart,
     onAddToWishlist,
@@ -38,25 +39,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <Row gutter={[32, 32]} align="top">
                     {/* Image Gallery - TEMPORARILY DISABLED FOR PERFORMANCE TESTING */}
                     <Col xs={24} lg={14}>
-                        <div
-                            style={{
-                                height: '500px',
-                                background: '#f8f9fa',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                border: '2px dashed #dee2e6',
-                                borderRadius: '8px',
-                            }}
-                        >
-                            <div style={{ textAlign: 'center', color: '#6c757d' }}>
-                                <h3>Image Gallery Disabled</h3>
-                                <p>Component temporarily disabled for performance testing</p>
-                                <p>Images: {product.images?.length || 0} items</p>
-                            </div>
-                        </div>
-                        {/* 
-                        <ProductImageGallery
+                        <ProductPhotoGallery
                             images={product.images}
                             selectedImage={selectedImage}
                             onImageSelect={onImageSelect}
@@ -65,12 +48,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                             showContextGallery={true}
                             showToolbar={true}
                         />
-                        */}
                     </Col>
 
                     {/* Product Info & Purchase */}
                     <Col xs={24} lg={10}>
-                        <ProductInfo
+                        <ProductDetailInfo
                             product={product}
                             quantity={quantity}
                             onQuantityChange={onQuantityChange}

@@ -1,0 +1,367 @@
+/* =====================================================
+  Product Image Gallery - Component Styles
+  Enhanced Amazon-style Image Gallery
+ ================================================================ */
+
+.productImageGallery {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: color(bg-primary);
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+
+    // Main image container
+    &__mainContainer {
+        // position: relative;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+        border-radius: $border-radius-lg;
+        overflow: hidden;
+        margin-bottom: $spacing-4;
+
+        @include respond-to('sm') {
+            height: 400px;
+        }
+
+        @include respond-to('md') {
+            height: 500px;
+        }
+    }
+
+    &__mainImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    // Navigation arrows
+    &__navButton {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.6) !important;
+        border: none !important;
+        color: white !important;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        font-size: 16px;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.8) !important;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        &:first-child {
+            left: $spacing-3;
+        }
+
+        &:last-child {
+            right: $spacing-3;
+        }
+
+        .productImageGallery__mainContainer:hover & {
+            opacity: 1;
+        }
+    }
+
+    // Image counter
+    &__imageCounter {
+        position: absolute;
+        bottom: $spacing-3;
+        left: $spacing-3;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: $spacing-1 $spacing-2;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        .productImageGallery__mainContainer:hover & {
+            opacity: 1;
+        }
+    }
+
+    // Overlay toolbar
+    &__overlayToolbar {
+        position: absolute;
+        top: $spacing-3;
+        right: $spacing-3;
+        display: flex;
+        gap: $spacing-2;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        .productImageGallery__mainContainer:hover & {
+            opacity: 1;
+        }
+    }
+
+    &__overlayBtn {
+        background: rgba(0, 0, 0, 0.7) !important;
+        border: none !important;
+        color: white !important;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        font-size: 16px;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.9) !important;
+            transform: scale(1.1);
+        }
+    }
+
+    // Custom toolbar (for preview mode)
+    &__toolbar {
+        position: absolute;
+        top: $spacing-2;
+        right: $spacing-2;
+        display: flex;
+        gap: $spacing-1;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: $border-radius-md;
+        padding: $spacing-2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        .productImageGallery__mainContainer:hover & {
+            opacity: 1;
+        }
+    }
+
+    &__toolbarBtn {
+        background: transparent;
+        border: none;
+        color: white;
+        padding: $spacing-2;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    // Thumbnail strip
+    &__thumbnailStrip {
+        display: flex;
+        gap: $spacing-2;
+        margin-bottom: $spacing-6;
+        overflow-x: auto;
+        padding: $spacing-1;
+        scrollbar-width: thin;
+        scrollbar-color: color(border) transparent;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: color(border);
+            border-radius: 2px;
+        }
+    }
+
+    &__thumbnail {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        border-radius: $border-radius-md;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+
+        &:hover {
+            border-color: color(accent-primary);
+            transform: translateY(-2px);
+        }
+
+        &--active {
+            border-color: color(accent-primary);
+            box-shadow: 0 4px 12px rgba(color(accent-primary), 0.3);
+        }
+    }
+
+    &__thumbnailImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    // Context gallery
+    &__contextGallery {
+        margin-top: $spacing-6;
+    }
+
+    &__contextTitle {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: color(text-primary);
+        margin-bottom: $spacing-4;
+    }
+
+    &__contextCarousel {
+        .slick-slide {
+            padding: 0 $spacing-2;
+        }
+    }
+
+    &__contextItem {
+        position: relative;
+        border-radius: $border-radius-md;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+        }
+    }
+
+    &__context-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    &__contextMask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        gap: $spacing-2;
+
+        .productImageGallery__contextItem:hover & {
+            opacity: 1;
+        }
+    }
+
+    &__contextIcon {
+        font-size: 24px;
+    }
+
+    &__contextText {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+    }
+
+    // Loading state
+    &Loading {
+        .productImageGallery__mainImage {
+            opacity: 0.6;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+    }
+
+    // Error state
+    &Error {
+        .productImageGallery__mainContainer {
+            background: color(error-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    // Responsive adjustments
+    @include respond-to('sm') {
+        &__thumbnail {
+            width: 60px;
+            height: 60px;
+        }
+
+        &__contextImage {
+            height: 150px;
+        }
+    }
+
+    // Dark theme support
+    [data-theme='dark'] & {
+        background: color(bg-primary);
+
+        &__mainContainer {
+            background: linear-gradient(135deg, color(bg-secondary) 0%, color(bg-tertiary) 100%);
+        }
+
+        &__toolbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+
+// Loading animation
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+:global(.ant-image) {
+    width: 100%;
+    height: 250px !important;
+
+    :global(.ant-image-img) {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+
+        :global(.ant-image-mask) {
+            width: 100%;
+            height: 100%;
+
+            :global(.ant-image-mask-info) {
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

@@ -2,7 +2,8 @@ import type React from 'react';
 
 import Breadcrumbs, { useBreadcrumbs } from '@/components/common/Breadcrumbs';
 
-import ProductDetail from './ProductDetail';
+// Import ProductDetail directly without lazy loading for testing
+import ProductDetail from './ProductDetail/index';
 
 const ProductDetailPage: React.FC = () => {
     const { createProductBreadcrumbs } = useBreadcrumbs();
