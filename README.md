@@ -1,8 +1,6 @@
-# yashvi audio
-
 ---
 
-**Install dependencies** (pnpm is recommended for performance):
+**Install dependencies** (npm is recommended for performance):
 
     ```bash
     npm install
